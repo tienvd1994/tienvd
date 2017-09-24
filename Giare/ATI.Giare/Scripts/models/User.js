@@ -68,10 +68,10 @@ User.ChangePassword = function (userName, newPass, callback) {
     });
 }
 
-User.Get = function (pageIndex, recordPerPage, callback) {
+User.Get = function (keyword, pageIndex, recordPerPage, callback) {
 
     amplify.request("GetUsers", {
-        pageIndex: pageIndex, recordPerPage: recordPerPage
+        keyword: keyword, pageIndex: pageIndex, recordPerPage: recordPerPage
     }, function (data) {
         if (callback) callback(data);
     });

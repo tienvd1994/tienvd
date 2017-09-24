@@ -46,63 +46,90 @@ function NewsView() {
     self.IsAdd = ko.observable(true);
     self.ID = ko.observable(-1);
     self.LangId = ko.observable(0);
+    self.isUploading = ko.observable(false);
+    self.isUploadingContent = ko.observable(false);
 
-    $('#attachImages').uploadify({
-        'uploader': '/Scripts/uploadify.swf',
-        'script': '/UploadFile/Upload',
-        'buttonImg': '/Content/images/upload.png',
-        'cancelImg': '/Content/images/icon_closex.png',
-        'folder': '/ATI',
-        'width': '110',
-        'height': '40',
-        'fileExt': '*.jpg;*.png;*.gif;*.jpe',
-        'fileDesc': 'File jpg *.png;*.gif;*.jpe',
-        'sizeLimit': '8192000',
-        'scriptData': { 'username': "ATI" },
-        'onComplete': function (event, queueId, fileObj, response) {
-            if (response == "-10") {
+    var maxFileLength = 5120000;
+
+    $("#FileUploadImage").fileupload({
+        url: "/UploadFile/Upload",
+        sequentialUploads: false,
+        dataType: "json",
+        dropZone: null,
+        pasteZone: null,
+        add: function (e, data) {
+            var file = data.files[0];
+            var msg = "";
+            if (maxFileLength && file.size > maxFileLength) {
+                if (msg.length > 0) {
+                    msg += "<br/>";
+                }
+                msg += "Kích thước tệp lớn hơn kích thước cho phép";
+            }
+
+            if (msg !== "") {
+                toastr.error(msg);
+            } else {
+                data.submit();
+                self.isUploading(true);
+            }
+        },
+        done: function (e, data) {
+            if (data.result == "-10") {
                 toastr.warning("Có lỗi xảy ra xin vui lòng liên hệ Ban quản trị để được trợ giúp");
                 return;
             }
 
-            if (response == "-2") {
-                toastr.warning("Bạn hãy tải ảnh có định dạng .doc; .docx; .zip; .7z; .rar; .ppt; .pptx; .pdf; .xls; .xlsx!");
+            if (data.result == "-2") {
+                toastr.warning("Bạn hãy tải ảnh có định dạng .jpg; .png, .gif, .jpeg!");
                 return;
             }
 
-            self.Image(response.replace(/\"/g, ""));
-        },
-        'multi': false,
-        'auto': true
+
+            self.isUploading(false);
+            self.Image(data.result);
+            //toastr.success(resources.salesCall.customer.message.uploadFileSucc);
+        }
     });
 
-    $('#EmbbedImages').uploadify({
-        'uploader': '/Scripts/uploadify.swf',
-        'script': '/UploadFile/Upload',
-        'buttonImg': '/Content/images/upload.png',
-        'cancelImg': '/Content/images/icon_closex.png',
-        'folder': '/ATI',
-        'width': '110',
-        'height': '40',
-        'fileExt': '*.jpg;*.png;*.gif;*.jpe',
-        'fileDesc': 'File jpg *.png;*.gif;*.jpe',
-        'sizeLimit': '8192000',
-        'scriptData': { 'username': "ATI" },
-        'onComplete': function (event, queueId, fileObj, response) {
-            if (response == "-10") {
+    $("#EmbbedImages").fileupload({
+        url: "/UploadFile/Upload",
+        sequentialUploads: false,
+        dataType: "json",
+        dropZone: null,
+        pasteZone: null,
+        add: function (e, data) {
+            var file = data.files[0];
+            var msg = "";
+            if (maxFileLength && file.size > maxFileLength) {
+                if (msg.length > 0) {
+                    msg += "<br/>";
+                }
+                msg += "Kích thước tệp lớn hơn kích thước cho phép";
+            }
+
+            if (msg !== "") {
+                toastr.error(msg);
+            } else {
+                data.submit();
+                self.isUploadingContent(true);
+            }
+        },
+        done: function (e, data) {
+            if (data.result == "-10") {
                 toastr.warning("Có lỗi xảy ra xin vui lòng liên hệ Ban quản trị để được trợ giúp");
                 return;
             }
 
-            if (response == "-2") {
-                toastr.warning("Bạn hãy tải ảnh có định dạng .doc; .docx; .zip; .7z; .rar; .ppt; .pptx; .pdf; .xls; .xlsx!");
+            if (data.result == "-2") {
+                toastr.warning("Bạn hãy tải ảnh có định dạng .jpg; .png, .gif, .jpeg!");
                 return;
             }
 
-            CKEDITOR.instances.Content.insertHtml("<img class='img-responsive img-tab-space' src='" + response.replace(/\"/g, "") + "'/>");
-        },
-        'multi': false,
-        'auto': true
+
+            self.isUploadingContent(false);
+            CKEDITOR.instances.Content.insertHtml("<img class='img-responsive img-tab-space' src='" + data.result + "'/>");
+        }
     });
 
     self.SetUpdate = function (item) {

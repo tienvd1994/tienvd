@@ -23,10 +23,10 @@ Contact.UpdateStatus = function (id, callback) {
     });
 }
 
-Contact.Get = function (type, pageIndex, recordPerPage, callback) {
+Contact.Get = function (type, keyword, pageIndex, recordPerPage, callback) {
 
     amplify.request("GetContacts", {
-        type: type, pageIndex: pageIndex, recordPerPage: recordPerPage
+        type: type, keyword: keyword, pageIndex: pageIndex, recordPerPage: recordPerPage
     }, function (data) {
         if (callback) callback(data);
     });

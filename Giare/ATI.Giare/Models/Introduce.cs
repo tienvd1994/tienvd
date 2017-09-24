@@ -27,5 +27,8 @@ namespace ATI.Web.Models
         public Nullable<int> ViewNo { get; set; }
         public string Content_En { get; set; }
         public Nullable<byte> LangId { get; set; }
+        public Nullable<bool> IsShowHomePage { get; set; }
+        public string UnsignName { get; set; }
+        public string UnsignName_En { get; set; }
     }
 }

@@ -30,5 +30,7 @@ namespace ATI.Web.Models
         public Nullable<int> CreatedUserId { get; set; }
         public string CreatedFullname { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
+        public string UnsignName { get; set; }
+        public string UnsignName_En { get; set; }
     }
 }

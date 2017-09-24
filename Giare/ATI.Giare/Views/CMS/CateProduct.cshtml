@@ -20,6 +20,8 @@
     </script>
     <script src="~/Scripts/editor/full/ckeditor.js"></script>
     <script src="/Scripts/ATI.pager.js"></script>
+    <script src="~/Scripts/jquery.ui.widget.js"></script>
+    <script src="~/Scripts/jQuery.FileUpload/jquery.fileupload.js"></script>
     <script src="/Scripts/models/CateProduct.js"></script>
     <script src="/Scripts/ModelViews/CateProduct.js"></script>
 }
@@ -51,6 +53,8 @@
                         <input type="text" data-bind="value: Name, hasfocus: fcName" maxlength="250" />
                     </label>
                 </section>
+            </div>
+            <div class="row">
                 <section class="col col-lg-4">
                     <label class="label">Nhóm cha (<small>nếu có</small>)</label>
                     <label class="select">
@@ -60,7 +64,7 @@
                                 var cateProducts = (List<CateProduct>)ViewBag.CateProducts;
                                 foreach (var item in cateProducts)
                                 {
-                                    <option value="@item.ID">@Html.Raw(item.Name)</option>
+                            <option value="@item.ID">@Html.Raw(item.Name)</option>
                                 }
                             }
                         </select>
@@ -72,10 +76,32 @@
                         <select data-bind="value: OrderNo">
                             @for (int i = 1; i < 100; i++)
                             {
-                                <option value="@i">@i</option>
+                            <option value="@i">@i</option>
                             }
                         </select>
                     </label>
+                </section>
+                <section class="col col-6">
+                    <label class="label">
+                        Hiển thị trang chủ
+                    </label>
+                    <div class="check-box">
+                        <input type="checkbox" data-bind="checked: IsShowHomePage" />
+                    </div>
+                </section>
+            </div>
+            <div class="row">
+                <section class="col col-6">
+                    <label class="label">Chèn ảnh vào nội dung</label>
+                    <div class="input">
+                        <i id="loadingUpload" class="fa fa-spinner fa-pulse" data-bind="visible: isUploading()" style="display: none;"></i>
+                        <div class="fileuploadButton cursor-pointer">
+                            <input id="EmbbedImages" type="file" name="FileData">
+                            <a href="#">
+                                <i class="fa fa-upload"></i> <span>Tải ảnh</span>
+                            </a>
+                        </div>
+                    </div>
                 </section>
             </div>
             <section>
@@ -99,7 +125,15 @@
                         <option value="1">Tiếng Anh</option>
                     </select>
                 </div>
-                <div class="col-sm-10 mb-margin-bottom-30 text-right">
+                <div class="col-md-6 mb-margin-bottom-30">
+                    <div class="input-group margin-bottom-40">
+                        <input type="text" placeholder="Tên sản phẩm" class="form-control" data-bind="value: Keyword">
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-u btn-small btn-u-blue" data-bind="click: Search.bind($data,1)">Tìm kiếm</button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-sm-4 mb-margin-bottom-30 text-right">
                     <button type="button" class="btn btn-u btn-small btn-u-blue" data-bind="click: ShowAddForm"><i class="icon icon-plus"></i> Thêm mới</button>
                 </div>
             </div>

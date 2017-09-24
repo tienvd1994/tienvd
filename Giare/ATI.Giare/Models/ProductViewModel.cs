@@ -22,5 +22,6 @@ namespace ATI.Web.Models
         public byte IsHot { get; set; }
         public string LangId { get; set; }
         public string CreateDate { get; set; }
+        public bool IsShowHomePage { get; set; }
     }
 }

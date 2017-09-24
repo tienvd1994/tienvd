@@ -25,6 +25,8 @@
     <script src="~/Scripts/editor/full/ckeditor.js"></script>
     <script src="~/Scripts/plugins/jquery_ui_datepicker.js"></script>
     <script src="~/Scripts/plugins/jquery-ui-timepicker-vi.js"></script>
+    <script src="~/Scripts/jquery.ui.widget.js"></script>
+    <script src="~/Scripts/jQuery.FileUpload/jquery.fileupload.js"></script>
     <script src="~/Scripts/models/News.js"></script>
     <script src="~/Scripts/ModelViews/News.js"></script>
 }
@@ -86,18 +88,18 @@
             </div>
             <div class="row">
                 @*<section class="col col-6">
-                    <label class="label">Người viết</label>
-                    <label class="input">
-                        <input type="text" data-bind="value: Author" maxlength="100" />
-                    </label>
-                </section>
-                <section class="col col-3">
-                    <label class="label">Ngày đăng</label>
-                    <label class="input">
-                        <i class="icon-append fa fa-calendar"></i>
-                        <input type="text" id="txtPostTime" maxlength="10" />
-                    </label>
-                </section>*@
+                        <label class="label">Người viết</label>
+                        <label class="input">
+                            <input type="text" data-bind="value: Author" maxlength="100" />
+                        </label>
+                    </section>
+                    <section class="col col-3">
+                        <label class="label">Ngày đăng</label>
+                        <label class="input">
+                            <i class="icon-append fa fa-calendar"></i>
+                            <input type="text" id="txtPostTime" maxlength="10" />
+                        </label>
+                    </section>*@
                 <section class="col col-3">
                     <label class="label">Trạng thái</label>
                     <label class="select">
@@ -116,9 +118,15 @@
                     </label>
                 </section>
                 <section class="col col-6">
-                    <label class="input">
-                        <input type="hidden" id="attachImages" />
-                    </label>
+                    <div class="input">
+                        <i id="loadingUpload" class="fa fa-spinner fa-pulse" data-bind="visible: isUploading()" style="display: none;"></i>
+                        <div class="fileuploadButton cursor-pointer">
+                            <input id="FileUploadImage" type="file" name="FileData">
+                            <a href="#">
+                                <i class="fa fa-upload"></i> <span>Tải ảnh</span>
+                            </a>
+                        </div>
+                    </div>
                 </section>
             </div>
             <section>
@@ -130,9 +138,15 @@
             <div class="row">
                 <section class="col col-6">
                     <label class="label">Chèn ảnh vào nội dung</label>
-                    <label class="input">
-                        <input type="hidden" id="EmbbedImages" />
-                    </label>
+                    <div class="input">
+                        <i id="loadingUpload" class="fa fa-spinner fa-pulse" data-bind="visible: isUploading()" style="display: none;"></i>
+                        <div class="fileuploadButton cursor-pointer">
+                            <input id="EmbbedImages" type="file" name="FileData">
+                            <a href="#">
+                                <i class="fa fa-upload"></i> <span>Tải ảnh</span>
+                            </a>
+                        </div>
+                    </div>
                 </section>
             </div>
             <section>
@@ -168,21 +182,20 @@
                     <button type="button" class="btn btn-u btn-small btn-u-blue" data-bind="click: ShowAddForm"><i class="icon icon-plus"></i> Thêm mới</button>
                 </div>
             </div>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>TT</th>
+                        <th data-bind="visible: IsDesktop">Ảnh</th>
+                        <th>Tiêu đề bài viết</th>
+                        <th data-bind="visible: IsDesktop">Ngày đăng</th>
+                        <th data-bind="visible: IsSmartPhone450">Trạng thái</th>
+                        <th>Sửa, xóa</th>
+                    </tr>
+                </thead>
+                <tbody data-bind="template: {name:'NewsTemplate', foreach: ListNews}"></tbody>
+            </table>
         </div>
-        <p>&nbsp;</p>
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>TT</th>
-                    <th data-bind="visible: IsDesktop">Ảnh</th>
-                    <th>Tiêu đề bài viết</th>
-                    <th data-bind="visible: IsDesktop">Ngày đăng</th>
-                    <th data-bind="visible: IsSmartPhone450">Trạng thái</th>
-                    <th>Sửa, xóa</th>
-                </tr>
-            </thead>
-            <tbody data-bind="template: {name:'NewsTemplate', foreach: ListNews}"></tbody>
-        </table>
         <div class="row margin-bottom-10">
             <div class="col-md-6" id="sumarypager"></div>
             <div class="col-md-6">

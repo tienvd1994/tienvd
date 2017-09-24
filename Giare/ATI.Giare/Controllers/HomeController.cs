@@ -29,7 +29,7 @@ namespace ATI.Web.Controllers
             ViewBag.ModuleId = 1;
             ViewBag.Services = db.Partners.Where(m => m.LangId == 0).OrderBy(m => m.OrderNo).Take(3).ToList();
             AddLog(HttpContext.Session.SessionID);
-            var categories = db.CateProducts.Where(m => !m.IsDelete && m.ParrentCateId == -1).Select(m => new CategoryItems
+            var categories = db.CateProducts.Where(m => !m.IsDelete && m.ParrentCateId == -1 && m.IsShowHomePage == true).Select(m => new CategoryItems
             {
                 CateId = m.ID,
                 CategoryName = m.Name
@@ -39,13 +39,14 @@ namespace ATI.Web.Controllers
 
             foreach (var item in categories)
             {
-                var products = db.Products.Where(m => !m.IsDelete && m.Status == 1 && m.IsHot == 1 && m.CateId == item.CateId).Select(m => new ProductItems
+                var products = db.Products.Where(m => !m.IsDelete && m.IsShowHomePage == true && m.Status == 1 && m.CateId == item.CateId).Select(m => new ProductItems
                 {
                     Id = m.ID,
                     Name = m.Name,
                     Image = m.Image,
                     SeoLink = m.SeoLink,
-                    CategoryName = item.CategoryName
+                    CategoryName = item.CategoryName,
+                    CateId = item.CateId
                 }).ToList();
 
                 listProduct.AddRange(products);
@@ -57,6 +58,7 @@ namespace ATI.Web.Controllers
                 Products = listProduct
             };
 
+            ViewBag.AboutHomePage = db.Introduces.Where(m => m.IsShowHomePage == true).OrderByDescending(m => m.LastUpdateTime).FirstOrDefault();
             ViewBag.ListCateAndProduct = categoryAndProductViewModel;
 
             return View();
@@ -75,7 +77,7 @@ namespace ATI.Web.Controllers
                 return View("FileNotFound");
             }
 
-            ViewBag.IntroduceOther = db.Introduces.Where(m => m.ID != introduce.ID).ToList();
+            ViewBag.IntroduceOther = db.Introduces.Where(m => m.ID != introduce.ID && m.IsShowHomePage == false).ToList();
             ViewBag.Content = introduce;
 
             return View();
@@ -444,10 +446,9 @@ namespace ATI.Web.Controllers
 
             var pageIndex = string.IsNullOrEmpty(Request.Params["p"]) ? 1 : Convert.ToInt32(Request.Params["p"]);
             var recordPerPage = string.IsNullOrEmpty(Request.Params["r"]) ? 10 : Convert.ToInt32(Request.Params["r"]);
-            var items = db.News.Where(m => m.LangId == ATICurrentSession.GetLang && m.Type == 0).ToList();
+            var items = db.News.Where(m => m.LangId == ATICurrentSession.GetLang && m.Type == 0 && m.CateId == cate.ID).ToList();
             var result = items.OrderByDescending(m => m.ID).Skip((pageIndex - 1) * recordPerPage).Take(recordPerPage);
             ViewBag.News = result.ToList();
-            ViewBag.totalRecord = items.Count();
             ViewBag.totalRecord = items.Count();
             ViewBag.CurrPage = pageIndex;
             ViewBag.ModuleId = seolink.Equals("tuyen-dung") ? 7 : 3;
@@ -729,7 +730,7 @@ namespace ATI.Web.Controllers
         #region
         public JsonResult SendContact(string name, string type, string mobile, string email, string title, string message, string company, string address)
         {
-            var contact = new ATI.Web.Models.Contact
+            var contact = new Contact
             {
                 ID = 1,
                 Name = name,
@@ -742,6 +743,7 @@ namespace ATI.Web.Controllers
                 SendTime = DateTime.Now,
                 Status = 0,
                 Address = address,
+                UnsignName = Common.UCS2Convert(string.Concat(name, "", email, " ", mobile)).ToLower()
             };
 
             db.Contacts.Add(contact);
@@ -965,7 +967,7 @@ namespace ATI.Web.Controllers
             ViewBag.CategoryProducts = db.CateProducts.Where(m => !m.IsDelete && m.ParrentCateId == -1).ToList();
             ViewBag.CateNews = db.CateNews.Where(m => m.Type == 0).ToList();
             ViewBag.CateSolutions = db.CateNews.Where(m => m.Type == 1).ToList();
-            ViewBag.Introduces = db.Introduces.ToList().Select(m => new Introduce
+            ViewBag.Introduces = db.Introduces.Where(m => m.IsShowHomePage == false).ToList().Select(m => new Introduce
             {
                 ID = m.ID,
                 Title = m.Title,
@@ -978,6 +980,20 @@ namespace ATI.Web.Controllers
         public ActionResult Sponsors()
         {
             ViewBag.Sponsors = db.CustomerSays.ToList();
+
+            return PartialView();
+        }
+
+        public ActionResult Footer()
+        {
+            ViewBag.CommonInfo = db.CommonInfoes.Where(x => x.LangId == ATICurrentSession.GetLang).FirstOrDefault();
+            ViewBag.CateNews = db.CateNews.Where(m => m.Type == 0).ToList();
+            ViewBag.Introduces = db.Introduces.Where(m => m.IsShowHomePage == false).ToList().Select(m => new Introduce
+            {
+                ID = m.ID,
+                Title = m.Title,
+                SeoLink = m.SeoLink
+            }).ToList();
 
             return PartialView();
         }

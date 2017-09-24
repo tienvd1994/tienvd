@@ -25,6 +25,7 @@ function ServiceView() {
     self.Name = ko.observable("");
     self.Image = ko.observable("");
     self.Summary = ko.observable("");
+    self.Keyword = ko.observable("");
 
     self.ShowDetail = ko.observable(false);
     self.fcName = ko.observable(false);
@@ -33,7 +34,7 @@ function ServiceView() {
     self.ID = ko.observable(-1);
 
     self.changeLang = function () {
-        self.Search();
+        self.Search(1);
     }
 
     $('#attachImages').uploadify({
@@ -119,8 +120,10 @@ function ServiceView() {
         });
     }
 
-    self.Search = function () {
-        Service.Get(self.LangId(), function (data) {
+    self.Search = function (currentPage) {
+        CurrentPage = currentPage;
+
+        Service.Get(self.LangId(), self.Keyword(), currentPage, RecordPerPage, function (data) {
             console.log(data);
             if (data == -1) {
                 toastr.warning("Mời bạn đăng nhập trước khi thực hiện");
@@ -129,9 +132,18 @@ function ServiceView() {
                 return;
             }
 
-            self.ListService(data);
+            totalPageCate = Math.ceil(data.totalRecord / RecordPerPage);
+            self.ListService(data.items);
+
+            $("#sumarypager").html("Trang " + (totalPageCate == 0 ? 0 : currentPage) + "/" + totalPageCate + ' (tổng ' + data.totalRecord + ' sản phẩm)');
+            $("#pager").pager({ pagenumber: currentPage, pagecount: totalPageCate, buttonClickCallback: self.PageClick });
         });
     }
+
+    self.PageClick = function (pageclickednumber) {
+        $("#pager").pager({ pagenumber: pageclickednumber, pagecount: totalPageCate, buttonClickCallback: self.PageClick });
+        self.Search(pageclickednumber);
+    };
 
     self.Update = function () {
 
@@ -194,7 +206,7 @@ function ServiceView() {
         }
     }
 
-    self.Search();
+    self.Search(1);
 }
 
 var modelView = new ServiceView();

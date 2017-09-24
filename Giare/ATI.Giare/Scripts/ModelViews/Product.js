@@ -50,45 +50,12 @@ function ProductView() {
     self.IsAdd = ko.observable(true);
     self.ID = ko.observable(-1);
     self.isUploading = ko.observable(false);
-
-    //$('#attachImages').uploadify({
-    //    'uploader': '/Scripts/uploadify.swf',
-    //    'script': '/UploadFile/Upload',
-    //    'buttonImg': '/Content/images/upload.png',
-    //    'cancelImg': '/Content/images/icon_closex.png',
-    //    'wmode': 'transparent',
-    //    'folder': '/Uploads',
-    //    'width': '110',
-    //    'height': '40',
-    //    'fileExt': '*.jpg;*.png;*.gif;*.jpe',
-    //    'fileDesc': 'File jpg *.png;*.gif;*.jpe',
-    //    'sizeLimit': '8192000',
-    //    'scriptData': { 'username': "ATI" },
-    //    'onComplete': function (event, queueId, fileObj, response) {
-    //        if (response == "-10") {
-    //            toastr.warning("Có lỗi xảy ra xin vui lòng liên hệ Ban quản trị để được trợ giúp");
-    //            return;
-    //        }
-
-    //        if (response == "-2") {
-    //            toastr.warning("Bạn hãy tải ảnh có định dạng .doc; .docx; .zip; .7z; .rar; .ppt; .pptx; .pdf; .xls; .xlsx!");
-    //            return;
-    //        }
-
-    //        self.Image(response.replace(/\"/g, ""));
-    //    },
-    //    'multi': false,
-    //    'auto': true
-    //});
-
-    self.validateBlackListExtensions = function (file) {
-        var ext = file.substring(file.lastIndexOf(".")).toLowerCase();
-        return _.some([".jpg", ".jpeg", ".gif", ".png"], function (item) { return item === ext; });
-    }
+    self.isUploadingContent = ko.observable(false);
+    self.IsShowHomePage = ko.observable(false);
 
     var maxFileLength = 5120000;
 
-    $("#ContactUploadFile").fileupload({
+    $("#FileUploadImage").fileupload({
         url: "/UploadFile/Upload",
         sequentialUploads: false,
         dataType: "json",
@@ -101,13 +68,9 @@ function ProductView() {
                 if (msg.length > 0) {
                     msg += "<br/>";
                 }
-                msg += file.name + ": " + resources.common.message.maxFileLengthUpload;
-            } else if (!self.validateBlackListExtensions(file.name)) {
-                if (msg.length > 0) {
-                    msg += "<br/>";
-                }
-                msg += file.name + ": " + 'không được phép tải lên.';
+                msg += "Kích thước tệp lớn hơn kích thước cho phép";
             }
+
             if (msg !== "") {
                 toastr.error(msg);
             } else {
@@ -116,40 +79,61 @@ function ProductView() {
             }
         },
         done: function (e, data) {
-            self.isUploading(false);
-            console.log(data);
-            self.Image();
-            toastr.success(resources.salesCall.customer.message.uploadFileSucc);
-        }
-    });
-
-    $('#EmbbedImages').uploadify({
-        'uploader': '/Scripts/uploadify.swf',
-        'script': '/UploadFile/Upload',
-        'buttonImg': '/Content/images/upload.png',
-        'cancelImg': '/Content/images/icon_closex.png',
-        'folder': '/Uploads',
-        'width': '110',
-        'height': '40',
-        'fileExt': '*.jpg;*.png;*.gif;*.jpe',
-        'fileDesc': 'File jpg *.png;*.gif;*.jpe',
-        'sizeLimit': '8192000',
-        'scriptData': { 'username': "ATI" },
-        'onComplete': function (event, queueId, fileObj, response) {
-            if (response == "-10") {
+            if (data.result == "-10") {
                 toastr.warning("Có lỗi xảy ra xin vui lòng liên hệ Ban quản trị để được trợ giúp");
                 return;
             }
 
-            if (response == "-2") {
-                toastr.warning("Bạn hãy tải ảnh có định dạng .doc; .docx; .zip; .7z; .rar; .ppt; .pptx; .pdf; .xls; .xlsx!");
+            if (data.result == "-2") {
+                toastr.warning("Bạn hãy tải ảnh có định dạng .jpg; .png, .gif, .jpeg!");
                 return;
             }
 
-            CKEDITOR.instances.Content.insertHtml("<img class='img-responsive img-tab-space' src='" + "http://cdn.quancafe.vn/z_650x0" + response.replace(/\"/g, "") + "'/>");
+
+            self.isUploading(false);
+            self.Image(data.result);
+            //toastr.success(resources.salesCall.customer.message.uploadFileSucc);
+        }
+    });
+
+    $("#EmbbedImages").fileupload({
+        url: "/UploadFile/Upload",
+        sequentialUploads: false,
+        dataType: "json",
+        dropZone: null,
+        pasteZone: null,
+        add: function (e, data) {
+            var file = data.files[0];
+            var msg = "";
+            if (maxFileLength && file.size > maxFileLength) {
+                if (msg.length > 0) {
+                    msg += "<br/>";
+                }
+                msg += "Kích thước tệp lớn hơn kích thước cho phép";
+            }
+
+            if (msg !== "") {
+                toastr.error(msg);
+            } else {
+                data.submit();
+                self.isUploadingContent(true);
+            }
         },
-        'multi': false,
-        'auto': true
+        done: function (e, data) {
+            if (data.result == "-10") {
+                toastr.warning("Có lỗi xảy ra xin vui lòng liên hệ Ban quản trị để được trợ giúp");
+                return;
+            }
+
+            if (data.result == "-2") {
+                toastr.warning("Bạn hãy tải ảnh có định dạng .jpg; .png, .gif, .jpeg!");
+                return;
+            }
+
+
+            self.isUploadingContent(false);
+            CKEDITOR.instances.Content.insertHtml("<img class='img-responsive img-tab-space' src='" + data.result + "'/>");
+        }
     });
 
     self.SetUpdate = function (item) {
@@ -166,6 +150,7 @@ function ProductView() {
         self.CreateDate(item.CreateDate);
         self.IsAdd(false);
         self.fcName(true);
+        self.IsShowHomePage(item.IsShowHomePage);
         //$(".tags-input").css('width', '100%');
         //var listTag = item.Tags.split(',');
 
@@ -197,6 +182,7 @@ function ProductView() {
         self.LangId(-1);
         self.IsHot(0);
         self.CreateDate("");
+        self.IsShowHomePage(false);
     }
 
     self.Delete = function (item) {
@@ -285,7 +271,7 @@ function ProductView() {
 
         if (self.IsAdd()) {
             Product.AddProduct(self.Name(), 1, self.Customer(), self.Summary(), CKEDITOR.instances.Content.getData(), self.Status(), self.Image(), self.CreateDate(),
-                self.Tags(), self.LangId(), function (data) {
+                self.Tags(), self.LangId(), self.IsShowHomePage(), function (data) {
 
                     self.Sending(false);
 
@@ -303,7 +289,7 @@ function ProductView() {
         }
         else {
             Product.Update(self.ID(), self.Name(), self.CateAdd(), self.Customer(), self.Summary(),
-                CKEDITOR.instances.Content.getData(), self.Status(), self.Image(), self.CreateDate(), self.Tags(), self.LangId(),
+                CKEDITOR.instances.Content.getData(), self.Status(), self.Image(), self.CreateDate(), self.Tags(), self.LangId(), self.IsShowHomePage(),
                 function (data) {
 
                     self.Sending(false);
@@ -321,7 +307,7 @@ function ProductView() {
         }
     }
 
-    CateProduct.Get(0, -1, function (data) {
+    CateProduct.Get(0, "", -1, function (data) {
         self.CateProducts(data);
     });
 

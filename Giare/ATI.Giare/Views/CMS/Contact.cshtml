@@ -6,14 +6,11 @@
 @section KnockOut{
     <script type="text/html" id="ContactTemplate">
         <tr>
-            <td data-bind="text: (CurrentPage - 1) * totalPageCate+$index()+1"></td>
+            <td class="center" data-bind="text: (CurrentPage - 1) * totalPageCate+$index()+1"></td>
             <td data-bind="text: Name"></td>
-            @*<td data-bind="text: Title, visible: $root.IsSmartPhone450"></td>*@
             <td data-bind="text: Company, visible: $root.IsSmartPhone450"></td>
-            @*<td data-bind="text: Address, visible: $root.IsSmartPhone450"></td>*@
             <td data-bind="text: Mobile, visible: $root.IsSmartPhone450"></td>
             <td data-bind="text: Email, visible: $root.IsSmartPhone450"></td>
-            @*<td data-bind="text: Type, visible: $root.IsSmartPhone450"></td>*@
             <td data-bind="text: Content, visible: $root.IsSmartPhone450"></td>
             <td data-bind="text: moment(SendTime).format('DD/MM/YYYY hh:mm'), visible: $root.IsSmartPhone450"></td>
             <td>
@@ -42,21 +39,16 @@
             <h3 class="panel-title"><i class="icon icon-tasks"></i> @ATIResourceManger._managerResources.GetString("ListContact", ATIResourceManger._culture)</h3>
         </div>
         <div class="panel-body">
-            @*<div class="row">
-                    <div class="col-md-3">
-                        <select class="form-control" data-bind="value: Type, event:{change: Search.bind($data,1)}">
-                            <option value="">@ATIResourceManger._managerResources.GetString("TypeContact", ATIResourceManger._culture)</option>
-                            <option value="Mua sản phẩm">@ATIResourceManger._managerResources.GetString("Buy", ATIResourceManger._culture)</option>
-                            <option value="Đăng ký làm đại lý">@ATIResourceManger._managerResources.GetString("BranchRegister", ATIResourceManger._culture)</option>
-                            <option value="Hợp tác">@ATIResourceManger._managerResources.GetString("CombineContact", ATIResourceManger._culture)</option>
-                            <option value="Khiếu nại">@ATIResourceManger._managerResources.GetString("ClaimContact", ATIResourceManger._culture)</option>
-                            <option value="Hỏi, đáp">@ATIResourceManger._managerResources.GetString("Question", ATIResourceManger._culture)</option>
-                            <option value="Nhận thư mới">@ATIResourceManger._managerResources.GetString("ReceiveInbox", ATIResourceManger._culture)</option>
-                            <option value="Khác">Other</option>
-                        </select>
+            <div class="row">
+                <div class="col-md-6 mb-margin-bottom-30">
+                    <div class="input-group margin-bottom-40">
+                        <input type="text" placeholder="Tên đối tác" class="form-control" data-bind="value: Keyword">
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-u btn-small btn-u-blue" data-bind="click: Search.bind($data,1)">Tìm kiếm</button>
+                        </span>
                     </div>
-                </div>*@
-            <p>&nbsp;</p>
+                </div>
+            </div>
             <table class="table table-bordered">
                 <thead>
                     <tr>

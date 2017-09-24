@@ -1,7 +1,7 @@
 ﻿@using ATI.Web.Models;
 @using ATI.Web.Helper;
 @{
-    ViewBag.Title = "Quản lý nhóm tin tức";
+    ViewBag.Title = "Quản lý nhóm giải pháp";
     Layout = "~/Views/Shared/_CMSLayout.cshtml";
 }
 
@@ -24,16 +24,16 @@
 
 <div class="breadcrumbs">
     <div class="container">
-        <h1 class="pull-left">Phân loại nhóm tin tức</h1>
+        <h1 class="pull-left">Phân loại nhóm giải pháp</h1>
         <ul class="pull-right breadcrumb">
             <li><a href="/" class="menuATI">@ATIResourceManger._managerResources.GetString("HomeCode", ATIResourceManger._culture)</a></li>
-            <li><a class="active">Quản lý nhóm tin tức</a></li>
+            <li><a class="active">Quản lý nhóm giải pháp</a></li>
         </ul>
     </div>
 </div>
 <div class="container content">
     <div class="sky-form margin-bottom-30" data-bind="visible:ShowDetail">
-        <header>Quản lý nhóm tin tức</header>
+        <header>Quản lý nhóm giải pháp</header>
         <fieldset>
             <div class="row">
                 <section class="col col-lg-6">
@@ -58,7 +58,7 @@
                         <select data-bind="value: OrderNo">
                             @for (int i = 1; i < 20; i++)
                             {
-                                <option value="@i">@i</option>
+                            <option value="@i">@i</option>
                             }
                         </select>
                     </label>
@@ -73,21 +73,28 @@
     </div>
     <div class="panel panel-green margin-bottom-40">
         <div class="panel-heading">
-            <h3 class="panel-title"><i class="icon icon-tasks"></i> Danh sách nhóm tin tức</h3>
+            <h3 class="panel-title"><i class="icon icon-tasks"></i> Danh sách nhóm giải pháp</h3>
         </div>
         <div class="panel-body">
-            <div class="row">
+            <div class="row margin-bottom-30">
                 <div class="col-sm-2">
                     <select data-bind="value:LangId, event:{change: changeLang}" class="form-control">
                         <option value="0">Tiếng Việt</option>
                         <option value="1">Tiếng Anh</option>
                     </select>
                 </div>
-                <div class="col-sm-10 mb-margin-bottom-30 text-right">
+                <div class="col-md-6 mb-margin-bottom-30">
+                    <div class="input-group margin-bottom-40">
+                        <input type="text" placeholder="Tên sản phẩm" class="form-control" data-bind="value: Keyword">
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-u btn-small btn-u-blue" data-bind="click: Search.bind($data,1)">Tìm kiếm</button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-sm-4 mb-margin-bottom-30 text-right">
                     <button type="button" class="btn btn-u btn-small btn-u-blue" data-bind="click: ShowAddForm"><i class="icon icon-plus"></i> Thêm mới</button>
                 </div>
             </div>
-            <p>&nbsp;</p>
             <table class="table table-bordered">
                 <thead>
                     <tr>

@@ -8,8 +8,6 @@
             <td data-bind="text: (CurrentPage - 1) * totalPageCate+$index()+1"></td>
             <td><img data-bind="attr:{src:Image}" height="50" /></td>
             <td data-bind="text: FullName"></td>
-            @*<td data-bind="text: Title"></td>
-                <td data-bind="text: Company"></td>*@
             <td data-bind="text: OrderNo, visible: $root.IsSmartPhone450"></td>
             <td>
                 <button type="button" class="btn-u btn-u-dark-blue" data-bind="click: $root.SetUpdate.bind($data, $data)"><i class="fa fa-edit"></i></button>
@@ -18,8 +16,8 @@
         </tr>
     </script>
     <script src="~/Scripts/ATI.pager.js"></script>
-    <script src="/Scripts/swfobject.js" type="text/javascript"></script>
-    <script src="/Scripts/jquery.uploadify.v2.1.4.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/jquery.ui.widget.js"></script>
+    <script src="~/Scripts/jQuery.FileUpload/jquery.fileupload.js"></script>
     <script src="~/Scripts/models/CustomerSay.js"></script>
     <script src="~/Scripts/ModelViews/CustomerSay.js"></script>
 }
@@ -85,9 +83,15 @@
                     </label>
                 </section>
                 <section class="col col-4">
-                    <label class="input">
-                        <input type="file" name="attachImages" id="attachImages" />
-                    </label>
+                    <div class="input">
+                        <i id="loadingUpload" class="fa fa-spinner fa-pulse" data-bind="visible: isUploading()" style="display: none;"></i>
+                        <div class="fileuploadButton cursor-pointer">
+                            <input id="FileUploadImage" type="file" name="FileData">
+                            <a href="#">
+                                <i class="fa fa-upload"></i> <span>Tải ảnh</span>
+                            </a>
+                        </div>
+                    </div>
                 </section>
             </div>
             @*<section>
@@ -109,13 +113,21 @@
         </div>
         <div class="panel-body">
             <div class="row">
-                <div class="col-md-6 mb-margin-bottom-30 text-right">
+                <div class="col-md-2 mb-margin-bottom-30 text-right">
                     <select class="form-control" data-bind="value: LangId, event:{change: changeLangId}">
                         <option value="0">Tiếng Việt</option>
                         <option value="1">Tiếng Anh</option>
                     </select>
                 </div>
-                <div class="col-md-6 mb-margin-bottom-30 text-right">
+                <div class="col-md-6 mb-margin-bottom-30">
+                    <div class="input-group margin-bottom-40">
+                        <input type="text" placeholder="Tên đối tác" class="form-control" data-bind="value: Keyword">
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-u btn-small btn-u-blue" data-bind="click: Search.bind($data,1)">Tìm kiếm</button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-margin-bottom-30 text-right">
                     <button type="button" class="btn-u" data-bind="click: ShowAddForm"><i class="icon icon-plus"></i> Thêm mới</button>
                 </div>
             </div>

@@ -20,6 +20,7 @@ function NewsView() {
 
     self.ListContact = ko.observableArray([]);
     self.Type = ko.observable("");
+    self.Keyword = ko.observable("");
     self.Sending = ko.observable(false);
     self.IsAdd = ko.observable(true);
 
@@ -39,7 +40,7 @@ function NewsView() {
     self.Search = function (currentPage) {
         CurrentPage = currentPage;
 
-        Contact.Get(self.Type(), currentPage, RecordPerPage, function (data) {
+        Contact.Get(self.Type(), self.Keyword(), currentPage, RecordPerPage, function (data) {
             debugger;
             if (data == -1) {
                 toastr.warning("Mời bạn đăng nhập trước khi thực hiện");

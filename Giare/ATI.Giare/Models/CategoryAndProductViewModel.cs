@@ -20,6 +20,8 @@ namespace ATI.Web.Models
         public string SeoLink { get; set; }
 
         public string CategoryName { get; set; }
+
+        public int CateId { get; set; }
     }
 
     public class CategoryItems

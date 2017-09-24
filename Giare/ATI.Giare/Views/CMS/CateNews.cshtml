@@ -83,7 +83,15 @@
                         <option value="1">Tiếng Anh</option>
                     </select>
                 </div>
-                <div class="col-sm-10 mb-margin-bottom-30 text-right">
+                <div class="col-md-6 mb-margin-bottom-30">
+                    <div class="input-group margin-bottom-40">
+                        <input type="text" placeholder="Tên sản phẩm" class="form-control" data-bind="value: Keyword">
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-u btn-small btn-u-blue" data-bind="click: Search.bind($data,1)">Tìm kiếm</button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-sm-4 mb-margin-bottom-30 text-right">
                     <button type="button" class="btn btn-u btn-small btn-u-blue" data-bind="click: ShowAddForm"><i class="icon icon-plus"></i> Thêm mới</button>
                 </div>
             </div>

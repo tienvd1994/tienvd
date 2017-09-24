@@ -32,34 +32,50 @@ function UserView() {
     self.Sending = ko.observable(false);
     self.IsAdd = ko.observable(true);
     self.ID = ko.observable(-1);
+    self.isUploading = ko.observable(false);
+    self.Keyword = ko.observable("");
 
-    $('#attachImages').uploadify({
-        'uploader': '/Scripts/uploadify.swf',
-        'script': '/UploadFile/Upload',
-        'buttonImg': '/Content/images/upload.png',
-        'cancelImg': '/Content/images/icon_closex.png',
-        'folder': '/Uploads',
-        'width': '110',
-        'height': '40',
-        'fileExt': '*.jpg;*.png;*.gif;*.jpe',
-        'fileDesc': 'File jpg *.png;*.gif;*.jpe',
-        'sizeLimit': '8192000',
-        'scriptData': { 'username': "ATI" },
-        'onComplete': function (event, queueId, fileObj, response) {
-            if (response == "-10") {
+    var maxFileLength = 5120000;
+
+    $("#FileUploadImage").fileupload({
+        url: "/UploadFile/Upload",
+        sequentialUploads: false,
+        dataType: "json",
+        dropZone: null,
+        pasteZone: null,
+        add: function (e, data) {
+            var file = data.files[0];
+            var msg = "";
+            if (maxFileLength && file.size > maxFileLength) {
+                if (msg.length > 0) {
+                    msg += "<br/>";
+                }
+                msg += "Kích thước tệp lớn hơn kích thước cho phép";
+            }
+
+            if (msg !== "") {
+                toastr.error(msg);
+            } else {
+                data.submit();
+                self.isUploading(true);
+            }
+        },
+        done: function (e, data) {
+            if (data.result == "-10") {
                 toastr.warning("Có lỗi xảy ra xin vui lòng liên hệ Ban quản trị để được trợ giúp");
                 return;
             }
 
-            if (response == "-2") {
-                toastr.warning("Bạn hãy tải ảnh có định dạng .doc; .docx; .zip; .7z; .rar; .ppt; .pptx; .pdf; .xls; .xlsx!");
+            if (data.result == "-2") {
+                toastr.warning("Bạn hãy tải ảnh có định dạng .jpg; .png, .gif, .jpeg!");
                 return;
             }
 
-            self.Image(response.replace(/\"/g, ""));
-        },
-        'multi': false,
-        'auto': true
+
+            self.isUploading(false);
+            self.Image(data.result);
+            //toastr.success(resources.salesCall.customer.message.uploadFileSucc);
+        }
     });
 
     self.SetUpdate = function (item) {
@@ -117,7 +133,7 @@ function UserView() {
     self.Search = function (currentPage) {
         CurrentPage = currentPage;
 
-        User.Get(currentPage, RecordPerPage, function (data) {
+        User.Get(self.Keyword(), currentPage, RecordPerPage, function (data) {
             if (data == -1) {
                 toastr.warning("Mời bạn đăng nhập trước khi thực hiện");
 

@@ -7,7 +7,6 @@
     <div class="tp-banner-container">
         <div class="tp-banner">
             <ul>
-
                 <li data-transition="fade" data-slotamount="1" data-masterspeed="1000" data-thumb="images/main-slider/image-1.jpg" data-saveperformance="off" data-title="Awesome Title Here">
                     <img src="http://html.tonatheme.com/2017/Professional/images/main-slider/image-1.jpg" alt="" data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat">
                     <div class="blue-layer"></div>
@@ -155,36 +154,25 @@
 <section class="default-section">
     <div class="auto-container">
         <div class="row clearfix">
-            <div class="col-md-6 col-sm-12">
+            <div class="col-md-12 col-sm-12">
                 <div class="left-column">
                     <div class="content">
                         <!--Sec Title-->
-                        <div class="sec-title">
+                        <div class="sec-title centered">
                             <h2>Giới thiệu</h2>
                             <div class="separator"></div>
-                            <div class="text">The first mate and his Skipper too will do their very best to make the others comfortable in their tropic island nest</div>
                         </div>
                         <div class="text">
-                            <p>The first mate and his Skipper too will do their very best to make the others bee comfortable in their tropic island nest the love Boat promises something for the everyone michael Knight a young loner on a crusade to champion.</p>
-                            <p>The others comfortable in their tropic island nest the love Boat promises to have something for everyone michael Knight a young loner.</p>
-                        </div>
-                        <div class="row clearfix">
-                            <ul class="list-style col-md-4 col-sm-4 col-xs-12">
-                                <li><span class="icon flaticon-rocket"></span> fast <br> delivary</li>
-                            </ul>
-                            <ul class="list-style col-md-4 col-sm-4 col-xs-12">
-                                <li><span class="icon flaticon-stopwatch"></span> Lifetime warranty</li>
-                            </ul>
-                            <ul class="list-style col-md-4 col-sm-4 col-xs-12">
-                                <li><span class="icon flaticon-quality"></span> certified experts</li>
-                            </ul>
+                            @{
+                                var introduce = (Introduce)ViewBag.AboutHomePage;
+
+                                if (introduce != null)
+                                {
+                                    @Html.Raw(introduce.Content)
+                                }
+                            }
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-sm-12">
-                <div class="img-box">
-                    <img src="~/Content/images/1(1).png" />
                 </div>
             </div>
         </div>
@@ -315,7 +303,7 @@
                 {
                     if (first)
                     {
-                        <li class="active" data-filter=".@category.CategoryName">
+                        <li class="active" data-filter=".@category.CateId">
                             <span>@category.CategoryName</span>
                         </li>
 
@@ -323,7 +311,7 @@
                     }
                     else
                     {
-                        <li data-filter=".@category.CategoryName">
+                        <li data-filter=".@category.CateId">
                             <span>@category.CategoryName</span>
                         </li>
                     }
@@ -334,7 +322,7 @@
                 @foreach (var product in list.Products)
                 {
                 <!--Default Portfolio Item-->
-                    <div class="default-portfolio-item @product.CategoryName col-md-4 col-sm-6 col-xs-12">
+                    <div class="default-portfolio-item @product.CateId col-md-4 col-sm-6 col-xs-12">
                         <div class="inner hover-style1">
                             <figure class="hover-style1-img">
                                 <img src="@product.Image" alt="image">

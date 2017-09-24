@@ -53,10 +53,10 @@ CustomerSay.Delete = function (id, callback) {
     });
 }
 
-CustomerSay.Get = function (langId, pageIndex, recordPerPage, callback) {
+CustomerSay.Get = function (langId, keyword, pageIndex, recordPerPage, callback) {
 
     amplify.request("SearchCustomerSay", {
-        langId: langId, pageIndex: pageIndex, recordPerPage: recordPerPage
+        langId: langId, keyword: keyword, pageIndex: pageIndex, recordPerPage: recordPerPage
     }, function (data) {
         if (callback) callback(data);
     });

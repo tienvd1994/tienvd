@@ -35,5 +35,6 @@ namespace ATI.Web.Models
         public string Tags { get; set; }
         public byte IsHot { get; set; }
         public Nullable<int> LangId { get; set; }
+        public Nullable<bool> IsShowHomePage { get; set; }
     }
 }

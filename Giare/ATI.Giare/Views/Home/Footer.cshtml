@@ -1,0 +1,117 @@
+﻿@using ATI.Web.Models;
+@using ATI.Web.Helper;
+
+@{
+    var commonInfo = (CommonInfo)ViewBag.CommonInfo;
+}
+<footer class="main-footer_professional">
+
+    <!--Footer Upper-->
+    <div class="footer-upper">
+        <div class="auto-container">
+            <div class="row clearfix">
+
+                <!--Two 4th column-->
+                <div class="col-md-6 col-sm-12 col-xs-12">
+                    <div class="row clearfix">
+                        <div class="col-lg-6 col-sm-6 col-xs-12 column">
+                            <div class="footer-widget about-widget">
+                                <div class="footer-logo">
+                                    <img src="~/Content/images/logo2.png" />
+                                </div>
+                                <div class="text margin-bott-30">
+                                    @Html.Raw(commonInfo.Summary)
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <!--Footer Column-->
+                        <div class="col-lg-6 col-sm-6 col-xs-12 column">
+                            <div class="footer-widget links-widget">
+                                <h3>
+                                    @ATIResourceManger._managerResources.GetString("IntroductionCode", ATIResourceManger._culture)
+                                </h3>
+                                <ul>
+                                    @{
+                                        foreach (var item in (List<Introduce>)ViewBag.Introduces)
+                                        {
+                                            <li>
+                                                <a href="/gioi-thieu/@item.SeoLink">@item.Title</a>
+                                            </li>
+                                        }
+                                    }
+                                </ul>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div><!--Two 4th column End-->
+                <!--Two 4th column-->
+                <div class="col-md-6 col-sm-12 col-xs-12">
+                    <div class="row clearfix">
+                        <!--Footer Column-->
+                        <div class="col-lg-6 col-sm-6 col-xs-12 column">
+                            <div class="footer-widget links-widget">
+                                <h3>Tin tức</h3>
+                                <ul>
+                                    @{
+                                        var cateNews = (List<CateNew>)ViewBag.CateNews;
+
+                                        foreach (var item in cateNews)
+                                        {
+                                            <li><a href="/tin-tuc/@item.SeoLink">@item.Name</a></li>
+                                        }
+                                    }
+                                </ul>
+
+                            </div>
+                        </div>
+
+                        <!--Footer Column-->
+                        <div class="col-lg-6 col-sm-6 col-xs-12 column">
+                            <div class="footer-widget newsletter-widget">
+                                <h3>Mạng xã hội</h3>
+                                <div class="newsletter-form">
+                                    <div class="social-links">
+                                        <a href="@commonInfo.Facebook"><span class="fa fa-facebook-f"></span></a>
+                                        @*<a href="/#"><span class="fa fa-twitter"></span></a>
+                                            <a href="/#"><span class="fa fa-google-plus"></span></a>*@
+                                        <a href="@commonInfo.Skype"><span class="fa fa-skype"></span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div><!--Two 4th column End-->
+
+            </div>
+
+        </div>
+    </div>
+
+    <!--Footer Bottom-->
+    <div class="footer-bottom">
+        <div class="auto-container">
+            <div class="row clearfix">
+                <div class="col-md-6 col-sm-6 col-xs-12"><div class="copyright-text">© 2017 All Rights Reserved</div></div>
+                @*<div class="col-md-6 col-sm-6 col-xs-12">
+                        Bottom Nav
+                        <nav class="footer-nav clearfix">
+                            <ul class="pull-right clearfix">
+                                <li><a href="/">Home</a></li>
+                                <li><a href="/#">About</a></li>
+                                <li><a href="/#">Services</a></li>
+                                <li><a href="/#">Privacy policy</a></li>
+                                <li><a href="/#">Terms &amp; condition</a></li>
+
+                            </ul>
+                        </nav>
+                    </div>*@
+            </div>
+        </div>
+    </div>
+
+</footer>
+

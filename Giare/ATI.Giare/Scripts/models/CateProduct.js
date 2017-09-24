@@ -27,25 +27,26 @@ amplify.request.define("Delete", "ajax", {
 });
 
 
-CateProduct.Add = function (name, englishName, description, orderNo, parrentCateId, parrentCateName, langid, callback) {
+CateProduct.Add = function (name, englishName, description, orderNo, parrentCateId, parrentCateName, langid, isShowHomePage, callback) {
     amplify.request("AddCateProduct", {
-        Name: name, EnglishName: englishName, Description: description, OrderNo: orderNo, ParrentCateId: parrentCateId, ParrentCateName: parrentCateName, LangId: langid
+        Name: name, EnglishName: englishName, Description: description, OrderNo: orderNo, ParrentCateId: parrentCateId, ParrentCateName: parrentCateName, LangId: langid,
+        IsShowHomePage: isShowHomePage
     }, function (data) {
         if (callback) callback(data);
     });
 }
 
-CateProduct.Update = function (id, name, englishName, description, orderNo, parrentCateId, parrentCateName, langid, callback) {
+CateProduct.Update = function (id, name, englishName, description, orderNo, parrentCateId, parrentCateName, langid, isShowHomePage, callback) {
     amplify.request("Update", {
-        ID: id, Name: name, EnglishName: englishName, Description: description, OrderNo: orderNo, ParrentCateId: parrentCateId, ParrentCateName: parrentCateName, LangId: langid
+        ID: id, Name: name, EnglishName: englishName, Description: description, OrderNo: orderNo, ParrentCateId: parrentCateId, ParrentCateName: parrentCateName, LangId: langid, IsShowHomePage: isShowHomePage
     }, function (data) {
         if (callback) callback(data);
     });
 }
 
-CateProduct.Get = function (langId, parrentCateId, callback) {
+CateProduct.Get = function (langId, keyword, parrentCateId, callback) {
 
-    amplify.request("GetCateProduct", { langId: langId, parrentCateId: parrentCateId }, function (data) {
+    amplify.request("GetCateProduct", { langId: langId, keyword: keyword, parrentCateId: parrentCateId }, function (data) {
         if (callback) callback(data);
     });
 }

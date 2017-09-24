@@ -372,21 +372,8 @@ namespace ATI.Web.Controllers
                 return Json(-1, JsonRequestBehavior.AllowGet);
             }
 
-            var keywordArray = Common.UCS2Convert(key).ToLower().Split(' ');
-
-            var keyword = string.Empty;
-
-            foreach (var item in keywordArray)
-            {
-                if (string.IsNullOrEmpty(item))
-                {
-                    continue;
-                }
-
-                keyword += keyword.Equals(string.Empty) ? "\"" + item + "*\"" + "" : " AND \"" + item + "*\"";
-            }
-
-            var items = db.Products.Where(m => !m.IsDelete && m.LangId == langId && (cateId == -1 || m.CateId == cateId) && (string.IsNullOrEmpty(keyword) || m.UnsignName.Contains(keyword)));
+            var keywordArray = Common.UCS2Convert(key).ToLower();
+            var items = db.Products.Where(m => !m.IsDelete && m.LangId == langId && (cateId == -1 || m.CateId == cateId) && (string.IsNullOrEmpty(keywordArray) || m.UnsignName.Contains(keywordArray)));
             var result = items.OrderByDescending(m => m.OrderNo).Skip((pageIndex - 1) * recordPerPage).Take(recordPerPage);
 
             return Json(new { items = result, totalRecord = items.Count() }, JsonRequestBehavior.AllowGet);
@@ -429,6 +416,7 @@ namespace ATI.Web.Controllers
             product.IsHot = item.IsHot;
             product.Tags = item.Tags;
             product.LangId = (Byte)Common.TransferLang(item.LangId);
+            product.IsShowHomePage = item.IsShowHomePage;
             db.Products.Add(product);
 
             return Json(db.SaveChanges(), JsonRequestBehavior.AllowGet);
@@ -466,6 +454,7 @@ namespace ATI.Web.Controllers
             product.UnsignName = Common.UCS2Convert(item.Name);
             product.IsHot = item.IsHot;
             product.Tags = item.Tags;
+            product.IsShowHomePage = item.IsShowHomePage;
             product.LangId = (Byte)Common.TransferLang(item.LangId);
 
             return Json(db.SaveChanges(), JsonRequestBehavior.AllowGet);
@@ -491,14 +480,22 @@ namespace ATI.Web.Controllers
             return Json(db.SaveChanges(), JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult GetServices(short langId)
+        public JsonResult GetServices(short langId, string keyword, int pageIndex, int pageSize)
         {
             if (CurrentUser == null)
             {
                 return Json(-1, JsonRequestBehavior.AllowGet);
             }
 
-            return Json(db.Partners.Where(c => c.LangId == langId).ToList(), JsonRequestBehavior.AllowGet);
+            keyword = Common.UCS2Convert(keyword).ToLower();
+            var items = db.Partners.Where(c => c.LangId == langId && (string.IsNullOrEmpty(keyword) || c.UnsignName.Contains(keyword))).ToList();
+            var result = items.OrderByDescending(m => m.ID).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+
+            return Json(new
+            {
+                items = result,
+                totalRecord = items.Count()
+            }, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
@@ -533,6 +530,8 @@ namespace ATI.Web.Controllers
             service.CreatedUserId = CurrentUser.Id;
             service.CreatedFullname = CurrentUser.FullName;
             service.CreatedDate = DateTime.Now;
+            service.UnsignName = Common.UCS2Convert(item.Name).ToLower();
+            service.UnsignName_En = Common.UCS2Convert(item.Name).ToLower();
             db.Partners.Add(service);
 
             return Json(db.SaveChanges(), JsonRequestBehavior.AllowGet);
@@ -566,6 +565,8 @@ namespace ATI.Web.Controllers
             service.Content = item.Content;
             service.Content_En = item.Content;
             service.LangId = (Byte)Common.TransferLang(item.LangId);
+            service.UnsignName = Common.UCS2Convert(item.Name).ToLower();
+            service.UnsignName_En = Common.UCS2Convert(item.Name).ToLower();
             db.Entry(service).State = EntityState.Modified;
 
             return Json(db.SaveChanges(), JsonRequestBehavior.AllowGet);
@@ -830,17 +831,19 @@ namespace ATI.Web.Controllers
             return Json(db.SaveChanges(), JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult GetContacts(string type, int pageIndex, int recordPerPage)
+        public JsonResult GetContacts(string type, string keyword, int pageIndex, int recordPerPage)
         {
             if (CurrentUser == null)
             {
                 return Json(-1, JsonRequestBehavior.AllowGet);
             }
 
-            var output = new ObjectParameter("TotalRecord", typeof(int));
-            var items = db.sp_Contact_GetLastest(type, pageIndex, recordPerPage, output).ToList();
+            keyword = Common.UCS2Convert(keyword).ToLower();
 
-            return Json(new { items = items, totalRecord = output.Value }, JsonRequestBehavior.AllowGet);
+            var items = db.Contacts.Where(m => (string.IsNullOrEmpty(type) || m.Type.Contains(type) && (string.IsNullOrEmpty(keyword) || m.UnsignName.Contains(keyword))));
+            var result = items.OrderByDescending(m => m.ID).Skip((pageIndex - 1) * recordPerPage).Take(recordPerPage);
+
+            return Json(new { items = result, totalRecord = items.Count() }, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult UpdateContactStatus(int id, byte status)
@@ -880,17 +883,17 @@ namespace ATI.Web.Controllers
             return Json(new { items = items, totalRecord = output.Value }, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult GetUsers(int pageIndex, int recordPerPage)
+        public JsonResult GetUsers(string keyword, int pageIndex, int recordPerPage)
         {
             if (CurrentUser == null)
             {
                 return Json(-1, JsonRequestBehavior.AllowGet);
             }
 
-            var output = new ObjectParameter("TotalRecord", typeof(int));
-            var items = db.sp_User_GetLastest(pageIndex, recordPerPage, output).ToList();
+            var items = db.Users.Where(m => (string.IsNullOrEmpty(keyword) || m.UserName.Contains(keyword)));
+            var result = items.OrderByDescending(m => m.ID).Skip((pageIndex - 1) * recordPerPage).Take(recordPerPage);
 
-            return Json(new { items = items, totalRecord = output.Value }, JsonRequestBehavior.AllowGet);
+            return Json(new { items = items, totalRecord = items.Count() }, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult AddUser(string fullName, string userName, string title, string password, string image, byte status)
@@ -1055,7 +1058,7 @@ namespace ATI.Web.Controllers
             return Json(db.SaveChanges(), JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult SearchCustomerSay(short langId, int pageIndex, int recordPerPage)
+        public JsonResult SearchCustomerSay(short langId, string keyword, int pageIndex, int recordPerPage)
         {
             if (CurrentUser == null)
             {
@@ -1067,7 +1070,9 @@ namespace ATI.Web.Controllers
                 return Json(-2, JsonRequestBehavior.AllowGet);
             }
 
-            var customerSays = db.CustomerSays.Where(m => m.LangId == langId);
+            keyword = Common.UCS2Convert(keyword).ToLower();
+
+            var customerSays = db.CustomerSays.Where(m => m.LangId == langId && (string.IsNullOrEmpty(keyword) || m.UnsignName.Contains(keyword)));
             var items = customerSays.OrderBy(m => m.OrderNo).Skip((pageIndex - 1) * recordPerPage).Take(recordPerPage);
 
             return Json(new { items, totalRecord = customerSays.Count() }, JsonRequestBehavior.AllowGet);
@@ -1100,6 +1105,8 @@ namespace ATI.Web.Controllers
             customer.OrderNo = orderNo;
             customer.Image = image;
             customer.LangId = (Byte)Common.TransferLang(langid);
+            customer.UnsignName = Common.UCS2Convert(fullName).ToLower();
+            customer.UnsignName_En = Common.UCS2Convert(fullName).ToLower();
 
             db.CustomerSays.Add(customer);
 
@@ -1132,6 +1139,8 @@ namespace ATI.Web.Controllers
             customer.OrderNo = orderNo;
             customer.Image = image;
             customer.LangId = (Byte)Common.TransferLang(langid);
+            customer.UnsignName = Common.UCS2Convert(fullName).ToLower();
+            customer.UnsignName_En = Common.UCS2Convert(fullName).ToLower();
 
             return Json(db.SaveChanges(), JsonRequestBehavior.AllowGet);
         }
@@ -1322,19 +1331,21 @@ namespace ATI.Web.Controllers
             return Json(db.SaveChanges(), JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult GetCateProduct(int langId, short parrentCateId)
+        public JsonResult GetCateProduct(int langId, string keyword, short parrentCateId)
         {
             if (CurrentUser == null)
             {
                 return Json(-1, JsonRequestBehavior.AllowGet);
             }
 
+            keyword = Common.UCS2Convert(keyword).ToLower();
+
             if (parrentCateId == 0)
             {
-                return Json(db.CateProducts.Where(item => item.LangId == langId && !item.IsDelete).OrderBy(item => item.OrderNo).ToList(), JsonRequestBehavior.AllowGet);
+                return Json(db.CateProducts.Where(item => item.LangId == langId && (string.IsNullOrEmpty(keyword) || item.UnsignName.Contains(keyword)) && !item.IsDelete).OrderBy(item => item.OrderNo).ToList(), JsonRequestBehavior.AllowGet);
             }
 
-            return Json(db.CateProducts.Where(item => (parrentCateId == -1 || item.ParrentCateId == parrentCateId) && item.LangId == langId && !item.IsDelete).
+            return Json(db.CateProducts.Where(item => (parrentCateId == -1 || item.ParrentCateId == parrentCateId) && item.LangId == langId && !item.IsDelete && (string.IsNullOrEmpty(keyword) || item.UnsignName.Contains(keyword))).
                 OrderBy(item => item.OrderNo).ToList(), JsonRequestBehavior.AllowGet);
         }
 
@@ -1363,7 +1374,9 @@ namespace ATI.Web.Controllers
                 ParrentCateName = item.ParrentCateName,
                 ParrentCateId = item.ParrentCateId,
                 LangId = (Byte)Common.TransferLang(item.LangId),
-                SeoLink = Common.ConvertToUrlString(item.Name)
+                SeoLink = Common.ConvertToUrlString(item.Name),
+                UnsignName = Common.UCS2Convert(item.Name).ToLower(),
+                IsShowHomePage = item.IsShowHomePage
             };
 
             db.CateProducts.Add(cate);
@@ -1397,6 +1410,8 @@ namespace ATI.Web.Controllers
             cateCurrent.OrderNo = item.OrderNo;
             cateCurrent.ParrentCateId = item.ParrentCateId;
             cateCurrent.LangId = (Byte)Common.TransferLang(item.LangId);
+            cateCurrent.UnsignName = Common.UCS2Convert(item.Name).ToLower();
+            cateCurrent.IsShowHomePage = item.IsShowHomePage;
 
             return Json(db.SaveChanges(), JsonRequestBehavior.AllowGet);
         }
@@ -1434,7 +1449,7 @@ namespace ATI.Web.Controllers
                 return Json(-1, JsonRequestBehavior.AllowGet);
             }
 
-            var items = db.Introduces.Where(m => m.LangId == langId && (string.IsNullOrEmpty(key) || m.Title.Contains(key)));
+            var items = db.Introduces.Where(m => m.LangId == langId && (string.IsNullOrEmpty(key) || m.UnsignName.Contains(key)));
             var result = items.OrderByDescending(m => m.ID).Skip((pageIndex - 1) * recordPerPage).Take(recordPerPage);
 
             return Json(new { items = result, totalRecord = items.Count() }, JsonRequestBehavior.AllowGet);
@@ -1473,10 +1488,13 @@ namespace ATI.Web.Controllers
             {
                 Title = item.Title,
                 SeoLink = Common.ConvertToUrlString(item.Title),
-                Content = item.Title,
+                Content = item.Content,
                 LangId = 0,
                 LastUpdateTime = DateTime.Now,
-                LastUpdateUser = CurrentUser.FullName
+                LastUpdateUser = CurrentUser.FullName,
+                IsShowHomePage = item.IsShowHomePage,
+                UnsignName = Common.UCS2Convert(item.Title).ToLower(),
+                UnsignName_En = Common.UCS2Convert(item.Title).ToLower()
             };
 
             db.Introduces.Add(introduce);
@@ -1503,6 +1521,9 @@ namespace ATI.Web.Controllers
             introduce.Title = item.Title;
             introduce.Content = item.Content;
             introduce.Content_En = item.ContentEn;
+            introduce.IsShowHomePage = item.IsShowHomePage;
+            introduce.UnsignName = Common.UCS2Convert(item.Title).ToLower();
+            introduce.UnsignName_En = Common.UCS2Convert(item.Title).ToLower();
 
             return Json(db.SaveChanges(), JsonRequestBehavior.AllowGet);
         }
@@ -1607,7 +1628,7 @@ namespace ATI.Web.Controllers
                 SeoLink = Common.ConvertToUrlString(item.Name),
                 LangId = item.LangId,
                 Type = item.Type,
-                UnsignName = Common.UCS2Convert(item.Name)
+                UnsignName = Common.UCS2Convert(item.Name).ToLower()
             };
 
             db.CateNews.Add(cateNews);
@@ -1637,7 +1658,7 @@ namespace ATI.Web.Controllers
             cateNews.SeoLink = Common.ConvertToUrlString(item.Name);
             cateNews.LangId = item.LangId;
             cateNews.Type = item.Type;
-            cateNews.UnsignName = Common.UCS2Convert(item.Name);
+            cateNews.UnsignName = Common.UCS2Convert(item.Name).ToLower();
 
             return Json(db.SaveChanges(), JsonRequestBehavior.AllowGet);
         }

@@ -23,11 +23,14 @@ function CateProductModelView() {
 
     self.LangId = ko.observable(0);
     self.fcName = ko.observable(false);
+    self.Keyword = ko.observable("");
 
     self.Sending = ko.observable(false);
     self.ShowDetail = ko.observable(false);
     self.IsAdd = ko.observable(true);
     self.ID = ko.observable(-1);
+    self.isUploading = ko.observable(false);
+    self.IsShowHomePage = ko.observable(false);
 
     self.changeLang = function () {
         self.Search();
@@ -40,7 +43,7 @@ function CateProductModelView() {
         self.Name(item.Name);
         self.ParrentCate(item.ParrentCateId);
         self.OrderNo(item.OrderNo);
-
+        self.IsShowHomePage(item.IsShowHomePage);
         self.IsAdd(false);
         self.fcName(true);
         CKEDITOR.instances.Content.setData(item.Description);
@@ -56,6 +59,7 @@ function CateProductModelView() {
         self.LangId(0);
         self.IsAdd(true);
         self.fcName(true);
+        self.IsShowHomePage(false);
     }
 
     self.Delete = function (item) {
@@ -93,7 +97,7 @@ function CateProductModelView() {
     }
 
     self.Search = function () {
-        CateProduct.Get(self.LangId(), 0, function (data) {
+        CateProduct.Get(self.LangId(), self.Keyword(), 0, function (data) {
             if (data == -1) {
                 toastr.warning("Mời bạn đăng nhập trước khi thực hiện");
 
@@ -124,7 +128,7 @@ function CateProductModelView() {
         self.Sending(true);
 
         if (self.IsAdd()) {
-            CateProduct.Add(self.Name(), self.Name(), CKEDITOR.instances.Content.getData(), self.OrderNo(), self.ParrentCate(), self.ParrentCate() == -1 ? "" : $("#drParrentCate option:selected").text(), self.LangId(),
+            CateProduct.Add(self.Name(), self.Name(), CKEDITOR.instances.Content.getData(), self.OrderNo(), self.ParrentCate(), self.ParrentCate() == -1 ? "" : $("#drParrentCate option:selected").text(), self.LangId(), self.IsShowHomePage(),
                 function (data) {
 
                     self.Sending(false);
@@ -143,7 +147,7 @@ function CateProductModelView() {
                 });
         }
         else {
-            CateProduct.Update(self.ID(), self.Name(), self.Name(), CKEDITOR.instances.Content.getData(), self.OrderNo(), self.ParrentCate(), self.ParrentCate() == -1 ? "" : $("#drParrentCate option:selected").text(), self.LangId(), function (data) {
+            CateProduct.Update(self.ID(), self.Name(), self.Name(), CKEDITOR.instances.Content.getData(), self.OrderNo(), self.ParrentCate(), self.ParrentCate() == -1 ? "" : $("#drParrentCate option:selected").text(), self.LangId(), self.IsShowHomePage(), function (data) {
                 self.Sending(false);
 
                 if (data == -2) {

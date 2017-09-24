@@ -26,5 +26,6 @@ namespace ATI.Web.Models
         public short ChildCount { get; set; }
         public Nullable<int> LangId { get; set; }
         public string UnsignName { get; set; }
+        public Nullable<bool> IsShowHomePage { get; set; }
     }
 }

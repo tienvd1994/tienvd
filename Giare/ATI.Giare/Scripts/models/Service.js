@@ -53,10 +53,10 @@ Service.Delete = function (id, callback) {
     });
 }
 
-Service.Get = function (langId, callback) {
+Service.Get = function (langId, keyword, pageIndex, pageSize, callback) {
 
     amplify.request("GetServices", {
-        langId: langId
+        langId: langId, keyword: keyword, pageIndex: pageIndex, pageSize: pageSize
     }, function (data) {
         if (callback) callback(data);
     });

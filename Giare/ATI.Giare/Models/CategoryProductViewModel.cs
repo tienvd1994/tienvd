@@ -10,5 +10,6 @@
         public short OrderNo { get; set; }
         public string Description { get; set; }
         public string LangId { get; set; }
+        public bool? IsShowHomePage { get; set; }
     }
 }

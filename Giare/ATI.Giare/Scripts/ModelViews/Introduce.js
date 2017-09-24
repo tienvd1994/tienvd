@@ -28,34 +28,47 @@ function IntroduceView() {
     self.Keyword = ko.observable("");
     self.Title = ko.observable("");
     self.IsAdd = ko.observable(true);
+    self.IsShowHomePage = ko.observable(false);
+    self.isUploading = ko.observable(false);
+    var maxFileLength = 5120000;
 
-    $('#attachImages').uploadify({
-        'uploader': '/Scripts/uploadify.swf',
-        'script': 'http://cdn.quancafe.vn/UploadFile/Upload',
-        'buttonImg': '/Content/images/upload.png',
-        'cancelImg': '/Content/images/icon_closex.png',
-        'folder': '/ATI',
-        'width': '125',
-        'height': '40',
-        'fileExt': '*.jpg;*.png;*.gif;*.jpe',
-        'fileDesc': 'File jpg *.png;*.gif;*.jpe',
-        'sizeLimit': '8192000',
-        'scriptData': { 'username': "ATI" },
-        'onComplete': function (event, queueId, fileObj, response) {
-            if (response == "-10") {
+    $("#EmbbedImages").fileupload({
+        url: "/UploadFile/Upload",
+        sequentialUploads: false,
+        dataType: "json",
+        dropZone: null,
+        pasteZone: null,
+        add: function (e, data) {
+            var file = data.files[0];
+            var msg = "";
+            if (maxFileLength && file.size > maxFileLength) {
+                if (msg.length > 0) {
+                    msg += "<br/>";
+                }
+                msg += "Kích thước tệp lớn hơn kích thước cho phép";
+            }
+
+            if (msg !== "") {
+                toastr.error(msg);
+            } else {
+                data.submit();
+                self.isUploading(true);
+            }
+        },
+        done: function (e, data) {
+            if (data.result == "-10") {
                 toastr.warning("Có lỗi xảy ra xin vui lòng liên hệ Ban quản trị để được trợ giúp");
                 return;
             }
 
-            if (response == "-2") {
-                toastr.warning("Bạn hãy tải ảnh có định dạng .doc; .docx; .zip; .7z; .rar; .ppt; .pptx; .pdf; .xls; .xlsx!");
+            if (data.result == "-2") {
+                toastr.warning("Bạn hãy tải ảnh có định dạng .jpg; .png, .gif, .jpeg!");
                 return;
             }
 
-            CKEDITOR.instances.Content.insertHtml("<img class='img-responsive img-tab-space' src='" + "http://cdn.quancafe.vn/z_650x0" + response.replace(/\"/g, "") + "'/>");
-        },
-        'multi': false,
-        'auto': true
+            self.isUploading(false);
+            CKEDITOR.instances.Content.insertHtml("<img class='img-responsive img-tab-space' src='" + data.result + "'/>");
+        }
     });
 
     self.Search = function (currentPage) {
@@ -92,7 +105,7 @@ function IntroduceView() {
         self.Sending(true);
 
         if (self.IsAdd()) {
-            $.post("/CMS/AddIntroduce", { Id: self.ID(), Title: self.Title(), Content: CKEDITOR.instances.Content.getData(), ContentEn: CKEDITOR.instances.Content.getData() }, function (data) {
+            $.post("/CMS/AddIntroduce", { Id: self.ID(), Title: self.Title(), Content: CKEDITOR.instances.Content.getData(), ContentEn: CKEDITOR.instances.Content.getData(), IsShowHomePage: self.IsShowHomePage() }, function (data) {
                 self.Sending(false);
 
                 if (data == -1) {
@@ -111,7 +124,7 @@ function IntroduceView() {
             });
         }
         else {
-            $.post("/CMS/UpdateIntroduce", { Id: self.ID(), Title: self.Title(), Content: CKEDITOR.instances.Content.getData(), ContentEn: CKEDITOR.instances.Content.getData() }, function (data) {
+            $.post("/CMS/UpdateIntroduce", { Id: self.ID(), Title: self.Title(), Content: CKEDITOR.instances.Content.getData(), ContentEn: CKEDITOR.instances.Content.getData(), IsShowHomePage: self.IsShowHomePage() }, function (data) {
                 self.Sending(false);
 
                 if (data == -1) {
@@ -133,6 +146,7 @@ function IntroduceView() {
         CKEDITOR.instances.Content.setData("");
         self.ID(-1);
         self.Title("");
+        self.IsShowHomePage(false);
     }
 
     self.SetUpdate = function (item) {
@@ -141,6 +155,7 @@ function IntroduceView() {
         self.ID(item.ID);
         CKEDITOR.instances.Content.setData(item.Content);
         self.Title(item.Title);
+        self.IsShowHomePage(item.IsShowHomePage);
     }
 
     self.Delete = function (item) {

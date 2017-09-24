@@ -26,21 +26,21 @@ amplify.request.define("SearchProduct", "ajax", {
     type: "GET"
 });
 
-Product.Update = function (id, name, cateId, customer, summary, content, status, image, createDate, tags, langid, callback) {
+Product.Update = function (id, name, cateId, customer, summary, content, status, image, createDate, tags, langid, isShowHomePage, callback) {
 
     amplify.request("UpdateProduct", {
         ID: id, Name: name, CateId: cateId, Customer: customer, Summary: summary, Content: content, Status: status == 2 ? 1 : status,
-        Image: image, IsHot: status == 2 ? 1 : 0, CreateDate: createDate, Tags: tags, LangId: langid,
+        Image: image, IsHot: status == 2 ? 1 : 0, CreateDate: createDate, Tags: tags, LangId: langid, IsShowHomePage: isShowHomePage
     }, function (data) {
         if (callback) callback(data);
     });
 }
 
-Product.AddProduct = function (name, cateId, customer, summary, content, status, image, createDate, tags, langid, callback) {
+Product.AddProduct = function (name, cateId, customer, summary, content, status, image, createDate, tags, langid, isShowHomePage, callback) {
 
     amplify.request("AddProduct", {
         name: name, cateId: cateId, customer: customer, summary: summary, content: content, status: status == 2 ? 1 : status,
-        image: image, isHot: status == 2 ? 1 : 0, createDate: createDate, tags: tags, langid: langid,
+        image: image, isHot: status == 2 ? 1 : 0, createDate: createDate, tags: tags, langid: langid, IsShowHomePage: isShowHomePage
     }, function (data) {
         if (callback) callback(data);
     });
