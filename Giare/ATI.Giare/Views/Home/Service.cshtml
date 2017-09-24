@@ -1,0 +1,68 @@
+﻿@using ATI.Web.Models;
+@using ATI.Web.Helper;
+@{
+    var commonInfo = (CommonInfo)ViewBag.CommonInfo;
+    ViewBag.Title = Html.Raw("Đối tác tham gia dự án");
+    ViewBag.Description = Html.Raw("Dự án " + commonInfo.Name + " đã thực hiện");
+    ViewBag.Keyword = Html.Raw("Dự án " + commonInfo.Name + " đã thực hiện");
+    ViewBag.Url = "http://www.fcn.vn/doi-tac";
+    ViewBag.Image = "http://www.fcn.vn" + commonInfo.Logo;
+}
+
+<section class="page-title_professional" style="background-image:url(images/background/4.jpg);">
+    <div class="auto-container">
+        <h1>Dịch vụ</h1>
+    </div>
+</section>
+
+<div class="breadcrumb-outer_professional">
+    <div class="auto-container">
+        <ul class="bread-crumb text-center">
+            <li>
+                <a href="/">
+                    @ATIResourceManger._managerResources.GetString("HomeCode", ATIResourceManger._culture)
+                </a> <span class="fa fa-angle-right"></span>
+            </li>
+            <li>
+                @ATIResourceManger._managerResources.GetString("ServiceCode", ATIResourceManger._culture)
+            </li>
+        </ul>
+    </div>
+</div>
+
+<section class="news-section_professional">
+    <div class="auto-container">
+        <div class="row clearfix">
+            @{
+                var partners = (List<Partner>)ViewBag.Partners;
+
+                foreach (var item in partners)
+                {
+                    <div class="news-style-one col-md-4 col-sm-6 col-xs-12">
+                        <div class="inner">
+                            <div class="image">
+                                <a href="/dich-vu/@item.SeoLink">
+                                    <img src="@item.Image" alt="@item.Name">
+                                </a>
+                            </div>
+                            <div class="lower-box">
+                                <div class="upper-content">
+                                    <h3><a href="/dich-vu/@item.SeoLink">@item.Name</a></h3>
+                                </div>
+                                <div class="text">@item.Summary</div>
+                                <ul class="meta-option clearfix">
+                                    <li class="pull-left">
+                                        <a href="javascript:void(0)">
+                                            <span class="icon fa fa-clock-o"></span> @Convert.ToDateTime(item.CreatedDate).ToString("dd/MM/yyyy")
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+
+    </div>
+</section>

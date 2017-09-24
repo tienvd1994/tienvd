@@ -1,0 +1,131 @@
+﻿@using ATI.Web.Models;
+@{
+    var agency = (Agency)ViewBag.Agency;
+    var commonInfo = (CommonInfo)ViewBag.CommonInfo;
+    ViewBag.Title = Html.Raw("Đại lý SUN'SOIL " + agency.Name);
+    ViewBag.Description = Html.Raw("Đại lý SUN'SOIL " + agency.Name);
+    ViewBag.Keyword = Html.Raw("Đại lý SUN'SOIL " + agency.Name);
+    ViewBag.Url = "http://www.fcn.vn/dai-ly-sunsoil/" + agency.SeoLink;
+    ViewBag.Image = "http://www.fcn.vn" + commonInfo.Logo;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var context = (System.Web.HttpContextWrapper)ViewBag.Context;
+}
+@section KnockOut{
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+    <script type="text/javascript">
+    function initialize() {
+        var markerArray = [];
+
+        var myLatlng = new google.maps.LatLng(@agency.Long, @agency.Lang);
+        var mapOptions = {
+            zoom: 15,
+            center: myLatlng,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
+
+        var marker = new google.maps.Marker({
+            position: myLatlng,
+            map: map,
+            title: '@Html.Raw(agency.Name.Replace("'","")) <br> @Html.Raw(agency.Address), @Html.Raw(agency.District), @Html.Raw(agency.Province)'
+        });
+        var info = new google.maps.InfoWindow({
+            content: '@Html.Raw(agency.Name.Replace("'","")) <br> @Html.Raw(agency.Address), @Html.Raw(agency.District), @Html.Raw(agency.Province)'
+        });
+        info.open(map, marker);
+        stepDisplay = new google.maps.InfoWindow();
+    }
+
+    google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+}
+<link href="~/Content/css/blog.css" rel="stylesheet" />
+<section class="page-top">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <ul class="breadcrumb">
+                    <li><a href="/">Trang chủ</a></li>
+                    <li class="active">Trang</li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Đại lý</h2>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="blog-posts single-post">
+                <article class="post blog-single-post">
+                    <div class="post-image">
+                        <div id="agency">
+                            @{
+                            if(!string.IsNullOrEmpty(agency.Thumb))
+                            {
+                            var images = agency.Thumb.Split(',');
+                            foreach (var item in images)
+                            {
+                            <div class="owl-item">
+                                <div class="img-thumbnail">
+                                    <img alt="@Html.Raw(agency.Name)" src="http://cdn.quancafe.vn/z_900x400@(item)" class="img-responsive" />
+                                </div>
+                            </div>
+                            }
+                            }
+                            }
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        <h2><a href="javascript:;">@Html.Raw(agency.Name)</a></h2>
+                        <hr />
+                        @*<div class="post-meta">
+                            <span><i class="icon icon-mobile"></i>Số điện thoại: </span>
+                            <span><i class="icon icon-home"></i>Địa chỉ: </span>
+                        </div>*@
+                        <p>@Html.Raw(agency.Introduce)</p>
+                        @{
+                            if (!context.Request.Browser.IsMobileDevice)
+                            {
+                                <div class="post-block post-share">
+                                    <h3><i class="icon icon-share"></i>Chia sẻ thông tin này</h3>
+                                    <div class="addthis_sharing_toolbox"></div>
+                                    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-4f578e642f1e78a6"></script>
+                                </div>
+                            }
+                        }
+                    </div>
+                </article>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <aside class="sidebar">
+                @*<div class="input-group input-group-lg">
+        <input type="text" id="s" name="s" placeholder="Tìm kiếm..." class="form-control">
+        <span class="input-group-btn">
+            <button class="btn btn-primary btn-lg" type="button" id="btnSearchN"><i class="icon icon-search"></i></button>
+        </span>
+    </div>
+    <hr>*@  
+                <h5>Bản đồ chỉ dẫn</h5>
+                <hr />
+                <div class="google-map" id="map_canvas" style="position: relative; background-color: rgb(229, 227, 223); overflow: hidden;"></div>
+                <hr />
+                <h5>Liên hệ</h5>
+                <ul class="list-unstyled who margin-bottom-30">
+                    <li><i class="icon icon-home"></i> @Html.Raw(agency.Address), @Html.Raw(agency.District), @Html.Raw(agency.Province)</li>
+                    <li><i class="icon icon-phone"></i> @agency.Mobile</li>
+                    <li><i class="icon icon-envelope"></i> @Html.Raw(agency.Email)</li>
+                    <li><i class="icon icon-globe"></i> <a href="http://www.fcn.vn/a/@(agency.SeoLink)">http://www.fcn.vn/a/@(agency.SeoLink)</a></li>
+                    <li>HCM: <a title="yahoo" href="ymsgr:sendIM?@commonInfo.Yahoo"><img class="yahoo" src="http://opi.yahoo.com/online?u=@commonInfo.Yahoo&amp;m=g&amp;t=2&amp;l=vi" alt="Hỗ trợ kỹ thuật" height="18" width="85"></a> &nbsp; <a href="skype:@commonInfo.Yahoo?call"> <img src="http://mystatus.skype.com/smallclassic/@(commonInfo.Yahoo)" alt="Tư vấn mua hàng" height="18" width="103"></a></li>
+                    <li>HN: &nbsp;&nbsp; <a title="yahoo" href="ymsgr:sendIM?hadaoduy"><img class="yahoo" src="http://opi.yahoo.com/online?u=hadaoduy&amp;m=g&amp;t=2&amp;l=vi" alt="Hỗ trợ kỹ thuật" height="18" width="85"></a> &nbsp; <a href="skype:hadaoduy?call"> <img src="http://mystatus.skype.com/smallclassic/hadaoduy" alt="Tư vấn mua hàng" height="18" width="103"></a></li>
+                </ul>
+            </aside>
+        </div>
+    </div>
+</div>

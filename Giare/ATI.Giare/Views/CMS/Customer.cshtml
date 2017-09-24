@@ -1,0 +1,119 @@
+﻿@{
+    ViewBag.Title = "Danh sách khách hàng tiêu biểu";
+    Layout = "~/Views/Shared/_CMSLayout.cshtml";
+}
+@section KnockOut{
+    <script type="text/html" id="CustomerTemplate">
+    <tr>
+        <td data-bind="text: (CurrentPage - 1) * totalPageCate+$index()+1"></td>
+        <td><img data-bind="attr:{src:Image}, visible: $root.IsDesktop" height="50" /></td>
+        <td data-bind="text: Name"></td>
+        <td data-bind="text: Status==1?'Hiển thị':'Ẩn'"></td>
+        <td>
+            <button type="button" class="btn-u btn-u-dark-blue" data-bind="click: $root.SetUpdate.bind($data, $data)"><i class="icon icon-magic"></i></button>
+            <button type="button" class="btn-u btn-u-red" data-bind="click: $root.Delete.bind($data, $data)"><i class="icon icon-times"></i></button>
+        </td>
+    </tr>
+</script>
+    <script src="~/Scripts/ATI.pager.js"></script>
+    <script src="/Scripts/swfobject.js" type="text/javascript"></script>
+    <script src="/Scripts/jquery.uploadify.v2.1.4.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/models/Customer.js"></script>
+    <script src="~/Scripts/ModelViews/Customer.js"></script>
+}
+<link href="~/Content/css/custom-sky-forms.css" rel="stylesheet" />
+<link href="~/Content/css/jquery_ui_datepicker.css" rel="stylesheet" />
+<div class="breadcrumbs">
+    <div class="container">
+        <h1 class="pull-left">Khách hàng</h1>
+        <ul class="pull-right breadcrumb">
+            <li><a href="/">Trang chủ</a></li>
+            <li><a class="active">Khách hàng tiêu biểu</a></li>
+        </ul>
+    </div>
+</div>
+<div class="container content">
+    <div class="sky-form margin-bottom-30" data-bind="visible:ShowDetail">
+        <header>Thông tin khách hàng</header>
+        <fieldset>
+            <div class="row">
+                <section class="col col-6">
+                    <label class="label">Tên khách hàng <span class="color-red">*</span></label>
+                    <label class="input">
+                        <input type="text" data-bind="value: Name, hasfocus: fcName" maxlength="150" />
+                    </label>
+                </section>
+            </div>
+            <div class="row">
+                <section class="col col-3">
+                    <label class="label">Thứ tự hiển thị</label>
+                    <label class="select">
+                        <select data-bind="value: OrderNo">
+                            @{
+                                for (int i = 1; i <= 100; i++)
+                                {
+                                    <option value="@i">@i</option>
+                                }
+                            }
+                        </select>
+                    </label>
+                </section>
+                <section class="col col-3">
+                    <label class="label">Trạng thái hiển thị</label>
+                    <label class="select">
+                        <select data-bind="value: Status">
+                            <option value="1">Hiển thị</option>
+                            <option value="0">Ẩn</option>
+                        </select>
+                    </label>
+                </section>
+            </div>
+            <div class="row">
+                <section class="col col-4">
+                    <label class="label">Logo khách hàng (144x144px)</label>
+                    <label class="img-bordered">
+                        <img data-bind="attr:{src: Image}" width="144" />
+                    </label>
+                </section>
+                <section class="col col-6">
+                    <label class="input">
+                        <input type="hidden" id="attachImages" />
+                    </label>
+                </section>
+            </div>
+        </fieldset>
+        <footer>
+            <button class="button" type="submit" data-bind="click: Update, enable: !Sending()"><img src="/content/images/loading1.gif" data-bind="visible: Sending" /> Lưu lại</button>
+        </footer>
+    </div>
+    <div class="panel panel-green margin-bottom-40">
+        <div class="panel-heading">
+            <h3 class="panel-title"><i class="icon icon-tasks"></i> Danh sách khách hàng tiêu biểu</h3>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-12 mb-margin-bottom-30 text-right">
+                    <button type="button" class="btn-u" data-bind="click: ShowAddForm"><i class="icon icon-plus"></i> Thêm mới</button>
+                </div>
+            </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>TT</th>
+                        <th data-bind="visible: IsDesktop">Ảnh</th>
+                        <th>Tên khách hàng</th>
+                        <th data-bind="visible: IsDesktop">Trạng thái</th>
+                        <th>Sửa, xóa</th>
+                    </tr>
+                </thead>
+                <tbody data-bind="template: {name:'CustomerTemplate', foreach: ListCustomer}"></tbody>
+            </table>
+            <div class="row margin-bottom-10">
+                <div class="col-md-6" id="sumarypager"></div>
+                <div class="col-md-6">
+                    <div class="text-right" id="pager"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

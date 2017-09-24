@@ -1,0 +1,156 @@
+﻿@using ATI.Web.Helper;
+@using ATI.Web.Models;
+
+<nav class="main-menu">
+    <div class="navbar-header">
+        <!-- Toggle Button -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+    </div>
+
+    <div class="navbar-collapse collapse clearfix">
+        <ul class="navigation clearfix">
+            <li>
+                <a href="/">
+                    @ATIResourceManger._managerResources.GetString("HomeCode", ATIResourceManger._culture)
+                </a>
+            </li>
+            <li class="dropdown">
+                <a href="javascript:void(0)">
+                    @ATIResourceManger._managerResources.GetString("IntroductionCode", ATIResourceManger._culture)
+                </a>
+                <ul>
+                    @{
+                        foreach (var item in (List<Introduce>)ViewBag.Introduces)
+                        {
+                            <li>
+                                <a href="/gioi-thieu/@item.SeoLink">@item.Title</a>
+                            </li>
+                        }
+                    }
+                </ul>
+            </li>
+            <li>
+                <a href="/dich-vu">
+                    @ATIResourceManger._managerResources.GetString("ServiceCode", ATIResourceManger._culture)
+                </a>
+            </li>
+
+            <li class="dropdown">
+                <a href="javascript:void(0)">
+                    @ATIResourceManger._managerResources.GetString("ProductCode", ATIResourceManger._culture)
+                </a>
+                <ul>
+                    @{
+                        var categoryProducts = (List<CateProduct>)ViewBag.CategoryProducts;
+
+                        foreach (var item in categoryProducts)
+                        {
+                            var db = new Entities();
+                            var child1 = db.CateProducts.Where(m => !m.IsDelete && m.ParrentCateId == item.ID);
+
+                            if (child1 == null || child1.Count() == 0)
+                            {
+                                <li class="dropdown">
+                                    <a href="/san-pham/@item.SeoLink">@item.Name</a>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="dropdown">
+                                    <a href="/san-pham/@item.SeoLink">@item.Name</a>
+                                    <ul>
+                                        @foreach (var item1 in child1)
+                                        {
+                                            var child2 = db.CateProducts.Where(m => !m.IsDelete && m.ParrentCateId == item1.ID);
+
+                                            if (child2 == null || child2.Count() == 0)
+                                            {
+                                                <li><a href="/san-pham/@item1.SeoLink">@item1.Name</a></li>
+                                            }
+                                            else
+                                            {
+                                                <li class="dropdown">
+                                                    <a href="/san-pham/@item1.SeoLink">@item1.Name</a>
+                                                    <ul>
+                                                        @foreach (var item2 in child2)
+                                                        {
+                                                            <li>
+                                                                <a href="/san-pham/@item2.SeoLink">@item2.Name</a>
+                                                            </li>
+                                                        }
+                                                    </ul>
+                                                </li>
+                                            }
+                                        }
+                                    </ul>
+                                </li>
+                            }
+                        }
+                    }
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="javascript:void(0)">Giải pháp</a>
+                <ul>
+                    @{
+                        var cateSolutions = (List<CateNew>)ViewBag.CateSolutions;
+
+                        foreach (var item in cateSolutions)
+                        {
+                            <li>
+                                <a href="/giai-phap/@item.SeoLink">@item.Name</a>
+                            </li>
+                        }
+                    }
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="javascript:void(0)">Tin tức</a>
+                <ul>
+                    @{
+                        var cateNews = (List<CateNew>)ViewBag.CateNews;
+
+                        foreach (var item in cateNews)
+                        {
+                            <li><a href="/tin-tuc/@item.SeoLink">@item.Name</a></li>
+                        }
+                    }
+                </ul>
+            </li>
+            @*<li class="dropdown">
+                <a href="#">blog</a>
+                <ul class="">
+                    <li class="dropdown">
+                        <a href="blog.html">blog grid</a>
+                        <ul>
+                            <li class="dropdown">
+                                <a href="blog.html">blog grid</a>
+                                <ul>
+                                    <li>
+                                        <a href="blog.html">blog grid</a>
+                                    </li>
+                                    <li><a href="blog-single.html">blog single</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="blog-single.html">blog single</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="blog-single.html">blog single</a>
+                    </li>
+                </ul>
+            </li>*@
+            <li>
+                <a href="/lien-he">
+                    @ATIResourceManger._managerResources.GetString("ContactCode", ATIResourceManger._culture)
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>

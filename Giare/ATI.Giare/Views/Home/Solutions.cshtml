@@ -1,0 +1,72 @@
+﻿@using ATI.Web.Models;
+@using ATI.Web.Helper;
+@{
+    var cate = (CateNew)ViewBag.Cate;
+    var commonInfo = (CommonInfo)ViewBag.CommonInfo;
+    ViewBag.Title = Html.Raw(cate.Name + " " + commonInfo.Name);
+    ViewBag.Description = Html.Raw(cate.Name + " " + commonInfo.Name + " ATI cung cấp các giải pháp phần mềm tốt nhất cho ngân hàng, doanh nghiệp các tổ chức và người dân");
+    ViewBag.Keyword = Html.Raw(cate.Name + " " + commonInfo.Name + "sản phẩm, phần mềm, giải pháp, outsourcing, công ty phần mềm tốt nhất, đo lường hiệu quả hoạt động, kpi bsc, thẻ điểm cân bằng, e-learning, học trực tuyến, kiểm toán hoạt động, kiểm toán nội bộ");
+    ViewBag.Url = "http://www.fcn.vn/tin-tuc";
+    ViewBag.Image = "http://www.fcn.vn" + commonInfo.Logo;
+}
+@section KnockOut{
+    <script src="~/Scripts/jquery.pager.js"></script>
+}
+
+<section class="page-title_professional" style="background-image:url(images/background/4.jpg);">
+    <div class="auto-container">
+        <h1>Giải pháp</h1>
+    </div>
+</section>
+
+<div class="breadcrumb-outer_professional">
+    <div class="auto-container">
+        <ul class="bread-crumb text-center">
+            <li>
+                <a href="/">
+                    @ATIResourceManger._managerResources.GetString("HomeCode", ATIResourceManger._culture)
+                </a> <span class="fa fa-angle-right"></span>
+            </li>
+            <li>
+                @*@ATIResourceManger._managerResources.GetString("ServiceCode", ATIResourceManger._culture)*@
+                Giải pháp
+            </li>
+        </ul>
+    </div>
+</div>
+
+<section class="news-section_professional">
+    <div class="auto-container">
+        <div class="row clearfix">
+            @{
+                var partners = (List<News>)ViewBag.Solutions;
+
+                foreach (var item in partners)
+                {
+                    <div class="news-style-one col-md-4 col-sm-6 col-xs-12">
+                        <div class="inner">
+                            <div class="image">
+                                <a href="/giai-phap-chi-tiet/@item.SeoLink">
+                                    <img src="@item.Image" alt="@item.Title">
+                                </a>
+                            </div>
+                            <div class="lower-box">
+                                <div class="upper-content">
+                                    <h3><a href="/giai-phap-chi-tiet/@item.SeoLink">@item.Title</a></h3>
+                                </div>
+                                <div class="text">@item.Summary</div>
+                                <ul class="meta-option clearfix">
+                                    <li class="pull-left">
+                                        <a href="javascript:void(0)">
+                                            <span class="icon fa fa-clock-o"></span> @Convert.ToDateTime(item.PostTime).ToString("dd/MM/yyyy")
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</section>

@@ -1,0 +1,27 @@
+﻿@using ATI.Web.Models;
+
+<!--Sponsors Style Two-->
+<section class="sponsors-style-two">
+    <div class="auto-container">
+        <!--Sec Title-->
+        <div class="sec-title centered">
+            <h2>Đối tác</h2>
+            <div class="separator"></div>
+        </div>
+        <!--Sponsors Slider-->
+        <ul class="sponsors-carousel-two owl-theme owl-carousel">
+            @{
+                foreach (var item in (List<CustomerSay>)ViewBag.Sponsors)
+                {
+                    <li>
+                        <div class="image-box tool_tip" title="@item.FullName">
+                            <a href="@item.Title">
+                                <img src="@item.Image" alt="@item.FullName">
+                            </a>
+                        </div>
+                    </li>
+                }
+            }
+        </ul>
+    </div>
+</section>

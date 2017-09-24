@@ -1,0 +1,107 @@
+﻿@using ATI.Web.Models;
+@using ATI.Web.Helper;
+@{
+    var contractor = (Contractor)ViewBag.Contractor;
+    var commonInfo = (CommonInfo)ViewBag.CommonInfo;
+    ViewBag.Title = Html.Raw(contractor.Name);
+    ViewBag.Description = Html.Raw(contractor.Summary);
+    ViewBag.Keyword = Html.Raw(contractor.Summary);
+    ViewBag.Url = "http://www.fcn.vn/nha-thau/" + contractor.SeoLink;
+    ViewBag.Image = "http://cdn.quancafe.vn/z_300x200" + contractor.Image;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var context = (System.Web.HttpContextWrapper)ViewBag.Context;
+}
+<link href="~/Content/css/blog.css" rel="stylesheet" />
+<section class="page-top">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <ul class="breadcrumb">
+                    <li><a href="/" class="menuATI">@ATIResourceManger._managerResources.GetString("HomeCode", ATIResourceManger._culture)</a></li>
+                    <li class="active">Nhà thầu</li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Nhà thầu tham gia dự án</h2>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="container">
+    <div class="row">
+        <div class="col-md-9 mb-margin-bottom-30">
+            <div class="blog margin-bottom-40">
+                <h2><a href="#">@Html.Raw(contractor.Name)</a></h2>
+                @*<div class="blog-post-tags">
+                    <ul class="list-unstyled list-inline blog-info">
+                        @if (contractor.FromDate != null)
+                        {
+                        <li><i class="icon icon-calendar"></i> Thời gian thực hiện: @(((DateTime)contractor.FromDate).ToString("MM/yyyy"))</li>
+                        }
+                        <li><i class="icon icon-comments"></i> <a href="#">@Html.Raw(string.Format("{0:0,0}", contractor.ViewNo)) lượt xem</a></li>
+                    </ul>
+                </div>*@
+                <div class="blog-img">
+                    <img alt="@Html.Raw(contractor.Name)" src="@contractor.Image" class="img-responsive">
+                </div>
+                <p>@Html.Raw(contractor.Content)</p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <aside class="sidebar">
+                <h4>Liên hệ BQLDA</h4>
+                <ul class="list-unstyled who margin-bottom-30">
+                    <li><i class="icon icon-home"></i> @Html.Raw(commonInfo.HeadOffice)</li>
+                    <li><i class="icon icon-envelope"></i> @Html.Raw(commonInfo.Email)</li>
+                    <li><i class="icon icon-phone"></i> @Html.Raw(commonInfo.Phone)></li>
+                    <li><i class="icon icon-globe"></i> http://www.fcn.vn</li>
+                </ul>
+            </aside>
+            <div class="tabs">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a data-toggle="tab" href="#popularPosts"><i class="icon icon-star"></i> Tin khác</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div id="popularPosts" class="tab-pane active">
+                        <ul class="simple-post-list">
+                            @{
+                                var newss = (List<News>)ViewBag.TopNews;
+                                foreach (var item in newss)
+                                {
+                            <li>
+                                <div class="post-image">
+                                    <div class="img-thumbnail">
+                                        <a href="/bai-viet/@item.SeoLink">
+                                            <img alt="@item.Title" src="http://cdn.quancafe.vn/z_50x50@(item.Image)" />
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="post-info">
+                                    <a href="/bai-viet/@item.SeoLink">@Html.Raw(item.Title)</a>
+                                    <div class="post-meta">
+                                        <span><i class="icon icon-calendar"></i> @item.PostTime.ToString("dd/MM/yyyy")</span>
+                                        <span><i class="icon icon-comments"></i> @item.ViewNo lượt xem</span>
+                                    </div>
+                                </div>
+                            </li>
+                                }
+
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="fb-root"></div>
+<script>
+    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=216018455274841&version=v2.0";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>

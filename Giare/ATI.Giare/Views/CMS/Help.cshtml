@@ -1,0 +1,220 @@
+﻿
+@{
+    ViewBag.Title = "Hướng dẫn sử dụng";
+    Layout = "~/Views/Shared/_CMSLayout.cshtml";
+}
+<div class="breadcrumbs">
+    <div class="container">
+        <h1 class="pull-left">Hướng dẫn sử dụng</h1>
+        <ul class="pull-right breadcrumb">
+            <li><a href="/">Trang chủ</a></li>
+            <li><a class="active">Hướng dẫn sử dụng</a></li>
+        </ul>
+    </div>
+</div>
+<div class="container content">
+    <div class="row tab-v3">
+        <div class="col-sm-3">
+            <ul class="nav nav-pills nav-stacked">
+                <li class="active"><a data-toggle="tab" href="#gioithieu"><i class="fa fa-home" ></i> Giới thiệu</a></li>
+                <li class=""><a data-toggle="tab" href="#thong-tin-chung"><i class="fa fa-info"></i> Thông tin chung</a></li>
+                <li class=""><a data-toggle="tab" href="#san-pham"><i class="fa fa-comments"></i> Sản phẩm</a></li>
+                <li><a data-toggle="tab" href="#dich-vu"><i class="fa fa-gear"></i> Nhóm sản phẩm</a></li>
+                <li><a data-toggle="tab" href="#dai-ly"><i class="fa fa-building-o"></i> Đại lý</a></li>
+                <li><a data-toggle="tab" href="#khach-hang"><i class="fa fa-users"></i> Khách hàng nói</a></li>
+                <li><a data-toggle="tab" href="#tin-tuc"><i class="fa fa-inbox"></i> Tin tức</a></li>
+                <li><a data-toggle="tab" href="#lien-he"><i class="fa fa-home"></i> Liên hệ</a></li>
+                <li class=""><a data-toggle="tab" href="#truy-cap"><i class="fa fa-comments"></i> Truy cập</a></li>
+                <li><a data-toggle="tab" href="#nguoi-dung"><i class="fa fa-user"></i> Người dùng</a></li>
+                <li><a data-toggle="tab" href="#doi-mat-khau"><i class="fa fa-gear"></i> Đổi mật khẩu</a></li>
+            </ul>
+        </div>
+        <div class="col-sm-9">
+            <div class="tab-content">
+                <div id="gioithieu" class="tab-pane fade in active">
+                    <h4>Sửa thông tin giới thiệu công ty</h4>
+                    <p>Chức năng này cho phép bạn sửa thông tin: giới thiệu về công ty</p>
+                    <p>Những thông tin này sẽ giúp khách hàng định hình được công ty bạn là ai, công ty bạn làm gì.</p>
+                    <p>Bạn di chuột qua tab Thông tin và chọn giới thiệu</p>
+                    <div class="row">
+                        <div class="col-md-12 center">
+                            <img src="/images/help/thong-tin-1.jpg" class="img-responsive img-tab-space" alt="">
+                        </div>
+                    </div>
+                    <p>
+                        Điền và chỉnh sửa thông tin trong trình soạn thảo (Sử dụng trình soạn thảo tương tự như sử dùng soạn thảo văn bản) như hình dưới. 
+                    </p>
+                    <p class="margin-bottom-40">
+                        Nếu muốn chèn ảnh vào nội dung bạn hãy bấm chuột vào vị trí muốn chèn ảnh rồi bấm nút "Tải ảnh" để upload ảnh. Sau khi nhập nội dung, bạn hãy bấm nút "Lưu lại" để hoàn thành.
+                    </p>
+                    <div class="row">
+                        <div class="col-md-12 center">
+                            <img src="/images/help/Sửa thông tin công ty.png" class="img-responsive img-tab-space" alt="">
+                        </div>
+                    </div>
+                </div>
+                <div id="thong-tin-chung" class="tab-pane fade">
+                    <h4>Sửa thông tin chung</h4>
+                    <p class="row margin-bottom-30">Chức năng này cho phép bạn sửa thông tin: tên công ty, thông tin liên hệ, thông tin giới thiệu tổng quan về công ty. Những thông tin này cung cấp thông tin quan trọng công ty bạn đến với khách hàng do vậy bạn cần có nội dung tốt nhất.</p>
+                    <div class="row margin-bottom-20">
+                        <div class="col-md-12 center">
+                            <img src="/images/help/sua thong tin cong ty.png" class="img-responsive img-tab-space" alt="sua thong tin cong ty">
+                        </div>
+                    </div>
+                    <p>Thông tin giới thiệu tổng quan về công ty và các thông tin liên hệ sẽ giúp khách hàng nhanh chóng hiểu được công ty bạn làm gì, cung cấp dịch vụ gì ở mức độ chất lượng như thế nào và cách liên hệ với công ty bạn ra sao.</p>
+                </div>
+                <div id="san-pham" class="tab-pane fade">
+                    <h4>Quản lý sản phẩm</h4>
+                    <p>Chức năng này cho phép bạn thêm mới, chỉnh sửa, thay đổi trạng thái hiển thị (khi ở trạng thái ẩn sản phẩm sẽ không được hiển thị ra ngoài) và xóa sản phẩm.</p>
+                    <p>Để thêm mới sản phẩm bạn hãy click "Thêm mới"</p>
+
+                    <div class="row margin-bottom-30">
+                        <div class="col-md-12 center">
+                            <img src="/images/help/them-san-pham.png" class="img-responsive img-tab-space" alt="">
+                        </div>
+                    </div>
+                    <p>Thông tin <span class="color-red">*</span> là bắt buộc. bạn hãy nhập đầy đủ nếu có thông tin.</p>
+                    <p>Ảnh sản phẩm nên chọn những ảnh đẹp có độ phân giải từ 400x400px đến 800x800px</p>
+                    <p>Miêu tả tóm tắt sản phẩm là những thông tin nổi bật nhất về sản phẩm</p>
+                    <p>Tags: là các thẻ có liên quan tới sản phẩm, ví dụ: Sản phẩm phụ gia xbc bạn có thể gắn tags: Tiết kiệm xăng, bảo vệ động cơ... khi khách hàng click vào tags <a href="/tags/san-phamn/xay-dung" target="_blank">Dầu nhờn</a> danh sách sản phẩm được gắn tags "Dầu nhờn" sẽ hiển thị.</p>
+                    <p>Thông tin chi tiết sản phẩm được hiển thị khi khách hàng xem 1 sản phẩm, bạn hãy nhập đầy đủ thông tin nhất về sản phẩm như: thông số kỹ thuật, hình ảnh thực, các đặc điểm ưu việt của sản phẩm, chế độ bảo hành của công ty...</p>
+                    <div class="row">
+                        <div class="col-md-12 center">
+                            <img src="/images/help/quan ly san pham.png" class="img-responsive img-tab-space" alt="quan ly san pham.png">
+                        </div>
+                    </div>
+                    <p>Nếu bạn không muốn hiển thị giá sản phẩm hãy để trống</p>
+                    <p class="margin-bottom-40">Điền thông tin sản phẩm và click "Lưu lại" để hoàn thành</p>
+                    <p>Để sửa sản phẩm bạn hãy click vào nút sửa <img src="/images/help/nut-sua.png" /> để sửa lại nội dung, click "Lưu lại" khi hoàn thành.</p>
+                </div>
+                <div id="dich-vu" class="tab-pane fade">
+                    <h4>Chức năng quản lý nhóm sản phẩm</h4>
+                    <p>Chức năng này cho phép bạn thêm, sửa, xóa nhóm sản phẩm</p>
+                    <p>Hệ thống hỗ trợ bạn tạo nhóm sản phẩm với 2 cấp: nhóm cha và nhóm con</p>
+                    <p>Click vào tab "Sản phẩm" -> "Dịch vụ" để vào chức năng quản lý dịch vụ</p>
+                    <div class="row margin-bottom-30">
+                        <div class="col-md-12 center">
+                            <img src="/images/help/quan ly nhom san pham.png" class="img-responsive img-tab-space" alt="quan ly nhom san pham" />
+                        </div>
+                    </div>
+                    <p>Trường hợp là nhóm con bạn hãy tìm và chọn nhóm cha.</p>
+                </div>
+                @*<div id="dich-vu" class="tab-pane fade">
+        <h4>Chức năng quản lý dịch vụ</h4>
+        <p>Chức năng này cho phép bạn thêm, sửa, xóa các dịch vụ hiện có của công ty tới khách hàng.</p>
+        <p>Trang giới thiệu dịch vụ sẽ giúp bạn giới thiệu dịch vụ của công ty đang cung cấp tới khách hàng, vì vậy bạn hãy viết đầy đủ thông tin và hình ảnh hấp dẫn nhất để thu hút được khách hàng.</p>
+        <p>Click vào tab "Sản phẩm" -> "Dịch vụ" để vào chức năng quản lý dịch vụ</p>
+        <div class="row margin-bottom-30">
+            <div class="col-md-12 center">
+                <img src="/images/help/chon-dich-vu.jpg" class="img-responsive img-tab-space" alt="">
+            </div>
+        </div>
+        <p>Các thao tác thêm, sửa, xóa tương tự như quản lý sản phẩm</p>
+    </div>*@
+                <div id="dai-ly" class="tab-pane fade">
+                    <h4>Chức năng quản lý Đại lý</h4>
+                    <p>Chức năng này cho phép bạn thêm, sửa, xóa các đại lý phân phối sản phẩm</p>
+                    <p>Chức năng hỗ trợ khách hàng dễ dàng tìm kiếm nơi bán sản phẩm SUNSOIL, đồng thời là 1 kênh thực hiện chính sách quảng bá đại lý và sản phẩm.</p>
+                    <p>Để vào bạn hãy Click vào tab "Đại lý"</p>
+                    <div class="row margin-bottom-30">
+                        <div class="col-md-12 center">
+                            <img src="/images/help/quan ly dai ly.png" class="img-responsive img-tab-space" alt="quan ly dai ly" />
+                        </div>
+                    </div>
+                    <p>Bạn cần điền đầy đủ thông tin của đại lý để khách hàng có thể dễ dàng liên hệ. Ảnh đại lý có thể gồm nhiều ảnh (bạn hãy chụp những ví trí đẹp nhất của đại lý để đăng).</p>
+                    <p>Các thao tác thêm, sửa, xóa tương tự như quản lý sản phẩm</p>
+                </div>
+                <div id="khach-hang" class="tab-pane fade">
+                    <h4>Khác hàng nói</h4>
+                    <p>Chức năng này cho phép bạn thêm, sửa, xóa: những nhận xét về sản phẩm của khách hàng (bạn hãy chọn ra những khách hàng nào đã sử dụng sản phẩm của SUNSOIL lấy thông tin hình ảnh về họ và viết những lời nhận xét tốt nhất về sản phẩm).</p>
+                    <p>Chức năng này sẽ giúp bạn truyền tải thông tin đến với khách hàng rằng: sản phẩm SUNSOIL đã được sử dụng ở nhiều khách hàng lớn, các khác hàng đã có nhiều năm sử dụng các sản phẩm khác vì vậy khách hàng sẽ thêm tin tin tưởng vào sản phẩm của SUNSOIL.</p>
+                    <p>Để vào bạn hãy Click vào tab "Khách hàng" -> chọn "Khách hàng nói" để vào chức năng quản lý</p>
+                    <div class="row margin-bottom-30">
+                        <div class="col-md-12 center">
+                            <img src="/images/help/Khach hang noi ve SUNSOIL.png" class="img-responsive img-tab-space" alt="Khách hàng nói về SUNSOIL" />
+                        </div>
+                    </div>
+                    <p>Sau khi cập nhật thông tin bạn click nút "Lưu lại" để hoàn thành.</p>
+                </div>
+                <div id="tin-tuc" class="tab-pane fade">
+                    <h4>Chức năng quản lý bài viết</h4>
+                    <p>Chức năng này cho phép bạn thêm, sửa, xóa các bài viết tin tức mới (các tin về kỹ thuật, thông tin về dầu nhớt cách sử dụng...), tin sự kiện như tin khuyến mại, tin về khai trương mở thêm đại lý chi nhánh (khi mở thêm đại lý mới bạn nên chụp ảnh chọn lấy hình ảnh đẹp nhất và viết bài cho sự kiện).</p>
+                    <p>Đây sẽ là những thông tin quan trọng giúp quảng bá hình ảnh và cung cấp thông tin về sản phẩm tới khách hàng</p>
+                    <p>Để vào bạn hãy Click vào tab "Tin tức"</p>
+                    <p>Các thao tác thêm, sửa, xóa tương tự như quản lý sản phẩm</p>
+                    <div class="row margin-bottom-30">
+                        <div class="col-md-12 center">
+                            <img src="/images/help/quan ly tin tuc.png" class="img-responsive img-tab-space" alt="quan ly tin tuc" />
+                        </div>
+                    </div>
+                    <ul>
+                        <li>Tiêu đề bài viết nên có độ dài không quá 160 ký tự.</li>
+                        <li>Thông tin ngày đăng bạn có thể chọn thời gian quá khứ cho phù hợp với thời gian sự kiện của bài viết.</li>
+                        <li>Ảnh đại diện cho bài viết thể hiện được nội dung của bài viết có có độ phân giải tối thiểu là 300x200px. Với những ảnh có dung lượng lớn như chụp từ máy ảnh bạn nên sử dụng công cụ nén ảnh <a href="/images/caesium-1.6.1-win.exe">caesium-1.6.1-win</a> về độ phân giải < 800px để thời gian upload lên server nhanh hơn.</li>
+                        <li>Nội dung tóm tắt của bài viết có độ dài không quá 250 ký tự và thể hiện nội dung của bài viết. Nó cũng được dùng để hiển thị trong kết quả tìm kiếm của Google</li>
+                    </ul>
+                </div>
+                <div id="lien-he" class="tab-pane fade">
+                    <h4>Chức năng quản lý Liên hệ</h4>
+                    <p>Chức năng này cho phép xem các liên hệ được khách hàng gửi đến, bao gồm: liên hệ mua sản phẩm, liên hệ đăng ký làm đại lý phân phối, liên hệ hợp tác, liên hệ khiếu nại, hỏi, đáp...</p>
+                    <p>Để vào xem bạn hãy Click vào tab "Liên hệ" -> Liên hệ</p>
+                    <p>Hệ thống sẽ hiển thị danh sách liên hệ và trạng thái phía dưới, nếu liên hệ bạn chưa xem nút trạng thái sẽ là "Mới" bạn có thể click vào nút này để đánh dấu liên hệ này đã đọc.</p>
+                    <div class="row margin-bottom-30">
+                        <div class="col-md-12 center">
+                            <img src="/images/help/quan ly lien he.png" class="img-responsive img-tab-space" alt="quan ly lien he" />
+                        </div>
+                    </div>
+                </div>
+                <div id="truy-cap" class="tab-pane fade">
+                    <h4>Chức năng xem thông tin truy cập</h4>
+                    <p>Chức năng này cho phép xem các truy cập vào trang web http://www.fcn.vn</p>
+                    <p>Để vào xem bạn hãy Click vào tab "Liên hệ" -> Truy cập</p>
+                    <div class="row margin-bottom-30">
+                        <div class="col-md-12 center">
+                            <img src="/images/help/xem-truy-cap.jpg" class="img-responsive img-tab-space" alt="xem truy cap" />
+                        </div>
+                    </div>
+                    <p>Hệ thống sẽ hiển thị danh sách các lượt truy cập theo sắp xếp thời gian gần nhất</p>
+                    <div class="row margin-bottom-30">
+                        <div class="col-md-12 center">
+                            <img src="/images/help/thong-tin-truy-cap.jpg" class="img-responsive img-tab-space" alt="thong tin truy cap" />
+                        </div>
+                    </div>
+                    <p>Nó sẽ cho bạn biết khách hàng truy cập và quan tâm đến sản phẩm dịch vụ gì của bạn, họ dùng máy tính hay smartphone...</p>
+                </div>
+                <div id="nguoi-dung" class="tab-pane fade">
+                    <h4>Chức năng quản lý Người dùng</h4>
+                    <p>Chức năng này cho phép bạn thêm mới, sửa và xóa tài khoản người dùng quản trị nội dung website</p>
+                    <p>Để vào chức năng hãy Click vào tab "Người dùng" -> Người dùng</p>
+                    <div class="row margin-bottom-30">
+                        <div class="col-md-12 center">
+                            <img src="/images/help/nguoi-dung.jpg" class="img-responsive img-tab-space" alt="nguoi dung" />
+                        </div>
+                    </div>
+                    <p>Trạng thái tài khoản có 2 trạng thái Bình thường và Tạm khóa, nếu ở trạng thái Tạm khóa tài khoản đó sẽ không đăng nhập được vào hệ thống. Bạn cần phải có ít nhất 1 tài khoản có quyền truy cập hệ thống</p>
+                    <div class="row margin-bottom-30">
+                        <div class="col-md-12 center">
+                            <img src="/images/help/nguoi-dung.png" class="img-responsive img-tab-space" alt="">
+                        </div>
+                    </div>
+                </div>
+                <div id="doi-mat-khau" class="tab-pane fade">
+                    <h4>Chức năng Đổi mật khẩu</h4>
+                    <p>Để đảm bảo bảo mật bạn nên định kì đổi mật khẩu sau khoảng thời gian 30 ngày, mật khẩu tối thiểu phải có 6 ký tự và nên bao gồm cả chữ + số hoặc những ký tự khác.</p>
+                    <p>Để vào đổi mật khẩu Click vào tab "Người dùng" -> Đổi mật khẩu</p>
+                    <div class="row margin-bottom-30">
+                        <div class="col-md-12 center">
+                            <img src="/images/help/vao-doi-mat-khau.jpg" class="img-responsive img-tab-space" alt="">
+                        </div>
+                    </div>
+                    <p>Bạn nhập vào tên đăng nhập bạn muốn đổi mật khẩu và điền mật khẩu mới cần đổi</p>
+                    <div class="row margin-bottom-30">
+                        <div class="col-md-12 center">
+                            <img src="/images/help/doi-mat-khau.jpg" class="img-responsive img-tab-space" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

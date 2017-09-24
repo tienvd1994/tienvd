@@ -1,0 +1,249 @@
+﻿@using ATI.Web.Models;
+@using ATI.Web.Helper;
+@{
+    var product = (Product)ViewBag.Product;
+    var cate = (CateProduct)ViewBag.Category;
+    var commonInfo = (CommonInfo)ViewBag.CommonInfo;
+    ViewBag.Title = Html.Raw(product.Name);
+    ViewBag.Description = Html.Raw(product.Summary);
+    ViewBag.Keyword = Html.Raw(product.Summary);
+    ViewBag.Url = "http://www.fcn.vn/du-an/" + product.SeoLink;
+    ViewBag.Image = product.Image;
+    var context = (System.Web.HttpContextWrapper)ViewBag.Context;
+}
+@section KnockOut{
+    <script>
+        var id = @product.ID;
+    </script>
+    <script src="/Scripts/knockout-3.1.0.js"></script>
+    <script src="/Scripts/ModelViews/ProductDetail.js"></script>
+}
+
+<section class="page-title_professional" style="background-image:url(images/background/4.jpg);">
+    <div class="auto-container">
+        <h1>Chi tiết sản phẩm</h1>
+    </div>
+</section>
+
+<div class="breadcrumb-outer_professional">
+    <div class="auto-container">
+        <ul class="bread-crumb text-center">
+            <li>
+                <a href="/">
+                    @ATIResourceManger._managerResources.GetString("HomeCode", ATIResourceManger._culture)
+                </a> <span class="fa fa-angle-right"></span>
+            </li>
+            <li>
+                <a href="/san-pham/@cate.SeoLink">
+                    @cate.Name
+                </a> <span class="fa fa-angle-right"></span>
+            </li>
+            <li>@product.Name</li>
+        </ul>
+    </div>
+</div>
+
+<div class="sidebar-page-container_professional">
+    <div class="auto-container">
+        <div class="row clearfix">
+            <!--Content Side-->
+            <div class="content-side pull-right col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                <section class="product-details">
+                    <!--Basic Details-->
+                    <div class="basic-details">
+                        <div class="row clearfix">
+                            <div class="image-column col-md-6 col-sm-5 col-xs-12">
+                                <figure class="image">
+                                    <a href="@product.Image" class="lightbox-image" title="@product.Name">
+                                        <img src="@product.Image" alt="">
+                                    </a>
+                                    <a href="@product.Image" class="lightbox-image image-text">click here to view larger</a>
+                                </figure>
+                            </div>
+
+                            <div class="info-column col-md-6 col-sm-7 col-xs-12">
+                                <div class="details-header">
+                                    <h4>@product.Name</h4>
+                                </div>
+                                <div class="text">
+                                    @Html.Raw(product.Summary)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Basic Details-->
+                    <!--Product Info Tabs-->
+                    <div class="product-info-tabs">
+                        <!--Product Tabs-->
+                        <div class="prod-tabs tabs-box" id="product-tabs">
+
+                            <!--Tab Btns-->
+                            <ul class="tab-btns tab-buttons clearfix">
+                                <li data-tab="#prod-description" class="tab-btn active-btn">
+                                    @ATIResourceManger._managerResources.GetString("Description_Product", ATIResourceManger._culture)
+                                </li>
+                                @*<li data-tab="#prod-reviews" class="tab-btn">ADDITIONAL INFO</li>
+                                    <li data-tab="#prod-tags" class="tab-btn">REVIEWS(02)</li>*@
+                            </ul>
+
+                            <!--Tabs Content-->
+                            <div class="tabs-container tabs-content">
+
+                                <!--Tab / Active Tab-->
+                                <div class="tab active-tab" id="prod-description">
+                                    <div class="content">
+                                        @Html.Raw(product.Content)
+                                    </div>
+                                </div>
+
+                                @*<!--Tab-->
+                                    <div class="tab" id="prod-reviews">
+                                        <div class="content">
+                                            <p>The Brady Bunch these days are all Happy and Free these days are all share them with me oh baby so let sit make the most of this beautiful day since we are together the Love Boat soon.</p>
+                                        </div>
+                                    </div>
+
+                                    <!--Tab -->
+                                    <div class="tab" id="prod-tags">
+                                        <h3>2 Reviews Found</h3>
+
+                                        <!--Reviews Container-->
+                                        <div class="reviews-container">
+
+                                            <!--Reviews-->
+                                            <article class="review-box clearfix">
+                                                <figure class="rev-thumb"><img src="images/resource/author-1.jpg" alt=""></figure>
+                                                <div class="rev-content">
+                                                    <div class="rating"><span class="fa fa-star"></span> <span class="fa fa-star"></span> <span class="fa fa-star"></span> <span class="fa fa-star"></span> <span class="fa fa-star-o"></span></div>
+                                                    <div class="rev-info">Admin – April 03, 2016: </div>
+                                                    <div class="rev-text"><p>Sed eget turpis a pede tempor malesuada. Vivamus quis mi at leo pulvinar hendrerit. Cum sociis natoque penatibus et magnis dis</p></div>
+                                                </div>
+                                            </article>
+
+                                            <article class="review-box clearfix">
+                                                <figure class="rev-thumb"><img src="images/resource/author-2.jpg" alt=""></figure>
+                                                <div class="rev-content">
+                                                    <div class="rating"><span class="fa fa-star"></span> <span class="fa fa-star"></span> <span class="fa fa-star"></span> <span class="fa fa-star-o"></span> <span class="fa fa-star-o"></span></div>
+                                                    <div class="rev-info">Ahsan – April 01, 2016: </div>
+                                                    <div class="rev-text"><p>Sed eget turpis a pede tempor malesuada. Vivamus quis mi at leo pulvinar hendrerit. Cum sociis natoque penatibus et magnis dis</p></div>
+                                                </div>
+                                            </article>
+
+                                        </div>
+
+                                        <!--Add Review-->
+                                        <div class="add-review">
+                                            <h3>Add a Review</h3>
+
+                                            <form method="post" action="shop-single.html">
+                                                <div class="row clearfix">
+                                                    <div class="form-group col-md-6 col-sm-12 col-xs-12">
+                                                        <label>Name *</label>
+                                                        <input type="text" name="name" value="" placeholder="" required="">
+                                                    </div>
+                                                    <div class="form-group col-md-6 col-sm-12 col-xs-12">
+                                                        <label>Email *</label>
+                                                        <input type="email" name="email" value="" placeholder="" required="">
+                                                    </div>
+                                                    <div class="form-group col-md-6 col-sm-12 col-xs-12">
+                                                        <label>Website *</label>
+                                                        <input type="text" name="website" value="" placeholder="" required="">
+                                                    </div>
+                                                    <div class="form-group col-md-6 col-sm-12 col-xs-12">
+                                                        <label>Rating </label>
+                                                        <div class="rating">
+                                                            <a href="#" class="rate-box" title="1 Out of 5"><span class="fa fa-star"></span></a>
+                                                            <a href="#" class="rate-box" title="2 Out of 5"><span class="fa fa-star"></span> <span class="fa fa-star"></span></a>
+                                                            <a href="#" class="rate-box" title="3 Out of 5"><span class="fa fa-star"></span> <span class="fa fa-star"> </span> <span class="fa fa-star"></span></a>
+                                                            <a href="#" class="rate-box" title="4 Out of 5"><span class="fa fa-star"></span> <span class="fa fa-star"></span> <span class="fa fa-star"></span> <span class="fa fa-star"></span></a>
+                                                            <a href="#" class="rate-box" title="5 Out of 5"><span class="fa fa-star"></span> <span class="fa fa-star"></span> <span class="fa fa-star"></span> <span class="fa fa-star"></span> <span class="fa fa-star"></span></a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                                                        <label>Your Review</label>
+                                                        <textarea name="review-message"></textarea>
+                                                    </div>
+                                                    <div class="form-group text-right col-md-12 col-sm-12 col-xs-12">
+                                                        <button type="button" class="theme-btn btn-style-three">Add Review</button>
+                                                    </div>
+                                                </div>
+
+                                            </form>
+                                        </div>
+                                    </div>*@
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--Related Posts-->
+                    <div class="related-posts">
+                        <!--Sec Title-->
+                        <div class="sec-title centered">
+                            <h2>Sản phẩm liên quan</h2>
+                            <div class="separator"></div>
+                        </div>
+                        <div class="row clearfix">
+                            @{
+                                var productsOther = (List<Product>)ViewBag.ProductsOther;
+
+                                foreach (var item in productsOther)
+                                {
+                                    <!--Shop Item-->
+                                    <div class="default-shop-item col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                        <!--inner-box-->
+                                        <div class="inner-box">
+                                            <!--image-box-->
+                                            <figure class="image-box">
+                                                <a href="/chi-tiet/@item.SeoLink">
+                                                    <img src="@item.Image" alt="@item.Name">
+                                                </a>
+                                            </figure>
+                                            <!--lower-content-->
+                                            <div class="lower-content">
+                                                <h3><a href="/chi-tiet/@item.SeoLink">@item.Name</a></h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!--Sidebar-->
+            <div class="sidebar-side pull-left col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                <aside class="sidebar">
+                    <div class="shop-sidebar">
+                        <!-- Categories -->
+                        <div class="sidebar-widget categories">
+                            <div class="sidebar-title"><h3>BY CATEGORIES</h3></div>
+                            <ul class="cat-list">
+                                <li><a href="#" class="clearfix">Business Plans <span class="count pull-right">(38)</span></a></li>
+                                <li><a href="#" class="clearfix">Consulting <span class="count pull-right">(62)</span></a></li>
+                                <li><a href="#" class="clearfix">Economy <span class="count pull-right">(25)</span></a></li>
+                                <li><a href="#" class="clearfix">Funding Trends<span class="count pull-right">(12)</span></a></li>
+                                <li><a href="#" class="clearfix">Innovation<span class="count pull-right">(57)</span></a></li>
+                                <li><a href="#" class="clearfix">Competitive Research<span class="count pull-right">(20)</span></a></li>
+                            </ul>
+
+                        </div>
+
+                        <!-- Popular Tags -->
+                        <div class="sidebar-widget popular-tags">
+                            <div class="sidebar-title"><h3>Tags</h3></div>
+                            <a href="#">Audit</a>
+                            <a href="#">Business</a>
+                            <a href="#">Consuling</a>
+                            <a href="#">Investment</a>
+                            <a href="#">Agent</a>
+                            <a href="#">Employment</a>
+                            <a href="#">Careers</a>
+                            <a href="#">Planning</a>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </div>
+</div>

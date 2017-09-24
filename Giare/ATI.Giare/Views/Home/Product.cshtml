@@ -1,0 +1,107 @@
+﻿@using ATI.Web.Models;
+@using ATI.Web.Helper;
+
+@{
+    var cate = (CateProduct)ViewBag.Cate;
+    var commonInfo = (CommonInfo)ViewBag.CommonInfo;
+    ViewBag.Title = Html.Raw("Các dịch vụ sản phẩm phần mềm của viethanettsc");
+    ViewBag.Description = Html.Raw("viethanettsc cung cấp các giải pháp phần mềm tốt nhất cho ngân hàng, doanh nghiệp các tổ chức và người dân");
+    ViewBag.Keyword = Html.Raw("sản phẩm, phần mềm, giải pháp, outsourcing, công ty phần mềm tốt nhất, đo lường hiệu quả hoạt động, kpi bsc, thẻ điểm cân bằng, e-learning, học trực tuyến, kiểm toán hoạt động, kiểm toán nội bộ");
+    ViewBag.Url = "http://www.fcn.vn/du-an";
+    ViewBag.Image = "http://www.fcn.vn" + commonInfo.Logo;
+}
+@section KnockOut{
+}
+
+<section class="page-title_professional" style="background-image:url(images/background/4.jpg);">
+    <div class="auto-container">
+        <h1>@ATIResourceManger._managerResources.GetString("ProductCode", ATIResourceManger._culture)</h1>
+    </div>
+</section>
+
+<div class="breadcrumb-outer_professional">
+    <div class="auto-container">
+        <ul class="bread-crumb text-center">
+            <li>
+                <a href="/">
+                    @ATIResourceManger._managerResources.GetString("HomeCode", ATIResourceManger._culture)
+                </a> <span class="fa fa-angle-right"></span>
+            </li>
+            <li>@cate.Name</li>
+        </ul>
+    </div>
+</div>
+
+<div class="sidebar-page-container_professional">
+    <div class="auto-container">
+        <div class="row clearfix">
+            <!--Content Side-->
+            <div class="content-side pull-right col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                <section class="products-section">
+                    <div class="row clearfix">
+                        @{
+                            var products = (List<Product>)ViewBag.Products;
+
+                            foreach (var item in products)
+                            {
+                                <div class="default-shop-item col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                    <!--inner-box-->
+                                    <div class="inner-box">
+                                        <!--image-box-->
+                                        <figure class="image-box">
+                                            <a href="/chi-tiet/@item.SeoLink">
+                                                <img src="@item.Image" alt="@item.Name">
+                                            </a>
+                                        </figure>
+                                        <!--lower-content-->
+                                        <div class="lower-content">
+                                            <h3>
+                                                <a href="/chi-tiet/@item.SeoLink">
+                                                    @item.Name
+                                                </a>
+                                            </h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+
+                    </div>
+
+                    <!-- Styled Pagination -->
+                    <div class="styled-pagination text-center">
+                        <ul class="clearfix">
+                            <li><a class="prev" href="#"><span class="fa fa-angle-left"></span></a></li>
+                            <li><a href="#">1</a></li>
+                            <li><a href="#" class="active">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a class="next" href="#"><span class="fa fa-angle-right"></span></a></li>
+                        </ul>
+                    </div>
+
+                </section>
+            </div>
+
+            <!--Sidebar-->
+            <div class="sidebar-side pull-left col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                <aside class="sidebar">
+                    <div class="shop-sidebar">
+                        <!-- Categories -->
+                        <div class="sidebar-widget categories">
+                            <div class="sidebar-title"><h3>BY CATEGORIES</h3></div>
+                            <ul class="cat-list">
+                                <li><a href="#" class="clearfix">Business Plans <span class="count pull-right">(38)</span></a></li>
+                                <li><a href="#" class="clearfix">Consulting <span class="count pull-right">(62)</span></a></li>
+                                <li><a href="#" class="clearfix">Economy <span class="count pull-right">(25)</span></a></li>
+                                <li><a href="#" class="clearfix">Funding Trends<span class="count pull-right">(12)</span></a></li>
+                                <li><a href="#" class="clearfix">Innovation<span class="count pull-right">(57)</span></a></li>
+                                <li><a href="#" class="clearfix">Competitive Research<span class="count pull-right">(20)</span></a></li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </div>
+</div>

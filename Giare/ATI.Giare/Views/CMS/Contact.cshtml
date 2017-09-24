@@ -1,0 +1,86 @@
+﻿@using ATI.Web.Helper;
+@{
+    ViewBag.Title = "Quản lý liên hệ";
+    Layout = "~/Views/Shared/_CMSLayout.cshtml";
+}
+@section KnockOut{
+    <script type="text/html" id="ContactTemplate">
+        <tr>
+            <td data-bind="text: (CurrentPage - 1) * totalPageCate+$index()+1"></td>
+            <td data-bind="text: Name"></td>
+            @*<td data-bind="text: Title, visible: $root.IsSmartPhone450"></td>*@
+            <td data-bind="text: Company, visible: $root.IsSmartPhone450"></td>
+            @*<td data-bind="text: Address, visible: $root.IsSmartPhone450"></td>*@
+            <td data-bind="text: Mobile, visible: $root.IsSmartPhone450"></td>
+            <td data-bind="text: Email, visible: $root.IsSmartPhone450"></td>
+            @*<td data-bind="text: Type, visible: $root.IsSmartPhone450"></td>*@
+            <td data-bind="text: Content, visible: $root.IsSmartPhone450"></td>
+            <td data-bind="text: moment(SendTime).format('DD/MM/YYYY hh:mm'), visible: $root.IsSmartPhone450"></td>
+            <td>
+                <button type="button" class="btn btn-u btn-small" data-bind="click: $root.UpdateStatus.bind($data, $data), attr:{class: Status==1?'btn-u btn-u-red':'btn-u btn-u-dark-blue'}, enable: Status==0, text: Status==1?'Cũ':'Mới'"></button>
+            </td>
+        </tr>
+    </script>
+    <script src="~/Scripts/plugins/moment.min.js"></script>
+    <script src="~/Scripts/ATI.pager.js"></script>
+    <script src="~/Scripts/models/Contact.js"></script>
+    <script src="~/Scripts/ModelViews/Contact.js"></script>
+}
+<link href="~/Content/css/custom-sky-forms.css" rel="stylesheet" />
+<div class="breadcrumbs">
+    <div class="container">
+        <h1 class="pull-left">@ATIResourceManger._managerResources.GetString("ContactCode", ATIResourceManger._culture)</h1>
+        <ul class="pull-right breadcrumb">
+            <li><a href="/">@ATIResourceManger._managerResources.GetString("HomeCode", ATIResourceManger._culture)</a></li>
+            <li><a class="active">@ATIResourceManger._managerResources.GetString("ContactCode", ATIResourceManger._culture)</a></li>
+        </ul>
+    </div>
+</div>
+<div class="container content">
+    <div class="panel panel-green margin-bottom-40">
+        <div class="panel-heading">
+            <h3 class="panel-title"><i class="icon icon-tasks"></i> @ATIResourceManger._managerResources.GetString("ListContact", ATIResourceManger._culture)</h3>
+        </div>
+        <div class="panel-body">
+            @*<div class="row">
+                    <div class="col-md-3">
+                        <select class="form-control" data-bind="value: Type, event:{change: Search.bind($data,1)}">
+                            <option value="">@ATIResourceManger._managerResources.GetString("TypeContact", ATIResourceManger._culture)</option>
+                            <option value="Mua sản phẩm">@ATIResourceManger._managerResources.GetString("Buy", ATIResourceManger._culture)</option>
+                            <option value="Đăng ký làm đại lý">@ATIResourceManger._managerResources.GetString("BranchRegister", ATIResourceManger._culture)</option>
+                            <option value="Hợp tác">@ATIResourceManger._managerResources.GetString("CombineContact", ATIResourceManger._culture)</option>
+                            <option value="Khiếu nại">@ATIResourceManger._managerResources.GetString("ClaimContact", ATIResourceManger._culture)</option>
+                            <option value="Hỏi, đáp">@ATIResourceManger._managerResources.GetString("Question", ATIResourceManger._culture)</option>
+                            <option value="Nhận thư mới">@ATIResourceManger._managerResources.GetString("ReceiveInbox", ATIResourceManger._culture)</option>
+                            <option value="Khác">Other</option>
+                        </select>
+                    </div>
+                </div>*@
+            <p>&nbsp;</p>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th class="center">STT</th>
+                        <th class="center">@ATIResourceManger._managerResources.GetString("Fullname", ATIResourceManger._culture)</th>
+                        @*<th data-bind="visible: IsSmartPhone450">@ATIResourceManger._managerResources.GetString("Position", ATIResourceManger._culture)</th>*@
+                        <th class="center" data-bind="visible: IsSmartPhone450">@ATIResourceManger._managerResources.GetString("ContactCompany", ATIResourceManger._culture)</th>
+                        @*<th data-bind="visible: IsSmartPhone450">@ATIResourceManger._managerResources.GetString("ContactAdd", ATIResourceManger._culture)</th>*@
+                        <th class="center" data-bind="visible: IsSmartPhone450">Điện thoại</th>
+                        <th class="center" data-bind="visible: IsSmartPhone450">Email</th>
+                        @*<th data-bind="visible: IsSmartPhone450">@ATIResourceManger._managerResources.GetString("Type", ATIResourceManger._culture)</th>*@
+                        <th class="center" data-bind="visible: IsSmartPhone450">@ATIResourceManger._managerResources.GetString("ContactContent", ATIResourceManger._culture)</th>
+                        <th class="center" data-bind="visible: IsSmartPhone450">@ATIResourceManger._managerResources.GetString("Time", ATIResourceManger._culture)</th>
+                        <th>@ATIResourceManger._managerResources.GetString("Status", ATIResourceManger._culture)</th>
+                    </tr>
+                </thead>
+                <tbody data-bind="template: {name:'ContactTemplate', foreach: ListContact}"></tbody>
+            </table>
+            <div class="row margin-bottom-10">
+                <div class="col-md-6" id="sumarypager"></div>
+                <div class="col-md-6">
+                    <div class="text-right" id="pager"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,64 @@
+﻿
+@{
+    ViewBag.Title = "Đăng nhập";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section KnockOut{
+    <script type="text/javascript">
+        var url = '@ViewBag.Url';
+    </script>
+    
+<script src="/Scripts/plugins/toastr.min.js"></script>
+<script src="/Scripts/knockout-2.2.0.js"></script>
+<script src="/Scripts/plugins/amplify.min.js"></script>
+<script src="/Scripts/md5-min.js"></script>
+<script src="/Scripts/plugins/jquery.cookie.js"></script>
+<script src="/Scripts/models/Login.js"></script>
+<script src="/Scripts/ModelViews/Login.js"></script>
+}
+<link href="/Content/css/toastr.min.css" rel="stylesheet" />
+<div class="container content">
+    <hr />
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row featured-boxes login col-sm-offset-4">
+                <div class="col-md-6">
+                    <div class="featured-box featured-box-secundary default info-content" style="height: 336px;">
+                        <div class="box-content">
+                            <h4>Đăng nhập hệ thống</h4>
+                            <div class="row">
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <label>Tên đăng nhập</label>
+                                        <input type="text" class="form-control input-lg" data-bind="value:UserName, hasfocus:fcUserName, valueUpdate: 'afterkeydown'" onkeypress="return EnterPress(this, event);" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <a href="/reset-password" class="pull-right">(Quên mật khẩu?)</a>
+                                        <label>Mật khẩu</label>
+                                        <input type="password" class="form-control input-lg" data-bind="value:Password, hasfocus:fcPassword, valueUpdate: 'afterkeydown'" onkeypress="return EnterPress(this, event);" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <span class="remember-box checkbox">
+                                        <label for="rememberme">
+                                            <input type="checkbox" name="remember" id="remember"> Nhớ mật khẩu
+                                        </label>
+                                    </span>
+                                </div>
+                                <div class="col-md-6">
+                                    <button class="btn btn-primary pull-right push-bottom" data-bind="click: Login, enable: !Sending()"><img src="/content/images/loading1.gif" data-bind="visible: Sending" /> Đăng nhập</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

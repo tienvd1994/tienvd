@@ -1,0 +1,178 @@
+﻿@using ATI.Web.Models;
+@{
+    var commonInfo = (CommonInfo)ViewBag.CommonInfo;
+    ViewBag.Title = Html.Raw("Giỏ hàng");
+    ViewBag.Description = Html.Raw("Giỏ hàng dầu nhớt, dầu nhờn, mỡ bôi trơn, mỡ công nghiệp, phụ gia nhiên liệu, phụ gia bảo vệ động cơ Thái Lan chất lượng tốt nhất");
+    ViewBag.Keyword = Html.Raw("Giỏ hàng, mua hàng, dầu nhớt, dầu nhờn, mỡ bôi trơn, mỡ công nghiệp, phụ gia nhiên liệu, phụ gia bảo vệ động cơ, Thái Lan, chất lượng tốt nhất");
+    ViewBag.Url = "http://www.fcn.vn/gio-hang";
+    ViewBag.Image = "http://www.fcn.vn" + commonInfo.Logo;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section KnockOut{
+
+<script type="text/html" id="ItemTemplate">
+    <tr class="cart_table_item">
+        <td class="product-remove">
+            <a href="javascript:void(0);" class="remove" title="Bỏ chọn sản phẩm này">
+                <i class="icon icon-times"></i>
+            </a>
+        </td>
+        <td class="product-thumbnail">
+            <a href="" target="_blank" data-bind="attr:{href:'/du-an/'+SeoLink}">
+                <img width="100" height="100" data-bind="attr:{src:'http://cdn.quancafe.vn/z_100x100'+Image}" class="img-responsive" alt="" />
+            </a>
+        </td>
+        <td class="product-name">
+            <a target="_blank" data-bind="attr:{href:'/du-an/'+SeoLink}, text: Name"></a>
+        </td>
+        <td class="product-price">
+            <span class="amount" data-bind="text: Price"></span>
+        </td>
+        <td class="product-price">
+            <span class="amount" data-bind="text: SaleOff"></span>
+        </td>
+        <td class="product-quantity">
+            <div class="quantity">
+                <input type="button" value="-" class="minus" data-bind="click: DecreaseItem.bind($data)" />
+                <input type="text" step="1" min="1" name="quantity" data-bind="value: Quantity" title="Qty" class="input-text qty text" />
+                <input type="button" value="+" class="plus" data-bind="click: IncreaseItem.bind($data)" />
+            </div>
+        </td>
+        <td class="product-subtotal">
+            <span class="amount" data-bind="text: TotalPay"></span>
+        </td>
+    </tr>
+</script>
+<script src="/Scripts/knockout-3.1.0.js"></script>
+<script src="/Scripts/plugins/toastr.min.js"></script>
+<script src="/Scripts/ModelViews/ShoppingCart.js"></script>
+}
+<link href="/Content/css/toastr.min.css" rel="stylesheet" />
+<div class="main shop" role="main">
+    <div class="container">
+        <hr class="tall">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row featured-boxes">
+                    <div class="col-md-12">
+                        <div class="featured-box featured-box-secundary featured-box-cart">
+                            <div class="box-content">
+                                <table cellspacing="0" class="shop_table cart">
+                                    <thead>
+                                        <tr>
+                                            <th class="product-remove">
+                                                &nbsp;
+                                            </th>
+                                            <th class="product-thumbnail">
+                                                &nbsp;
+                                            </th>
+                                            <th class="product-name">
+                                                Sản phẩm
+                                            </th>
+                                            <th class="product-price">
+                                                Giá
+                                            </th>
+                                            <th class="product-price">
+                                                Triết khấu
+                                            </th>
+                                            <th class="product-quantity">
+                                                Số lượng
+                                            </th>
+                                            <th class="product-subtotal">
+                                                Tổng
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody data-bind="template:{name:'ItemTemplate',foreach:CartItems}"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row featured-boxes cart">
+                    <div class="col-md-6">
+                        <div class="featured-box featured-box-secundary default" style="height: 312px;">
+                            <div class="box-content">
+                                <h4>Thông tin giao hàng</h4>
+                                <div class="row">
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                            <label>Họ và tên <span class="color-red">*</span></label>
+                                            <input type="text" class="form-control" data-bind="value: FullName, hasfocus: fcFullName" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                            <label>Điện thoại liên hệ <span class="color-red">*</span></label>
+                                            <input type="text" class="form-control" data-bind="value: Mobile, hasfocus: fcMobile" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                            <label>Địa chỉ nhận hàng <span class="color-red">*</span></label>
+                                            <input type="text" class="form-control" data-bind="value: Address, hasfocus: fcAddress" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="featured-box featured-box-secundary default" style="height: 312px;">
+                            <div class="box-content">
+                                <h4>Tổng thanh toán</h4>
+                                <table cellspacing="0" class="cart-totals">
+                                    <tbody>
+                                        <tr class="cart-subtotal">
+                                            <th>
+                                                <strong>Tổng tiền</strong>
+                                            </th>
+                                            <td>
+                                                <strong><span class="amount" data-bind="text: OrderTotal"></span></strong>
+                                            </td>
+                                        </tr>
+                                        <tr class="total">
+                                            <th>
+                                                <strong>Triết khấu</strong>
+                                            </th>
+                                            <td>
+                                                <strong><span class="amount" data-bind="text: SaleOff"></span></strong>
+                                            </td>
+                                        </tr>
+                                        @*<tr class="shipping">
+                                            <th>
+                                                Shipping
+                                            </th>
+                                            <td>
+                                                Free Shipping<input type="hidden" name="shipping_method" id="shipping_method" value="free_shipping">
+                                            </td>
+                                        </tr>*@
+                                        <tr class="total">
+                                            <th>
+                                                <strong>Thanh toán</strong>
+                                            </th>
+                                            <td>
+                                                <strong><span class="amount" data-bind="text: TotalPay"></span></strong>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row featured-boxes">
+                    <div class="col-md-12">
+                        <div class="actions-continue">
+                            <button class="btn btn-lg btn-primary" data-bind="click: SubmitOrder, enable: !Sending()"><img data-bind="visible:Sending" src="/Content/images/loading1.gif" /> hoàn thành đặt hàng →></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,93 @@
+﻿@using ATI.Web.Models;
+@{
+    var commonInfo = (CommonInfo)ViewBag.CommonInfo;
+    var province = (Province)ViewBag.Province;
+    var distric = (District)ViewBag.District;
+    ViewBag.Title = Html.Raw("Danh sách đại lý dầu nhớt SUN'SOil tại " + distric.Name + " " + province.Name);
+    ViewBag.Description = Html.Raw("Danh sách đại lý SUN'SOil tại " + distric.Name + " " + province.Name);
+    ViewBag.Keyword = Html.Raw("đại lý,sunsoil, dầu nhớt, dầu nhờn, mỡ bôi trơn, mỡ công nghiệp, phụ gia nhiên liệu, phụ gia bảo vệ động cơ, Thái Lan, chất lượng tốt nhất");
+    ViewBag.Url = "http://www.fcn.vn/dai-ly-tai" + distric.SeoLink+"/"+province.SeoLink;
+    ViewBag.Image = "http://www.fcn.vn" + commonInfo.Logo;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section KnockOut{
+    <script src="~/Scripts/jquery.pager.js"></script>
+    <script type="text/javascript">
+        var currPage = @ViewBag.CurrPage;
+        var totalPageCate = 0;
+        var recordPerPage = 10;
+        var totalRecord = @ViewBag.totalRecord;
+        var key = '@Html.Raw(ViewBag.Key)';
+
+        $(document).ready(function () {
+            totalPageCate = Math.ceil(totalRecord/ recordPerPage);
+
+            $("#pager").pager({ pagenumber: currPage, pagecount: totalPageCate, buttonClickCallback: PageClick1 });
+            //$("#item").text("Tìm thấy "+totalRecord+" đại lý");
+            function PageClick1(pageclickednumber) {
+                $("#pager").pager({ pagenumber: pageclickednumber, pagecount: totalPageCate, buttonClickCallback: PageClick1 });
+            };
+        });
+    </script>
+}
+<link href="/Content/v.1/css/theme-shop.css" rel="stylesheet" />
+<section class="page-top">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <ul class="breadcrumb">
+                    <li><a href="/">Trang chủ</a></li>
+                    <li class="active">Trang</li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Đại lý</h2>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 shop">
+            <div class="container">
+                <h2>Danh sách đại lý <strong class="customer">SUN'SOIL</strong> tại @distric.Name @province.Name</h2>
+                <hr>
+                <div class="row">
+                    <ul class="team-list sort-destination isotope">
+                        @{
+                            var agencies = (List<Agency>)ViewBag.Agencies;
+                            if (agencies != null)
+                            {
+                                foreach (var item in agencies)
+                                {
+                                    var image = item.Thumb.Split(',')[0];
+                                    <li class="col-md-3 isotope-item leadership">
+                                        <div class="team-item thumbnail">
+                                            <a class="thumb-info team" href="/dai-ly-sunsoil/@item.SeoLink">
+                                                <img src="@(string.IsNullOrEmpty(image) ? "/Images/product/Products2.jpg" : image)" alt="@Html.Raw(item.Name)" class="img-responsive">
+                                                <span class="thumb-info-title">
+                                                    <span class="thumb-info-inner">@Html.Raw(item.Name)</span>
+                                                    <span class="thumb-info-type">Đại lý cấp @item.Level</span>
+                                                </span>
+                                            </a>
+                                            <span class="thumb-info-caption">
+                                                <p><i class="icon icon-home"></i> @Html.Raw(item.Address), @Html.Raw(item.District), @Html.Raw(item.Province)</p>
+                                                <span class="thumb-info-social-icons">
+                                                    <i class="icon icon-mobile"></i> @item.Mobile
+                                                </span>
+                                            </span>
+                                        </div>
+                                    </li>
+                                }
+                            }
+
+                        }
+                    </ul>
+                </div>
+            </div>
+            <div id="pager" class="center"></div>
+        </div>
+    </div>
+</div>

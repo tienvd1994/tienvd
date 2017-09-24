@@ -1,0 +1,75 @@
+﻿@{
+    ViewBag.Title = "Quản lý truy cập";
+    Layout = "~/Views/Shared/_CMSLayout.cshtml";
+}
+@section KnockOut{
+    <script type="text/html" id="TrackerTemplate">
+    <tr>
+        <td data-bind="text: (CurrentPage - 1) * totalPageCate+$index()+1"></td>
+        <td data-bind="text: IP"></td>
+        <td><a data-bind="text: PageUrl, attr:{href:'http://www.fcn.vn'+PageUrl}, visible: $root.IsSmartPhone450" target="_blank"></a></td>
+        <td data-bind="text: UrlReferrer, visible: $root.IsSmartPhone450"></td>
+        <td data-bind="text: moment(InTime).format('HH:mm DD/MM/YYYY')"></td>
+        <td data-bind="text: City+' - '+Country, visible: $root.IsSmartPhone450"></td>
+        <td data-bind="text: IsMobileDevice?'Mobile':'Máy tính', visible: $root.IsSmartPhone450"></td>
+        <td data-bind="text: Browser+' '+Version, visible: $root.IsSmartPhone450"></td>
+        <td data-bind="text: OS, visible: $root.IsSmartPhone450"></td>
+    </tr>
+</script>
+    <script src="~/Scripts/plugins/moment.min.js"></script>
+    <script src="~/Scripts/ATI.pager.js"></script>
+    <script src="~/Scripts/models/Tracker.js"></script>
+    <script src="~/Scripts/ModelViews/Tracker.js"></script>
+}
+<link href="~/Content/css/custom-sky-forms.css" rel="stylesheet" />
+<div class="breadcrumbs">
+    <div class="container">
+        <h1 class="pull-left">Truy cập</h1>
+        <ul class="pull-right breadcrumb">
+            <li><a href="/">Trang chủ</a></li>
+            <li><a class="active">Truy cập</a></li>
+        </ul>
+    </div>
+</div>
+<div class="container content">
+    <div class="panel panel-green margin-bottom-40">
+        <div class="panel-heading">
+            <h3 class="panel-title"><i class="icon icon-tasks"></i> Danh sách truy cập</h3>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-6 mb-margin-bottom-30">
+                    <div class="input-group margin-bottom-40">
+                        <input type="text" placeholder="Địa chỉ IP" class="form-control" data-bind="value: IP" />
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-u btn-small btn-u-blue" data-bind="click: Search.bind($data,1), enable: !Sending()"><img src="/content/images/loading1.gif" data-bind="visible: Sending" /> Tìm kiếm</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <p>&nbsp;</p>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>TT</th>
+                        <th>IP</th>
+                        <th data-bind="visible: IsSmartPhone450">Vào trang</th>
+                        <th data-bind="visible: IsSmartPhone450">Nguồn vào</th>
+                        <th>Giờ vào</th>
+                        <th data-bind="visible: IsSmartPhone450">Tỉnh/TP</th>
+                        <th data-bind="visible: IsSmartPhone450">Dùng Mobile?</th>
+                        <th data-bind="visible: IsSmartPhone450">Trình duyệt</th>
+                        <th data-bind="visible: IsSmartPhone450">Hệ điều hành</th>
+                    </tr>
+                </thead>
+                <tbody data-bind="template: {name:'TrackerTemplate', foreach: ListTracker}"></tbody>
+            </table>
+            <div class="row margin-bottom-10">
+                <div class="col-md-6" id="sumarypager"></div>
+                <div class="col-md-6">
+                    <div class="text-right" id="pager"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

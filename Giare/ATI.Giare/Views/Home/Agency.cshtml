@@ -1,0 +1,196 @@
+﻿@using ATI.Web.Models;
+@{
+    var commonInfo = (CommonInfo)ViewBag.CommonInfo;
+    var province = (Province)ViewBag.Province;
+    ViewBag.Title = Html.Raw("Danh sách đại lý dầu nhớt SUN'SOil tại " + (province==null?"Việt Nam":province.Name));
+    ViewBag.Description = Html.Raw("Danh sách đại lý SUN'SOil tại " + (province==null?"Việt Nam":province.Name));
+    ViewBag.Keyword = Html.Raw("đại lý,sunsoil, dầu nhớt, dầu nhờn, mỡ bôi trơn, mỡ công nghiệp, phụ gia nhiên liệu, phụ gia bảo vệ động cơ, Thái Lan, chất lượng tốt nhất");
+    ViewBag.Url = "http://www.fcn.vn/dai-ly" + (province == null ? "" : "tai/"+province.SeoLink);
+    ViewBag.Image = "http://www.fcn.vn" + commonInfo.Logo;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section KnockOut{
+    <script src="~/Scripts/jquery.pager.js"></script>
+    <script type="text/javascript">
+        var currPage = @ViewBag.CurrPage;
+        var totalPageCate = 0;
+        var recordPerPage = 10;
+        var totalRecord = @ViewBag.totalRecord;
+        var key = '@Html.Raw(ViewBag.Key)';
+
+        $(document).ready(function () {
+            totalPageCate = Math.ceil(totalRecord/ recordPerPage);
+
+            $("#pager").pager({ pagenumber: currPage, pagecount: totalPageCate, buttonClickCallback: PageClick1 });
+            //$("#item").text("Tìm thấy "+totalRecord+" đại lý");
+            function PageClick1(pageclickednumber) {
+                $("#pager").pager({ pagenumber: pageclickednumber, pagecount: totalPageCate, buttonClickCallback: PageClick1 });
+            };
+        });
+    </script>
+}
+<link href="/Content/v.1/css/theme-shop.css" rel="stylesheet" />
+<section class="page-top">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <ul class="breadcrumb">
+                    <li><a href="/">Trang chủ</a></li>
+                    <li class="active">Trang</li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Đại lý</h2>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 shop">
+            <div class="container">
+                <h2>Danh sách đại lý <strong class="customer">SUN'SOIL</strong> @(province == null ? "trên toàn quốc" : "tại "+province.Name)</h2>
+                <div class="nav-main mega-menu">
+                    <ul class="nav nav-pills nav-main">
+                        @{
+                            if(province==null)
+                            {
+                        <li class="dropdown active">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Miền Bắc <i class="icon icon-angle-down"></i></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/dai-ly-tai/ha-noi">Hà Nội</a></li>
+                                <li><a href="/dai-ly-tai/hai-phong">Hải Phòng</a></li>
+                                <li><a href="/dai-ly-tai/quang-ninh">Quảng Ninh</a></li>
+                                <li><a href="/dai-ly-tai/bac-ninh">Bắc Ninh</a></li>
+                                <li><a href="/dai-ly-tai/hai-duong">Hải Dương</a></li>
+                                <li><a href="/dai-ly-tai/thai-nguyen">Thái Nguyên</a></li>
+                                <li><a href="/dai-ly-tai/nam-dinh">Nam Định</a></li>
+                                <li><a href="/dai-ly-tai/hung-yen">Hưng Yên</a></li>
+                                <li><a href="/dai-ly-tai/thai-binh">Thái Bình</a></li>
+                                <li><a href="/dai-ly-tai/ninh-binh">Ninh Bình</a></li>
+                                <li><a href="/dai-ly-tai/bac-giang">Bắc Giang</a></li>
+                                <li><a href="/dai-ly-tai/phu-tho">Phú Thọ</a></li>
+                                <li><a href="/dai-ly-tai/cao-bang">Cao Bằng</a></li>
+                                <li><a href="/dai-ly-tai/lang-son">Lạng Sơn</a></li>
+                                <li><a href="/dai-ly-tai/hoa-binh">Hòa Bình</a></li>
+                                <li><a href="/dai-ly-tai/tuyen-quang">Tuyên Quang</a></li>
+                                <li><a href="/dai-ly-tai/lai-chau">Lai Châu</a></li>
+                                <li><a href="/dai-ly-tai/bac-can">Bắc Cạn</a></li>
+                                <li><a href="/dai-ly-tai/son-la">Sơn La</a></li>
+                                <li><a href="/dai-ly-tai/yen-bai">Yên Bái</a></li>
+                                <li><a href="/dai-ly-tai/lao-cai">Lào Cai</a></li>
+                                <li><a href="/dai-ly-tai/dien-bien">Điện Biên</a></li>
+                                <li><a href="/dai-ly-tai/ha-giang">Hà Giang</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Miền Trung <i class="icon icon-angle-down"></i></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/dai-ly-tai/thanh-hoa">Thanh Hóa</a></li>
+                                <li><a href="/dai-ly-tai/nghe-an">Nghệ An</a></li>
+                                <li><a href="/dai-ly-tai/ha-tinh">Hà Tĩnh</a></li>
+                                <li><a href="/dai-ly-tai/quang-binh">Quảng Bình</a></li>
+                                <li><a href="/dai-ly-tai/quang-tri">Quảng Trị</a></li>
+                                <li><a href="/dai-ly-tai/thua-thien-hue">Thừa Thiên Huế</a></li>
+                                <li><a href="/dai-ly-tai/quang-nam">Quảng Nam</a></li>
+                                <li><a href="/dai-ly-tai/da-nang">Đà Nẵng</a></li>
+                                <li><a href="/dai-ly-tai/quang-ngai">Quang Ngãi</a></li>
+                                <li><a href="/dai-ly-tai/binh-dinh">Bình Định</a></li>
+                                <li><a href="/dai-ly-tai/phu-yen">Phú Yên</a></li>
+                                <li><a href="/dai-ly-tai/khanh-hoa">Khánh Hòa</a></li>
+                                <li><a href="/dai-ly-tai/ninh-thuan">Ninh Thuận</a></li>
+                                <li><a href="/dai-ly-tai/binh-thuan">Bình Thuận</a></li>
+                                <li><a href="/dai-ly-tai/ba-ria-vung-tau">Bà Rịa Vũng Tàu</a></li>
+                                <li><a href="/dai-ly-tai/kon-tum">Kon Tum</a></li>
+                                <li><a href="/dai-ly-tai/gia-lai">Gia Lai</a></li>
+                                <li><a href="/dai-ly-tai/dak lak">Đăk Lăk</a></li>
+                                <li><a href="/dai-ly-tai/buon-me-thuot">Buôn Mê Thuột</a></li>
+                                <li><a href="/dai-ly-tai/lam-dong">Lâm Đồng</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Miền Nam <i class="icon icon-angle-down"></i></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/dai-ly-tai/dong-nai">Đồng Nai</a></li>
+                                <li><a href="/dai-ly-tai/binh-dung">Bình Dương</a></li>
+                                <li><a href="/dai-ly-tai/ho-chi-minh">Hồ Chí Minh</a></li>
+                                <li><a href="/dai-ly-tai/long-an">Long An</a></li>
+                                <li><a href="/dai-ly-tai/binh-phuoc">Bình Phước</a></li>
+                                <li><a href="/dai-ly-tai/tay-ninh">Tây Ninh</a></li>
+                                <li><a href="/dai-ly-tai/can-tho">Cần Thơ</a></li>
+                                <li><a href="/dai-ly-tai/vinh-long">Vĩnh Long</a></li>
+                                <li><a href="/dai-ly-tai/ben-tre">Bến Tre</a></li>
+                                <li><a href="/dai-ly-tai/bac-lieu">Bạc Liêu</a></li>
+                                <li><a href="/dai-ly-tai/kien-giang">Kiên Giang</a></li>
+                                <li><a href="/dai-ly-tai/ca-mau">Cà Mau</a></li>
+                                <li><a href="/dai-ly-tai/tra-vinh">Trà Vinh</a></li>
+                                <li><a href="/dai-ly-tai/tien-giang">Tiền Giang</a></li>
+                                <li><a href="/dai-ly-tai/soc-trang">Sóc Trăng</a></li>
+                                <li><a href="/dai-ly-tai/hau-giang">Hậu Giang</a></li>
+                                <li><a href="/dai-ly-tai/dong-thap">Đồng Tháp</a></li>
+                            </ul>
+                        </li>
+                            }
+                            else
+                            {
+                                var districts = (List<District>)ViewBag.District;
+                                if(districts!=null)
+                                {
+                        <li class="dropdown active">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Quận/huyện <i class="icon icon-angle-down"></i></a>
+                            <ul class="dropdown-menu">
+                                @foreach (var item in districts)
+                                {
+                                    <li><a href="/dai-ly-tai/@item.SeoLink/@province.SeoLink">@item.Name</a></li>
+                                }
+                            </ul>
+                        </li>
+                                }
+                            }
+                        }
+                    </ul>
+                </div>
+                <hr>
+                <div class="row">
+                @{
+                    var agencies = (List<Agency>)ViewBag.Agencies;
+                    if(agencies!=null)
+                    {
+                        for (int i = 0; i < agencies.Count; i++)
+                        {
+                            if(i%4==0)
+                            {
+                                @Html.Raw("<ul class=\"team-list sort-destination isotope row\">");
+                            }
+                        <li class="col-md-3 isotope-item leadership">
+                            <div class="team-item thumbnail">
+                                <a class="thumb-info team" href="/dai-ly-sunsoil/@agencies[i].SeoLink">
+                                    <img height="200" src="@(string.IsNullOrEmpty(agencies[i].Image) ? "/Images/product/Products2.jpg" : "http://cdn.quancafe.vn/z_300x200" + agencies[i].Image)" alt="@Html.Raw(agencies[i].Name)" class="img-responsive">
+                                    <span class="thumb-info-title">
+                                        <span class="thumb-info-inner">@Html.Raw(agencies[i].Name)</span>
+                                        <span class="thumb-info-type">Đại lý cấp @agencies[i].Level</span>
+                                    </span>
+                                </a>
+                                <span class="thumb-info-caption">
+                                    <p><i class="icon icon-home"></i> @Html.Raw(agencies[i].Address), @Html.Raw(agencies[i].District), @Html.Raw(agencies[i].Province)</p>
+                                    <span class="thumb-info-social-icons">
+                                        <i class="icon icon-mobile"></i> @agencies[i].Mobile
+                                    </span>
+                                </span>
+                            </div>
+                        </li>
+                        if ((i + 1) % 4 == 0 || i == agencies.Count-1)
+                        {
+                            @Html.Raw("</ul>");
+                        }
+                        }
+                        }
+                        }
+                </div>
+            </div>
+            <div id="pager" class="center"></div>
+        </div>
+    </div>
+</div>

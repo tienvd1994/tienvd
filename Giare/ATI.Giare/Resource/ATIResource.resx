@@ -1,0 +1,304 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="BranchRegister" xml:space="preserve">
+    <value>Đăng ký làm đại lý</value>
+  </data>
+  <data name="ButtonSend" xml:space="preserve">
+    <value>Gửi!</value>
+  </data>
+  <data name="Buy" xml:space="preserve">
+    <value>Mua sản phẩm</value>
+  </data>
+  <data name="ClaimContact" xml:space="preserve">
+    <value>Khiếu nại</value>
+  </data>
+  <data name="CombineContact" xml:space="preserve">
+    <value>Hợp tác</value>
+  </data>
+  <data name="CommentContact" xml:space="preserve">
+    <value>Nếu bạn quan tâm đến các sản phẩm, dịch vụ của chúng tôi, hãy điền email liên hệ ngay với chúng tôi...</value>
+  </data>
+  <data name="CompanyCategory" xml:space="preserve">
+    <value>Giới thiệu</value>
+  </data>
+  <data name="CompanyCode" xml:space="preserve">
+    <value>Với chiến lược kinh doanh vì  lợi ích công cộng, chúng tôi hiểu việc không ngừng nghiên cứu và cải tiến công nghệ sẽ là chìa khóa quan trọng nhất trong tiến trình phát triển bền vững</value>
+  </data>
+  <data name="ConstructionCode" xml:space="preserve">
+    <value>Dự án tiêu biểu</value>
+  </data>
+  <data name="ContactAdd" xml:space="preserve">
+    <value>Địa chỉ</value>
+  </data>
+  <data name="ContactCode" xml:space="preserve">
+    <value>Liên hệ</value>
+  </data>
+  <data name="ContactCompany" xml:space="preserve">
+    <value>Công ty</value>
+  </data>
+  <data name="ContactContent" xml:space="preserve">
+    <value>Nội dung</value>
+  </data>
+  <data name="ContactThank" xml:space="preserve">
+    <value>&lt;p&gt;Cảm ơn bạn đã quan tâm đến sản phẩm, dịch vụ của chúng tôi. Để liên hệ sử dụng dịch vụ, hợp tác bạn hãy điền thông tin vào mẫu biểu dưới đây. Chúng tôi sẽ liên hệ lại với bạn ngay sau khi nhận được thông tin liên hệ.&lt;/p&gt;&lt;br&gt;</value>
+  </data>
+  <data name="Description_Product" xml:space="preserve">
+    <value>Mô tả sản phẩm</value>
+  </data>
+  <data name="EventCategory" xml:space="preserve">
+    <value>Tin tức sự kiện</value>
+  </data>
+  <data name="FormContact" xml:space="preserve">
+    <value>Form liên hệ</value>
+  </data>
+  <data name="Fullname" xml:space="preserve">
+    <value>Họ và tên</value>
+  </data>
+  <data name="HomeCode" xml:space="preserve">
+    <value>Trang chủ</value>
+  </data>
+  <data name="HumanCategory" xml:space="preserve">
+    <value>Con người</value>
+  </data>
+  <data name="ICompanyCode" xml:space="preserve">
+    <value>/gioi-thieu/ve-cong-ty</value>
+  </data>
+  <data name="IHumanCode" xml:space="preserve">
+    <value>/gioi-thieu/con-nguoi</value>
+  </data>
+  <data name="ImageCode" xml:space="preserve">
+    <value>Hình ảnh</value>
+  </data>
+  <data name="Information" xml:space="preserve">
+    <value>Thông tin</value>
+  </data>
+  <data name="IntroductionCode" xml:space="preserve">
+    <value>Giới thiệu</value>
+  </data>
+  <data name="LineOneBanner" xml:space="preserve">
+    <value>Chúng tôi nỗ lực làm thay đổi cuộc sống tốt đẹp hơn thông qua các sản phẩm và dịch vụ và&lt;br&gt; sự nỗ lực làm việc tận tâm vì khách hàng</value>
+  </data>
+  <data name="LinkEvent" xml:space="preserve">
+    <value>tin-su-kien</value>
+  </data>
+  <data name="LinkNew" xml:space="preserve">
+    <value>tin-moi</value>
+  </data>
+  <data name="ListContact" xml:space="preserve">
+    <value>Danh sách liên hệ</value>
+  </data>
+  <data name="Mail" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="NameCompany" xml:space="preserve">
+    <value>Công Ty Cổ Phần ĐầuTư Xây Dựng &amp; &lt;/br&gt;Tư Vấn FCN Build</value>
+  </data>
+  <data name="NewCategory" xml:space="preserve">
+    <value>Tin mới</value>
+  </data>
+  <data name="NewCode" xml:space="preserve">
+    <value>Tin mới</value>
+  </data>
+  <data name="NewPaper" xml:space="preserve">
+    <value>Bài viết</value>
+  </data>
+  <data name="NewReceive" xml:space="preserve">
+    <value>Nhận tin mới</value>
+  </data>
+  <data name="PartnerCode" xml:space="preserve">
+    <value>Đối tác</value>
+  </data>
+  <data name="Phone" xml:space="preserve">
+    <value>Điện thoại</value>
+  </data>
+  <data name="Position" xml:space="preserve">
+    <value>Chức vụ</value>
+  </data>
+  <data name="ProductCode" xml:space="preserve">
+    <value>Sản phẩm</value>
+  </data>
+  <data name="Question" xml:space="preserve">
+    <value>Hỏi, đáp</value>
+  </data>
+  <data name="ReceiveInbox" xml:space="preserve">
+    <value>Nhận thư mới</value>
+  </data>
+  <data name="RecruitmentCode" xml:space="preserve">
+    <value>Tuyển dụng</value>
+  </data>
+  <data name="Requirement" xml:space="preserve">
+    <value>Nhu cầu</value>
+  </data>
+  <data name="Send" xml:space="preserve">
+    <value>Gửi đi</value>
+  </data>
+  <data name="Sendmail" xml:space="preserve">
+    <value>Gửi thành công!</value>
+  </data>
+  <data name="ServiceCode" xml:space="preserve">
+    <value>Dịch vụ</value>
+  </data>
+  <data name="ServiceSpecial" xml:space="preserve">
+    <value>Dịch vụ khác biệt</value>
+  </data>
+  <data name="Sologan" xml:space="preserve">
+    <value>&lt;div class="caption-text"&gt;&lt;i class="icon icon-chevron-circle-right"&gt;&lt;/i&gt; Chúng tôi cung cấp giải pháp tổng thể&lt;/div&gt;
+                    &lt;div class="caption-text" &gt;&lt;i class="icon icon-chevron-circle-right"&gt;&lt;/i&gt; Đem lại lợi ích cho khách hàng&lt;/div&gt;
+                    &lt;div class="caption-text" &gt;&lt;i class="icon icon-chevron-circle-right"&gt;&lt;/i&gt; Bằng sự khác biệt về công nghệ&lt;/div&gt;
+                    &lt;div class="caption-text" &gt;&lt;i class="icon icon-chevron-circle-right"&gt;&lt;/i&gt; Luôn luôn đúng tiến độ với&lt;/div&gt;
+                    &lt;div class="caption-text"&gt;&lt;i class="icon icon-chevron-circle-right"&gt;&lt;/i&gt; Chất lượng &amp; dịch vụ tốt nhất lớn&lt;/div&gt;
+                    &lt;div class="caption-text"&gt;&lt;i class="icon icon-chevron-circle-right"&gt;&lt;/i&gt; Với thẩm mỹ cao&lt;/div&gt;                     &lt;div class="caption-text" &gt;&lt;i class="icon icon-chevron-circle-right"&gt;&lt;/i&gt; Chi phí dịch vụ hợp lý&lt;/div&gt;</value>
+  </data>
+  <data name="Sologan1" xml:space="preserve">
+    <value>&lt;div class="caption-text"&gt;"Sáng tạo, tối ưu từng chi tiết, từng nguồn lực,&lt;br /&gt;dịch vụ chuyên nghiệp giúp chúng tôi khác biệt"&lt;/div&gt;</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Trạng thái</value>
+  </data>
+  <data name="Subject" xml:space="preserve">
+    <value>Tiêu đề</value>
+  </data>
+  <data name="Time" xml:space="preserve">
+    <value>Thời gian gửi</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Phân loại</value>
+  </data>
+  <data name="TypeContact" xml:space="preserve">
+    <value>Loại liên hệ</value>
+  </data>
+  <data name="ValueCode" xml:space="preserve">
+    <value>&lt;h2 class="short word-rotator-title"&gt;
+                Giá trị cốt lõi của chúng tôi
+                &lt;strong class="inverted"&gt;
+                    &lt;span style="height: 54px;" class="word-rotate active"&gt;
+                        &lt;span style="top: -107.347px;" class="word-rotate-items"&gt;
+                            &lt;span&gt;Làm việc Hiệu quả&lt;/span&gt;
+                            &lt;span&gt;Làm việc Chủ động&lt;/span&gt;
+                            &lt;span&gt;Làm việc có Hệ thống&lt;/span&gt;
+                            &lt;span&gt;Làm việc theo Quy trình&lt;/span&gt;
+                            &lt;span&gt;Làm việc Linh hoạt&lt;/span&gt;
+                            &lt;span&gt;Luôn luôn Sâu sát&lt;/span&gt;
+                        &lt;/span&gt;
+                    &lt;/span&gt;
+                &lt;/strong&gt;
+            &lt;/h2&gt;</value>
+  </data>
+</root>

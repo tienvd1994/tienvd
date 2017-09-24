@@ -1,0 +1,138 @@
+﻿@using ATI.Web.Models;
+@{
+    var commonInfo = (CommonInfo)ViewBag.CommonInfo;
+    ViewBag.Title = "Đăng ký làm đại lý phân phối sản phẩm - " + commonInfo.Name;
+    ViewBag.Description = Html.Raw("Form đăng ký làm đại lý phân phối sản phẩm  - " + commonInfo.Name);
+    ViewBag.Keyword = Html.Raw("Đăng ký làm đại lý phân phối sản phẩm, " + commonInfo.Name);
+    ViewBag.Url = "http://www.fcn.vn/lien-he";
+    ViewBag.Image = "http://www.fcn.vn" + commonInfo.Logo;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section KnockOut{
+    <script src="~/Scripts/plugins/amplify.min.js"></script>
+    <script src="~/Scripts/Common.js"></script>
+    <script src="~/Scripts/plugins/toastr.min.js"></script>
+    <script src="~/Scripts/knockout-2.2.0.js"></script>
+    <script src="~/Scripts/contact.js"></script>
+}
+<link href="~/Content/css/toastr.min.css" rel="stylesheet" />
+<section class="page-top">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <ul class="breadcrumb">
+                    <li><a href="/">Trang chủ</a></li>
+                    <li class="active">Trang</li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Đăng ký làm đại lý</h2>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="container content">
+    <div class="row margin-bottom-30">
+        <div class="col-md-9 mb-margin-bottom-30">
+            <div class="headline"><h2 class="short">Form liên hệ</h2></div>
+            <p>Cảm ơn bạn đã quan tâm đến sản phẩm, dịch vụ của chúng tôi. Để đăng ký làm đại lý bạn hãy điền thông tin vào mẫu biểu dưới đây. Chúng tôi sẽ liên hệ lại với bạn ngay sau khi nhận được thông tin.</p><br>
+            <form id="contactForm">
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-md-5">
+                            <label>Họ và tên<span class="color-red">*</span></label>
+                            <input type="text" class="form-control" data-bind="value: FullName, hasfocus: fcName" maxlength="50" />
+                        </div>
+                        <div class="col-md-6">
+                            <label>Nhu cầu</label>
+                            <select class="form-control" data-bind="value: Type" disabled="disabled">
+                                <option value="Đăng ký làm đại lý">Đăng ký làm đại lý</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-md-5">
+                            <label>Email <span class="color-red">*</span></label>
+                            <input type="text" class="form-control" data-bind="value: Email, hasfocus: fcEmail" maxlength="50" />
+                        </div>
+                        <div class="col-md-6">
+                            <label>Điện thoại liên hệ <span class="color-red">*</span></label>
+                            <input type="text" class="form-control" data-bind="value: Mobile, hasfocus: fcMobile" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-md-5">
+                            <label>Đơn vị (nếu là tổ chức)</label>
+                            <input type="text" class="form-control" data-bind="value: Company" maxlength="150" />
+                        </div>
+                        <div class="col-md-6">
+                            <label>Chức vụ (nếu là tổ chức)</label>
+                            <input type="text" class="form-control" data-bind="value: Title" maxlength="50">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-md-11">
+                            <label>Địa chỉ làm đại lý</label>
+                            <input type="text" class="form-control" data-bind="value: Address" maxlength="150" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-md-11">
+                            <label>Giới thiệu thông tin về bạn</label>
+                            <textarea class="form-control" rows="8" data-bind="value: Message, hasfocus: fcMessage" maxlength="4000"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <button class="btn btn-primary btn-lg" type="submit" data-bind="click: SendMessage, enable:!Sending() "><img src="/content/images/loading.gif" data-bind="visible: Sending" /> Gửi liên hệ</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-3">
+            <h5>Liên hệ hỗ trợ</h5>
+            <ul class="list-unstyled who margin-bottom-30">
+                <li><i class="icon icon-home"></i> CTY TNHH THƯƠNG MẠI VÀ DỊCH VỤ CÔNG NGHIỆP PHƯỢNG HOÀNG</li>
+                <li><i class="icon icon-home"></i> @Html.Raw(commonInfo.HeadOffice)</li>
+                @*<li><i class="icon icon-home"></i> Phòng 410, Tòa Nhà CT1, Đường Lê Hữu Trác, Hà Đông, Hà Nội</li>*@
+                <li><i class="icon icon-envelope"></i> @Html.Raw(commonInfo.Email)</li>
+                <li><i class="icon icon-phone"></i> @Html.Raw(commonInfo.Phone) - @commonInfo.Mobile</li>
+                <li><i class="icon icon-globe"></i> http://www.fcn.vn</li>
+                <li>HCM: <a title="yahoo" href="ymsgr:sendIM?@commonInfo.Yahoo"><img class="yahoo" src="http://opi.yahoo.com/online?u=@commonInfo.Yahoo&amp;m=g&amp;t=2&amp;l=vi" alt="Hỗ trợ kỹ thuật" height="18" width="85"></a> &nbsp; <a href="skype:@commonInfo.Yahoo?call"> <img src="http://mystatus.skype.com/smallclassic/@(commonInfo.Yahoo)" alt="Tư vấn mua hàng" height="18" width="103"></a></li>
+                <li>HN: &nbsp;&nbsp; <a title="yahoo" href="ymsgr:sendIM?hadaoduy"><img class="yahoo" src="http://opi.yahoo.com/online?u=hadaoduy&amp;m=g&amp;t=2&amp;l=vi" alt="Hỗ trợ kỹ thuật" height="18" width="85"></a> &nbsp; <a href="skype:hadaoduy?call"> <img src="http://mystatus.skype.com/smallclassic/hadaoduy" alt="Tư vấn mua hàng" height="18" width="103"></a></li>
+            </ul>
+            <hr />
+            <h5>Giờ làm việc</h5>
+            <ul class="list-unstyled">
+                <li><strong>Thứ 2 - đến Chủ nhật</strong></li>
+                <li><strong>24h/ngày</strong></li>
+            </ul>
+            <hr />
+            <h5>Tại sao chọn chúng tôi?</h5>
+            <p>SUN'SOIL luôn luôn đi đầu Thái Lan với các sản phẩm dầu nhớt, dầu hộp số, phụ gia FUEL+, dầu nhớt xe tải, xe đầu kéo, mỡ công nghiệp, dầu hộp số, mỡ bôi trơn</p>
+            <ul class="list-unstyled">
+                <li><i class="icon icon-check color-green"></i> Sản phẩm tốt nhất</li>
+                <li><i class="icon icon-check color-green"></i> Sản phẩm đạt chứng nhận quốc tế: Quatest 3, API, SAE</li>
+                <li><i class="icon icon-check color-green"></i> Đạt chứng nhận ISO 9001:2008</li>
+                <li><i class="icon icon-check color-green"></i> Chứng nhận thân thiện với môi trường của Bộ năng lượng Thái lan</li>
+                <li><i class="icon icon-check color-green"></i> Sản phẩm ứng dụng công nghệ mới nhất</li>
+                <li><i class="icon icon-check color-green"></i> Nhiều sản phẩm đáp ứng tốt nhất với từng nhu cầu</li>
+                <li><i class="icon icon-check color-green"></i> Sản phẩm an toàn tăng cường tuổi thọ của động cơ</li>
+                <li><i class="icon icon-check color-green"></i> Chất lượng dịch vụ tốt nhất</li>
+                <li><i class="icon icon-check color-green"></i> Giá thành cạnh canh</li>
+                <li><i class="icon icon-check color-green"></i> Đội ngũ tư vấn viên nhiệt tình</li>
+            </ul>
+        </div>
+    </div>
+</div>

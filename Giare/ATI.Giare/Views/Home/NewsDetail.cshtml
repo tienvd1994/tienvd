@@ -1,0 +1,116 @@
+﻿@using ATI.Web.Models;
+@using ATI.Web.Helper;
+
+@{
+    var news = (News)ViewBag.News;
+    var commonInfo = (CommonInfo)ViewBag.CommonInfo;
+    ViewBag.Title = Html.Raw(news.Title);
+    ViewBag.Description = Html.Raw(news.Summary);
+    ViewBag.Keyword = Html.Raw(news.Summary);
+    ViewBag.Url = "http://www.fcn.vn/bai-viet/" + news.SeoLink;
+    ViewBag.Image = "http://cdn.quancafe.vn/z_300x200" + news.Image;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var context = (System.Web.HttpContextWrapper)ViewBag.Context;
+}
+<link href="~/Content/css/blog.css" rel="stylesheet" />
+
+<section class="page-title_professional" style="background-image:url(images/background/4.jpg);">
+    <div class="auto-container">
+        <h1>Dịch vụ</h1>
+    </div>
+</section>
+<div class="breadcrumb-outer_professional">
+    <div class="auto-container">
+        <ul class="bread-crumb text-center">
+            <li>
+                <a href="/">
+                    @ATIResourceManger._managerResources.GetString("HomeCode", ATIResourceManger._culture)
+                </a> <span class="fa fa-angle-right"></span>
+            </li>
+            <li>
+                <a href="/dich-vu">
+                    @ATIResourceManger._managerResources.GetString("ServiceCode", ATIResourceManger._culture)
+                </a> <span class="fa fa-angle-right"></span>
+            </li>
+            <li>@news.Title</li>
+        </ul>
+    </div>
+</div>
+
+<div class="sidebar-page-container_professional">
+    <div class="auto-container">
+        <div class="row clearfix">
+            <!--Content Side-->
+            <div class="content-side col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                <section class="blog-single">
+                    <!--News Style One-->
+                    <div class="news-style-one">
+                        <div class="inner">
+                            <div class="lower-box">
+                                <div class="upper-content">
+                                    <h3>@news.Title</h3>
+                                    <ul class="meta-option">
+                                        <li><a href="blog-single.html"><span class="icon fa fa-user"></span> Đăng bởi: @news.CreatedFullname</a></li>
+                                        <li><a href="blog-single.html"><span class="icon fa fa-calendar"></span>@Convert.ToDateTime(news.CreatedTime).ToString("dd/MM/yyyy")</a></li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    @Html.Raw(news.Content)
+                                </div>
+                                <!--post-share-options-->
+                                <div class="post-share-options clearfix">
+                                    <div class="pull-right social-icon-three clearfix">
+                                        <a href="#" class="facebook"><span class="fa fa-facebook-f"></span></a>
+                                        <a href="#" class="twitter"><span class="fa fa-twitter"></span></a>
+                                        <a href="#" class="linkedin"><span class="fa fa-google-plus"></span></a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <!--Sidebar-->
+            <div class="sidebar-side col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                <aside class="sidebar">
+                    <div class="sidebar-inner">
+                        <div class="sidebar-widget categories">
+                            <div class="sidebar-title"><h3>Nhóm tin tức</h3></div>
+                            <ul class="cat-list">
+                                @{
+                                    foreach (var item in (List<CateNew>)ViewBag.CateSolutionOther)
+                                    {
+                                        <li><a href="/tin-tuc/@item.SeoLink" class="clearfix">@item.Name</a></li>
+                                    }
+                                }
+                            </ul>
+                        </div>
+                        <!-- Popular Posts -->
+                        <div class="sidebar-widget popular-posts">
+                            <div class="sidebar-title">
+                                <h3>Tin tức khác</h3>
+                            </div>
+                            @{
+                                var listNews = (List<News>)ViewBag.TopNews;
+
+                                foreach (var item in listNews)
+                                {
+                                    <article class="post">
+                                        <figure class="post-thumb">
+                                            <a href="/bai-viet/@item.SeoLink">
+                                                <img src="@item.Image" alt="@item.Title">
+                                            </a>
+                                        </figure>
+                                        <h4><a href="/bai-viet/@item.SeoLink">@item.Title</a></h4>
+                                        <div class="post-info"><span class="fa fa-calendar"></span>@item.PostTime</div>
+                                    </article>
+                                }
+                            }
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </div>
+</div>

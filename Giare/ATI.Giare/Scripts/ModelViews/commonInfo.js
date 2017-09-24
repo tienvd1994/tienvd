@@ -1,0 +1,144 @@
+﻿$(document).ready(function () {
+    modelView.IsDesktop($(window).width() > 750);
+    modelView.IsSmartPhone450($(window).width() > 450);
+});
+
+$(window).bind('resize', function () {
+    modelView.IsDesktop($(window).width() > 750);
+    modelView.IsSmartPhone450($(window).width() > 450);
+});
+
+function CommonInfoView() {
+    var self = this;
+
+    self.IsDesktop = ko.observable(!$.browser.mobile);
+    self.IsSmartPhone450 = ko.observable(true);
+
+    self.Name = ko.observable("");
+    self.EnglishName = ko.observable("");
+    self.ShortName = ko.observable("");
+    self.Email = ko.observable("");
+    self.Address = ko.observable("");
+    self.Mobile = ko.observable("");
+    self.Phone = ko.observable("");
+    self.Fax = ko.observable("");
+    self.Summary = ko.observable("");
+    self.Facebook = ko.observable("");
+    self.Skype = ko.observable("");
+    self.Yahoo = ko.observable("");
+    self.Logo = ko.observable("");
+    self.LangId = ko.observable(0);
+    self.fcName = ko.observable(false);
+    self.fcPhone = ko.observable(false);
+    self.fcAddress = ko.observable(false);
+    self.fcSummary = ko.observable(false);
+
+    self.Sending = ko.observable(false);
+
+    self.changeLang = function () {
+        self.GetInfo();
+    }
+
+    self.GetInfo = function () {
+        CommonInfo.Get(self.LangId(), function (data) {
+
+            if (data == -1) {
+                toastr.warning("Mời bạn đăng nhập trước khi thực hiện");
+
+                window.location.href = "/dang-nhap?u=/cms/thong-tin-chung";
+                return;
+            }
+
+            self.Name(data.Name);
+            self.EnglishName(data.EnglishName);
+            self.ShortName(data.ShortName);
+            self.Email(data.Email);
+            self.Mobile(data.Mobile);
+            self.Phone(data.Phone);
+            self.Fax(data.Fax);
+            self.Summary(data.Summary);
+            self.Facebook(data.Facebook);
+            self.Yahoo(data.Yahoo);
+            self.Skype(data.Skype);
+            self.Address(data.HeadOffice);
+            self.Logo(data.Logo);
+        });
+    }
+
+    self.Update = function () {
+        if ($.trim(self.Name()) == "") {
+            toastr.warning("Tên công ty không được để trống");
+            self.fcName(true);
+            return;
+        }
+
+        if ($.trim(self.Phone()) == "") {
+            toastr.warning("Số điện thoại của công ty không được để trống");
+            self.fcPhone(true);
+            return;
+        }
+
+        if ($.trim(self.Address()) == "") {
+            toastr.warning("Địa chỉ công ty không được để trống");
+            self.fcAddress(true);
+            return;
+        }
+
+        if ($.trim(self.Summary()) == "") {
+            toastr.warning("Thông tin giới thiệu tổng quan về công ty không được để trống");
+            self.fcSummary(true);
+            return;
+        }
+
+        self.Sending(true);
+
+        CommonInfo.Update($.trim(self.Name()), $.trim(self.EnglishName()), $.trim(self.Email()), $.trim(self.Phone()), $.trim(self.Mobile()), $.trim(self.Fax()),
+            $.trim(self.Address()), $.trim(self.Address()), $.trim(self.Address()), $.trim(self.Address()), $.trim(self.Yahoo()), $.trim(self.Facebook()),
+            $.trim(self.Skype()), $.trim(self.Summary()), $.trim(self.Summary()), $.trim(self.ShortName()), self.LangId(), self.Logo(), function (data) {
+
+                self.Sending(false);
+
+                if (data == -1) {
+                    toastr.warning("Mời bạn đăng nhập trước khi thực hiện");
+
+                    window.location.href = "/dang-nhap?u=/cms/thong-tin-chung";
+                    return;
+                }
+
+                toastr.success("Đã lưu thông tin thành công");
+            });
+    }
+
+    $('#attachImages').uploadify({
+        'uploader': '/Scripts/uploadify.swf',
+        'script': '/UploadFile/Upload',
+        'buttonImg': '/Content/images/upload.png',
+        'cancelImg': '/Content/images/icon_closex.png',
+        'folder': '/Uploads',
+        'width': '110',
+        'height': '40',
+        'fileExt': '*.jpg;*.png;*.gif;*.jpe',
+        'fileDesc': 'File jpg *.png;*.gif;*.jpe',
+        'sizeLimit': '8192000',
+        'scriptData': { 'username': "ATI" },
+        'onComplete': function (event, queueId, fileObj, response) {
+            if (response == "-10") {
+                toastr.warning("Có lỗi xảy ra xin vui lòng liên hệ Ban quản trị để được trợ giúp");
+                return;
+            }
+
+            if (response == "-2") {
+                toastr.warning("Bạn hãy tải ảnh có định dạng .doc; .docx; .zip; .7z; .rar; .ppt; .pptx; .pdf; .xls; .xlsx!");
+                return;
+            }
+
+            self.Logo(response.replace(/\"/g, ""));
+        },
+        'multi': false,
+        'auto': true
+    });
+}
+
+var modelView = new CommonInfoView();
+
+ko.applyBindings(modelView)
