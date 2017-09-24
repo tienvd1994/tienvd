@@ -444,10 +444,11 @@ namespace ATI.Web.Controllers
 
             var pageIndex = string.IsNullOrEmpty(Request.Params["p"]) ? 1 : Convert.ToInt32(Request.Params["p"]);
             var recordPerPage = string.IsNullOrEmpty(Request.Params["r"]) ? 10 : Convert.ToInt32(Request.Params["r"]);
-
-            var output = new ObjectParameter("TotalRecord", typeof(int));
-            ViewBag.News = db.sp_News_SearchByTitle(ATICurrentSession.GetLang, cate.ID, 0, string.Empty, pageIndex, recordPerPage, output).ToList();
-            ViewBag.totalRecord = output.Value;
+            var items = db.News.Where(m => m.LangId == ATICurrentSession.GetLang && m.Type == 0).ToList();
+            var result = items.OrderByDescending(m => m.ID).Skip((pageIndex - 1) * recordPerPage).Take(recordPerPage);
+            ViewBag.News = result.ToList();
+            ViewBag.totalRecord = items.Count();
+            ViewBag.totalRecord = items.Count();
             ViewBag.CurrPage = pageIndex;
             ViewBag.ModuleId = seolink.Equals("tuyen-dung") ? 7 : 3;
             ViewBag.Cate = cate;
@@ -485,9 +486,10 @@ namespace ATI.Web.Controllers
                 keyword += keyword.Equals(string.Empty) ? "\"" + item + "*\"" + "" : " AND \"" + item + "*\"";
             }
 
-            var output = new ObjectParameter("TotalRecord", typeof(int));
-            ViewBag.News = db.sp_News_SearchByTitle(ATICurrentSession.GetLang, -1, 0, keyword, pageIndex, recordPerPage, output).ToList();
-            ViewBag.totalRecord = output.Value;
+            var items = db.News.Where(m => m.LangId == ATICurrentSession.GetLang && m.Type == 0 && (string.IsNullOrEmpty(keyword) || m.UnsignTitle.Contains(keyword))).ToList();
+            var result = items.OrderByDescending(m => m.ID).Skip((pageIndex - 1) * recordPerPage).Take(recordPerPage);
+            ViewBag.News = result.ToList();
+            ViewBag.totalRecord = items.Count();
             ViewBag.CurrPage = pageIndex;
             ViewBag.Key = key;
             ViewBag.Tags = db.Tags.Take(20).ToList();

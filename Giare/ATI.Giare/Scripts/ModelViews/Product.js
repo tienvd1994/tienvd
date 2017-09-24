@@ -2,20 +2,16 @@
     e.stopImmediatePropagation();
 });
 
-var tags;
+//var tags;
 $(document).ready(function () {
-    tags = $("#Tags").tags({
-        tagSize: "lg",
-        suggestions: [],
-        tagData: []
-    });
-
     $(".tooltip1").tooltip();
-    tags.addTag("ATI");
     modelView.IsDesktop($(window).width() > 750);
     modelView.IsSmartPhone450($(window).width() > 450);
 
-    CKEDITOR.replace('Content');
+    CKEDITOR.replace('Content', {
+        filebrowserBrowseUrl: '/browser/browse.php',
+        filebrowserUploadUrl: '/uploader/upload.php'
+    });
 });
 
 $(window).bind('resize', function () {
@@ -53,34 +49,78 @@ function ProductView() {
     self.Sending = ko.observable(false);
     self.IsAdd = ko.observable(true);
     self.ID = ko.observable(-1);
+    self.isUploading = ko.observable(false);
 
-    $('#attachImages').uploadify({
-        'uploader': '/Scripts/uploadify.swf',
-        'script': '/UploadFile/Upload',
-        'buttonImg': '/Content/images/upload.png',
-        'cancelImg': '/Content/images/icon_closex.png',
-        'folder': '/Uploads',
-        'width': '110',
-        'height': '40',
-        'fileExt': '*.jpg;*.png;*.gif;*.jpe',
-        'fileDesc': 'File jpg *.png;*.gif;*.jpe',
-        'sizeLimit': '8192000',
-        'scriptData': { 'username': "ATI" },
-        'onComplete': function (event, queueId, fileObj, response) {
-            if (response == "-10") {
-                toastr.warning("Có lỗi xảy ra xin vui lòng liên hệ Ban quản trị để được trợ giúp");
-                return;
+    //$('#attachImages').uploadify({
+    //    'uploader': '/Scripts/uploadify.swf',
+    //    'script': '/UploadFile/Upload',
+    //    'buttonImg': '/Content/images/upload.png',
+    //    'cancelImg': '/Content/images/icon_closex.png',
+    //    'wmode': 'transparent',
+    //    'folder': '/Uploads',
+    //    'width': '110',
+    //    'height': '40',
+    //    'fileExt': '*.jpg;*.png;*.gif;*.jpe',
+    //    'fileDesc': 'File jpg *.png;*.gif;*.jpe',
+    //    'sizeLimit': '8192000',
+    //    'scriptData': { 'username': "ATI" },
+    //    'onComplete': function (event, queueId, fileObj, response) {
+    //        if (response == "-10") {
+    //            toastr.warning("Có lỗi xảy ra xin vui lòng liên hệ Ban quản trị để được trợ giúp");
+    //            return;
+    //        }
+
+    //        if (response == "-2") {
+    //            toastr.warning("Bạn hãy tải ảnh có định dạng .doc; .docx; .zip; .7z; .rar; .ppt; .pptx; .pdf; .xls; .xlsx!");
+    //            return;
+    //        }
+
+    //        self.Image(response.replace(/\"/g, ""));
+    //    },
+    //    'multi': false,
+    //    'auto': true
+    //});
+
+    self.validateBlackListExtensions = function (file) {
+        var ext = file.substring(file.lastIndexOf(".")).toLowerCase();
+        return _.some([".jpg", ".jpeg", ".gif", ".png"], function (item) { return item === ext; });
+    }
+
+    var maxFileLength = 5120000;
+
+    $("#ContactUploadFile").fileupload({
+        url: "/UploadFile/Upload",
+        sequentialUploads: false,
+        dataType: "json",
+        dropZone: null,
+        pasteZone: null,
+        add: function (e, data) {
+            var file = data.files[0];
+            var msg = "";
+            if (maxFileLength && file.size > maxFileLength) {
+                if (msg.length > 0) {
+                    msg += "<br/>";
+                }
+                msg += file.name + ": " + resources.common.message.maxFileLengthUpload;
+            } else if (!self.validateBlackListExtensions(file.name)) {
+                if (msg.length > 0) {
+                    msg += "<br/>";
+                }
+                msg += file.name + ": " + 'không được phép tải lên.';
             }
-
-            if (response == "-2") {
-                toastr.warning("Bạn hãy tải ảnh có định dạng .doc; .docx; .zip; .7z; .rar; .ppt; .pptx; .pdf; .xls; .xlsx!");
-                return;
+            if (msg !== "") {
+                toastr.error(msg);
+            } else {
+                data.submit();
+                self.isUploading(true);
             }
-
-            self.Image(response.replace(/\"/g, ""));
         },
-        'multi': false,
-        'auto': true
+        done: function (e, data) {
+            self.isUploading(false);
+            console.log(data);
+            self.Image();
+            toastr.success(resources.salesCall.customer.message.uploadFileSucc);
+        }
     });
 
     $('#EmbbedImages').uploadify({
@@ -126,16 +166,16 @@ function ProductView() {
         self.CreateDate(item.CreateDate);
         self.IsAdd(false);
         self.fcName(true);
-        $(".tags-input").css('width', '100%');
-        var listTag = item.Tags.split(',');
+        //$(".tags-input").css('width', '100%');
+        //var listTag = item.Tags.split(',');
 
-        $.each(tags.getTags(), function (i, item) {
-            tags.removeLastTag();
-        });
+        //$.each(tags.getTags(), function (i, item) {
+        //    tags.removeLastTag();
+        //});
 
-        $.each(listTag, function (i, item) {
-            tags.addTag(item);
-        });
+        //$.each(listTag, function (i, item) {
+        //    tags.addTag(item);
+        //});
     }
 
     self.ShowAddForm = function (item) {
@@ -150,10 +190,10 @@ function ProductView() {
         CKEDITOR.instances.Content.setData("");
         self.IsAdd(true);
         self.fcName(true);
-        $.each(tags.getTags(), function (i, item) {
-            tags.removeLastTag();
-        });
-        self.Tags("");
+        //$.each(tags.getTags(), function (i, item) {
+        //    tags.removeLastTag();
+        //});
+        //self.Tags("");
         self.LangId(-1);
         self.IsHot(0);
         self.CreateDate("");
@@ -234,12 +274,12 @@ function ProductView() {
             return;
         }
 
-        var temp = '';
-        $.each(tags.getTags(), function (index, item) {
-            temp += temp == "" ? item : "," + item;
-        });
+        //var temp = '';
+        //$.each(tags.getTags(), function (index, item) {
+        //    temp += temp == "" ? item : "," + item;
+        //});
 
-        self.Tags(temp);
+        //self.Tags(temp);
 
         self.Sending(true);
 
@@ -284,8 +324,6 @@ function ProductView() {
     CateProduct.Get(0, -1, function (data) {
         self.CateProducts(data);
     });
-
-
 
     self.Search(1);
 }

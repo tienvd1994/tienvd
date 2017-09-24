@@ -1,0 +1,107 @@
+﻿@using ATI.Web.Models;
+@using ATI.Web.Helper;
+@{
+    ViewBag.Title = "Quản lý nhóm tin tức";
+    Layout = "~/Views/Shared/_CMSLayout.cshtml";
+}
+
+@section KnockOut{
+    <script type="text/html" id="CateTemplate">
+        <tr>
+            <td data-bind="text: $index()+1"></td>
+            <td data-bind="text: Name"></td>
+            <td data-bind="text: OrderNo"></td>
+            <td>
+                <button type="button" class="btn btn-u btn-u-dark-blue" data-bind="click: $root.SetUpdate.bind($data, $data)"><i class="fa fa-edit"></i></button>
+                <button type="button" class="btn btn-u btn-u-red" data-bind="click: $root.Delete.bind($data, $data)"><i class="fa fa-times"></i></button>
+            </td>
+        </tr>
+    </script>
+    <script src="/Scripts/ATI.pager.js"></script>
+    <script src="~/Scripts/ModelViews/CateNew.js"></script>
+}
+<link href="~/Content/css/custom-sky-forms.css" rel="stylesheet" />
+
+<div class="breadcrumbs">
+    <div class="container">
+        <h1 class="pull-left">Phân loại nhóm tin tức</h1>
+        <ul class="pull-right breadcrumb">
+            <li><a href="/" class="menuATI">@ATIResourceManger._managerResources.GetString("HomeCode", ATIResourceManger._culture)</a></li>
+            <li><a class="active">Quản lý nhóm tin tức</a></li>
+        </ul>
+    </div>
+</div>
+<div class="container content">
+    <div class="sky-form margin-bottom-30" data-bind="visible:ShowDetail">
+        <header>Quản lý nhóm tin tức</header>
+        <fieldset>
+            <div class="row">
+                <section class="col col-lg-6">
+                    <label class="label">Chọn ngôn ngữ <span class="color-red">*</span></label>
+                    <select data-bind="value:LangId, optionsValue:'ID', optionsText:'Name'" class="form-control">
+                        <option value="0">Tiếng Việt</option>
+                        <option value="1">Tiếng Anh</option>
+                    </select>
+                </section>
+
+            </div>
+            <div class="row">
+                <section class="col col-lg-6">
+                    <label class="label">Tên nhóm <span class="color-red">*</span></label>
+                    <label class="input">
+                        <input type="text" data-bind="value: Name" maxlength="250" />
+                    </label>
+                </section>
+                <section class="col col-lg-6">
+                    <label class="label">Thứ tự <span class="color-red">*</span></label>
+                    <label class="select">
+                        <select data-bind="value: OrderNo">
+                            @for (int i = 1; i < 20; i++)
+                            {
+                                <option value="@i">@i</option>
+                            }
+                        </select>
+                    </label>
+                </section>
+            </div>
+        </fieldset>
+        <footer>
+            <button class="button" type="submit" data-bind="click: Update, enable: !Sending()">
+                <img src="/content/images/loading1.gif" data-bind="visible: Sending" /> Lưu lại
+            </button>
+        </footer>
+    </div>
+    <div class="panel panel-green margin-bottom-40">
+        <div class="panel-heading">
+            <h3 class="panel-title"><i class="icon icon-tasks"></i> Danh sách nhóm tin tức</h3>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-sm-2">
+                    <select data-bind="value:LangId, event:{change: changeLang}" class="form-control">
+                        <option value="0">Tiếng Việt</option>
+                        <option value="1">Tiếng Anh</option>
+                    </select>
+                </div>
+                <div class="col-sm-10 mb-margin-bottom-30 text-right">
+                    <button type="button" class="btn btn-u btn-small btn-u-blue" data-bind="click: ShowAddForm"><i class="icon icon-plus"></i> Thêm mới</button>
+                </div>
+            </div>
+            <p>&nbsp;</p>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>TT</th>
+                        <th>Tên</th>
+                        <th>Thứ tự hiển thị</th>
+                        <th>Sửa, xóa</th>
+                    </tr>
+                </thead>
+                <tbody data-bind="template: {name:'CateTemplate', foreach: ListCateNews}"></tbody>
+            </table>
+            <div class="row margin-bottom-10">
+                <div class="col-md-6" id="sumarypager"></div>
+            </div>
+        </div>
+    </div>
+</div>

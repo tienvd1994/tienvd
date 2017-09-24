@@ -85,7 +85,7 @@ namespace ATI.Web.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_CustomerSay_GetByOrderNo_Result>("sp_CustomerSay_GetByOrderNo", langIdParameter, pageIndexParameter, recordPerPageParameter, totalRecord);
         }
     
-        public virtual ObjectResult<sp_News_SearchByTitle_Result> sp_News_SearchByTitle(Nullable<int> langId, Nullable<int> cateId, Nullable<int> type, string unsignTitle, Nullable<int> pageIndex, Nullable<int> recordPerPage, ObjectParameter totalRecord)
+        public virtual ObjectResult<sp_News_SearchByTitle_Result> sp_News_SearchByTitle(Nullable<int> langId, Nullable<int> cateId, string unsignTitle, Nullable<int> pageIndex, Nullable<int> recordPerPage, ObjectParameter totalRecord)
         {
             var langIdParameter = langId.HasValue ?
                 new ObjectParameter("LangId", langId) :
@@ -94,10 +94,6 @@ namespace ATI.Web.Models
             var cateIdParameter = cateId.HasValue ?
                 new ObjectParameter("CateId", cateId) :
                 new ObjectParameter("CateId", typeof(int));
-    
-            var typeParameter = type.HasValue ?
-                new ObjectParameter("Type", type) :
-                new ObjectParameter("Type", typeof(int));
     
             var unsignTitleParameter = unsignTitle != null ?
                 new ObjectParameter("UnsignTitle", unsignTitle) :
@@ -111,7 +107,7 @@ namespace ATI.Web.Models
                 new ObjectParameter("RecordPerPage", recordPerPage) :
                 new ObjectParameter("RecordPerPage", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_News_SearchByTitle_Result>("sp_News_SearchByTitle", langIdParameter, cateIdParameter, typeParameter, unsignTitleParameter, pageIndexParameter, recordPerPageParameter, totalRecord);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_News_SearchByTitle_Result>("sp_News_SearchByTitle", langIdParameter, cateIdParameter, unsignTitleParameter, pageIndexParameter, recordPerPageParameter, totalRecord);
         }
     
         public virtual ObjectResult<sp_Tracker_GetLastest_Result> sp_Tracker_GetLastest(string iP, Nullable<int> pageIndex, Nullable<int> recordPerPage, ObjectParameter totalRecord)

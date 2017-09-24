@@ -20,6 +20,7 @@ namespace ATI.Web.Models
         public short OrderNo { get; set; }
         public string SeoLink { get; set; }
         public Nullable<int> LangId { get; set; }
-        public int Type { get; set; }
+        public Nullable<int> Type { get; set; }
+        public string UnsignName { get; set; }
     }
 }

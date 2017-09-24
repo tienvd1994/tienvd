@@ -111,6 +111,7 @@
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li><a href="/cms/solutions">Danh sách giải pháp</a></li>
+                                    <li><a href="/cms/catesolutions">Nhóm giải pháp</a></li>
                                 </ul>
                             </li>
                             <li class="@(ViewBag.ModuleId == 4? "active" : "")">
@@ -118,10 +119,18 @@
                                     Dịch vụ
                                 </a>
                             </li>
-                            <li class="@(ViewBag.ModuleId == 6 ? "active" : "")">
-                                <a href="/cms/tin-tuc" class="dropdown-toggle">
-                                    Tin tức
+                            <li class="dropdown @(ViewBag.ModuleId == 6 ? "active" : "")">
+                                <a href="javascript:void(0)" class="dropdown-toggle">
+                                    Tin tức <i class="fa fa-angle-down"></i>
                                 </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="/cms/tin-tuc">
+                                            Tin tức
+                                        </a>
+                                    </li>
+                                    <li><a href="/cms/catenews">Nhóm tin tức</a></li>
+                                </ul>
                             </li>
                             <li class="dropdown @(ViewBag.ModuleId == 7 ? "active" : "")">
                                 <a href="javascript:void(0);" class="dropdown-toggle">
@@ -133,11 +142,6 @@
                                     <li><a href="/cms/truy-cap">Truy cập</a></li>
                                 </ul>
                             </li>
-                            @*<li class="dropdown @(ViewBag.ModuleId == 9 ? "active" : "")">
-                                    <a href="/cms/dai-ly" class="dropdown-toggle">
-                                        Đại lý
-                                    </a>
-                                </li>*@
                             <li class="dropdown @(ViewBag.ModuleId == 8 ? "active" : "")">
                                 <a href="javascript:void(0);" class="dropdown-toggle">
                                     Người dùng <i class="fa fa-angle-down"></i>

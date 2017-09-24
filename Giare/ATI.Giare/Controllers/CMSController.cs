@@ -450,6 +450,7 @@ namespace ATI.Web.Controllers
                 return Json(-2, JsonRequestBehavior.AllowGet);
             }
 
+            product.ID = item.ID;
             product.Status = item.Status;
             product.Name = item.Name;
             product.CateId = item.CateId;
@@ -718,10 +719,10 @@ namespace ATI.Web.Controllers
         {
             var keywordArray = Common.UCS2Convert(key).ToLower();
 
-            var output = new ObjectParameter("TotalRecord", typeof(int));
-            var items = db.sp_News_SearchByTitle(langId, -1, type, keywordArray, pageIndex, recordPerPage, output).ToList();
+            var items = db.News.Where(m => m.LangId == langId && m.Type == type && (string.IsNullOrEmpty(key) || m.UnsignTitle.Contains(keywordArray))).ToList(); ;
+            var reslt = items.OrderByDescending(m => m.ID).Skip((pageIndex - 1) * recordPerPage).Take(recordPerPage);
 
-            return Json(new { items, totalRecord = output.Value }, JsonRequestBehavior.AllowGet);
+            return Json(new { items, totalRecord = items.Count() }, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
@@ -1067,7 +1068,7 @@ namespace ATI.Web.Controllers
             }
 
             var customerSays = db.CustomerSays.Where(m => m.LangId == langId);
-            var items = customerSays.OrderBy(m => m.OrderNo).Skip((pageIndex - 1) * recordPerPage).Take(recordPerPage); ;
+            var items = customerSays.OrderBy(m => m.OrderNo).Skip((pageIndex - 1) * recordPerPage).Take(recordPerPage);
 
             return Json(new { items, totalRecord = customerSays.Count() }, JsonRequestBehavior.AllowGet);
         }
@@ -1520,5 +1521,127 @@ namespace ATI.Web.Controllers
 
             return View();
         }
+
+        public ActionResult CateSolutions()
+        {
+            if (CurrentUser == null)
+            {
+                return new RedirectResult("/dang-nhap?u=" + Request.Url.PathAndQuery);
+            }
+
+            ViewBag.Context = HttpContext;
+            ViewBag.CommonInfo = db.CommonInfoes.FirstOrDefault();
+
+            return View();
+        }
+
+        #region Cate news
+
+        public JsonResult SearchCateNews(int langId, int type, string key, int pageIndex, int recordPerPage)
+        {
+            if (CurrentUser == null)
+            {
+                return Json(-1, JsonRequestBehavior.AllowGet);
+            }
+
+            var keywordArray = Common.UCS2Convert(key).ToLower();
+            var items = db.CateNews.Where(m => m.LangId == langId && m.Type == type && (string.IsNullOrEmpty(key) || m.UnsignName.Contains(key))).ToList();
+            var result = items.OrderByDescending(m => m.OrderNo).Skip((pageIndex - 1) * recordPerPage).Take(recordPerPage).ToList();
+
+            return Json(new { items = result, totalRecord = items.Count() }, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult CateNews()
+        {
+            if (CurrentUser == null)
+            {
+                return new RedirectResult("/dang-nhap?u=" + Request.Url.PathAndQuery);
+            }
+
+            ViewBag.Context = HttpContext;
+            ViewBag.CommonInfo = db.CommonInfoes.FirstOrDefault();
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult DeletCateNews(int id)
+        {
+            if (CurrentUser == null)
+            {
+                return Json(-1, JsonRequestBehavior.AllowGet);
+            }
+
+            var catenews = db.CateNews.FirstOrDefault(item => item.ID == id);
+
+            if (catenews == null)
+            {
+                return Json(-2, JsonRequestBehavior.AllowGet);
+            }
+
+            db.CateNews.Remove(catenews);
+
+            return Json(db.SaveChanges(), JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult AddCateNews(CateNewsViewModel item)
+        {
+            if (CurrentUser == null)
+            {
+                return Json(-1, JsonRequestBehavior.AllowGet);
+            }
+
+            var cateNews = db.CateNews.FirstOrDefault(m => m.Name.Equals(item.Name));
+
+            if (cateNews != null)
+            {
+                return Json(-2, JsonRequestBehavior.AllowGet);
+            }
+
+            cateNews = new CateNew()
+            {
+                Name = item.Name,
+                EnglishName = item.EnglishName,
+                OrderNo = item.OrderNo,
+                SeoLink = Common.ConvertToUrlString(item.Name),
+                LangId = item.LangId,
+                Type = item.Type,
+                UnsignName = Common.UCS2Convert(item.Name)
+            };
+
+            db.CateNews.Add(cateNews);
+
+            return Json(db.SaveChanges(), JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult UpdateCateNews(CateNewsViewModel item)
+        {
+            if (CurrentUser == null)
+            {
+                return Json(-1, JsonRequestBehavior.AllowGet);
+            }
+
+            var cateNews = db.CateNews.FirstOrDefault(m => m.ID == item.ID);
+
+            if (cateNews == null)
+            {
+                return Json(-2, JsonRequestBehavior.AllowGet);
+            }
+
+            cateNews.ID = item.ID;
+            cateNews.Name = item.Name;
+            cateNews.EnglishName = item.EnglishName;
+            cateNews.OrderNo = item.OrderNo;
+            cateNews.SeoLink = Common.ConvertToUrlString(item.Name);
+            cateNews.LangId = item.LangId;
+            cateNews.Type = item.Type;
+            cateNews.UnsignName = Common.UCS2Convert(item.Name);
+
+            return Json(db.SaveChanges(), JsonRequestBehavior.AllowGet);
+        }
+
+        #endregion
     }
 }

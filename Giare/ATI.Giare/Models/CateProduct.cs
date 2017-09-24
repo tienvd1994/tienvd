@@ -25,5 +25,6 @@ namespace ATI.Web.Models
         public bool IsDelete { get; set; }
         public short ChildCount { get; set; }
         public Nullable<int> LangId { get; set; }
+        public string UnsignName { get; set; }
     }
 }

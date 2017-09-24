@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ATI.VinhHungModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ATI.VinhHungModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Agencies">
           <Key>
             <PropertyRef Name="ID" />
@@ -60,7 +60,8 @@
           <Property Name="OrderNo" Type="smallint" Nullable="false" />
           <Property Name="SeoLink" Type="varchar" MaxLength="50" />
           <Property Name="LangId" Type="int" />
-          <Property Name="Type" Type="int" Nullable="false" />
+          <Property Name="Type" Type="int" />
+          <Property Name="UnsignName" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="CateProduct">
           <Key>
@@ -77,6 +78,7 @@
           <Property Name="IsDelete" Type="bit" Nullable="false" />
           <Property Name="ChildCount" Type="smallint" Nullable="false" />
           <Property Name="LangId" Type="int" />
+          <Property Name="UnsignName" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="CommonInfo">
           <Key>
@@ -421,7 +423,6 @@ warning 6002: The table/view 'ATI.VinhHung.dbo.Tags' does not have a primary key
         <Function Name="sp_News_SearchByTitle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="LangId" Type="int" Mode="In" />
           <Parameter Name="CateId" Type="int" Mode="In" />
-          <Parameter Name="Type" Type="int" Mode="In" />
           <Parameter Name="UnsignTitle" Type="varchar" Mode="In" />
           <Parameter Name="PageIndex" Type="int" Mode="In" />
           <Parameter Name="RecordPerPage" Type="int" Mode="In" />
@@ -469,8 +470,7 @@ warning 6002: The table/view 'ATI.VinhHung.dbo.Tags' does not have a primary key
     FROM [dbo].[Tags] AS [Tags]</DefiningQuery>
           </EntitySet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ATI.VinhHungModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -529,7 +529,8 @@ warning 6002: The table/view 'ATI.VinhHung.dbo.Tags' does not have a primary key
           <Property Name="OrderNo" Type="Int16" Nullable="false" />
           <Property Name="SeoLink" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="LangId" Type="Int32" />
-          <Property Name="Type" Type="Int32" Nullable="false" />
+          <Property Name="Type" Type="Int32" />
+          <Property Name="UnsignName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="CateProduct">
           <Key>
@@ -546,6 +547,7 @@ warning 6002: The table/view 'ATI.VinhHung.dbo.Tags' does not have a primary key
           <Property Name="IsDelete" Type="Boolean" Nullable="false" />
           <Property Name="ChildCount" Type="Int16" Nullable="false" />
           <Property Name="LangId" Type="Int32" />
+          <Property Name="UnsignName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="CommonInfo">
           <Key>
@@ -912,7 +914,6 @@ warning 6002: The table/view 'ATI.VinhHung.dbo.Tags' does not have a primary key
           <FunctionImport Name="sp_News_SearchByTitle" ReturnType="Collection(ATI.VinhHungModel.sp_News_SearchByTitle_Result)">
             <Parameter Name="LangId" Mode="In" Type="Int32" />
             <Parameter Name="CateId" Mode="In" Type="Int32" />
-            <Parameter Name="Type" Mode="In" Type="Int32" />
             <Parameter Name="UnsignTitle" Mode="In" Type="String" />
             <Parameter Name="PageIndex" Mode="In" Type="Int32" />
             <Parameter Name="RecordPerPage" Mode="In" Type="Int32" />
@@ -1063,6 +1064,7 @@ warning 6002: The table/view 'ATI.VinhHung.dbo.Tags' does not have a primary key
           <EntitySetMapping Name="CateNews">
             <EntityTypeMapping TypeName="ATI.VinhHungModel.CateNew">
               <MappingFragment StoreEntitySet="CateNews">
+                <ScalarProperty Name="UnsignName" ColumnName="UnsignName" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="EnglishName" ColumnName="EnglishName" />
@@ -1076,6 +1078,7 @@ warning 6002: The table/view 'ATI.VinhHung.dbo.Tags' does not have a primary key
           <EntitySetMapping Name="CateProducts">
             <EntityTypeMapping TypeName="ATI.VinhHungModel.CateProduct">
               <MappingFragment StoreEntitySet="CateProduct">
+                <ScalarProperty Name="UnsignName" ColumnName="UnsignName" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="SeoLink" ColumnName="SeoLink" />

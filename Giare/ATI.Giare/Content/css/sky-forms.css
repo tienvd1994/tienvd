@@ -1028,3 +1028,20 @@
 .sky-form .checkbox + .checkbox {
   margin-top: 0;
 }
+
+
+
+.fileuploadButton {
+    position: relative;
+    display: inline-block;
+}
+
+    .fileuploadButton > input {
+        display: block;
+        height: 35px;
+        position: absolute;
+        width: 100%;
+        cursor: pointer;
+        opacity: 0;
+        z-index: 15;
+    }
