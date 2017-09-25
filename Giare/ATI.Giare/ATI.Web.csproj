@@ -1446,6 +1446,7 @@
     <Content Include="Views\CMS\CateNews.cshtml" />
     <Content Include="Views\CMS\CateSolutions.cshtml" />
     <Content Include="Views\Home\Footer.cshtml" />
+    <Content Include="Views\CMS\ConfigSlide.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

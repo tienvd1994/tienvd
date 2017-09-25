@@ -1,0 +1,201 @@
+﻿@using ATI.Web.Models;
+
+@{
+    ViewBag.Title = "Quản lý slide";
+    Layout = "~/Views/Shared/_CMSLayout.cshtml";
+}
+@section KnockOut{
+    <script type="text/html" id="NewsTemplate">
+        <tr>
+            <td data-bind="text: (CurrentPage - 1) * totalPageCate+$index()+1"></td>
+            <td><img data-bind="attr:{src: Image}, visible: $root.IsDesktop" height="50" /></td>
+            <td data-bind="text: Title"></td>
+            <td data-bind="text: moment(PostTime).format('DD/MM/YYYY'), visible: $root.IsDesktop"></td>
+            <td data-bind="text: IsHot==1?'Tin nổi bật': Status == 1 ? 'Hiển thị' : 'Ân', visible: $root.IsSmartPhone450"></td>
+            <td>
+                <button type="button" class="btn btn-u btn-u-dark-blue" data-bind="click: $root.SetUpdate.bind($data, $data)"><i class="fa fa-edit"></i></button>
+                <button type="button" class="btn btn-u btn-u-red" data-bind="click: $root.Delete.bind($data, $data)"><i class="fa fa-times"></i></button>
+            </td>
+        </tr>
+    </script>
+    <script src="~/Scripts/ATI.pager.js"></script>
+    <script src="~/Scripts/editor/full/ckeditor.js"></script>
+    <script src="~/Scripts/jquery.ui.widget.js"></script>
+    <script src="~/Scripts/jQuery.FileUpload/jquery.fileupload.js"></script>
+    <script src="~/Scripts/models/News.js"></script>
+    <script src="~/Scripts/ModelViews/News.js"></script>
+}
+<link href="~/Content/css/custom-sky-forms.css" rel="stylesheet" />
+<link href="~/Content/css/jquery_ui_datepicker.css" rel="stylesheet" />
+<div class="breadcrumbs">
+    <div class="container">
+        <h1 class="pull-left">Tin tức</h1>
+        <ul class="pull-right breadcrumb">
+            <li><a href="/">Trang chủ</a></li>
+            <li><a class="active">Tin tức</a></li>
+        </ul>
+    </div>
+</div>
+<div class="container content">
+    <div class="sky-form margin-bottom-30" data-bind="visible:ShowDetail">
+        <header>Tin thức</header>
+        <fieldset>
+            <div class="row">
+                <section class="col col-lg-12">
+                    <label class="label">Chọn ngôn ngữ<span class="color-red">*</span></label>
+                    <select data-bind="value:LangId, optionsValue:'ID', optionsText:'Name'" class="form-control">
+                        <option value="0">Tiếng Việt</option>
+                        <option value="1">Tiếng Anh</option>
+                    </select>
+                </section>
+            </div>
+            <div class="row">
+                <section class="col col-lg-12">
+                    <label class="label">Tiêu đề <span class="color-red">*</span></label>
+                    <label class="input">
+                        <input type="text" data-bind="value: Title, hasfocus: fcTitle" maxlength="150" />
+                    </label>
+                </section>
+            </div>
+            <div class="row">
+                <section class="col col-lg-6">
+                    <label class="label">Chuyên mục <span class="color-red">*</span></label>
+                    <label class="select">
+                        <select data-bind="value: CateId">
+                            @{
+                                foreach (var item in (List<CateNew>)ViewBag.CateNews)
+                                {
+                                    <option value="@item.ID">@item.Name</option>
+                                }
+                            }
+                        </select>
+                    </label>
+                </section>
+                <section class="col col-lg-6">
+                    <label class="label">Tin nổi bật?</label>
+                    <label class="select">
+                        <select data-bind="value: IsHot" class="form-control">
+                            <option value="1">Tin nổi bật</option>
+                            <option value="0">Tin thường</option>
+                        </select>
+                    </label>
+                </section>
+            </div>
+            <div class="row">
+                @*<section class="col col-6">
+                        <label class="label">Người viết</label>
+                        <label class="input">
+                            <input type="text" data-bind="value: Author" maxlength="100" />
+                        </label>
+                    </section>
+                    <section class="col col-3">
+                        <label class="label">Ngày đăng</label>
+                        <label class="input">
+                            <i class="icon-append fa fa-calendar"></i>
+                            <input type="text" id="txtPostTime" maxlength="10" />
+                        </label>
+                    </section>*@
+                <section class="col col-3">
+                    <label class="label">Trạng thái</label>
+                    <label class="select">
+                        <select data-bind="value:Status" class="form-control">
+                            <option value="1">Hiển thị</option>
+                            <option value="0">Ẩn</option>
+                        </select>
+                    </label>
+                </section>
+            </div>
+            <div class="row">
+                <section class="col col-4">
+                    <label class="label">Ảnh đại diện</label>
+                    <label class="img-bordered">
+                        <img data-bind="attr:{src:Image()}" width="300" />
+                    </label>
+                </section>
+                <section class="col col-6">
+                    <div class="input">
+                        <i id="loadingUpload" class="fa fa-spinner fa-pulse" data-bind="visible: isUploading()" style="display: none;"></i>
+                        <div class="fileuploadButton cursor-pointer">
+                            <input id="FileUploadImage" type="file" name="FileData">
+                            <a href="#">
+                                <i class="fa fa-upload"></i> <span>Tải ảnh</span>
+                            </a>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <section>
+                <label class="label">Miêu tả tóm tắt tin (Không quá 300 ký tự)<span class="color-red">*</span></label>
+                <label class="textarea">
+                    <textarea data-bind="value: Summary" maxlength="300"></textarea>
+                </label>
+            </section>
+            <div class="row">
+                <section class="col col-6">
+                    <label class="label">Chèn ảnh vào nội dung</label>
+                    <div class="input">
+                        <i id="loadingUpload" class="fa fa-spinner fa-pulse" data-bind="visible: isUploading()" style="display: none;"></i>
+                        <div class="fileuploadButton cursor-pointer">
+                            <input id="EmbbedImages" type="file" name="FileData">
+                            <a href="#">
+                                <i class="fa fa-upload"></i> <span>Tải ảnh</span>
+                            </a>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <section>
+                <label class="label">Nội dung tin <span class="color-red">*</span></label>
+                <textarea id="Content" rows="4" class="ckeditor"></textarea>
+            </section>
+        </fieldset>
+        <footer>
+            <button class="button" type="submit" data-bind="click: Update, enable: !Sending()"><img src="/content/images/loading1.gif" data-bind="visible: Sending" /> Lưu lại</button>
+        </footer>
+    </div>
+    <div class="panel panel-green margin-bottom-40">
+        <div class="panel-heading">
+            <h3 class="panel-title"><i class="icon icon-tasks"></i> Danh sách bài viết</h3>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-2 mb-margin-bottom-30">
+                    <select data-bind="value:LangId" class="form-control">
+                        <option value="0">Tiếng Việt</option>
+                        <option value="1">Tiếng Anh</option>
+                    </select>
+                </div>
+                <div class="col-md-6 mb-margin-bottom-30">
+                    <div class="input-group margin-bottom-40">
+                        <input type="text" placeholder="Tiêu đề bài viết" class="form-control" data-bind="value: Keyword" />
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-u btn-small btn-u-blue" data-bind="click: Search.bind($data,1)">Tìm kiếm</button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-margin-bottom-30 text-right">
+                    <button type="button" class="btn btn-u btn-small btn-u-blue" data-bind="click: ShowAddForm"><i class="icon icon-plus"></i> Thêm mới</button>
+                </div>
+            </div>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>TT</th>
+                        <th data-bind="visible: IsDesktop">Ảnh</th>
+                        <th>Tiêu đề bài viết</th>
+                        <th data-bind="visible: IsDesktop">Ngày đăng</th>
+                        <th data-bind="visible: IsSmartPhone450">Trạng thái</th>
+                        <th>Sửa, xóa</th>
+                    </tr>
+                </thead>
+                <tbody data-bind="template: {name:'NewsTemplate', foreach: ListNews}"></tbody>
+            </table>
+        </div>
+        <div class="row margin-bottom-10">
+            <div class="col-md-6" id="sumarypager"></div>
+            <div class="col-md-6">
+                <div class="text-right" id="pager"></div>
+            </div>
+        </div>
+    </div>
+</div>

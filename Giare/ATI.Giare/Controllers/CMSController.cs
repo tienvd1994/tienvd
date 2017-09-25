@@ -1664,5 +1664,18 @@ namespace ATI.Web.Controllers
         }
 
         #endregion
+
+        public ActionResult ConfigSlide()
+        {
+            if (CurrentUser == null)
+            {
+                return new RedirectResult("/dang-nhap?u=" + Request.Url.PathAndQuery);
+            }
+
+            ViewBag.Context = HttpContext;
+            ViewBag.CommonInfo = db.CommonInfoes.FirstOrDefault();
+
+            return View();
+        }
     }
 }
