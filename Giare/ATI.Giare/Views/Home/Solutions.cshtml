@@ -3,11 +3,11 @@
 @{
     var cate = (CateNew)ViewBag.Cate;
     var commonInfo = (CommonInfo)ViewBag.CommonInfo;
-    ViewBag.Title = Html.Raw(cate.Name + " " + commonInfo.Name);
-    ViewBag.Description = Html.Raw(cate.Name + " " + commonInfo.Name + " ATI cung cấp các giải pháp phần mềm tốt nhất cho ngân hàng, doanh nghiệp các tổ chức và người dân");
-    ViewBag.Keyword = Html.Raw(cate.Name + " " + commonInfo.Name + "sản phẩm, phần mềm, giải pháp, outsourcing, công ty phần mềm tốt nhất, đo lường hiệu quả hoạt động, kpi bsc, thẻ điểm cân bằng, e-learning, học trực tuyến, kiểm toán hoạt động, kiểm toán nội bộ");
-    ViewBag.Url = "http://www.fcn.vn/tin-tuc";
-    ViewBag.Image = "http://www.fcn.vn" + commonInfo.Logo;
+    ViewBag.Title = Html.Raw(cate.Name + " | " + commonInfo.Name);
+    ViewBag.Description = Html.Raw(cate.Name + " | " + commonInfo.Name);
+    ViewBag.Keyword = Html.Raw(cate.Name + " | " + commonInfo.Name);
+    ViewBag.Url = "";
+    ViewBag.Image = commonInfo.Logo;
 }
 @section KnockOut{
     <script src="~/Scripts/jquery.pager.js"></script>
@@ -28,8 +28,7 @@
                 </a> <span class="fa fa-angle-right"></span>
             </li>
             <li>
-                @*@ATIResourceManger._managerResources.GetString("ServiceCode", ATIResourceManger._culture)*@
-                Giải pháp
+                @ATIResourceManger._managerResources.GetString("Solutions_Label", ATIResourceManger._culture)
             </li>
         </ul>
     </div>

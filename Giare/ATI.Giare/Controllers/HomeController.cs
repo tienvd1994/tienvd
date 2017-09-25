@@ -60,6 +60,7 @@ namespace ATI.Web.Controllers
 
             ViewBag.AboutHomePage = db.Introduces.Where(m => m.IsShowHomePage == true).OrderByDescending(m => m.LastUpdateTime).FirstOrDefault();
             ViewBag.ListCateAndProduct = categoryAndProductViewModel;
+            ViewBag.ListSlide = db.ConfigImages.Where(m => m.Status == 1).ToList();
 
             return View();
         }
@@ -994,6 +995,13 @@ namespace ATI.Web.Controllers
                 Title = m.Title,
                 SeoLink = m.SeoLink
             }).ToList();
+
+            return PartialView();
+        }
+
+        public ActionResult CategoriesSidebar()
+        {
+            ViewBag.Categories = db.CateProducts.Where(m => !m.IsDelete && m.ParrentCateId == -1).OrderBy(m => m.OrderNo).ToList();
 
             return PartialView();
         }

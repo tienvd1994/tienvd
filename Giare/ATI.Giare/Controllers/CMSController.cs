@@ -1665,6 +1665,8 @@ namespace ATI.Web.Controllers
 
         #endregion
 
+        #region ConfigSlide
+
         public ActionResult ConfigSlide()
         {
             if (CurrentUser == null)
@@ -1677,5 +1679,93 @@ namespace ATI.Web.Controllers
 
             return View();
         }
+
+        public ActionResult SearchConfigSlide(int langId, string keyword, int pageIndex, int pageSize)
+        {
+            keyword = Common.UCS2Convert(keyword).ToLower();
+            var items = db.ConfigImages.Where(m => m.Status == 1 && m.LangId == langId && (string.IsNullOrEmpty(keyword) || m.UnsignName.Contains(keyword)));
+            var result = items.OrderByDescending(m => m.Id).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+
+            return Json(new { items = result, totalRecord = items.Count() }, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult AddConfigSlide(ConfigImageViewModel item)
+        {
+            if (CurrentUser == null)
+            {
+                return Json(-1, JsonRequestBehavior.AllowGet);
+            }
+
+            var configImage = new ConfigImage()
+            {
+                Name = item.Name,
+                Name_En = item.Name_En,
+                Image = item.Image,
+                Url = item.Url,
+                LangId = item.LangId,
+                Status = item.Status,
+                CreatedTime = DateTime.Now,
+                CreatedUserId = CurrentUser.Id,
+                CreatedFullname = CurrentUser.FullName,
+                UnsignName = string.Empty,
+                UnsignName_En = string.Empty,
+            };
+
+            db.ConfigImages.Add(configImage);
+
+            return Json(db.SaveChanges(), JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult UpdateConfigSlide(ConfigImageViewModel item)
+        {
+            if (CurrentUser == null)
+            {
+                return Json(-1, JsonRequestBehavior.AllowGet);
+            }
+
+            var cateNews = db.ConfigImages.FirstOrDefault(m => m.Id == item.Id);
+
+            if (cateNews == null)
+            {
+                return Json(-2, JsonRequestBehavior.AllowGet);
+            }
+
+            cateNews.Id = item.Id;
+            cateNews.Name = item.Name;
+            cateNews.Name_En = item.Name_En;
+            cateNews.Image = item.Image;
+            cateNews.Url = item.Url;
+            cateNews.LangId = item.LangId;
+            cateNews.Status = item.Status;
+            cateNews.UnsignName = string.Empty;
+            cateNews.UnsignName_En = string.Empty;
+            db.Entry(cateNews).State = EntityState.Modified;
+
+            return Json(db.SaveChanges(), JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public ActionResult DeleteConfigSlide(int id)
+        {
+            if (CurrentUser == null)
+            {
+                return Json(-1, JsonRequestBehavior.AllowGet);
+            }
+
+            var configImage = db.ConfigImages.FirstOrDefault(item => item.Id == id);
+
+            if (configImage == null)
+            {
+                return Json(-2, JsonRequestBehavior.AllowGet);
+            }
+
+            db.ConfigImages.Remove(configImage);
+
+            return Json(db.SaveChanges(), JsonRequestBehavior.AllowGet);
+        }
+
+        #endregion
     }
 }

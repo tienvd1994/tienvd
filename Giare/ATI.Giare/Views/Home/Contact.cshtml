@@ -4,11 +4,11 @@
 
 @{
     var commonInfo = (CommonInfo)ViewBag.CommonInfo;
-    ViewBag.Title = "Thông tin liên hệ - " + commonInfo.Name;
-    ViewBag.Description = Html.Raw("Thông tin liên hệ - " + commonInfo.Name);
-    ViewBag.Keyword = Html.Raw("Thông tin liên hệ - " + commonInfo.Name);
-    ViewBag.Url = "http://www.fcn.vn/lien-he";
-    ViewBag.Image = "http://www.fcn.vn" + commonInfo.Logo;
+    ViewBag.Title = Html.Raw(string.Concat(@ATIResourceManger._managerResources.GetString("ContactCode", ATIResourceManger._culture), " | ", commonInfo.Name));
+    ViewBag.Description = Html.Raw(string.Concat(@ATIResourceManger._managerResources.GetString("ContactCode", ATIResourceManger._culture), " ", commonInfo.Name));
+    ViewBag.Keyword = Html.Raw(string.Concat(@ATIResourceManger._managerResources.GetString("ContactCode", ATIResourceManger._culture), " ", commonInfo.Name));
+    ViewBag.Url = "/lien-he";
+    ViewBag.Image = commonInfo.Logo;
 }
 @section KnockOut{
     <script src="~/Scripts/plugins/amplify.min.js"></script>
@@ -47,7 +47,9 @@
 
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCggrXCEIxTgMCVAx6sYSZPdj3gCSx5Owg&callback=initMap" type="text/javascript"></script>
 }
+
 <link href="~/Content/css/toastr.min.css" rel="stylesheet" />
+
 <section class="page-title_professional" style="background-image:url(images/background/4.jpg);">
     <div class="auto-container">
         <h1>Liên hệ với chúng tôi</h1>
@@ -68,7 +70,6 @@
         <div class="sec-title centered">
             <h2>Gửi liên hệ tới chúng tôi</h2>
             <div class="separator"></div>
-            @*<div class="text">The first mate and his Skipper too will do their very best to make the others comfortable in their tropic island nest</div>*@
         </div>
         <div class="row clearfix">
             <!--Form Column-->

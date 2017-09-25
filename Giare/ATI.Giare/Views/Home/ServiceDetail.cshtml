@@ -4,12 +4,11 @@
 @{
     var partner = (Partner)ViewBag.Partner;
     var commonInfo = (CommonInfo)ViewBag.CommonInfo;
-    ViewBag.Title = Html.Raw("Dịch vụ " + partner.Name);
-    ViewBag.Description = Html.Raw("Dịch vụ " + partner.Name + " " + partner.Summary);
-    ViewBag.Keyword = Html.Raw("Dịch vụ " + partner.Name + " " + partner.Summary);
-    ViewBag.Url = "http://www.fcn.vn/dich-vu/" + partner.SeoLink;
-    ViewBag.Image = "http://cdn.quancafe.vn/z_800x0" + partner.Image;
-    var context = (System.Web.HttpContextWrapper)ViewBag.Context;
+    ViewBag.Title = Html.Raw(string.Concat(partner.Name, " | ", commonInfo.Name));
+    ViewBag.Description = Html.Raw(string.Concat(partner.Name, " | ", commonInfo.Name));
+    ViewBag.Keyword = Html.Raw(string.Concat(partner.Name, " | ", commonInfo.Name));
+    ViewBag.Url = partner.SeoLink;
+    ViewBag.Image = partner.Image;
 }
 
 <section class="page-title_professional" style="background-image:url(images/background/4.jpg);">

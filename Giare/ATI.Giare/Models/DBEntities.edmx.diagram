@@ -28,6 +28,7 @@
         <EntityTypeShape EntityType="ATI.VinhHungModel.Tracker" Width="1.5" PointX="4.75" PointY="13.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ATI.VinhHungModel.User" Width="1.5" PointX="14.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ATI.VinhHungModel.Tag" Width="1.5" PointX="14.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ATI.VinhHungModel.ConfigImage" Width="1.5" PointX="15.375" PointY="7.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -1,0 +1,27 @@
+﻿@using ATI.Web.Models;
+@using ATI.Web.Helper;
+
+<div class="sidebar-side pull-left col-lg-4 col-md-4 col-sm-12 col-xs-12">
+    <aside class="sidebar">
+        <div class="shop-sidebar">
+            <!-- Categories -->
+            <div class="sidebar-widget categories">
+                <div class="sidebar-title">
+                    <h3>
+                        @ATIResourceManger._managerResources.GetString("CateProduct_Label", ATIResourceManger._culture)
+                    </h3>
+                </div>
+                <ul class="cat-list">
+                    @{
+                        foreach (var item in (List<CateProduct>)ViewBag.Categories)
+                        {
+                            <li>
+                                <a href="/san-pham/@item.SeoLink" class="clearfix">@item.Name</a>
+                            </li>
+                        }
+                    }
+                </ul>
+            </div>
+        </div>
+    </aside>
+</div>

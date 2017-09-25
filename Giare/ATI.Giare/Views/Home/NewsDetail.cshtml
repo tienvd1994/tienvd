@@ -7,10 +7,9 @@
     ViewBag.Title = Html.Raw(news.Title);
     ViewBag.Description = Html.Raw(news.Summary);
     ViewBag.Keyword = Html.Raw(news.Summary);
-    ViewBag.Url = "http://www.fcn.vn/bai-viet/" + news.SeoLink;
-    ViewBag.Image = "http://cdn.quancafe.vn/z_300x200" + news.Image;
+    ViewBag.Url = news.SeoLink;
+    ViewBag.Image = news.Image;
     Layout = "~/Views/Shared/_Layout.cshtml";
-    var context = (System.Web.HttpContextWrapper)ViewBag.Context;
 }
 <link href="~/Content/css/blog.css" rel="stylesheet" />
 

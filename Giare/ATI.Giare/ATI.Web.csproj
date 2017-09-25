@@ -211,6 +211,10 @@
       <DependentUpon>DBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CommonInfoViewModel.cs" />
+    <Compile Include="Models\ConfigImage.cs">
+      <DependentUpon>DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ConfigImageViewModel.cs" />
     <Compile Include="Models\Contact.cs">
       <DependentUpon>DBEntities.tt</DependentUpon>
     </Compile>
@@ -432,6 +436,7 @@
     <Content Include="Content\images\staff-3.jpg" />
     <Content Include="Content\images\staff-4.jpg" />
     <Content Include="Content\images\thiet ke nha lien ke xanh dep.jpg" />
+    <Content Include="Content\images\timer.png" />
     <Content Include="Content\images\tu-van-moi-truong.jpg" />
     <Content Include="Content\images\tu-van-xay-dung.jpg" />
     <Content Include="Content\images\twitter.png" />
@@ -1295,6 +1300,7 @@
     <Content Include="Scripts\ModelViews\CateSolution.js" />
     <Content Include="Scripts\ModelViews\CMSChangePassword.js" />
     <Content Include="Scripts\ModelViews\commonInfo.js" />
+    <Content Include="Scripts\ModelViews\ConfigEmail.js" />
     <Content Include="Scripts\ModelViews\Contact.js" />
     <Content Include="Scripts\ModelViews\Customer.js" />
     <Content Include="Scripts\ModelViews\CustomerSay.js" />
@@ -1447,6 +1453,7 @@
     <Content Include="Views\CMS\CateSolutions.cshtml" />
     <Content Include="Views\Home\Footer.cshtml" />
     <Content Include="Views\CMS\ConfigSlide.cshtml" />
+    <Content Include="Views\Home\CategoriesSidebar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

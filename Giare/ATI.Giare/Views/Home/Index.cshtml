@@ -1,147 +1,73 @@
 ﻿@using ATI.Web.Models;
 @using ATI.Web.Helper;
 
+@{
+    var commonInfo = (CommonInfo)ViewBag.CommonInfo;
+    ViewBag.Title = Html.Raw(string.Concat(ATIResourceManger._managerResources.GetString("HomeCode", ATIResourceManger._culture), " | ", commonInfo.Name));
+    ViewBag.Description = Html.Raw(commonInfo.Name);
+    ViewBag.Keyword = Html.Raw(commonInfo.Name);
+    ViewBag.Url = "";
+    ViewBag.Image = commonInfo.Logo;
+}
+
 <!--Main Slider-->
 <section class="main-slider_professional" data-start-height="650" data-slide-overlay="yes">
-
     <div class="tp-banner-container">
         <div class="tp-banner">
             <ul>
-                <li data-transition="fade" data-slotamount="1" data-masterspeed="1000" data-thumb="images/main-slider/image-1.jpg" data-saveperformance="off" data-title="Awesome Title Here">
-                    <img src="http://html.tonatheme.com/2017/Professional/images/main-slider/image-1.jpg" alt="" data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat">
-                    <div class="blue-layer"></div>
+                @{
+                    var items = (List<ConfigImage>)ViewBag.ListSlide;
 
-                    <div class="tp-caption sft sfb tp-resizeme"
-                         data-x="left" data-hoffset="0"
-                         data-y="center" data-voffset="-100"
-                         data-speed="1500"
-                         data-start="500"
-                         data-easing="easeOutExpo"
-                         data-splitin="none"
-                         data-splitout="none"
-                         data-elementdelay="0.01"
-                         data-endelementdelay="0.3"
-                         data-endspeed="1200"
-                         data-endeasing="Power4.easeIn"><h2>Creative Agency</h2></div>
+                    foreach (var item in items)
+                    {
+                        <li data-transition="fade" data-slotamount="1" data-masterspeed="1000" data-thumb="@item.Image" data-saveperformance="off" data-title="Awesome Title Here">
+                            <img src="@item.Image" alt="" data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat">
+                            <div class="blue-layer"></div>
 
-                    <div class="tp-caption sfb sfb tp-resizeme"
-                         data-x="left" data-hoffset="0"
-                         data-y="center" data-voffset="0"
-                         data-speed="1500"
-                         data-start="1000"
-                         data-easing="easeOutExpo"
-                         data-splitin="none"
-                         data-splitout="none"
-                         data-elementdelay="0.01"
-                         data-endelementdelay="0.3"
-                         data-endspeed="1200"
-                         data-endeasing="Power4.easeIn"><div class="text">The others comfortable in their tropic island nest the love Boat promises<br> to have something  for everyone michael Knight a young loner.</div></div>
+                            @*<div class="tp-caption sft sfb tp-resizeme"
+                                data-x="left" data-hoffset="0"
+                                data-y="center" data-voffset="-100"
+                                data-speed="1500"
+                                data-start="500"
+                                data-easing="easeOutExpo"
+                                data-splitin="none"
+                                data-splitout="none"
+                                data-elementdelay="0.01"
+                                data-endelementdelay="0.3"
+                                data-endspeed="1200"
+                                data-endeasing="Power4.easeIn"><h2>Planing For Business</h2></div>*@
 
-                    <div class="tp-caption sfb sfb tp-resizeme"
-                         data-x="left" data-hoffset="0"
-                         data-y="center" data-voffset="100"
-                         data-speed="1500"
-                         data-start="1500"
-                         data-easing="easeOutExpo"
-                         data-splitin="none"
-                         data-splitout="none"
-                         data-elementdelay="0.01"
-                         data-endelementdelay="0.3"
-                         data-endspeed="1200"
-                         data-endeasing="Power4.easeIn">
-                        <a href="#" class="theme-btn btn-style-one">READ MORE</a>&ensp;
-                        <a href="/lien-he" class="theme-btn btn-style-four">Liên hệ</a>
-                    </div>
+                            @*<div class="tp-caption sfb sfb tp-resizeme"
+                                data-x="left" data-hoffset="0"
+                                data-y="center" data-voffset="0"
+                                data-speed="1500"
+                                data-start="1000"
+                                data-easing="easeOutExpo"
+                                data-splitin="none"
+                                data-splitout="none"
+                                data-elementdelay="0.01"
+                                data-endelementdelay="0.3"
+                                data-endspeed="1200"
+                                data-endeasing="Power4.easeIn"><div class="text">The others comfortable in their tropic island nest the love Boat promises<br> to have something  for everyone michael Knight a young loner.</div></div>*@
 
-                </li>
-
-                <li data-transition="fade" data-slotamount="1" data-masterspeed="1000" data-thumb="images/main-slider/image-2.jpg" data-saveperformance="off" data-title="Awesome Title Here">
-                    <img src="http://html.tonatheme.com/2017/Professional/images/main-slider/image-2.jpg" alt="" data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat">
-                    <div class="blue-layer"></div>
-
-                    <div class="tp-caption sft sfb tp-resizeme"
-                         data-x="left" data-hoffset="0"
-                         data-y="center" data-voffset="-100"
-                         data-speed="1500"
-                         data-start="500"
-                         data-easing="easeOutExpo"
-                         data-splitin="none"
-                         data-splitout="none"
-                         data-elementdelay="0.01"
-                         data-endelementdelay="0.3"
-                         data-endspeed="1200"
-                         data-endeasing="Power4.easeIn"><h2>Planing For Business</h2></div>
-
-                    <div class="tp-caption sfb sfb tp-resizeme"
-                         data-x="left" data-hoffset="0"
-                         data-y="center" data-voffset="0"
-                         data-speed="1500"
-                         data-start="1000"
-                         data-easing="easeOutExpo"
-                         data-splitin="none"
-                         data-splitout="none"
-                         data-elementdelay="0.01"
-                         data-endelementdelay="0.3"
-                         data-endspeed="1200"
-                         data-endeasing="Power4.easeIn"><div class="text">The others comfortable in their tropic island nest the love Boat promises<br> to have something  for everyone michael Knight a young loner.</div></div>
-
-                    <div class="tp-caption sfb sfb tp-resizeme"
-                         data-x="left" data-hoffset="0"
-                         data-y="center" data-voffset="100"
-                         data-speed="1500"
-                         data-start="1500"
-                         data-easing="easeOutExpo"
-                         data-splitin="none"
-                         data-splitout="none"
-                         data-elementdelay="0.01"
-                         data-endelementdelay="0.3"
-                         data-endspeed="1200"
-                         data-endeasing="Power4.easeIn"><a href="#" class="theme-btn btn-style-one">READ MORE</a>&ensp;<a href="contact.html" class="theme-btn btn-style-four">CONTACT US</a></div>
-
-                </li>
-                <li data-transition="fade" data-slotamount="1" data-masterspeed="1000" data-thumb="images/main-slider/image-3.jpg" data-saveperformance="off" data-title="Awesome Title Here">
-                    <img src="http://html.tonatheme.com/2017/Professional/images/main-slider/image-3.jpg" alt="" data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat">
-                    <div class="blue-layer"></div>
-
-                    <div class="tp-caption sft sfb tp-resizeme"
-                         data-x="left" data-hoffset="0"
-                         data-y="center" data-voffset="-100"
-                         data-speed="1500"
-                         data-start="500"
-                         data-easing="easeOutExpo"
-                         data-splitin="none"
-                         data-splitout="none"
-                         data-elementdelay="0.01"
-                         data-endelementdelay="0.3"
-                         data-endspeed="1200"
-                         data-endeasing="Power4.easeIn"><h2>Planing For Business</h2></div>
-
-                    <div class="tp-caption sfb sfb tp-resizeme"
-                         data-x="left" data-hoffset="0"
-                         data-y="center" data-voffset="0"
-                         data-speed="1500"
-                         data-start="1000"
-                         data-easing="easeOutExpo"
-                         data-splitin="none"
-                         data-splitout="none"
-                         data-elementdelay="0.01"
-                         data-endelementdelay="0.3"
-                         data-endspeed="1200"
-                         data-endeasing="Power4.easeIn"><div class="text">The others comfortable in their tropic island nest the love Boat promises<br> to have something  for everyone michael Knight a young loner.</div></div>
-
-                    <div class="tp-caption sfb sfb tp-resizeme"
-                         data-x="left" data-hoffset="0"
-                         data-y="center" data-voffset="100"
-                         data-speed="1500"
-                         data-start="1500"
-                         data-easing="easeOutExpo"
-                         data-splitin="none"
-                         data-splitout="none"
-                         data-elementdelay="0.01"
-                         data-endelementdelay="0.3"
-                         data-endspeed="1200"
-                         data-endeasing="Power4.easeIn"><a href="#" class="theme-btn btn-style-one">READ MORE</a>&ensp;<a href="contact.html" class="theme-btn btn-style-four">CONTACT US</a></div>
-                </li>
+                            <div class="tp-caption sfb sfb tp-resizeme"
+                                 data-x="left" data-hoffset="0"
+                                 data-y="center" data-voffset="100"
+                                 data-speed="1500"
+                                 data-start="1500"
+                                 data-easing="easeOutExpo"
+                                 data-splitin="none"
+                                 data-splitout="none"
+                                 data-elementdelay="0.01"
+                                 data-endelementdelay="0.3"
+                                 data-endspeed="1200"
+                                 data-endeasing="Power4.easeIn">
+                                <a href="@item.Url" class="theme-btn btn-style-one">Xem thêm</a>&ensp;
+                                <a href="/lien-he" class="theme-btn btn-style-four">Liên hệ</a>
+                            </div>
+                        </li>
+                    }
+                }
             </ul>
 
             <div class="tp-bannertimer"></div>
@@ -219,72 +145,6 @@
     </div>
 </section>
 <!--End Services Section-->
-<!--Counter Section-->
-@*<section class="counter-section_professional" style="background-image:url(../../Content/images/background/parallax2.jpg);">
-        <div class="auto-container">
-
-            <!--Fun Facts-->
-            <div class="fact-counter row clearfix">
-                <!--Column-->
-                <div class="column counter-column col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <div class="inner">
-                        <div class="content">
-                            <div class="icon-box"><i class="flaticon-anchor"></i></div>
-                            <div class="count-outer count-box">
-                                <span class="count-text" data-speed="2000" data-stop="1275">0</span>
-                                <span class="plus-tag">+</span>
-                            </div>
-                            <div class="counter-title">Succesfull Projects</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!--Column-->
-                <div class="column counter-column col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <div class="inner">
-                        <div class="content">
-                            <div class="icon-box"><i class="flaticon-happiness"></i></div>
-                            <div class="count-outer count-box">
-                                <span class="count-text" data-speed="2500" data-stop="7500">0</span>
-                            </div>
-                            <div class="counter-title">Happy Customers</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!--Column-->
-                <div class="column counter-column col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <div class="inner">
-                        <div class="content">
-                            <div class="icon-box"><i class="flaticon-competition"></i></div>
-                            <div class="count-outer count-box">
-                                <span class="count-text" data-speed="2800" data-stop="970">0</span>
-                            </div>
-                            <div class="counter-title">AWARDS WINNING</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!--Column-->
-                <div class="column counter-column col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <div class="inner">
-                        <div class="content">
-                            <div class="icon-box"><i class="flaticon-coffee-cup"></i></div>
-                            <div class="count-outer count-box">
-                                <span class="count-text" data-speed="3500" data-stop="250">0</span>
-                                <span class="plus-tag">K</span>
-                            </div>
-                            <div class="counter-title">Cup Of Coffee</div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-            <!--End Fun Facts-->
-
-        </div>
-    </section>*@
-<!--End Counter Section-->
 <!-- project_professional Section-->
 <section class="project_professional">
     <div class="auto-container">
@@ -343,225 +203,6 @@
     </div>
 </section>
 <!--End project_professional Section-->
-<!-- our team -->
-@*<section class="team-section">
-        <div class="auto-container">
-            <!--Sec Title-->
-            <div class="sec-title centered">
-                <h2>Meet Our Team</h2>
-                <div class="separator"></div>
-            </div>
-
-            <div class="row clearfix">
-                <!--Staff Member-->
-                <div class="team-member col-md-3 col-sm-6 col-xs-12">
-                    <div class="inner-box">
-                        <figure class="image-box">
-                            <img src="~/Content/images/staff-1.jpg" />
-                            <div class="overlay-box">
-                                <ul class="social-icon-two">
-                                    <li><a href="http://html.tonatheme.com/2017/Professional/index.html#"><span class="fa fa-facebook-f"></span></a></li>
-                                    <li><a href="http://html.tonatheme.com/2017/Professional/index.html#"><span class="fa fa-twitter"></span></a></li>
-                                    <li><a href="http://html.tonatheme.com/2017/Professional/index.html#"><span class="fa fa-pinterest-p"></span></a></li>
-                                </ul>
-                            </div>
-                        </figure>
-                        <div class="lower-content">
-                            <h3><a href="http://html.tonatheme.com/2017/Professional/index.html#">Anna Peterson</a></h3>
-                            <div class="designation">Chief Finance Officer</div>
-                            <div class="text">
-                                <p>Mirum est notare quam littera gothica, quam putamus</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!--Staff Member-->
-                <div class="team-member col-md-3 col-sm-6 col-xs-12">
-                    <div class="inner-box">
-                        <figure class="image-box">
-                            <img src="~/Content/images/staff-2.jpg" />
-                            <div class="overlay-box">
-                                <ul class="social-icon-two">
-                                    <li><a href="http://html.tonatheme.com/2017/Professional/index.html#"><span class="fa fa-facebook-f"></span></a></li>
-                                    <li><a href="http://html.tonatheme.com/2017/Professional/index.html#"><span class="fa fa-twitter"></span></a></li>
-                                    <li><a href="http://html.tonatheme.com/2017/Professional/index.html#"><span class="fa fa-pinterest-p"></span></a></li>
-                                </ul>
-                            </div>
-                        </figure>
-                        <div class="lower-content">
-                            <h3><a href="http://html.tonatheme.com/2017/Professional/index.html#">Steven Finch</a></h3>
-                            <div class="designation">Executive Director</div>
-                            <div class="text">
-                                <p>Mirum est notare quam littera gothica, quam putamus</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!--Staff Member-->
-                <div class="team-member col-md-3 col-sm-6 col-xs-12">
-                    <div class="inner-box">
-                        <figure class="image-box">
-                            <img src="~/Content/images/staff-3.jpg" />
-                            <div class="overlay-box">
-                                <ul class="social-icon-two">
-                                    <li><a href="http://html.tonatheme.com/2017/Professional/index.html#"><span class="fa fa-facebook-f"></span></a></li>
-                                    <li><a href="http://html.tonatheme.com/2017/Professional/index.html#"><span class="fa fa-twitter"></span></a></li>
-                                    <li><a href="http://html.tonatheme.com/2017/Professional/index.html#"><span class="fa fa-pinterest-p"></span></a></li>
-                                </ul>
-                            </div>
-                        </figure>
-                        <div class="lower-content">
-                            <h3><a href="http://html.tonatheme.com/2017/Professional/index.html#">Garry Miller</a></h3>
-                            <div class="designation">Marketing Officer</div>
-                            <div class="text">
-                                <p>Mirum est notare quam littera gothica, quam putamus</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--Staff Member-->
-                <div class="team-member col-md-3 col-sm-6 col-xs-12">
-                    <div class="inner-box">
-                        <figure class="image-box">
-                            <img src="~/Content/images/staff-4.jpg" />
-                            <div class="overlay-box">
-                                <ul class="social-icon-two">
-                                    <li><a href="http://html.tonatheme.com/2017/Professional/index.html#"><span class="fa fa-facebook-f"></span></a></li>
-                                    <li><a href="http://html.tonatheme.com/2017/Professional/index.html#"><span class="fa fa-twitter"></span></a></li>
-                                    <li><a href="http://html.tonatheme.com/2017/Professional/index.html#"><span class="fa fa-pinterest-p"></span></a></li>
-                                </ul>
-                            </div>
-                        </figure>
-                        <div class="lower-content">
-                            <h3><a href="http://html.tonatheme.com/2017/Professional/index.html#">Suzie Bates</a></h3>
-                            <div class="designation">Development Officer</div>
-                            <div class="text">
-                                <p>Mirum est notare quam littera gothica, quam putamus</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>*@
-<!--Testimonail Section-->
-@*<section class="testimonial-section" style="background-image:url(../../Content/images/background/parallax2.jpg);">
-        <div class="auto-container">
-            <!--Sec Title-->
-            <div class="sec-title centered light">
-                <h2>World From Clients</h2>
-                <div class="separator"></div>
-            </div>
-            <div class="row">
-                <div class="col-md-8 col-md-offset-2 col-sm-12">
-                    <!--Testimonial Column-->
-                    <div class="testimonial-column">
-                        <div class="single-item-carousel owl-carousel owl-loaded owl-drag">
-                            <!--Testimonial Style One-->
-                            <!--Testimonial Style One-->
-                            <!--Testimonial Style One-->
-                            <div class="owl-stage-outer">
-                                <div class="owl-stage" style="transform: translate3d(-3080px, 0px, 0px); transition: 0.7s; width: 5390px;">
-                                    <div class="owl-item cloned" style="width: 770px;">
-                                        <div class="testimonial-style-one">
-                                            <div class="number">02.</div>
-                                            <div class="text">Completely synergize resource taxing relationships via premier niche markets. The Professionally cultivate one to  one customer service with robust ideas. Dynamically innovate resource-leveling customer service for state of the art customer service.</div>
-                                            <div class="author-info">
-                                                <div class="author-thumb">
-                                                    <img src="~/Content/images/author-1.jpg" />
-                                                </div>
-                                                <h4>JOHN ALEX</h4>
-                                                <div class="designation">Business Consultant</div>
-                                            </div>
-                                        </div>
-                                    </div><div class="owl-item cloned" style="width: 770px;">
-                                        <div class="testimonial-style-one">
-                                            <div class="number">03.</div>
-                                            <div class="text">Completely synergize resource taxing relationships via premier niche markets. The Professionally cultivate one to  one customer service with robust ideas. Dynamically innovate resource-leveling customer service for state of the art customer service.</div>
-                                            <div class="author-info">
-                                                <div class="author-thumb">
-                                                    <img src="~/Content/images/author-1.jpg" />
-                                                </div>
-                                                <h4>JOHN ALEX</h4>
-                                                <div class="designation">Business Consultant</div>
-                                            </div>
-                                        </div>
-                                    </div><div class="owl-item" style="width: 770px;">
-                                        <div class="testimonial-style-one">
-                                            <div class="number">01.</div>
-                                            <div class="text">Completely synergize resource taxing relationships via premier niche markets. The Professionally cultivate one to  one customer service with robust ideas. Dynamically innovate resource-leveling customer service for state of the art customer service.</div>
-                                            <div class="author-info">
-                                                <div class="author-thumb">
-                                                    <img src="~/Content/images/author-1.jpg" />
-                                                </div>
-                                                <h4>JOHN ALEX</h4>
-                                                <div class="designation">Business Consultant</div>
-                                            </div>
-                                        </div>
-                                    </div><div class="owl-item" style="width: 770px;">
-                                        <div class="testimonial-style-one">
-                                            <div class="number">02.</div>
-                                            <div class="text">Completely synergize resource taxing relationships via premier niche markets. The Professionally cultivate one to  one customer service with robust ideas. Dynamically innovate resource-leveling customer service for state of the art customer service.</div>
-                                            <div class="author-info">
-                                                <div class="author-thumb">
-                                                    <img src="~/Content/images/author-1.jpg" />
-                                                </div>
-                                                <h4>JOHN ALEX</h4>
-                                                <div class="designation">Business Consultant</div>
-                                            </div>
-                                        </div>
-                                    </div><div class="owl-item active" style="width: 770px;">
-                                        <div class="testimonial-style-one">
-                                            <div class="number">03.</div>
-                                            <div class="text">Completely synergize resource taxing relationships via premier niche markets. The Professionally cultivate one to  one customer service with robust ideas. Dynamically innovate resource-leveling customer service for state of the art customer service.</div>
-                                            <div class="author-info">
-                                                <div class="author-thumb">
-                                                    <img src="~/Content/images/author-1.jpg" />
-                                                </div>
-                                                <h4>JOHN ALEX</h4>
-                                                <div class="designation">Business Consultant</div>
-                                            </div>
-                                        </div>
-                                    </div><div class="owl-item cloned" style="width: 770px;">
-                                        <div class="testimonial-style-one">
-                                            <div class="number">01.</div>
-                                            <div class="text">Completely synergize resource taxing relationships via premier niche markets. The Professionally cultivate one to  one customer service with robust ideas. Dynamically innovate resource-leveling customer service for state of the art customer service.</div>
-                                            <div class="author-info">
-                                                <div class="author-thumb">
-                                                    <img src="~/Content/images/author-1.jpg" />
-                                                </div>
-                                                <h4>JOHN ALEX</h4>
-                                                <div class="designation">Business Consultant</div>
-                                            </div>
-                                        </div>
-                                    </div><div class="owl-item cloned" style="width: 770px;">
-                                        <div class="testimonial-style-one">
-                                            <div class="number">02.</div>
-                                            <div class="text">Completely synergize resource taxing relationships via premier niche markets. The Professionally cultivate one to  one customer service with robust ideas. Dynamically innovate resource-leveling customer service for state of the art customer service.</div>
-                                            <div class="author-info">
-                                                <div class="author-thumb">
-                                                    <img src="~/Content/images/author-1.jpg" />
-                                                </div>
-                                                <h4>JOHN ALEX</h4>
-                                                <div class="designation">Business Consultant</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div><div class="owl-nav"><div class="owl-prev"><span class="fa fa-angle-left"></span></div><div class="owl-next"><span class="fa fa-angle-right"></span></div></div><div class="owl-dots"><div class="owl-dot"><span></span></div><div class="owl-dot"><span></span></div><div class="owl-dot active"><span></span></div></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </section>*@
-<!--End Testimonail Section-->
 <!--News Section-->
 <section class="news-section_professional">
     <div class="auto-container">

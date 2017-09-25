@@ -28,12 +28,11 @@
     <meta content="news" itemprop="genre" />
     <meta name="language" content="en,vn" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    @*<link href="link%20Google%20Plus" rel="publisher" />*@
     <meta content="@Html.Raw(commonInfo.Name)" itemprop="sourceOrganization" name="source" />
-    <meta content="2014-01-01 08:00 + 07:00" itemprop="datePublished" name="pubdate" />
-    <meta content="2014-01-01 08:00 + 07:00" itemprop="dateModified" name="lastmod" />
-    <meta content="2014-01-01 09:00 + 07:00" itemprop="dateCreated" />
-    <meta content="Công ty Cổ phần ATI" itemprop="headline" />
+    @*<meta content="2014-01-01 08:00 + 07:00" itemprop="datePublished" name="pubdate" />
+        <meta content="2014-01-01 08:00 + 07:00" itemprop="dateModified" name="lastmod" />
+        <meta content="2014-01-01 09:00 + 07:00" itemprop="dateCreated" />*@
+    <meta content="@commonInfo.Name" itemprop="headline" />
     <meta content="article" property="og:type" />
     <meta content="@ViewBag.Url" itemprop="url" property="og:url" />
     <meta content="@Html.Raw(commonInfo.Name)" property="og:site_name" />
@@ -49,21 +48,7 @@
     <meta name="twitter:description" content="@ViewBag.Description" />
     <meta name="twitter:image" content="@ViewBag.Image" />
     <!-- Stylesheets -->
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
-    <link href="~/Content/revolution-slider/revolution-slider.css" rel="stylesheet" />
-    <link href="~/Content/style.css" rel="stylesheet" />
-    <link href="~/Content/slick.css" rel="stylesheet" />
-    <link href="~/Content/owl.css" rel="stylesheet" />
-    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
-    <link href="~/Content/jquery.fancybox.css" rel="stylesheet" />
-    <link href="~/Content/hover.css" rel="stylesheet" />
-    <link href="~/Content/flaticon.css" rel="stylesheet" />
-    <link href="~/Content/animate.css" rel="stylesheet" />
-    <link href="~/Content/jquery.bootstrap-touchspin.css" rel="stylesheet" />
-    <link href="~/Content/jquery-ui.css" rel="stylesheet" />
-    <link rel="apple-touch-icon" sizes="180x180" href="http://html.tonatheme.com/2017/Professional/images/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" href="http://html.tonatheme.com/2017/Professional/images/favicon/favicon-32x32.png" sizes="32x32">
-    <link rel="icon" type="image/png" href="http://html.tonatheme.com/2017/Professional/images/favicon/favicon-16x16.png" sizes="16x16">
+    @Styles.Render("~/Content/css/layout")
     <!-- Responsive -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
@@ -75,6 +60,7 @@
             margin-right: 17px;
         }
     </style>
+    @RenderSection("styles", false)
 </head>
 <body>
     <div class="page-wrapper">
@@ -101,6 +87,11 @@
                                 <li> <i class="flaticon-telephone-1"></i>@commonInfo.Phone - @commonInfo.Mobile</li>
                                 <li> <i class="flaticon-email-filled-closed-envelope"></i>@commonInfo.Email</li>
                                 @*<li> <i class="flaticon-placeholder-2"> </i> @commonInfo.Office</li>*@
+                                <li>
+                                    <a href="#">
+                                        <img src="~/Content/images/vietnam32.png" />
+                                    </a>
+                                </li>
                             </ul>
                         </div>
 
@@ -131,18 +122,15 @@
                         <!--Nav Outer End-->
                         <div class="search-box-outer">
                             <div class="dropdown">
-                                @*<div class="cart-btn">
-                                        <a href="http://html.tonatheme.com/2017/Professional/shopping-cart.html"><i class="fa fa-shopping-cart"></i></a>
-                                    </div>*@
                                 <button class="search-box-btn dropdown-toggle" type="button" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <span class="fa fa-search"></span>
                                 </button>
                                 <ul class="dropdown-menu pull-right search-panel" aria-labelledby="dropdownMenu3">
                                     <li class="panel-outer">
                                         <div class="form-container">
-                                            <form method="post" action="http://html.tonatheme.com/2017/Professional/blog.html">
+                                            <form method="post" action="#">
                                                 <div class="form-group">
-                                                    <input type="search" name="field-name" value="" placeholder="Search Here">
+                                                    <input type="search" name="field-name" value="" placeholder="@ATIResourceManger._managerResources.GetString("Search_Label", ATIResourceManger._culture)">
                                                     <button type="submit" class="search-btn"><span class="fa fa-search"></span></button>
                                                 </div>
                                             </form>
@@ -159,7 +147,6 @@
         </header>
         <!--End Main Header -->
         @RenderBody()
-
         @{Html.RenderAction("Sponsors", "Home");}
 
         <!-- footer top area -->
@@ -216,21 +203,7 @@
     <!--End pagewrapper-->
     <!--Scroll to top-->
     <div class="scroll-to-top scroll-to-target" data-target=".main-header_professional"><span class="fa fa-long-arrow-up"></span></div>
-    @*<script src="~/Scripts/jquery-1.10.2.min.js"></script>*@
-    <script src="~/Scripts/jquery-1.8.2.min.js"></script>
-    @*<script src="~/Scripts/jquery-3.2.1.min.js"></script>*@
-    <script src="~/Scripts/bootstrap.min.js"></script>
-    <script src="~/Scripts/revolution-slider/revolution.min.js"></script>
-    <script src="~/Scripts/jquery.fancybox.pack.js"></script>
-    <script src="~/Scripts/jquery.fancybox-media.js"></script>
-    <script src="~/Scripts/jquery.validate.min.js"></script>
-    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
-    <script src="~/Scripts/owl.js"></script>
-    <script src="~/Scripts/slick.js"></script>
-    <script src="~/Scripts/wow.js"></script>
-    <script src="~/Scripts/appear.js"></script>
-    <script src="~/Scripts/isotope.js"></script>
-    <script src="~/Scripts/script.js"></script>
+    @Scripts.Render("~/Scripts/layout")
 
     @RenderSection("KnockOut", false)
     <script>

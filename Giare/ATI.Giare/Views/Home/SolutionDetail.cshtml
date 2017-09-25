@@ -4,13 +4,11 @@
 @{
     var news = (News)ViewBag.News;
     var commonInfo = (CommonInfo)ViewBag.CommonInfo;
-    ViewBag.Title = Html.Raw(news.Title);
+    ViewBag.Title = Html.Raw(string.Concat(news.Title, " | ", commonInfo.Name));
     ViewBag.Description = Html.Raw(news.Summary);
     ViewBag.Keyword = Html.Raw(news.Summary);
-    ViewBag.Url = "http://www.fcn.vn/bai-viet/" + news.SeoLink;
-    ViewBag.Image = "http://cdn.quancafe.vn/z_300x200" + news.Image;
-    Layout = "~/Views/Shared/_Layout.cshtml";
-    var context = (System.Web.HttpContextWrapper)ViewBag.Context;
+    ViewBag.Url = news.SeoLink;
+    ViewBag.Image = news.Image;
 }
 <link href="~/Content/css/blog.css" rel="stylesheet" />
 
@@ -29,8 +27,7 @@
             </li>
             <li>
                 <a href="/dich-vu">
-                    @*@ATIResourceManger._managerResources.GetString("ServiceCode", ATIResourceManger._culture)*@
-                    Giải pháp
+                    @ATIResourceManger._managerResources.GetString("Solutions_Label", ATIResourceManger._culture)
                 </a> <span class="fa fa-angle-right"></span>
             </li>
             <li>@news.Title</li>

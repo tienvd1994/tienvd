@@ -2,11 +2,11 @@
 @using ATI.Web.Helper;
 @{
     var commonInfo = (CommonInfo)ViewBag.CommonInfo;
-    ViewBag.Title = Html.Raw("Đối tác tham gia dự án");
-    ViewBag.Description = Html.Raw("Dự án " + commonInfo.Name + " đã thực hiện");
-    ViewBag.Keyword = Html.Raw("Dự án " + commonInfo.Name + " đã thực hiện");
-    ViewBag.Url = "http://www.fcn.vn/doi-tac";
-    ViewBag.Image = "http://www.fcn.vn" + commonInfo.Logo;
+    ViewBag.Title = Html.Raw(string.Concat(@ATIResourceManger._managerResources.GetString("ServiceCode", ATIResourceManger._culture), " | ", commonInfo.Name));
+    ViewBag.Description = Html.Raw(string.Concat(@ATIResourceManger._managerResources.GetString("ServiceCode", ATIResourceManger._culture), " | ", commonInfo.Name));
+    ViewBag.Keyword = Html.Raw(string.Concat(@ATIResourceManger._managerResources.GetString("ServiceCode", ATIResourceManger._culture), " | ", commonInfo.Name));
+    ViewBag.Url = "";
+    ViewBag.Image = commonInfo.Logo;
 }
 
 <section class="page-title_professional" style="background-image:url(images/background/4.jpg);">

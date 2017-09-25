@@ -34,14 +34,43 @@ namespace ATI.Web
                 "~/scripts/v.1/jflickrfeed.js",
                 "~/scripts/v.1/theme.plugins.js", "~/scripts/v.1/theme.js"));
 
-            bundles.Add(new StyleBundle("~/Content/css/v12").Include("~/content/v.1/css/css.css", "~/content/v.1/css/bootstrap.css", "~/content/v.1/css/font-awesome.css",
-                "~/content/v.1/css/owl_002.css", "~/content/v.1/css/owl.css", "~/content/v.1/css/magnific-popup.css",
-                "~/content/v.1/css/jquery.css", "~/content/v.1/css/mediaelementplayer.css", "~/content/v.1/css/theme.css", "~/content/v.1/css/theme-elements.css",
-                "~/content/v.1/css/theme-blog.css", "~/content/v.1/css/theme-shop.css", "~/content/v.1/css/theme-animate.css", "~/content/v.1/css/settings.css",
-                "~/content/v.1/css/component.css", "~/content/v.1/css/theme-responsive.css", "~/content/v.1/css/default.css", "~/content/v.1/css/custom.css", "~/Content/v.1/css/app.css"));
+            bundles.Add(new ScriptBundle("~/Scripts/layout").Include(
+                "~/Scripts/jquery-1.8.2.min.js",
+                "~/Scripts/bootstrap.min.js",
+                "~/Scripts/revolution-slider/revolution.min.js",
+                "~/Scripts/jquery.fancybox.pack.js",
+                "~/Scripts/jquery.fancybox-media.js",
+                "~/Scripts/jquery.validate.min.js",
+                "~/Scripts/jquery.validate.unobtrusive.min.js",
+                "~/Scripts/owl.js",
+                "~/Scripts/slick.js",
+                "~/Scripts/wow.js",
+                "~/Scripts/appear.js",
+                "~/Scripts/isotope.js",
+                "~/Scripts/script.js"
+                ));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/bootstrap.css", "~/Content/app.css",
-                "~/Content/style.css", "~/Content/header1.css", "~/Content/responsive.css",
+            bundles.Add(new StyleBundle("~/Content/css/layout").Include(
+                "~/Content/bootstrap.min.css",
+                "~/Content/revolution-slider/revolution-slider.css",
+                "~/Content/style.css",
+                "~/Content/slick.css",
+                "~/Content/owl.css",
+                "~/Content/font-awesome.min.css",
+                "~/Content/jquery.fancybox.css",
+                "~/Content/hover.css",
+                "~/Content/flaticon.css",
+                "~/Content/animate.css",
+                "~/Content/jquery.bootstrap-touchspin.css",
+                "~/Content/jquery-ui.css"
+                ));
+
+            bundles.Add(new StyleBundle("~/Content/css").Include("" +
+                "~/Content/bootstrap.css",
+                "~/Content/app.css",
+                "~/Content/style.css",
+                "~/Content/header1.css",
+                "~/Content/responsive.css",
                 "~/Content/font-awesome/font-awesome.css", "~/Content/flexslider.css", "~/Content/jquery.css", "~/Content/horizontal-parallax.css",
                 "~/Content/page_promo.css", "~/Content/red.css", "~/Content/header1-red.css", "~/Content/kpi.css", "~/Content/page_search.css"));
         }

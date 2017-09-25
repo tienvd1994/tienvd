@@ -4,12 +4,11 @@
     var product = (Product)ViewBag.Product;
     var cate = (CateProduct)ViewBag.Category;
     var commonInfo = (CommonInfo)ViewBag.CommonInfo;
-    ViewBag.Title = Html.Raw(product.Name);
+    ViewBag.Title = Html.Raw(string.Concat(product.Name, " | ", commonInfo.Name));
     ViewBag.Description = Html.Raw(product.Summary);
     ViewBag.Keyword = Html.Raw(product.Summary);
-    ViewBag.Url = "http://www.fcn.vn/du-an/" + product.SeoLink;
+    ViewBag.Url = product.SeoLink;
     ViewBag.Image = product.Image;
-    var context = (System.Web.HttpContextWrapper)ViewBag.Context;
 }
 @section KnockOut{
     <script>
@@ -95,82 +94,6 @@
                                         @Html.Raw(product.Content)
                                     </div>
                                 </div>
-
-                                @*<!--Tab-->
-                                    <div class="tab" id="prod-reviews">
-                                        <div class="content">
-                                            <p>The Brady Bunch these days are all Happy and Free these days are all share them with me oh baby so let sit make the most of this beautiful day since we are together the Love Boat soon.</p>
-                                        </div>
-                                    </div>
-
-                                    <!--Tab -->
-                                    <div class="tab" id="prod-tags">
-                                        <h3>2 Reviews Found</h3>
-
-                                        <!--Reviews Container-->
-                                        <div class="reviews-container">
-
-                                            <!--Reviews-->
-                                            <article class="review-box clearfix">
-                                                <figure class="rev-thumb"><img src="images/resource/author-1.jpg" alt=""></figure>
-                                                <div class="rev-content">
-                                                    <div class="rating"><span class="fa fa-star"></span> <span class="fa fa-star"></span> <span class="fa fa-star"></span> <span class="fa fa-star"></span> <span class="fa fa-star-o"></span></div>
-                                                    <div class="rev-info">Admin – April 03, 2016: </div>
-                                                    <div class="rev-text"><p>Sed eget turpis a pede tempor malesuada. Vivamus quis mi at leo pulvinar hendrerit. Cum sociis natoque penatibus et magnis dis</p></div>
-                                                </div>
-                                            </article>
-
-                                            <article class="review-box clearfix">
-                                                <figure class="rev-thumb"><img src="images/resource/author-2.jpg" alt=""></figure>
-                                                <div class="rev-content">
-                                                    <div class="rating"><span class="fa fa-star"></span> <span class="fa fa-star"></span> <span class="fa fa-star"></span> <span class="fa fa-star-o"></span> <span class="fa fa-star-o"></span></div>
-                                                    <div class="rev-info">Ahsan – April 01, 2016: </div>
-                                                    <div class="rev-text"><p>Sed eget turpis a pede tempor malesuada. Vivamus quis mi at leo pulvinar hendrerit. Cum sociis natoque penatibus et magnis dis</p></div>
-                                                </div>
-                                            </article>
-
-                                        </div>
-
-                                        <!--Add Review-->
-                                        <div class="add-review">
-                                            <h3>Add a Review</h3>
-
-                                            <form method="post" action="shop-single.html">
-                                                <div class="row clearfix">
-                                                    <div class="form-group col-md-6 col-sm-12 col-xs-12">
-                                                        <label>Name *</label>
-                                                        <input type="text" name="name" value="" placeholder="" required="">
-                                                    </div>
-                                                    <div class="form-group col-md-6 col-sm-12 col-xs-12">
-                                                        <label>Email *</label>
-                                                        <input type="email" name="email" value="" placeholder="" required="">
-                                                    </div>
-                                                    <div class="form-group col-md-6 col-sm-12 col-xs-12">
-                                                        <label>Website *</label>
-                                                        <input type="text" name="website" value="" placeholder="" required="">
-                                                    </div>
-                                                    <div class="form-group col-md-6 col-sm-12 col-xs-12">
-                                                        <label>Rating </label>
-                                                        <div class="rating">
-                                                            <a href="#" class="rate-box" title="1 Out of 5"><span class="fa fa-star"></span></a>
-                                                            <a href="#" class="rate-box" title="2 Out of 5"><span class="fa fa-star"></span> <span class="fa fa-star"></span></a>
-                                                            <a href="#" class="rate-box" title="3 Out of 5"><span class="fa fa-star"></span> <span class="fa fa-star"> </span> <span class="fa fa-star"></span></a>
-                                                            <a href="#" class="rate-box" title="4 Out of 5"><span class="fa fa-star"></span> <span class="fa fa-star"></span> <span class="fa fa-star"></span> <span class="fa fa-star"></span></a>
-                                                            <a href="#" class="rate-box" title="5 Out of 5"><span class="fa fa-star"></span> <span class="fa fa-star"></span> <span class="fa fa-star"></span> <span class="fa fa-star"></span> <span class="fa fa-star"></span></a>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group col-md-12 col-sm-12 col-xs-12">
-                                                        <label>Your Review</label>
-                                                        <textarea name="review-message"></textarea>
-                                                    </div>
-                                                    <div class="form-group text-right col-md-12 col-sm-12 col-xs-12">
-                                                        <button type="button" class="theme-btn btn-style-three">Add Review</button>
-                                                    </div>
-                                                </div>
-
-                                            </form>
-                                        </div>
-                                    </div>*@
                             </div>
                         </div>
                     </div>
@@ -212,38 +135,7 @@
             </div>
 
             <!--Sidebar-->
-            <div class="sidebar-side pull-left col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                <aside class="sidebar">
-                    <div class="shop-sidebar">
-                        <!-- Categories -->
-                        <div class="sidebar-widget categories">
-                            <div class="sidebar-title"><h3>BY CATEGORIES</h3></div>
-                            <ul class="cat-list">
-                                <li><a href="#" class="clearfix">Business Plans <span class="count pull-right">(38)</span></a></li>
-                                <li><a href="#" class="clearfix">Consulting <span class="count pull-right">(62)</span></a></li>
-                                <li><a href="#" class="clearfix">Economy <span class="count pull-right">(25)</span></a></li>
-                                <li><a href="#" class="clearfix">Funding Trends<span class="count pull-right">(12)</span></a></li>
-                                <li><a href="#" class="clearfix">Innovation<span class="count pull-right">(57)</span></a></li>
-                                <li><a href="#" class="clearfix">Competitive Research<span class="count pull-right">(20)</span></a></li>
-                            </ul>
-
-                        </div>
-
-                        <!-- Popular Tags -->
-                        <div class="sidebar-widget popular-tags">
-                            <div class="sidebar-title"><h3>Tags</h3></div>
-                            <a href="#">Audit</a>
-                            <a href="#">Business</a>
-                            <a href="#">Consuling</a>
-                            <a href="#">Investment</a>
-                            <a href="#">Agent</a>
-                            <a href="#">Employment</a>
-                            <a href="#">Careers</a>
-                            <a href="#">Planning</a>
-                        </div>
-                    </div>
-                </aside>
-            </div>
+            @{Html.RenderAction("CategoriesSidebar", "Home");}
         </div>
     </div>
 </div>

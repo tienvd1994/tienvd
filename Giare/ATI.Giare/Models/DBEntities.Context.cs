@@ -50,6 +50,7 @@ namespace ATI.Web.Models
         public virtual DbSet<Tracker> Trackers { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Tag> Tags { get; set; }
+        public virtual DbSet<ConfigImage> ConfigImages { get; set; }
     
         public virtual ObjectResult<sp_Contact_GetLastest_Result> sp_Contact_GetLastest(string type, Nullable<int> pageIndex, Nullable<int> recordPerPage, ObjectParameter totalRecord)
         {

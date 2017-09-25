@@ -107,6 +107,23 @@
           <Property Name="Summary_En" Type="nvarchar" MaxLength="3000" />
           <Property Name="LangId" Type="tinyint" />
         </EntityType>
+        <EntityType Name="ConfigImage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Name_En" Type="varchar" MaxLength="50" />
+          <Property Name="Image" Type="varchar" MaxLength="500" />
+          <Property Name="Url" Type="varchar" MaxLength="500" />
+          <Property Name="Status" Type="int" />
+          <Property Name="UnsignName" Type="varchar" MaxLength="50" />
+          <Property Name="UnsignName_En" Type="varchar" MaxLength="50" />
+          <Property Name="LangId" Type="int" />
+          <Property Name="CreatedTime" Type="datetime" />
+          <Property Name="CreatedUserId" Type="int" />
+          <Property Name="CreatedFullname" Type="nvarchar" MaxLength="150" />
+        </EntityType>
         <EntityType Name="Contact">
           <Key>
             <PropertyRef Name="ID" />
@@ -455,6 +472,7 @@ warning 6002: The table/view 'ATI.VinhHung.dbo.Tags' does not have a primary key
           <EntitySet Name="CateNews" EntityType="Self.CateNews" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CateProduct" EntityType="Self.CateProduct" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CommonInfo" EntityType="Self.CommonInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ConfigImage" EntityType="Self.ConfigImage" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Contact" EntityType="Self.Contact" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ContentStatic" EntityType="Self.ContentStatic" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Contractor" EntityType="Self.Contractor" Schema="dbo" store:Type="Tables" />
@@ -950,6 +968,7 @@ warning 6002: The table/view 'ATI.VinhHung.dbo.Tags' does not have a primary key
             <Parameter Name="RecordPerPage" Mode="In" Type="Int32" />
             <Parameter Name="TotalRecord" Mode="InOut" Type="Int32" />
           </FunctionImport>
+          <EntitySet Name="ConfigImages" EntityType="ATI.VinhHungModel.ConfigImage" />
         </EntityContainer>
         <ComplexType Name="sp_Contact_GetLastest_Result">
           <Property Type="Int32" Name="ID" Nullable="false" />
@@ -1028,6 +1047,23 @@ warning 6002: The table/view 'ATI.VinhHung.dbo.Tags' does not have a primary key
           <Property Type="Byte" Name="Status" Nullable="false" />
           <Property Type="Int32" Name="LangId" Nullable="true" />
         </ComplexType>
+        <EntityType Name="ConfigImage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Name_En" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Image" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Url" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="Int32" />
+          <Property Name="UnsignName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UnsignName_En" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LangId" Type="Int32" />
+          <Property Name="CreatedTime" Type="DateTime" Precision="3" />
+          <Property Name="CreatedUserId" Type="Int32" />
+          <Property Name="CreatedFullname" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1564,6 +1600,24 @@ warning 6002: The table/view 'ATI.VinhHung.dbo.Tags' does not have a primary key
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="ConfigImages">
+            <EntityTypeMapping TypeName="ATI.VinhHungModel.ConfigImage">
+              <MappingFragment StoreEntitySet="ConfigImage">
+                <ScalarProperty Name="CreatedFullname" ColumnName="CreatedFullname" />
+                <ScalarProperty Name="CreatedUserId" ColumnName="CreatedUserId" />
+                <ScalarProperty Name="CreatedTime" ColumnName="CreatedTime" />
+                <ScalarProperty Name="LangId" ColumnName="LangId" />
+                <ScalarProperty Name="UnsignName_En" ColumnName="UnsignName_En" />
+                <ScalarProperty Name="UnsignName" ColumnName="UnsignName" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Name_En" ColumnName="Name_En" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

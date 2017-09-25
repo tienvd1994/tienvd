@@ -4,12 +4,11 @@
 @{
     var about = (Introduce)ViewBag.Content;
     var commonInfo = (CommonInfo)ViewBag.CommonInfo;
-    ViewBag.Title = Html.Raw("Giới thiệu về " + commonInfo.Name);
+    ViewBag.Title = Html.Raw(string.Concat(about.Title, " | ", commonInfo.Name));
     ViewBag.Description = Html.Raw(about.Summary);
     ViewBag.Keyword = Html.Raw(about.Summary);
-    ViewBag.Url = "http://www.fcn.vn/gioi-thieu/" + about.SeoLink;
-    ViewBag.Image = "http://www.fcn.vn" + commonInfo.Logo;
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Url = about.SeoLink;
+    ViewBag.Image = commonInfo.Logo;
 }
 
 <section class="page-title_professional" style="background-image:url(images/background/4.jpg);">

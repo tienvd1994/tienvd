@@ -4,11 +4,11 @@
 @{
     var cate = (CateProduct)ViewBag.Cate;
     var commonInfo = (CommonInfo)ViewBag.CommonInfo;
-    ViewBag.Title = Html.Raw("Các dịch vụ sản phẩm phần mềm của viethanettsc");
-    ViewBag.Description = Html.Raw("viethanettsc cung cấp các giải pháp phần mềm tốt nhất cho ngân hàng, doanh nghiệp các tổ chức và người dân");
-    ViewBag.Keyword = Html.Raw("sản phẩm, phần mềm, giải pháp, outsourcing, công ty phần mềm tốt nhất, đo lường hiệu quả hoạt động, kpi bsc, thẻ điểm cân bằng, e-learning, học trực tuyến, kiểm toán hoạt động, kiểm toán nội bộ");
-    ViewBag.Url = "http://www.fcn.vn/du-an";
-    ViewBag.Image = "http://www.fcn.vn" + commonInfo.Logo;
+    ViewBag.Title = Html.Raw(string.Concat(cate.Name, " | ", commonInfo.Name));
+    ViewBag.Description = Html.Raw(string.Concat(cate.Name, " | ", commonInfo.Name));
+    ViewBag.Keyword = Html.Raw(string.Concat(cate.Name, " | ", commonInfo.Name));
+    ViewBag.Url = "";
+    ViewBag.Image = commonInfo.Logo;
 }
 @section KnockOut{
 }
@@ -83,25 +83,7 @@
             </div>
 
             <!--Sidebar-->
-            <div class="sidebar-side pull-left col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                <aside class="sidebar">
-                    <div class="shop-sidebar">
-                        <!-- Categories -->
-                        <div class="sidebar-widget categories">
-                            <div class="sidebar-title"><h3>BY CATEGORIES</h3></div>
-                            <ul class="cat-list">
-                                <li><a href="#" class="clearfix">Business Plans <span class="count pull-right">(38)</span></a></li>
-                                <li><a href="#" class="clearfix">Consulting <span class="count pull-right">(62)</span></a></li>
-                                <li><a href="#" class="clearfix">Economy <span class="count pull-right">(25)</span></a></li>
-                                <li><a href="#" class="clearfix">Funding Trends<span class="count pull-right">(12)</span></a></li>
-                                <li><a href="#" class="clearfix">Innovation<span class="count pull-right">(57)</span></a></li>
-                                <li><a href="#" class="clearfix">Competitive Research<span class="count pull-right">(20)</span></a></li>
-                            </ul>
-                        </div>
-
-                    </div>
-                </aside>
-            </div>
+            @{Html.RenderAction("CategoriesSidebar", "Home");}
         </div>
     </div>
 </div>

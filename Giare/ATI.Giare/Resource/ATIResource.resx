@@ -126,6 +126,9 @@
   <data name="Buy" xml:space="preserve">
     <value>Mua sản phẩm</value>
   </data>
+  <data name="CateProduct_Label" xml:space="preserve">
+    <value>Nhóm sản phẩm</value>
+  </data>
   <data name="ClaimContact" xml:space="preserve">
     <value>Khiếu nại</value>
   </data>
@@ -246,6 +249,9 @@
   <data name="Requirement" xml:space="preserve">
     <value>Nhu cầu</value>
   </data>
+  <data name="Search_Label" xml:space="preserve">
+    <value>Tìm kiềm</value>
+  </data>
   <data name="Send" xml:space="preserve">
     <value>Gửi đi</value>
   </data>
@@ -268,6 +274,9 @@
   </data>
   <data name="Sologan1" xml:space="preserve">
     <value>&lt;div class="caption-text"&gt;"Sáng tạo, tối ưu từng chi tiết, từng nguồn lực,&lt;br /&gt;dịch vụ chuyên nghiệp giúp chúng tôi khác biệt"&lt;/div&gt;</value>
+  </data>
+  <data name="Solutions_Label" xml:space="preserve">
+    <value>Giải pháp</value>
   </data>
   <data name="Status" xml:space="preserve">
     <value>Trạng thái</value>

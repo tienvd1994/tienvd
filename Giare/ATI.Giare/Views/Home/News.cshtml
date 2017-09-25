@@ -3,36 +3,18 @@
 @{
     var cate = (CateNew)ViewBag.Cate;
     var commonInfo = (CommonInfo)ViewBag.CommonInfo;
-    ViewBag.Title = Html.Raw(cate.Name + " " + commonInfo.Name);
-    ViewBag.Description = Html.Raw(cate.Name + " " + commonInfo.Name + " ATI cung cấp các giải pháp phần mềm tốt nhất cho ngân hàng, doanh nghiệp các tổ chức và người dân");
-    ViewBag.Keyword = Html.Raw(cate.Name + " " + commonInfo.Name + "sản phẩm, phần mềm, giải pháp, outsourcing, công ty phần mềm tốt nhất, đo lường hiệu quả hoạt động, kpi bsc, thẻ điểm cân bằng, e-learning, học trực tuyến, kiểm toán hoạt động, kiểm toán nội bộ");
-    ViewBag.Url = "http://www.fcn.vn/tin-tuc";
-    ViewBag.Image = "http://www.fcn.vn" + commonInfo.Logo;
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-@section KnockOut{
-    <script src="~/Scripts/jquery.pager.js"></script>
-    <script type="text/javascript">
-        var currPage = @ViewBag.CurrPage;
-        var totalPageCate = 0;
-        var recordPerPage = 10;
-        var totalRecord = @ViewBag.totalRecord;
-
-        $(document).ready(function () {
-            totalPageCate = Math.ceil(totalRecord/ recordPerPage);
-
-            $("#pager").pager({ pagenumber: currPage, pagecount: totalPageCate, buttonClickCallback: PageClick1 });
-
-            function PageClick1(pageclickednumber) {
-                $("#pager").pager({ pagenumber: pageclickednumber, pagecount: totalPageCate, buttonClickCallback: PageClick1 });
-            };
-        });
-    </script>
+    ViewBag.Title = Html.Raw(cate.Name + " | " + commonInfo.Name);
+    ViewBag.Description = Html.Raw(cate.Name + " | " + commonInfo.Name);
+    ViewBag.Keyword = Html.Raw(cate.Name + " | " + commonInfo.Name);
+    ViewBag.Url = "";
+    ViewBag.Image = commonInfo.Logo;
 }
 
 <section class="page-title_professional" style="background-image:url(images/background/4.jpg);">
     <div class="auto-container">
-        <h1>Dịch vụ</h1>
+        <h1>
+            @ATIResourceManger._managerResources.GetString("ServiceCode", ATIResourceManger._culture)
+        </h1>
     </div>
 </section>
 
