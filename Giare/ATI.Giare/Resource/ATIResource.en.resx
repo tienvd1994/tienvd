@@ -157,19 +157,19 @@
     <value>Company</value>
   </data>
   <data name="ContactContent" xml:space="preserve">
-    <value>Content Request</value>
+    <value>Content request</value>
   </data>
   <data name="ContactThank" xml:space="preserve">
     <value>Thank you used to our product. We will contact to you when we receive information</value>
   </data>
   <data name="EventCategory" xml:space="preserve">
-    <value>Event news</value>
+    <value>News</value>
   </data>
   <data name="FormContact" xml:space="preserve">
     <value>Contact Form</value>
   </data>
   <data name="Fullname" xml:space="preserve">
-    <value>Full name</value>
+    <value>Fullname</value>
   </data>
   <data name="HomeCode" xml:space="preserve">
     <value>Home</value>
@@ -222,6 +222,9 @@
   <data name="NewReceive" xml:space="preserve">
     <value>New Receive</value>
   </data>
+  <data name="NewsLastest_Label" xml:space="preserve">
+    <value>Latest News</value>
+  </data>
   <data name="PartnerCode" xml:space="preserve">
     <value>Partner</value>
   </data>
@@ -232,7 +235,7 @@
     <value>Position</value>
   </data>
   <data name="ProductCode" xml:space="preserve">
-    <value>Projects</value>
+    <value>Products</value>
   </data>
   <data name="Question" xml:space="preserve">
     <value>Anwser, question</value>
@@ -247,13 +250,16 @@
     <value>Requirement</value>
   </data>
   <data name="Search_Label" xml:space="preserve">
-    <value>Tìm kiềm</value>
+    <value>Search</value>
   </data>
   <data name="Send" xml:space="preserve">
-    <value>Sending</value>
+    <value>Send</value>
   </data>
   <data name="Sendmail" xml:space="preserve">
     <value>Send mail is success</value>
+  </data>
+  <data name="SendMessage_Label" xml:space="preserve">
+    <value>Send message</value>
   </data>
   <data name="ServiceCode" xml:space="preserve">
     <value>Services</value>
@@ -274,7 +280,7 @@
                     &lt;div class="caption-text"&gt;"Meet customer needs with new technology&lt;br /&gt;and outstanding"&lt;/div&gt;</value>
   </data>
   <data name="Solutions_Label" xml:space="preserve">
-    <value>Giải pháp</value>
+    <value>Solutions</value>
   </data>
   <data name="Status" xml:space="preserve">
     <value>Status</value>
@@ -304,5 +310,41 @@
                     &lt;/span&gt;
                 &lt;/strong&gt;
             &lt;/h2&gt;</value>
+  </data>
+  <data name="SocialNetwork_Label" xml:space="preserve">
+    <value>Social network</value>
+  </data>
+  <data name="CateNewsOther_Label" xml:space="preserve">
+    <value>More category news</value>
+  </data>
+  <data name="CateSolutionsOther_Label" xml:space="preserve">
+    <value>More categories</value>
+  </data>
+  <data name="ContactInfo_Label" xml:space="preserve">
+    <value>Contact details</value>
+  </data>
+  <data name="ContactUs_Label" xml:space="preserve">
+    <value>Contact us</value>
+  </data>
+  <data name="Description_Product" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="Mobile" xml:space="preserve">
+    <value>Mobile</value>
+  </data>
+  <data name="MorePosts_Label" xml:space="preserve">
+    <value>More posts</value>
+  </data>
+  <data name="PostedBy_Label" xml:space="preserve">
+    <value>Posted by</value>
+  </data>
+  <data name="RelatedProducts_Label" xml:space="preserve">
+    <value>Related products</value>
+  </data>
+  <data name="ShowHomePage_Label" xml:space="preserve">
+    <value>Show home page</value>
+  </data>
+  <data name="ViewAll_Label" xml:space="preserve">
+    <value>View all</value>
   </data>
 </root>

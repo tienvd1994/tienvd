@@ -94,7 +94,7 @@
                 </ul>
             </li>
             <li class="dropdown">
-                <a href="javascript:void(0)">Giải pháp</a>
+                <a href="javascript:void(0)">@ATIResourceManger._managerResources.GetString("Solutions_Label", ATIResourceManger._culture)</a>
                 <ul>
                     @{
                         var cateSolutions = (List<CateNew>)ViewBag.CateSolutions;
@@ -109,7 +109,9 @@
                 </ul>
             </li>
             <li class="dropdown">
-                <a href="javascript:void(0)">Tin tức</a>
+                <a href="javascript:void(0)">
+                    @ATIResourceManger._managerResources.GetString("EventCategory", ATIResourceManger._culture)
+                </a>
                 <ul>
                     @{
                         var cateNews = (List<CateNew>)ViewBag.CateNews;
@@ -122,30 +124,30 @@
                 </ul>
             </li>
             @*<li class="dropdown">
-                <a href="#">blog</a>
-                <ul class="">
-                    <li class="dropdown">
-                        <a href="blog.html">blog grid</a>
-                        <ul>
-                            <li class="dropdown">
-                                <a href="blog.html">blog grid</a>
-                                <ul>
-                                    <li>
-                                        <a href="blog.html">blog grid</a>
-                                    </li>
-                                    <li><a href="blog-single.html">blog single</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="blog-single.html">blog single</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="blog-single.html">blog single</a>
-                    </li>
-                </ul>
-            </li>*@
+                    <a href="#">blog</a>
+                    <ul class="">
+                        <li class="dropdown">
+                            <a href="blog.html">blog grid</a>
+                            <ul>
+                                <li class="dropdown">
+                                    <a href="blog.html">blog grid</a>
+                                    <ul>
+                                        <li>
+                                            <a href="blog.html">blog grid</a>
+                                        </li>
+                                        <li><a href="blog-single.html">blog single</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="blog-single.html">blog single</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="blog-single.html">blog single</a>
+                        </li>
+                    </ul>
+                </li>*@
             <li>
                 <a href="/lien-he">
                     @ATIResourceManger._managerResources.GetString("ContactCode", ATIResourceManger._culture)

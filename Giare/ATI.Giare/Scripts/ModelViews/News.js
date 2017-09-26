@@ -48,7 +48,7 @@ function NewsView() {
     self.LangId = ko.observable(0);
     self.isUploading = ko.observable(false);
     self.isUploadingContent = ko.observable(false);
-
+    self.categories = ko.observableArray([]);
     var maxFileLength = 5120000;
 
     $("#FileUploadImage").fileupload({
@@ -227,16 +227,6 @@ function NewsView() {
 
         var postTime = moment(new Date()).format("DD-MM-YYYY");
 
-        //if (postTime == "") {
-        //    $("#txtPostTime").val(moment(item.PostTime).format("DD-MM-YYYY"));
-        //    return;
-        //}
-
-        //if (postTime != "" && !moment(postTime, "DD/MM/YYYY").isValid()) {
-        //    toastr.warning("Thời gian thực hiện bài viết không đúng định dạng ngày/tháng/năm");
-        //    return;
-        //}
-
         if ($.trim(self.Image()) == "") {
             toastr.warning("Hãy chọn ảnh đại diện cho bài viết");
             return;
@@ -292,6 +282,23 @@ function NewsView() {
                     self.ShowDetail(false);
                 });
         }
+    }
+
+    self.changeLanguageSearch = function () {
+        self.Search(1);
+    }
+
+    self.changeLanguage = function () {
+        $.get("/CMS/GetCateNews", { langId: self.LangId(), type: 0 }, function (data) {
+            if (data == -1) {
+                toastr.warning("Mời bạn đăng nhập trước khi thực hiện");
+
+                window.location.href = "/dang-nhap?u=/cms/tin-tuc";
+                return;
+            }
+
+            self.categories(data);
+        });
     }
 
     self.Search(1);

@@ -23,13 +23,14 @@ namespace ATI.Web.Controllers
         [Localization]
         public ActionResult Index()
         {
+            var lang = ATICurrentSession.GetLang;
             ViewBag.Context = HttpContext;
-            ViewBag.CommonInfo = db.CommonInfoes.Where(x => x.LangId == ATICurrentSession.GetLang).FirstOrDefault();
-            ViewBag.TopNews = db.News.Where(item => item.Type == 0 && item.LangId == ATICurrentSession.GetLang).OrderByDescending(item => item.ID).Take(3).ToList();
+            ViewBag.CommonInfo = db.CommonInfoes.Where(x => x.LangId == lang).FirstOrDefault();
+            ViewBag.TopNews = db.News.Where(item => item.Type == 0 && item.LangId == lang).OrderByDescending(item => item.ID).Take(3).ToList();
             ViewBag.ModuleId = 1;
-            ViewBag.Services = db.Partners.Where(m => m.LangId == 0).OrderBy(m => m.OrderNo).Take(3).ToList();
+            ViewBag.Services = db.Partners.Where(m => m.LangId == 0 && m.LangId == lang).OrderBy(m => m.OrderNo).Take(3).ToList();
             AddLog(HttpContext.Session.SessionID);
-            var categories = db.CateProducts.Where(m => !m.IsDelete && m.ParrentCateId == -1 && m.IsShowHomePage == true).Select(m => new CategoryItems
+            var categories = db.CateProducts.Where(m => !m.IsDelete && m.LangId == lang && m.ParrentCateId == -1 && m.IsShowHomePage == true).Select(m => new CategoryItems
             {
                 CateId = m.ID,
                 CategoryName = m.Name
@@ -39,7 +40,7 @@ namespace ATI.Web.Controllers
 
             foreach (var item in categories)
             {
-                var products = db.Products.Where(m => !m.IsDelete && m.IsShowHomePage == true && m.Status == 1 && m.CateId == item.CateId).Select(m => new ProductItems
+                var products = db.Products.Where(m => !m.IsDelete && m.LangId == lang && m.IsShowHomePage == true && m.Status == 1 && m.CateId == item.CateId).Select(m => new ProductItems
                 {
                     Id = m.ID,
                     Name = m.Name,
@@ -58,9 +59,9 @@ namespace ATI.Web.Controllers
                 Products = listProduct
             };
 
-            ViewBag.AboutHomePage = db.Introduces.Where(m => m.IsShowHomePage == true).OrderByDescending(m => m.LastUpdateTime).FirstOrDefault();
+            ViewBag.AboutHomePage = db.Introduces.Where(m => m.IsShowHomePage == true && m.LangId == lang).OrderByDescending(m => m.LastUpdateTime).FirstOrDefault();
             ViewBag.ListCateAndProduct = categoryAndProductViewModel;
-            ViewBag.ListSlide = db.ConfigImages.Where(m => m.Status == 1).ToList();
+            ViewBag.ListSlide = db.ConfigImages.Where(m => m.Status == 1 && m.LangId == lang).ToList();
 
             return View();
         }
@@ -78,7 +79,7 @@ namespace ATI.Web.Controllers
                 return View("FileNotFound");
             }
 
-            ViewBag.IntroduceOther = db.Introduces.Where(m => m.ID != introduce.ID && m.IsShowHomePage == false).ToList();
+            ViewBag.IntroduceOther = db.Introduces.Where(m => m.ID != introduce.ID && m.LangId == ATICurrentSession.GetLang && m.IsShowHomePage == false).ToList();
             ViewBag.Content = introduce;
 
             return View();
@@ -88,9 +89,10 @@ namespace ATI.Web.Controllers
         public ActionResult Product(string seolink)
         {
             ViewBag.Context = HttpContext;
-            ViewBag.CommonInfo = db.CommonInfoes.Where(x => x.LangId == ATICurrentSession.GetLang).FirstOrDefault();
+            var langId = ATICurrentSession.GetLang;
+            ViewBag.CommonInfo = db.CommonInfoes.Where(x => x.LangId == langId).FirstOrDefault();
             AddLog(HttpContext.Session.SessionID);
-            var currentCate = db.CateProducts.FirstOrDefault(item => item.SeoLink.Equals(seolink.ToLower()));
+            var currentCate = db.CateProducts.FirstOrDefault(item => item.SeoLink.Equals(seolink.ToLower()) && item.LangId == langId);
 
             if (currentCate == null)
             {
@@ -98,8 +100,18 @@ namespace ATI.Web.Controllers
             }
 
             ViewBag.Cate = currentCate;
-            ViewBag.Products = db.Products.Where(m => !m.IsDelete && m.Status == 1 && m.CateId == currentCate.ID).ToList();
-            ViewBag.ModuleId = 2;
+            var cateChilds = db.CateProducts.Where(m => !m.IsDelete && m.ParrentCateId == currentCate.ID && m.LangId == langId).ToList();
+
+            if (cateChilds != null && cateChilds.Count() > 0)
+            {
+                var cateChildIds = cateChilds.Select(m => m.ID).ToList();
+                cateChildIds.Add(currentCate.ID);
+                ViewBag.Products = db.Products.Where(m => !m.IsDelete && m.LangId == langId && m.Status == 1 && cateChildIds.Contains(m.CateId)).ToList();
+            }
+            else
+            {
+                ViewBag.Products = db.Products.Where(m => !m.IsDelete && m.LangId == langId && m.Status == 1 && m.CateId == currentCate.ID).ToList();
+            }
 
             return View();
         }
@@ -377,7 +389,6 @@ namespace ATI.Web.Controllers
         {
             ViewBag.Context = HttpContext;
             ViewBag.CommonInfo = db.CommonInfoes.Where(x => x.LangId == ATICurrentSession.GetLang).FirstOrDefault();
-            ViewBag.Cart = Cart;
             ViewBag.TopNews = db.News.Where(x => x.LangId == ATICurrentSession.GetLang).OrderByDescending(item => item.PostTime).Take(3).ToList();
             AddLog(HttpContext.Session.SessionID);
             ViewBag.Partners = db.Partners.Where(x => x.LangId == ATICurrentSession.GetLang).ToList();
@@ -432,10 +443,10 @@ namespace ATI.Web.Controllers
         [Localization]
         public ActionResult News(string seolink)
         {
+            var lang = ATICurrentSession.GetLang;
             ViewBag.Context = HttpContext;
-            ViewBag.CommonInfo = db.CommonInfoes.Where(x => x.LangId == ATICurrentSession.GetLang).FirstOrDefault();
-            ViewBag.Cart = Cart;
-            ViewBag.Partners = db.Partners.Where(x => x.LangId == ATICurrentSession.GetLang).ToList();
+            ViewBag.CommonInfo = db.CommonInfoes.Where(x => x.LangId == lang).FirstOrDefault();
+            ViewBag.Partners = db.Partners.Where(x => x.LangId == lang).ToList();
             AddLog(HttpContext.Session.SessionID);
 
             var cate = db.CateNews.FirstOrDefault(item => item.SeoLink.ToLower().Equals(seolink.ToLower()) && item.Type == 0);
@@ -445,13 +456,10 @@ namespace ATI.Web.Controllers
                 return View("FileNotFound");
             }
 
-            var pageIndex = string.IsNullOrEmpty(Request.Params["p"]) ? 1 : Convert.ToInt32(Request.Params["p"]);
-            var recordPerPage = string.IsNullOrEmpty(Request.Params["r"]) ? 10 : Convert.ToInt32(Request.Params["r"]);
-            var items = db.News.Where(m => m.LangId == ATICurrentSession.GetLang && m.Type == 0 && m.CateId == cate.ID).ToList();
-            var result = items.OrderByDescending(m => m.ID).Skip((pageIndex - 1) * recordPerPage).Take(recordPerPage);
+            var items = db.News.Where(m => m.LangId == lang && m.Type == 0 && m.CateId == cate.ID).ToList();
+            var result = items.OrderByDescending(m => m.ID).ToList();
             ViewBag.News = result.ToList();
             ViewBag.totalRecord = items.Count();
-            ViewBag.CurrPage = pageIndex;
             ViewBag.ModuleId = seolink.Equals("tuyen-dung") ? 7 : 3;
             ViewBag.Cate = cate;
             ViewBag.Tags = db.Tags.Take(20).ToList();
@@ -952,12 +960,12 @@ namespace ATI.Web.Controllers
         {
             var defaultLanguage = 0;
 
-            if (Id == "ko")
+            if (Id == "en")
                 defaultLanguage = 1;
 
             ATICurrentSession.SetLang(defaultLanguage);
 
-            ATIResourceManger.SetLanguage(Id == "ko" ? "ko-KR" : "vi-VN");
+            ATIResourceManger.SetLanguage(Id == "en" ? "en-US" : "vi-VN");
 
             return RedirectToAction("Index");
         }
@@ -965,10 +973,10 @@ namespace ATI.Web.Controllers
 
         public ActionResult MainMenu()
         {
-            ViewBag.CategoryProducts = db.CateProducts.Where(m => !m.IsDelete && m.ParrentCateId == -1).ToList();
-            ViewBag.CateNews = db.CateNews.Where(m => m.Type == 0).ToList();
-            ViewBag.CateSolutions = db.CateNews.Where(m => m.Type == 1).ToList();
-            ViewBag.Introduces = db.Introduces.Where(m => m.IsShowHomePage == false).ToList().Select(m => new Introduce
+            ViewBag.CategoryProducts = db.CateProducts.Where(m => !m.IsDelete && m.LangId == ATICurrentSession.GetLang && m.ParrentCateId == -1).ToList();
+            ViewBag.CateNews = db.CateNews.Where(m => m.Type == 0 && m.LangId == ATICurrentSession.GetLang).ToList();
+            ViewBag.CateSolutions = db.CateNews.Where(m => m.Type == 1 && m.LangId == ATICurrentSession.GetLang).ToList();
+            ViewBag.Introduces = db.Introduces.Where(m => m.IsShowHomePage == false && m.LangId == ATICurrentSession.GetLang).ToList().Select(m => new Introduce
             {
                 ID = m.ID,
                 Title = m.Title,
@@ -987,9 +995,11 @@ namespace ATI.Web.Controllers
 
         public ActionResult Footer()
         {
-            ViewBag.CommonInfo = db.CommonInfoes.Where(x => x.LangId == ATICurrentSession.GetLang).FirstOrDefault();
-            ViewBag.CateNews = db.CateNews.Where(m => m.Type == 0).ToList();
-            ViewBag.Introduces = db.Introduces.Where(m => m.IsShowHomePage == false).ToList().Select(m => new Introduce
+            var lang = ATICurrentSession.GetLang;
+
+            ViewBag.CommonInfo = db.CommonInfoes.Where(x => x.LangId == lang).FirstOrDefault();
+            ViewBag.CateNews = db.CateNews.Where(m => m.Type == 0 && m.LangId == lang).ToList();
+            ViewBag.Introduces = db.Introduces.Where(m => m.IsShowHomePage == false && m.LangId == lang).ToList().Select(m => new Introduce
             {
                 ID = m.ID,
                 Title = m.Title,
@@ -1001,7 +1011,7 @@ namespace ATI.Web.Controllers
 
         public ActionResult CategoriesSidebar()
         {
-            ViewBag.Categories = db.CateProducts.Where(m => !m.IsDelete && m.ParrentCateId == -1).OrderBy(m => m.OrderNo).ToList();
+            ViewBag.Categories = db.CateProducts.Where(m => !m.IsDelete && m.ParrentCateId == -1 && m.LangId == ATICurrentSession.GetLang).OrderBy(m => m.OrderNo).ToList();
 
             return PartialView();
         }

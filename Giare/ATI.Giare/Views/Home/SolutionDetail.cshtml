@@ -14,7 +14,9 @@
 
 <section class="page-title_professional" style="background-image:url(images/background/4.jpg);">
     <div class="auto-container">
-        <h1>Giải pháp</h1>
+        <h1>
+            @ATIResourceManger._managerResources.GetString("Solutions_Label", ATIResourceManger._culture)
+        </h1>
     </div>
 </section>
 <div class="breadcrumb-outer_professional">
@@ -48,7 +50,7 @@
                                 <div class="upper-content">
                                     <h3>@news.Title</h3>
                                     <ul class="meta-option">
-                                        <li><a href="blog-single.html"><span class="icon fa fa-user"></span> Đăng bởi: @news.CreatedFullname</a></li>
+                                        <li><a href="blog-single.html"><span class="icon fa fa-user"></span> @ATIResourceManger._managerResources.GetString("PostedBy_Label", ATIResourceManger._culture): @news.CreatedFullname</a></li>
                                         <li><a href="blog-single.html"><span class="icon fa fa-calendar"></span>@Convert.ToDateTime(news.CreatedTime).ToString("dd/MM/yyyy")</a></li>
                                     </ul>
                                 </div>
@@ -74,7 +76,11 @@
                 <aside class="sidebar">
                     <div class="sidebar-inner">
                         <div class="sidebar-widget categories">
-                            <div class="sidebar-title"><h3>Nhóm giải pháp khác</h3></div>
+                            <div class="sidebar-title">
+                                <h3>
+                                    @ATIResourceManger._managerResources.GetString("CateSolutionsOther_Label", ATIResourceManger._culture)
+                                </h3>
+                            </div>
                             <ul class="cat-list">
                                 @{
                                     foreach (var item in (List<CateNew>)ViewBag.CateSolutionOther)
@@ -87,7 +93,9 @@
                         <!-- Popular Posts -->
                         <div class="sidebar-widget popular-posts">
                             <div class="sidebar-title">
-                                <h3>Tin tức khác</h3>
+                                <h3>
+                                    @ATIResourceManger._managerResources.GetString("MorePosts_Label", ATIResourceManger._culture)
+                                </h3>
                             </div>
                             @{
                                 var listNews = (List<News>)ViewBag.TopNews;

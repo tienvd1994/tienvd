@@ -48,6 +48,7 @@ function NewsView() {
     self.LangId = ko.observable(0);
     self.isUploading = ko.observable(false);
     self.isUploadingContent = ko.observable(false);
+    self.categories = ko.observableArray([]);
 
     var maxFileLength = 5120000;
 
@@ -294,6 +295,23 @@ function NewsView() {
                     self.ShowDetail(false);
                 });
         }
+    }
+
+    self.changeLanguageSearch = function () {
+        self.Search(1);
+    }
+
+    self.changeLanguage = function () {
+        $.get("/CMS/GetCateNews", { langId: self.LangId(), type: 1 }, function (data) {
+            if (data == -1) {
+                toastr.warning("Mời bạn đăng nhập trước khi thực hiện");
+
+                window.location.href = "/dang-nhap?u=/cms/tin-tuc";
+                return;
+            }
+
+            self.categories(data);
+        });
     }
 
     self.Search(1);

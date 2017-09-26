@@ -32,38 +32,93 @@ function ServiceView() {
     self.Sending = ko.observable(false);
     self.IsAdd = ko.observable(true);
     self.ID = ko.observable(-1);
+    self.isUploading = ko.observable(false);
+    self.isUploadingContent = ko.observable(false);
 
     self.changeLang = function () {
         self.Search(1);
     }
 
-    $('#attachImages').uploadify({
-        'uploader': '/Scripts/uploadify.swf',
-        'script': '/UploadFile/Upload',
-        'buttonImg': '/Scripts/upload-icon.png',
-        'cancelImg': '/Scripts/cancel-icon.png',
-        'folder': '/Uploads',
-        'width': '110',
-        'height': '40',
-        'fileExt': '*.jpg;*.png;*.gif;*.jpe',
-        'fileDesc': 'File jpg *.png;*.gif;*.jpe',
-        'sizeLimit': '8192000',
-        'scriptData': { 'username': "viethanettsc" },
-        'onComplete': function (event, queueId, fileObj, response) {
-            if (response == "-10") {
+    var maxFileLength = 5120000;
+
+    $("#FileUploadImage").fileupload({
+        url: "/UploadFile/Upload",
+        sequentialUploads: false,
+        dataType: "json",
+        dropZone: null,
+        pasteZone: null,
+        add: function (e, data) {
+            var file = data.files[0];
+            var msg = "";
+            if (maxFileLength && file.size > maxFileLength) {
+                if (msg.length > 0) {
+                    msg += "<br/>";
+                }
+                msg += "Kích thước tệp lớn hơn kích thước cho phép";
+            }
+
+            if (msg !== "") {
+                toastr.error(msg);
+            } else {
+                data.submit();
+                self.isUploading(true);
+            }
+        },
+        done: function (e, data) {
+            if (data.result == "-10") {
                 toastr.warning("Có lỗi xảy ra xin vui lòng liên hệ Ban quản trị để được trợ giúp");
                 return;
             }
 
-            if (response == "-2") {
-                toastr.warning("Bạn hãy tải ảnh có định dạng .doc; .docx; .zip; .7z; .rar; .ppt; .pptx; .pdf; .xls; .xlsx!");
+            if (data.result == "-2") {
+                toastr.warning("Bạn hãy tải ảnh có định dạng .jpg; .png, .gif, .jpeg!");
                 return;
             }
 
-            self.Image(response.replace(/\"/g, ""));
+
+            self.isUploading(false);
+            self.Image(data.result);
+        }
+    });
+
+    $("#EmbbedImages").fileupload({
+        url: "/UploadFile/Upload",
+        sequentialUploads: false,
+        dataType: "json",
+        dropZone: null,
+        pasteZone: null,
+        add: function (e, data) {
+            var file = data.files[0];
+            var msg = "";
+            if (maxFileLength && file.size > maxFileLength) {
+                if (msg.length > 0) {
+                    msg += "<br/>";
+                }
+                msg += "Kích thước tệp lớn hơn kích thước cho phép";
+            }
+
+            if (msg !== "") {
+                toastr.error(msg);
+            } else {
+                data.submit();
+                self.isUploadingContent(true);
+            }
         },
-        'multi': false,
-        'auto': true
+        done: function (e, data) {
+            if (data.result == "-10") {
+                toastr.warning("Có lỗi xảy ra xin vui lòng liên hệ Ban quản trị để được trợ giúp");
+                return;
+            }
+
+            if (data.result == "-2") {
+                toastr.warning("Bạn hãy tải ảnh có định dạng .jpg; .png, .gif, .jpeg!");
+                return;
+            }
+
+
+            self.isUploadingContent(false);
+            CKEDITOR.instances.Content.insertHtml("<img class='img-responsive img-tab-space' src='" + data.result + "'/>");
+        }
     });
 
     self.SetUpdate = function (item) {

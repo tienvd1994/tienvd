@@ -166,7 +166,7 @@
     <value>Mô tả sản phẩm</value>
   </data>
   <data name="EventCategory" xml:space="preserve">
-    <value>Tin tức sự kiện</value>
+    <value>Tin tức</value>
   </data>
   <data name="FormContact" xml:space="preserve">
     <value>Form liên hệ</value>
@@ -225,6 +225,9 @@
   <data name="NewReceive" xml:space="preserve">
     <value>Nhận tin mới</value>
   </data>
+  <data name="NewsLastest_Label" xml:space="preserve">
+    <value>Tin tức mới nhất</value>
+  </data>
   <data name="PartnerCode" xml:space="preserve">
     <value>Đối tác</value>
   </data>
@@ -257,6 +260,9 @@
   </data>
   <data name="Sendmail" xml:space="preserve">
     <value>Gửi thành công!</value>
+  </data>
+  <data name="SendMessage_Label" xml:space="preserve">
+    <value>Gửi tin nhắn</value>
   </data>
   <data name="ServiceCode" xml:space="preserve">
     <value>Dịch vụ</value>
@@ -309,5 +315,38 @@
                     &lt;/span&gt;
                 &lt;/strong&gt;
             &lt;/h2&gt;</value>
+  </data>
+  <data name="SocialNetwork_Label" xml:space="preserve">
+    <value>Mạng xã hội</value>
+  </data>
+  <data name="CateNewsOther_Label" xml:space="preserve">
+    <value>Nhóm tin tức khác</value>
+  </data>
+  <data name="CateSolutionsOther_Label" xml:space="preserve">
+    <value>Nhóm giải pháp khác</value>
+  </data>
+  <data name="ContactInfo_Label" xml:space="preserve">
+    <value>Thông tin liên hệ</value>
+  </data>
+  <data name="ContactUs_Label" xml:space="preserve">
+    <value>Liên hệ với chúng tôi</value>
+  </data>
+  <data name="Mobile" xml:space="preserve">
+    <value>Di động</value>
+  </data>
+  <data name="MorePosts_Label" xml:space="preserve">
+    <value>Bài viết khác</value>
+  </data>
+  <data name="PostedBy_Label" xml:space="preserve">
+    <value>Đăng bởi</value>
+  </data>
+  <data name="RelatedProducts_Label" xml:space="preserve">
+    <value>Sản phẩm liên quan</value>
+  </data>
+  <data name="ShowHomePage_Label" xml:space="preserve">
+    <value>Hiển thị trang chủ</value>
+  </data>
+  <data name="ViewAll_Label" xml:space="preserve">
+    <value>Xem tất cả</value>
   </data>
 </root>

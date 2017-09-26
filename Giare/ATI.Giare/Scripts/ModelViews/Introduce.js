@@ -31,6 +31,7 @@ function IntroduceView() {
     self.IsShowHomePage = ko.observable(false);
     self.isUploading = ko.observable(false);
     var maxFileLength = 5120000;
+    self.LangIdSearch = ko.observable(0);
 
     $("#EmbbedImages").fileupload({
         url: "/UploadFile/Upload",
@@ -74,7 +75,7 @@ function IntroduceView() {
     self.Search = function (currentPage) {
         CurrentPage = currentPage;
 
-        $.get("/CMS/SearchIntroduce", { langId: self.LangId(), key: self.Keyword(), pageIndex: CurrentPage, recordPerPage: RecordPerPage }, function (data) {
+        $.get("/CMS/SearchIntroduce", { langId: self.LangIdSearch(), key: self.Keyword(), pageIndex: CurrentPage, recordPerPage: RecordPerPage }, function (data) {
             if (data == -1) {
                 toastr.warning("Mời bạn đăng nhập trước khi thực hiện");
 
@@ -105,7 +106,7 @@ function IntroduceView() {
         self.Sending(true);
 
         if (self.IsAdd()) {
-            $.post("/CMS/AddIntroduce", { Id: self.ID(), Title: self.Title(), Content: CKEDITOR.instances.Content.getData(), ContentEn: CKEDITOR.instances.Content.getData(), IsShowHomePage: self.IsShowHomePage() }, function (data) {
+            $.post("/CMS/AddIntroduce", { Id: self.ID(), Title: self.Title(), Content: CKEDITOR.instances.Content.getData(), ContentEn: CKEDITOR.instances.Content.getData(), IsShowHomePage: self.IsShowHomePage(), LangId: self.LangId() }, function (data) {
                 self.Sending(false);
 
                 if (data == -1) {
@@ -124,7 +125,7 @@ function IntroduceView() {
             });
         }
         else {
-            $.post("/CMS/UpdateIntroduce", { Id: self.ID(), Title: self.Title(), Content: CKEDITOR.instances.Content.getData(), ContentEn: CKEDITOR.instances.Content.getData(), IsShowHomePage: self.IsShowHomePage() }, function (data) {
+            $.post("/CMS/UpdateIntroduce", { Id: self.ID(), Title: self.Title(), Content: CKEDITOR.instances.Content.getData(), ContentEn: CKEDITOR.instances.Content.getData(), IsShowHomePage: self.IsShowHomePage(), LangId: self.LangId() }, function (data) {
                 self.Sending(false);
 
                 if (data == -1) {
@@ -192,6 +193,10 @@ function IntroduceView() {
     }
 
     self.Search(1);
+
+    self.changeLang = function () {
+        self.Search(1);
+    }
 }
 
 var modelView = new IntroduceView();

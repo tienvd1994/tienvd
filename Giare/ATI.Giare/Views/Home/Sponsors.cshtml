@@ -1,11 +1,14 @@
 ﻿@using ATI.Web.Models;
+@using ATI.Web.Helper;
 
 <!--Sponsors Style Two-->
 <section class="sponsors-style-two">
     <div class="auto-container">
         <!--Sec Title-->
         <div class="sec-title centered">
-            <h2>Đối tác</h2>
+            <h2>
+                @ATIResourceManger._managerResources.GetString("PartnerCode", ATIResourceManger._culture)
+            </h2>
             <div class="separator"></div>
         </div>
         <!--Sponsors Slider-->

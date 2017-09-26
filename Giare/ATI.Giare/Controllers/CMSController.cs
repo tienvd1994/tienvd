@@ -276,6 +276,11 @@ namespace ATI.Web.Controllers
 
             var commonInfo = db.CommonInfoes.FirstOrDefault(c => c.LangId == langId);
 
+            if (commonInfo == null)
+            {
+                return Json(new CommonInfo(), JsonRequestBehavior.AllowGet);
+            }
+
             return Json(commonInfo, JsonRequestBehavior.AllowGet);
         }
 
@@ -345,14 +350,16 @@ namespace ATI.Web.Controllers
             }
         }
 
-        public JsonResult GetIntroduce()
+        public JsonResult GetIntroduce(int langId)
         {
             if (CurrentUser == null)
             {
                 return Json(-1, JsonRequestBehavior.AllowGet);
             }
 
-            return Json(db.Introduces.ToList(), JsonRequestBehavior.AllowGet);
+            var introduce = db.Introduces.FirstOrDefault(m => m.LangId == langId);
+
+            return Json(introduce == null ? new Introduce() : introduce, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult GetNewList(string langid)
@@ -1489,7 +1496,7 @@ namespace ATI.Web.Controllers
                 Title = item.Title,
                 SeoLink = Common.ConvertToUrlString(item.Title),
                 Content = item.Content,
-                LangId = 0,
+                LangId = item.LangId,
                 LastUpdateTime = DateTime.Now,
                 LastUpdateUser = CurrentUser.FullName,
                 IsShowHomePage = item.IsShowHomePage,
@@ -1519,6 +1526,7 @@ namespace ATI.Web.Controllers
             }
 
             introduce.Title = item.Title;
+            introduce.LangId = item.LangId;
             introduce.Content = item.Content;
             introduce.Content_En = item.ContentEn;
             introduce.IsShowHomePage = item.IsShowHomePage;
@@ -1661,6 +1669,16 @@ namespace ATI.Web.Controllers
             cateNews.UnsignName = Common.UCS2Convert(item.Name).ToLower();
 
             return Json(db.SaveChanges(), JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetCateNews(int langId, int type)
+        {
+            if (CurrentUser == null)
+            {
+                return Json(-1, JsonRequestBehavior.AllowGet);
+            }
+
+            return Json(db.CateNews.Where(item => item.LangId == langId && item.Type == type).OrderBy(item => item.OrderNo).ToList(), JsonRequestBehavior.AllowGet);
         }
 
         #endregion

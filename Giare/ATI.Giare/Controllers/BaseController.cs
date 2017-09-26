@@ -1,12 +1,9 @@
-﻿using System;
+﻿using ATI.Web.Helper;
+using ATI.Web.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Threading;
 using System.Web.Mvc;
-
-using ATI.Web.Models;
-using ATI.Web.Helper;
 
 namespace ATI.Web.Controllers
 {
@@ -28,7 +25,8 @@ namespace ATI.Web.Controllers
 
         public void AddLog(string sessionId)
         {
-            var cates = db.CateProducts.Where(item => item.ParrentCateId == -1 && !item.IsDelete && item.LangId == ATICurrentSession.GetLang).ToList();
+            var lang = ATICurrentSession.GetLang;
+            var cates = db.CateProducts.Where(item => item.ParrentCateId == -1 && !item.IsDelete && item.LangId == lang).ToList();
 
             var ListCate = new List<Cates>();
 
@@ -36,7 +34,7 @@ namespace ATI.Web.Controllers
             {
                 var ListProduct = new List<Product>();
 
-                var products = db.Products.Where(p => p.CateId == item.ID && !p.IsDelete && p.LangId == ATICurrentSession.GetLang).ToList();
+                var products = db.Products.Where(p => p.CateId == item.ID && !p.IsDelete && p.LangId == lang).ToList();
 
                 foreach (var product in products)
                 {

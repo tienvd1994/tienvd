@@ -6,10 +6,9 @@
     <script type="text/html" id="ProductTemplate">
         <tr>
             <td data-bind="text: (CurrentPage - 1) * RecordPerPage+$index()+1"></td>
-            <td><img data-bind="attr:{src:Image}, visible: $root.IsDesktop" height="50" /></td>
+            <td><img data-bind="attr:{src:Image}" height="50" /></td>
             <td data-bind="text: Name"></td>
-            <td data-bind="text: Customer, visible: $root.IsSmartPhone450"></td>
-            <td data-bind="text: Status == 0 ? 'Đang ẩn' : 'Đang hiển thị', visible: $root.IsSmartPhone450"></td>
+            <td data-bind="text: Status == 0 ? 'Đang ẩn' : 'Đang hiển thị'"></td>
             <td>
                 <button type="button" class="btn-u btn-u-dark-blue" data-bind="click: $root.SetUpdate.bind($data, $data)"><i class="fa fa-edit"></i></button>
                 <button type="button" class="btn-u btn-u-red" data-bind="click: $root.Delete.bind($data, $data)"><i class="fa fa-times"></i></button>
@@ -46,7 +45,7 @@
             <div class="row">
                 <section class="col col-6">
                     <label class="label">Chọn ngôn ngữ<span class="color-red">*</span></label>
-                    <select class="form-control" data-bind="value:LangId, optionsValue:'ID', optionsText:'Name'">
+                    <select class="form-control" data-bind="value:LangId, optionsValue:'ID', optionsText:'Name', event:{change: changeLang}">
                         <option value="0">Tiếng Việt</option>
                         <option value="1">English</option>
                     </select>
@@ -147,10 +146,16 @@
         </div>
         <div class="panel-body">
             <div class="row">
+                <div class="col col-md-2">
+                    <select class="form-control" data-bind="value:LangIdSearch, event:{change: changeLangSearch}">
+                        <option value="0">Tiếng Việt</option>
+                        <option value="1">English</option>
+                    </select>
+                </div>
                 <div class="col-md-3 mb-margin-bottom-30">
                     <select class="form-control" data-bind="value: CateId, options: CateProducts, optionsCaption:'Chọn nhóm sản phẩm', optionsValue:'ID', optionsText:'Name', event:{change: Search.bind($data,1)}"></select>
                 </div>
-                <div class="col-md-6 mb-margin-bottom-30">
+                <div class="col-md-4 mb-margin-bottom-30">
                     <div class="input-group margin-bottom-40">
                         <input type="text" placeholder="Tên sản phẩm" class="form-control" data-bind="value: Keyword" />
                         <span class="input-group-btn">
@@ -166,11 +171,10 @@
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th data-bind="visible: IsDesktop">Ảnh</th>
-                        <th>Tên sản phẩm</th>
-                        <th data-bind="visible: IsSmartPhone450">Khách hàng</th>
-                        <th data-bind="visible: IsSmartPhone450">Trạng thái</th>
-                        <th>Sửa, xóa</th>
+                        <th class="text-center">Ảnh</th>
+                        <th class="text-center">Tên sản phẩm</th>
+                        <th class="text-center">Trạng thái</th>
+                        <th class="text-center">Sửa, xóa</th>
                     </tr>
                 </thead>
                 <tbody data-bind="template: {name:'ProductTemplate', foreach: ListProduct}"></tbody>

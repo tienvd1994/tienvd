@@ -55,10 +55,10 @@ Product.Delete = function (id, callback) {
     });
 }
 
-Product.Get = function (cateId, key, pageIndex, recordPerPage, callback) {
+Product.Get = function (langId, cateId, key, pageIndex, recordPerPage, callback) {
 
     amplify.request("SearchProduct", {
-        langId: 0, cateId: cateId, key: key, pageIndex: pageIndex, recordPerPage: recordPerPage
+        langId: langId, cateId: cateId, key: key, pageIndex: pageIndex, recordPerPage: recordPerPage
     }, function (data) {
         if (callback) callback(data);
     });

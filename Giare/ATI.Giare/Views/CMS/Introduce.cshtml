@@ -35,6 +35,15 @@
         <header>Thông tin công ty</header>
         <fieldset>
             <div class="row">
+                <section class="col col-3">
+                    <label class="label">Chọn ngôn ngữ <span class="color-red">*</span></label>
+                    <select class="form-control" data-bind="value: LangId">
+                        <option value="0">Tiếng Việt</option>
+                        <option value="1">Tiếng Anh</option>
+                    </select>
+                </section>
+            </div>
+            <div class="row">
                 <section class="col col-6">
                     <label class="label">Tên <span class="color-red">*</span></label>
                     <label class="input">
@@ -80,6 +89,12 @@
         </div>
         <div class="panel-body">
             <div class="row">
+                <div class="col-md-2 mb-margin-bottom-30">
+                    <select class="form-control" data-bind="value: LangIdSearch, event: {change: changeLang}">
+                        <option value="0">Tiếng Việt</option>
+                        <option value="1">Tiếng Anh</option>
+                    </select>
+                </div>
                 <div class="col-md-6 mb-margin-bottom-30">
                     <div class="input-group margin-bottom-40">
                         <input type="text" placeholder="Tiêu đề bài viết" class="form-control" data-bind="value: Keyword" />

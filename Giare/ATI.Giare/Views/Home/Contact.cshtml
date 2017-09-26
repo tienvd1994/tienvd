@@ -68,7 +68,9 @@
 <section class="contact-form-section">
     <div class="auto-container">
         <div class="sec-title centered">
-            <h2>Gửi liên hệ tới chúng tôi</h2>
+            <h2>
+                @ATIResourceManger._managerResources.GetString("ContactUs_Label", ATIResourceManger._culture)
+            </h2>
             <div class="separator"></div>
         </div>
         <div class="row clearfix">
@@ -142,7 +144,9 @@
             </div>
             <!--image column-->
             <div class="contact-section col-md-4 col-sm-4 col-xs-12 pull-left">
-                <h4>Thông tin liên hệ</h4>
+                <h4>
+                    @ATIResourceManger._managerResources.GetString("ContactInfo_Label", ATIResourceManger._culture)
+                </h4>
                 <ul class="contact-info">
                     <li><div class="icon-box"><span class="fa fa-phone"></span></div>@Html.Raw(commonInfo.Phone), @commonInfo.Mobile</li>
                     <li><div class="icon-box"><span class="fa fa-envelope-o"></span></div>@Html.Raw(commonInfo.Email)</li>

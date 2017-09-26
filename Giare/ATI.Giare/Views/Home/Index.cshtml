@@ -85,7 +85,9 @@
                     <div class="content">
                         <!--Sec Title-->
                         <div class="sec-title centered">
-                            <h2>Giới thiệu</h2>
+                            <h2>
+                                @ATIResourceManger._managerResources.GetString("IntroductionCode", ATIResourceManger._culture)
+                            </h2>
                             <div class="separator"></div>
                         </div>
                         <div class="text">
@@ -110,7 +112,9 @@
     <div class="auto-container">
         <!--Sec Title-->
         <div class="sec-title light centered">
-            <h2>Dịch vụ của chúng tôi</h2>
+            <h2>
+                @ATIResourceManger._managerResources.GetString("ServiceCode", ATIResourceManger._culture)
+            </h2>
             <div class="separator"></div>
         </div>
         <div class="row clearfix">
@@ -150,31 +154,40 @@
     <div class="auto-container">
         <!--Sec Title-->
         <div class="sec-title centered">
-            <h2>Sản phẩm của chúng tôi</h2>
+            <h2>
+                @ATIResourceManger._managerResources.GetString("ProductCode", ATIResourceManger._culture)
+            </h2>
             <div class="separator"></div>
         </div>
         @{
             var list = (CategoryAndProductViewModel)ViewBag.ListCateAndProduct;
-            var first = true;
+            //var first = true;
 
             <ul class="post-filter text-center list-inline">
-
+                <li class="active" data-filter=".default-portfolio-item">
+                    <span>
+                        @ATIResourceManger._managerResources.GetString("ViewAll_Label", ATIResourceManger._culture)
+                    </span>
+                </li>
                 @foreach (var category in list.Categories)
                 {
-                    if (first)
-                    {
-                        <li class="active" data-filter=".@category.CateId">
-                            <span>@category.CategoryName</span>
-                        </li>
+                    @*if (first)
+                        {
+                            <li class="active" data-filter=".@category.CateId">
+                                <span>@category.CategoryName</span>
+                            </li>
 
-                        first = false;
-                    }
-                    else
-                    {
-                        <li data-filter=".@category.CateId">
-                            <span>@category.CategoryName</span>
-                        </li>
-                    }
+                            first = false;
+                        }
+                        else
+                        {
+                            <li data-filter=".@category.CateId">
+                                <span>@category.CategoryName</span>
+                            </li>
+                        }*@
+                    <li data-filter=".@category.CateId">
+                        <span>@category.CategoryName</span>
+                    </li>
                 }
             </ul>
             <div class="row clearfix masonary-layout filter-layout">
@@ -208,7 +221,9 @@
     <div class="auto-container">
         <!--Sec Title-->
         <div class="sec-title centered">
-            <h2>Tin tức mới nhất</h2>
+            <h2>
+                @ATIResourceManger._managerResources.GetString("NewsLastest_Label", ATIResourceManger._culture)
+            </h2>
             <div class="separator"></div>
         </div>
         <div class="row clearfix">

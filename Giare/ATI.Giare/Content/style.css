@@ -1163,7 +1163,7 @@ img {
             z-index: 5;
         }
 
-    .main-menu .navigation > li > ul > li:hover > a {
+    .main-menu .navigation > li > ul > li:hover > a, .main-menu .navigation > li > ul > li > ul > li > ul > li:hover > a {
         color: #48c7ec;
         background: #f9f9f9;
     }

@@ -88,9 +88,22 @@
                                 <li> <i class="flaticon-email-filled-closed-envelope"></i>@commonInfo.Email</li>
                                 @*<li> <i class="flaticon-placeholder-2"> </i> @commonInfo.Office</li>*@
                                 <li>
-                                    <a href="#">
-                                        <img src="~/Content/images/vietnam32.png" />
-                                    </a>
+                                    @{
+                                        var lang = ATI.Web.Helper.ATIResourceManger.GetLanguageCurrent();
+
+                                        if (lang.Equals("en"))
+                                        {
+                                            <a href="/Home/ChangeLanguage/vi">
+                                                <img src="~/Content/images/vietnam32.png" />
+                                            </a>
+                                        }
+                                        else
+                                        {
+                                            <a href="/Home/ChangeLanguage/en">
+                                                <img src="~/Content/images/uk32.png" />
+                                            </a>
+                                        }
+                                    }
                                 </li>
                             </ul>
                         </div>
@@ -160,7 +173,9 @@
                                 <span class="flaticon-placeholder-1"></span>
                             </div>
                             <div class="text-holder">
-                                <h3>Địa chỉ</h3>
+                                <h3>
+                                    @ATIResourceManger._managerResources.GetString("ContactAdd", ATIResourceManger._culture)
+                                </h3>
                                 <p>@commonInfo.Office</p>
                             </div>
                         </div>
@@ -173,8 +188,10 @@
                                 <span class="flaticon-technology"></span>
                             </div>
                             <div class="text-holder">
-                                <h3>Liên lạc</h3>
-                                <p>Máy bàn: @commonInfo.Phone<br>Di động: @commonInfo.Mobile</p>
+                                <h3>
+                                    @ATIResourceManger._managerResources.GetString("ContactCode", ATIResourceManger._culture)
+                                </h3>
+                                <p>@ATIResourceManger._managerResources.GetString("Phone", ATIResourceManger._culture): @commonInfo.Phone<br>@ATIResourceManger._managerResources.GetString("Mobile", ATIResourceManger._culture): @commonInfo.Mobile</p>
                             </div>
                         </div>
                     </div>
@@ -186,7 +203,9 @@
                                 <span class="flaticon-mail"></span>
                             </div>
                             <div class="text-holder">
-                                <h3>Gửi tin nhắn</h3>
+                                <h3>
+                                    @ATIResourceManger._managerResources.GetString("SendMessage_Label", ATIResourceManger._culture)
+                                </h3>
                                 <p>Email: @commonInfo.Email<br>Website: www.cleaningservices.com</p>
                             </div>
                         </div>

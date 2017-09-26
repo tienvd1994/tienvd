@@ -10,5 +10,6 @@ namespace ATI.Web.Models
         public string Content { get; set; }
         public string ContentEn { get; set; }
         public bool? IsShowHomePage { get; set; }
+        public byte? LangId { get; set; }
     }
 }

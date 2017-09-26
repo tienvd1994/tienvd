@@ -52,6 +52,7 @@ function ProductView() {
     self.isUploading = ko.observable(false);
     self.isUploadingContent = ko.observable(false);
     self.IsShowHomePage = ko.observable(false);
+    self.LangIdSearch = ko.observable(0);
 
     var maxFileLength = 5120000;
 
@@ -215,7 +216,7 @@ function ProductView() {
     self.Search = function (currentPage) {
         CurrentPage = currentPage;
 
-        Product.Get(self.CateId() == undefined ? -1 : self.CateId(), self.Keyword(), currentPage, RecordPerPage, function (data) {
+        Product.Get(self.LangIdSearch(), self.CateId() == undefined ? -1 : self.CateId(), self.Keyword(), currentPage, RecordPerPage, function (data) {
             if (data == -1) {
                 toastr.warning("Mời bạn đăng nhập trước khi thực hiện");
 
@@ -307,9 +308,15 @@ function ProductView() {
         }
     }
 
-    CateProduct.Get(0, "", -1, function (data) {
-        self.CateProducts(data);
-    });
+    self.changeLang = function () {
+        CateProduct.Get(self.LangId(), "", -1, function (data) {
+            self.CateProducts(data);
+        });
+    }
+
+    self.changeLangSearch = function () {
+        self.Search(1);
+    }
 
     self.Search(1);
 }
