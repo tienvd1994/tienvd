@@ -294,6 +294,9 @@ namespace ATI.Web.Controllers
                     return Json(-1, JsonRequestBehavior.AllowGet);
                 }
 
+                item.Fax = item.Fax == null ? string.Empty : item.Fax;
+                item.Mobile = item.Mobile == null ? string.Empty : item.Mobile;
+
                 var commonInfo = db.CommonInfoes.FirstOrDefault(c => c.LangId == item.LangId);
 
                 if (commonInfo == null)
@@ -310,13 +313,16 @@ namespace ATI.Web.Controllers
                     commonInfo.HeadOffice_En = item.HeadOfficeEn;
                     commonInfo.Office = item.Office;
                     commonInfo.Office_En = item.OfficeEn;
-                    commonInfo.Yahoo = item.Yahoo;
+                    commonInfo.Yahoo = string.Empty;
                     commonInfo.Facebook = item.Facebook;
                     commonInfo.Skype = item.Skype;
                     commonInfo.Summary = item.Summary;
                     commonInfo.LangId = (byte)item.LangId;
                     commonInfo.Summary = item.SummaryEn;
                     commonInfo.Logo = item.Logo;
+                    commonInfo.Logo2 = item.Logo2;
+                    commonInfo.Lang = item.Lang;
+                    commonInfo.Long = item.Long;
                     db.CommonInfoes.Add(commonInfo);
                 }
                 else
@@ -332,13 +338,15 @@ namespace ATI.Web.Controllers
                     commonInfo.HeadOffice_En = item.HeadOfficeEn;
                     commonInfo.Office = item.Office;
                     commonInfo.Office_En = item.OfficeEn;
-                    commonInfo.Yahoo = item.Yahoo;
                     commonInfo.Facebook = item.Facebook;
                     commonInfo.Skype = item.Skype;
                     commonInfo.Summary = item.Summary;
                     commonInfo.LangId = (byte)item.LangId;
                     commonInfo.Summary = item.SummaryEn;
                     commonInfo.Logo = item.Logo;
+                    commonInfo.Logo2 = item.Logo2;
+                    commonInfo.Lang = item.Lang;
+                    commonInfo.Long = item.Long;
                     db.Entry(commonInfo).State = EntityState.Modified;
                 }
 

@@ -36,7 +36,7 @@ namespace ATI.Web.Helper
             get
             {
                 if (!string.IsNullOrEmpty(ATICurrentCookie.GetCookie(LANG_SESSION)))
-                    return  Convert.ToInt32(ATICurrentCookie.GetCookie(LANG_SESSION));
+                    return Convert.ToInt32(ATICurrentCookie.GetCookie(LANG_SESSION));
                 return 0;
             }
 
@@ -49,10 +49,11 @@ namespace ATI.Web.Helper
     {
         public static void AddCookie(Object pValue, string pKey)
         {
-            var cookieTemp = new HttpCookie(pKey);
+            var cookieTemp = new HttpCookie(pKey)
+            {
+                Value = pValue.ToString()
+            };
 
-            cookieTemp.Value = pValue.ToString();
-          
             HttpContext.Current.Response.Cookies.Set(cookieTemp);
         }
 

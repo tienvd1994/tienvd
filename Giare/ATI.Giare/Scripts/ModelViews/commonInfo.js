@@ -27,14 +27,17 @@ function CommonInfoView() {
     self.Skype = ko.observable("");
     self.Yahoo = ko.observable("");
     self.Logo = ko.observable("");
+    self.LogoFooter = ko.observable("");
     self.LangId = ko.observable(0);
     self.fcName = ko.observable(false);
     self.fcPhone = ko.observable(false);
     self.fcAddress = ko.observable(false);
     self.fcSummary = ko.observable(false);
     self.isUploading = ko.observable(false);
-
+    self.isUploadingFooter = ko.observable(false);
     self.Sending = ko.observable(false);
+    self.Long = ko.observable(null);
+    self.Lat = ko.observable(null);
 
     self.changeLang = function () {
         self.GetInfo();
@@ -63,6 +66,9 @@ function CommonInfoView() {
             self.Skype(data.Skype);
             self.Address(data.HeadOffice);
             self.Logo(data.Logo);
+            self.LogoFooter(data.Logo2);
+            self.Long(data.Long);
+            self.Lat(data.Lang);
         });
     }
 
@@ -94,8 +100,8 @@ function CommonInfoView() {
         self.Sending(true);
 
         CommonInfo.Update($.trim(self.Name()), $.trim(self.EnglishName()), $.trim(self.Email()), $.trim(self.Phone()), $.trim(self.Mobile()), $.trim(self.Fax()),
-            $.trim(self.Address()), $.trim(self.Address()), $.trim(self.Address()), $.trim(self.Address()), $.trim(self.Yahoo()), $.trim(self.Facebook()),
-            $.trim(self.Skype()), $.trim(self.Summary()), $.trim(self.Summary()), $.trim(self.ShortName()), self.LangId(), self.Logo(), function (data) {
+            $.trim(self.Address()), $.trim(self.Address()), $.trim(self.Address()), $.trim(self.Address()), $.trim(self.Facebook()),
+            $.trim(self.Skype()), $.trim(self.Summary()), $.trim(self.Summary()), $.trim(self.ShortName()), self.LangId(), self.Logo(), self.LogoFooter(), self.Long(), self.Lat(), function (data) {
 
                 self.Sending(false);
 
@@ -146,10 +152,47 @@ function CommonInfoView() {
                 return;
             }
 
-
             self.isUploading(false);
             self.Logo(data.result);
-            //toastr.success(resources.salesCall.customer.message.uploadFileSucc);
+        }
+    });
+
+    $("#FileUploadImageFooter").fileupload({
+        url: "/UploadFile/Upload",
+        sequentialUploads: false,
+        dataType: "json",
+        dropZone: null,
+        pasteZone: null,
+        add: function (e, data) {
+            var file = data.files[0];
+            var msg = "";
+            if (maxFileLength && file.size > maxFileLength) {
+                if (msg.length > 0) {
+                    msg += "<br/>";
+                }
+                msg += "Kích thước tệp lớn hơn kích thước cho phép";
+            }
+
+            if (msg !== "") {
+                toastr.error(msg);
+            } else {
+                data.submit();
+                self.isUploadingFooter(true);
+            }
+        },
+        done: function (e, data) {
+            if (data.result == "-10") {
+                toastr.warning("Có lỗi xảy ra xin vui lòng liên hệ Ban quản trị để được trợ giúp");
+                return;
+            }
+
+            if (data.result == "-2") {
+                toastr.warning("Bạn hãy tải ảnh có định dạng .jpg; .png, .gif, .jpeg!");
+                return;
+            }
+
+            self.isUploadingFooter(false);
+            self.LogoFooter(data.result);
         }
     });
 }

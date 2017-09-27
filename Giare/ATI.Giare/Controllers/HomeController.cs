@@ -27,7 +27,6 @@ namespace ATI.Web.Controllers
             ViewBag.Context = HttpContext;
             ViewBag.CommonInfo = db.CommonInfoes.Where(x => x.LangId == lang).FirstOrDefault();
             ViewBag.TopNews = db.News.Where(item => item.Type == 0 && item.LangId == lang).OrderByDescending(item => item.ID).Take(3).ToList();
-            ViewBag.ModuleId = 1;
             ViewBag.Services = db.Partners.Where(m => m.LangId == 0 && m.LangId == lang).OrderBy(m => m.OrderNo).Take(3).ToList();
             AddLog(HttpContext.Session.SessionID);
             var categories = db.CateProducts.Where(m => !m.IsDelete && m.LangId == lang && m.ParrentCateId == -1 && m.IsShowHomePage == true).Select(m => new CategoryItems
@@ -40,14 +39,32 @@ namespace ATI.Web.Controllers
 
             foreach (var item in categories)
             {
-                var products = db.Products.Where(m => !m.IsDelete && m.LangId == lang && m.IsShowHomePage == true && m.Status == 1 && m.CateId == item.CateId).Select(m => new ProductItems
+                var cateChildIds = new List<int>();
+                var cateId = item.CateId;
+                var cateChilds = db.CateProducts.Where(m => m.ParrentCateId == cateId && !m.IsDelete).ToList();
+                var cateChildIds1 = cateChilds.Select(m => m.ID).ToList();
+                cateChildIds.AddRange(cateChildIds1);
+
+                foreach (var item1 in cateChildIds1)
+                {
+                    var cateChilds1 = db.CateProducts.Where(m => m.ParrentCateId == item1 && !m.IsDelete);
+
+                    if (cateChilds1 != null && cateChilds1.Count() > 0)
+                    {
+                        cateChildIds.AddRange(cateChilds1.Select(m => m.ID));
+                    }
+                }
+
+                cateChildIds.Add(cateId);
+
+                var products = db.Products.Where(m => !m.IsDelete && m.LangId == lang && m.IsShowHomePage == true && m.Status == 1 && cateChildIds.Contains(m.CateId)).Select(m => new ProductItems
                 {
                     Id = m.ID,
                     Name = m.Name,
                     Image = m.Image,
                     SeoLink = m.SeoLink,
                     CategoryName = item.CategoryName,
-                    CateId = item.CateId
+                    CateId = cateId
                 }).ToList();
 
                 listProduct.AddRange(products);
@@ -86,7 +103,7 @@ namespace ATI.Web.Controllers
         }
 
         [Localization]
-        public ActionResult Product(string seolink)
+        public ActionResult Product(string seolink, int? page)
         {
             ViewBag.Context = HttpContext;
             var langId = ATICurrentSession.GetLang;
@@ -102,18 +119,39 @@ namespace ATI.Web.Controllers
             ViewBag.Cate = currentCate;
             var cateChilds = db.CateProducts.Where(m => !m.IsDelete && m.ParrentCateId == currentCate.ID && m.LangId == langId).ToList();
 
+            var products = new PagerViewModel<Product>();
+
             if (cateChilds != null && cateChilds.Count() > 0)
             {
+                var cateChildsSearch = new List<int>();
                 var cateChildIds = cateChilds.Select(m => m.ID).ToList();
-                cateChildIds.Add(currentCate.ID);
-                ViewBag.Products = db.Products.Where(m => !m.IsDelete && m.LangId == langId && m.Status == 1 && cateChildIds.Contains(m.CateId)).ToList();
+                cateChildsSearch.AddRange(cateChildIds);
+
+                foreach (var item in cateChildIds)
+                {
+                    var cateChilds1 = db.CateProducts.Where(m => !m.IsDelete && m.ParrentCateId == item && m.LangId == langId).ToList();
+
+                    if (cateChilds1 != null && cateChilds1.Count() > 0)
+                    {
+                        cateChildsSearch.AddRange(cateChilds1.Select(m => m.ID));
+                    }
+                }
+
+                cateChildsSearch.Add(currentCate.ID);
+                var items = db.Products.Where(m => !m.IsDelete && m.LangId == langId && m.Status == 1 && cateChildsSearch.Contains(m.CateId));
+                var pager = new Pager(items.Count(), page);
+                products.Items = items.OrderBy(m => m.OrderNo).Skip((pager.CurrentPage - 1) * pager.PageSize).Take(pager.PageSize);
+                products.Pager = new Pager(items.Count(), page);
             }
             else
             {
-                ViewBag.Products = db.Products.Where(m => !m.IsDelete && m.LangId == langId && m.Status == 1 && m.CateId == currentCate.ID).ToList();
+                var items = db.Products.Where(m => !m.IsDelete && m.LangId == langId && m.Status == 1 && m.CateId == currentCate.ID);
+                var pager = new Pager(items.Count(), page);
+                products.Items = items.OrderBy(m => m.OrderNo).Skip((pager.CurrentPage - 1) * pager.PageSize).Take(pager.PageSize);
+                products.Pager = new Pager(items.Count(), page);
             }
 
-            return View();
+            return View(products);
         }
 
         [Localization]
@@ -143,12 +181,13 @@ namespace ATI.Web.Controllers
         [Localization]
         public ActionResult ProductDetail(string seolink)
         {
+            var langId = ATICurrentSession.GetLang;
             ViewBag.Context = HttpContext;
-            ViewBag.CommonInfo = db.CommonInfoes.FirstOrDefault(c => c.LangId == ATICurrentSession.GetLang);
+            ViewBag.CommonInfo = db.CommonInfoes.FirstOrDefault(c => c.LangId == langId);
             ViewBag.Cart = Cart;
-            ViewBag.Partners = db.Partners.Where(x => x.LangId == ATICurrentSession.GetLang).ToList();
+            ViewBag.Partners = db.Partners.Where(x => x.LangId == langId).ToList();
             AddLog(HttpContext.Session.SessionID);
-            var product = db.Products.Where(x => x.LangId == ATICurrentSession.GetLang).FirstOrDefault(item => item.SeoLink.Equals(seolink.ToLower()) && !item.IsDelete && item.Status == 1);
+            var product = db.Products.Where(x => x.LangId == langId).FirstOrDefault(item => item.SeoLink.Equals(seolink.ToLower()) && !item.IsDelete && item.Status == 1);
 
             if (product == null)
             {
@@ -163,46 +202,29 @@ namespace ATI.Web.Controllers
             ViewBag.Category = db.CateProducts.FirstOrDefault(item => item.ID == product.CateId);
             ViewBag.Product = product;
             ViewBag.ProductsOther = db.Products.Where(m => !m.IsDelete && m.Status == 1 && m.ID != product.ID && m.CateId == product.CateId).ToList();
-            ViewBag.ModuleId = 2;
 
             return View();
         }
 
         [Localization]
-        public ActionResult SearchProduct()
+        public ActionResult SearchProduct(string key, int? page)
         {
             ViewBag.Context = HttpContext;
-            ViewBag.CommonInfo = db.CommonInfoes.FirstOrDefault(c => c.LangId == ATICurrentSession.GetLang);
-            ViewBag.Cart = Cart;
-            ViewBag.Partners = db.Partners.Where(x => x.LangId == ATICurrentSession.GetLang).ToList();
+            var langId = ATICurrentSession.GetLang;
+            ViewBag.CommonInfo = db.CommonInfoes.FirstOrDefault(c => c.LangId == langId);
             AddLog(HttpContext.Session.SessionID);
-            var pageIndex = string.IsNullOrEmpty(Request.Params["p"]) ? 1 : Convert.ToInt32(Request.Params["p"]);
-            var recordPerPage = string.IsNullOrEmpty(Request.Params["r"]) ? 10 : Convert.ToInt32(Request.Params["r"]);
-            var key = string.IsNullOrEmpty(Request.Params["k"]) ? "" : Request.Params["k"];
 
-            var keywordArray = Common.UCS2Convert(key).ToLower().Split(' ');
+            key = Common.UCS2Convert(key).ToLower();
+            var listProducts = db.Products.Where(m => (string.IsNullOrEmpty(key) || m.UnsignName.Contains(key)) && m.Status == 1 && m.LangId == langId && !m.IsDelete);
+            var pager = new Pager(listProducts.Count(), page);
 
-            var keyword = string.Empty;
-
-            foreach (var item in keywordArray)
+            var viewModel = new PagerViewModel<Product>
             {
-                if (string.IsNullOrEmpty(item))
-                {
-                    continue;
-                }
+                Items = listProducts.OrderBy(m => m.OrderNo).Skip((pager.CurrentPage - 1) * pager.PageSize).Take(pager.PageSize).ToList(),
+                Pager = pager
+            };
 
-                keyword += keyword.Equals(string.Empty) ? "\"" + item + "*\"" + "" : " AND \"" + item + "*\"";
-            }
-
-            var output = new ObjectParameter("TotalRecord", typeof(int));
-            //ViewBag.Products = db.ProductGetByName((short)ATICurrentSession.GetLang, -1, keyword, pageIndex, recordPerPage, output).ToList();
-            ViewBag.totalRecord = output.Value;
-            ViewBag.CurrPage = pageIndex;
-            ViewBag.Key = key;
-            ViewBag.Tags = db.Tags.Take(20).ToList();
-            ViewBag.ModuleId = 2;
-
-            return View();
+            return View(viewModel);
         }
 
         [Localization]
@@ -228,7 +250,6 @@ namespace ATI.Web.Controllers
             //partner.ViewNo += 1;
             //db.SaveChanges();
             ViewBag.Partner = partner;
-            ViewBag.ModuleId = 8;
             ViewBag.PartnersOther = db.Partners.Where(x => x.LangId == ATICurrentSession.GetLang && x.ID != partner.ID).ToList();
 
             return View();
@@ -371,7 +392,6 @@ namespace ATI.Web.Controllers
             ViewBag.CommonInfo = db.CommonInfoes.FirstOrDefault(c => c.LangId == ATICurrentSession.GetLang);
             ViewBag.Cart = Cart;
             ViewBag.Partners = db.Partners.Where(x => x.LangId == ATICurrentSession.GetLang).ToList();
-            //ViewBag.TopNews = db.News.OrderByDescending(item => item.PostTime).Take(3).ToList();
             AddLog(HttpContext.Session.SessionID);
             var agency = db.Agencies.Where(x => x.LangId == ATICurrentSession.GetLang).FirstOrDefault(item => item.SeoLink.ToLower().Equals(seoLink.ToLower()) && item.Status == 1);
 
@@ -385,33 +405,21 @@ namespace ATI.Web.Controllers
         }
 
         [Localization]
-        public ActionResult Service()
+        public ActionResult Service(int? page)
         {
             ViewBag.Context = HttpContext;
-            ViewBag.CommonInfo = db.CommonInfoes.Where(x => x.LangId == ATICurrentSession.GetLang).FirstOrDefault();
-            ViewBag.TopNews = db.News.Where(x => x.LangId == ATICurrentSession.GetLang).OrderByDescending(item => item.PostTime).Take(3).ToList();
+            var lang = ATICurrentSession.GetLang;
+            ViewBag.CommonInfo = db.CommonInfoes.Where(x => x.LangId == lang).FirstOrDefault();
             AddLog(HttpContext.Session.SessionID);
-            ViewBag.Partners = db.Partners.Where(x => x.LangId == ATICurrentSession.GetLang).ToList();
-            ViewBag.ModuleId = 4;
 
-            return View();
+            var viewModel = new PagerViewModel<Partner>();
+            var items = db.Partners.Where(x => x.LangId == lang);
+            var pager = new Pager(items.Count(), page);
+            viewModel.Items = items.OrderBy(m => m.OrderNo).Skip((pager.CurrentPage - 1) * pager.PageSize).Take(pager.PageSize);
+            viewModel.Pager = new Pager(items.Count(), page);
+
+            return View(viewModel);
         }
-
-        //[Localization]
-        //public ActionResult Project()
-        //{
-        //    ViewBag.Context = HttpContext;
-        //    ViewBag.CommonInfo = db.CommonInfoes.FirstOrDefault(c => c.LangId == ATICurrentSession.GetLang);
-        //    ViewBag.Cart = Cart;
-        //    //ViewBag.Partners = db.Partners.Where(x => x.LangId == ATICurrentSession.GetLang).ToList();
-        //    //ViewBag.CateProducts = db.CateProducts.ToList();
-        //    //ViewBag.Contractors = db.Contractors.Where(item => item.IsDelete == 0 && item.Status == 1).OrderBy(c => c.OrderNo).ToList();
-        //    //ViewBag.TopNews = db.News.OrderByDescending(item => item.PostTime).Take(3).ToList();
-        //    ViewBag.ModuleId = 5;
-        //    AddLog(HttpContext.Session.SessionID);
-
-        //    return View();
-        //}
 
         [Localization]
         public ActionResult ProjectDetail(string seolink)
@@ -420,8 +428,6 @@ namespace ATI.Web.Controllers
             ViewBag.CommonInfo = db.CommonInfoes.Where(x => x.LangId == ATICurrentSession.GetLang).FirstOrDefault();
             ViewBag.Cart = Cart;
             ViewBag.Partners = db.Partners.Where(x => x.LangId == ATICurrentSession.GetLang).ToList();
-            //ViewBag.CateProducts = db.CateProducts.ToList();
-            //ViewBag.TopNews = db.News.OrderByDescending(item => item.PostTime).Take(3).ToList();
             AddLog(HttpContext.Session.SessionID);
 
             var contractor = db.Contractors.Where(x => x.LangId == ATICurrentSession.GetLang).FirstOrDefault(item => item.IsDelete == 0 && item.Status == 1 && item.SeoLink.Equals(seolink.ToLower()));
@@ -441,7 +447,7 @@ namespace ATI.Web.Controllers
         }
 
         [Localization]
-        public ActionResult News(string seolink)
+        public ActionResult News(string seolink, int? page)
         {
             var lang = ATICurrentSession.GetLang;
             ViewBag.Context = HttpContext;
@@ -456,15 +462,14 @@ namespace ATI.Web.Controllers
                 return View("FileNotFound");
             }
 
-            var items = db.News.Where(m => m.LangId == lang && m.Type == 0 && m.CateId == cate.ID).ToList();
-            var result = items.OrderByDescending(m => m.ID).ToList();
-            ViewBag.News = result.ToList();
-            ViewBag.totalRecord = items.Count();
-            ViewBag.ModuleId = seolink.Equals("tuyen-dung") ? 7 : 3;
+            var viewModel = new PagerViewModel<News>();
+            var items = db.News.Where(m => m.LangId == lang && m.Type == 0 && m.CateId == cate.ID && m.Status == 1);
+            var pager = new Pager(items.Count(), page);
+            viewModel.Items = items.OrderByDescending(m => m.ID).Skip((pager.CurrentPage - 1) * pager.PageSize).Take(pager.PageSize);
+            viewModel.Pager = new Pager(items.Count(), page);
             ViewBag.Cate = cate;
-            ViewBag.Tags = db.Tags.Take(20).ToList();
 
-            return View();
+            return View(viewModel);
         }
 
         [Localization]
@@ -558,12 +563,13 @@ namespace ATI.Web.Controllers
         public ActionResult NewsDetail(string seolink)
         {
             ViewBag.Context = HttpContext;
-            ViewBag.CommonInfo = db.CommonInfoes.Where(x => x.LangId == ATICurrentSession.GetLang).FirstOrDefault();
+            var langId = ATICurrentSession.GetLang;
+            ViewBag.CommonInfo = db.CommonInfoes.Where(x => x.LangId == langId).FirstOrDefault();
             ViewBag.Cart = Cart;
-            ViewBag.Partners = db.Partners.Where(x => x.LangId == ATICurrentSession.GetLang).ToList();
+            ViewBag.Partners = db.Partners.Where(x => x.LangId == langId).ToList();
             AddLog(HttpContext.Session.SessionID);
 
-            var news = db.News.Where(x => x.LangId == ATICurrentSession.GetLang).FirstOrDefault(item => item.SeoLink.Equals(seolink.ToLower()) && item.Status == 1);
+            var news = db.News.FirstOrDefault(item => item.SeoLink.Equals(seolink.ToLower()) && item.Status == 1 && item.LangId == langId);
 
             if (news == null)
             {
@@ -693,34 +699,37 @@ namespace ATI.Web.Controllers
             return new RedirectResult("/");
         }
 
-        public ActionResult Solutions(string seolink)
+        public ActionResult Solutions(string seolink, int? page)
         {
             ViewBag.Context = HttpContext;
-            ViewBag.CommonInfo = db.CommonInfoes.Where(x => x.LangId == ATICurrentSession.GetLang).FirstOrDefault();
-            ViewBag.Cart = Cart;
+            var langId = ATICurrentSession.GetLang;
+            ViewBag.CommonInfo = db.CommonInfoes.Where(x => x.LangId == langId).FirstOrDefault();
             AddLog(HttpContext.Session.SessionID);
-
-            var cate = db.CateNews.FirstOrDefault(item => item.SeoLink.ToLower().Equals(seolink.ToLower()) && item.Type == 1);
+            var cate = db.CateNews.FirstOrDefault(item => item.SeoLink.ToLower().Equals(seolink.ToLower()) && item.LangId == langId && item.Type == 1);
 
             if (cate == null)
             {
                 return View("FileNotFound");
             }
 
+            var viewModel = new PagerViewModel<News>();
+            var items = db.News.Where(m => m.CateId == cate.ID && m.LangId == langId && m.Status == 1);
+            var pager = new Pager(items.Count(), page);
+            viewModel.Items = items.OrderBy(m => m.ID).Skip((pager.CurrentPage - 1) * pager.PageSize).Take(pager.PageSize);
+            viewModel.Pager = new Pager(items.Count(), page);
             ViewBag.Cate = cate;
 
-            ViewBag.Solutions = db.News.Where(m => m.CateId == cate.ID && m.Status == 1).ToList();
-
-            return View();
+            return View(viewModel);
         }
 
         public ActionResult SolutionDetail(string seolink)
         {
             ViewBag.Context = HttpContext;
-            ViewBag.CommonInfo = db.CommonInfoes.Where(x => x.LangId == ATICurrentSession.GetLang).FirstOrDefault();
+            var langID = ATICurrentSession.GetLang;
+            ViewBag.CommonInfo = db.CommonInfoes.Where(x => x.LangId == langID).FirstOrDefault();
             AddLog(HttpContext.Session.SessionID);
 
-            var news = db.News.Where(x => x.LangId == ATICurrentSession.GetLang).FirstOrDefault(item => item.SeoLink.Equals(seolink.ToLower()) && item.Status == 1);
+            var news = db.News.FirstOrDefault(item => item.SeoLink.Equals(seolink.ToLower()) && item.Status == 1 && item.LangId == langID);
 
             if (news == null)
             {
@@ -728,7 +737,6 @@ namespace ATI.Web.Controllers
             }
 
             ViewBag.News = news;
-            ViewBag.ModuleId = 3;
             var cate = db.CateNews.FirstOrDefault(item => item.ID == news.CateId && item.Type == 1);
             ViewBag.TopNews = db.News.Where(m => m.Status == 1 && m.CateId == cate.ID && m.ID != news.ID && m.Type == 1).ToList();
             ViewBag.CateSolutionOther = db.CateNews.Where(m => m.ID != cate.ID && m.Type == 1).ToList();

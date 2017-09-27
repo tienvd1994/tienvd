@@ -141,12 +141,13 @@
                                 <ul class="dropdown-menu pull-right search-panel" aria-labelledby="dropdownMenu3">
                                     <li class="panel-outer">
                                         <div class="form-container">
-                                            <form method="post" action="#">
+                                            @using (Html.BeginForm("SearchProduct", "Home", FormMethod.Get, new { role = "search", id = "searchform" }))
+                                            {
                                                 <div class="form-group">
-                                                    <input type="search" name="field-name" value="" placeholder="@ATIResourceManger._managerResources.GetString("Search_Label", ATIResourceManger._culture)">
+                                                    <input type="search" name="key" id="key" value="" placeholder="@ATIResourceManger._managerResources.GetString("Search_Label", ATIResourceManger._culture)">
                                                     <button type="submit" class="search-btn"><span class="fa fa-search"></span></button>
                                                 </div>
-                                            </form>
+                                            }
                                         </div>
                                     </li>
                                 </ul>
@@ -206,7 +207,10 @@
                                 <h3>
                                     @ATIResourceManger._managerResources.GetString("SendMessage_Label", ATIResourceManger._culture)
                                 </h3>
-                                <p>Email: @commonInfo.Email<br>Website: www.cleaningservices.com</p>
+                                <p>
+                                    Email: @commonInfo.Email
+                                    @*<br>Website: www.cleaningservices.com*@
+                                </p>
                             </div>
                         </div>
                     </div>

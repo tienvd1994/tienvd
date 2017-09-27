@@ -106,6 +106,7 @@
           <Property Name="Summary" Type="nvarchar" MaxLength="3000" />
           <Property Name="Summary_En" Type="nvarchar" MaxLength="3000" />
           <Property Name="LangId" Type="tinyint" />
+          <Property Name="Logo2" Type="varchar" MaxLength="500" />
         </EntityType>
         <EntityType Name="ConfigImage">
           <Key>
@@ -603,6 +604,7 @@ warning 6002: The table/view 'ATI.VinhHung.dbo.Tags' does not have a primary key
           <Property Name="Summary" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
           <Property Name="Summary_En" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
           <Property Name="LangId" Type="Byte" />
+          <Property Name="Logo2" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Contact">
           <Key>
@@ -1153,6 +1155,7 @@ warning 6002: The table/view 'ATI.VinhHung.dbo.Tags' does not have a primary key
           <EntitySetMapping Name="CommonInfoes">
             <EntityTypeMapping TypeName="ATI.VinhHungModel.CommonInfo">
               <MappingFragment StoreEntitySet="CommonInfo">
+                <ScalarProperty Name="Logo2" ColumnName="Logo2" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="HeadOffice" ColumnName="HeadOffice" />
                 <ScalarProperty Name="HeadOffice_En" ColumnName="HeadOffice_En" />

@@ -538,11 +538,20 @@ namespace ATI.Web.Resource {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tìm kiềm.
+        ///   Looks up a localized string similar to Tìm kiềm sản phẩm.
         /// </summary>
         internal static string Search_Label {
             get {
                 return ResourceManager.GetString("Search_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kết quả tìm kiếm.
+        /// </summary>
+        internal static string SearchResults_Label {
+            get {
+                return ResourceManager.GetString("SearchResults_Label", resourceCulture);
             }
         }
         

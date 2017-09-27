@@ -253,7 +253,7 @@
     <value>Nhu cầu</value>
   </data>
   <data name="Search_Label" xml:space="preserve">
-    <value>Tìm kiềm</value>
+    <value>Tìm kiềm sản phẩm</value>
   </data>
   <data name="Send" xml:space="preserve">
     <value>Gửi đi</value>
@@ -348,5 +348,8 @@
   </data>
   <data name="ViewAll_Label" xml:space="preserve">
     <value>Xem tất cả</value>
+  </data>
+  <data name="SearchResults_Label" xml:space="preserve">
+    <value>Kết quả tìm kiếm</value>
   </data>
 </root>

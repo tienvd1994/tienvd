@@ -1,5 +1,7 @@
 ﻿@using ATI.Web.Models;
 @using ATI.Web.Helper;
+@model PagerViewModel<News>
+
 @{
     var cate = (CateNew)ViewBag.Cate;
     var commonInfo = (CommonInfo)ViewBag.CommonInfo;
@@ -9,17 +11,14 @@
     ViewBag.Url = "";
     ViewBag.Image = commonInfo.Logo;
 }
-@section KnockOut{
-    <script src="~/Scripts/jquery.pager.js"></script>
-}
 
-<section class="page-title_professional" style="background-image:url(images/background/4.jpg);">
+@*<section class="page-title_professional" style="background-image:url(images/background/4.jpg);">
     <div class="auto-container">
         <h1>
             @ATIResourceManger._managerResources.GetString("Solutions_Label", ATIResourceManger._culture)
         </h1>
     </div>
-</section>
+</section>*@
 
 <div class="breadcrumb-outer_professional">
     <div class="auto-container">
@@ -40,9 +39,7 @@
     <div class="auto-container">
         <div class="row clearfix">
             @{
-                var partners = (List<News>)ViewBag.Solutions;
-
-                foreach (var item in partners)
+                foreach (var item in Model.Items)
                 {
                     <div class="news-style-one col-md-4 col-sm-6 col-xs-12">
                         <div class="inner">
@@ -69,5 +66,41 @@
                 }
             }
         </div>
+
+        <!-- Styled Pagination -->
+        @if (Model.Pager.EndPage > 1)
+        {
+            var url = HttpContext.Current.Request.Url.AbsolutePath;
+            var countSlash = url.Count(m => m == '/');
+
+            if (countSlash > 2)
+            {
+                var index = url.LastIndexOf('/');
+                url = url.Substring(0, index);
+            }
+
+            <div class="styled-pagination text-center">
+                <ul class="clearfix">
+                    @if (Model.Pager.CurrentPage > 1)
+                    {
+                        <li>
+                            <a class="prev" href="@url">
+                                <span class="fa fa-angle-left"></span>
+                            </a>
+                        </li>
+                    }
+                    @for (var page = Model.Pager.StartPage; page <= Model.Pager.EndPage; page++)
+                    {
+                        <li>
+                            <a class="@(page == Model.Pager.CurrentPage ? "active" : "")" href="@url/@page">@page</a>
+                        </li>
+                    }
+                    @if (Model.Pager.CurrentPage < Model.Pager.TotalPages)
+                    {
+                        <li><a class="next" href="@url/@Model.Pager.TotalPages"><span class="fa fa-angle-right"></span></a></li>
+                    }
+                </ul>
+            </div>
+        }
     </div>
 </section>

@@ -1,5 +1,7 @@
 ﻿@using ATI.Web.Models;
 @using ATI.Web.Helper;
+@model PagerViewModel<Partner>
+
 @{
     var commonInfo = (CommonInfo)ViewBag.CommonInfo;
     ViewBag.Title = Html.Raw(string.Concat(@ATIResourceManger._managerResources.GetString("ServiceCode", ATIResourceManger._culture), " | ", commonInfo.Name));
@@ -9,13 +11,13 @@
     ViewBag.Image = commonInfo.Logo;
 }
 
-<section class="page-title_professional" style="background-image:url(images/background/4.jpg);">
+@*<section class="page-title_professional" style="background-image:url(images/background/4.jpg);">
     <div class="auto-container">
         <h1>
             @ATIResourceManger._managerResources.GetString("ServiceCode", ATIResourceManger._culture)
         </h1>
     </div>
-</section>
+</section>*@
 
 <div class="breadcrumb-outer_professional">
     <div class="auto-container">
@@ -36,20 +38,18 @@
     <div class="auto-container">
         <div class="row clearfix">
             @{
-                var partners = (List<Partner>)ViewBag.Partners;
-
-                foreach (var item in partners)
+                foreach (var item in Model.Items)
                 {
                     <div class="news-style-one col-md-4 col-sm-6 col-xs-12">
                         <div class="inner">
                             <div class="image">
-                                <a href="/dich-vu/@item.SeoLink">
+                                <a href="/chi-tiet-dich-vu/@item.SeoLink">
                                     <img src="@item.Image" alt="@item.Name">
                                 </a>
                             </div>
                             <div class="lower-box">
                                 <div class="upper-content">
-                                    <h3><a href="/dich-vu/@item.SeoLink">@item.Name</a></h3>
+                                    <h3><a href="/chi-tiet-dich-vu/@item.SeoLink">@item.Name</a></h3>
                                 </div>
                                 <div class="text">@item.Summary</div>
                                 <ul class="meta-option clearfix">
@@ -66,5 +66,40 @@
             }
         </div>
 
+        <!-- Styled Pagination -->
+        @if (Model.Pager.EndPage > 1)
+        {
+            var url = HttpContext.Current.Request.Url.AbsolutePath;
+            var countSlash = url.Count(m => m == '/');
+
+            if (countSlash > 1)
+            {
+                var index = url.LastIndexOf('/');
+                url = url.Substring(0, index);
+            }
+
+            <div class="styled-pagination text-center">
+                <ul class="clearfix">
+                    @if (Model.Pager.CurrentPage > 1)
+                    {
+                        <li>
+                            <a class="prev" href="@url">
+                                <span class="fa fa-angle-left"></span>
+                            </a>
+                        </li>
+                    }
+                    @for (var page = Model.Pager.StartPage; page <= Model.Pager.EndPage; page++)
+                    {
+                        <li>
+                            <a class="@(page == Model.Pager.CurrentPage ? "active" : "")" href="@url/@page">@page</a>
+                        </li>
+                    }
+                    @if (Model.Pager.CurrentPage < Model.Pager.TotalPages)
+                    {
+                        <li><a class="next" href="@url/@Model.Pager.TotalPages"><span class="fa fa-angle-right"></span></a></li>
+                    }
+                </ul>
+            </div>
+        }
     </div>
 </section>

@@ -10,15 +10,14 @@
     ViewBag.Url = news.SeoLink;
     ViewBag.Image = news.Image;
 }
-<link href="~/Content/css/blog.css" rel="stylesheet" />
 
-<section class="page-title_professional" style="background-image:url(images/background/4.jpg);">
+@*<section class="page-title_professional" style="background-image:url(images/background/4.jpg);">
     <div class="auto-container">
         <h1>
             @ATIResourceManger._managerResources.GetString("Solutions_Label", ATIResourceManger._culture)
         </h1>
     </div>
-</section>
+</section>*@
 <div class="breadcrumb-outer_professional">
     <div class="auto-container">
         <ul class="bread-crumb text-center">
@@ -57,15 +56,6 @@
                                 <div>
                                     @Html.Raw(news.Content)
                                 </div>
-                                <!--post-share-options-->
-                                <div class="post-share-options clearfix">
-                                    <div class="pull-right social-icon-three clearfix">
-                                        <a href="#" class="facebook"><span class="fa fa-facebook-f"></span></a>
-                                        <a href="#" class="twitter"><span class="fa fa-twitter"></span></a>
-                                        <a href="#" class="linkedin"><span class="fa fa-google-plus"></span></a>
-                                    </div>
-                                </div>
-
                             </div>
                         </div>
                     </div>

@@ -53,16 +53,23 @@
                 <thead>
                     <tr>
                         <th class="center">STT</th>
-                        <th class="center">@ATIResourceManger._managerResources.GetString("Fullname", ATIResourceManger._culture)</th>
-                        @*<th data-bind="visible: IsSmartPhone450">@ATIResourceManger._managerResources.GetString("Position", ATIResourceManger._culture)</th>*@
-                        <th class="center" data-bind="visible: IsSmartPhone450">@ATIResourceManger._managerResources.GetString("ContactCompany", ATIResourceManger._culture)</th>
-                        @*<th data-bind="visible: IsSmartPhone450">@ATIResourceManger._managerResources.GetString("ContactAdd", ATIResourceManger._culture)</th>*@
+                        <th class="center">
+                            Họ và tên
+                        </th>
+                        <th class="center" data-bind="visible: IsSmartPhone450">
+                            Công ty
+                        </th>
                         <th class="center" data-bind="visible: IsSmartPhone450">Điện thoại</th>
                         <th class="center" data-bind="visible: IsSmartPhone450">Email</th>
-                        @*<th data-bind="visible: IsSmartPhone450">@ATIResourceManger._managerResources.GetString("Type", ATIResourceManger._culture)</th>*@
-                        <th class="center" data-bind="visible: IsSmartPhone450">@ATIResourceManger._managerResources.GetString("ContactContent", ATIResourceManger._culture)</th>
-                        <th class="center" data-bind="visible: IsSmartPhone450">@ATIResourceManger._managerResources.GetString("Time", ATIResourceManger._culture)</th>
-                        <th>@ATIResourceManger._managerResources.GetString("Status", ATIResourceManger._culture)</th>
+                        <th class="center" data-bind="visible: IsSmartPhone450">
+                            Nội dung
+                        </th>
+                        <th class="center" data-bind="visible: IsSmartPhone450">
+                            Thời gian gửi
+                        </th>
+                        <th class="center">
+                            Trạng thái
+                        </th>
                     </tr>
                 </thead>
                 <tbody data-bind="template: {name:'ContactTemplate', foreach: ListContact}"></tbody>

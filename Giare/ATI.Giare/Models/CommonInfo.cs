@@ -35,5 +35,6 @@ namespace ATI.Web.Models
         public string Summary { get; set; }
         public string Summary_En { get; set; }
         public Nullable<byte> LangId { get; set; }
+        public string Logo2 { get; set; }
     }
 }

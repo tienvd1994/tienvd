@@ -239,7 +239,7 @@ function ServiceView() {
                 }
 
                 toastr.success("Đã lưu thông tin thành công");
-
+                self.ShowDetail(false);
                 self.Search(1);
             });
         }
@@ -255,7 +255,7 @@ function ServiceView() {
                 }
 
                 toastr.success("Đã lưu thông tin thành công");
-
+                self.ShowDetail(false);
                 self.Search(1);
             });
         }

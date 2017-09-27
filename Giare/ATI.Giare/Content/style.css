@@ -2753,7 +2753,7 @@ img {
 
 .news-section_professional {
     position: relative;
-    padding: 90px 0px 40px;
+    padding: 50px 0px 40px;
     background: #f3f3f3;
 }
 
@@ -2767,7 +2767,7 @@ img {
 
 .news-style-one {
     position: relative;
-    /*margin-bottom: 50px;*/
+    margin-bottom: 50px;
 }
 
     .news-style-one .inner {
@@ -7736,4 +7736,19 @@ img {
 
 .margin-left0 {
     margin-left: 0px !important;
+}
+
+.title-search {
+    position: relative;
+    font-size: 15px;
+    color: #ffffff;
+    margin: 0px 7px;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-family: 'Playfair Display';
+    transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s
 }

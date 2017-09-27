@@ -218,10 +218,14 @@ function NewsView() {
     };
 
     self.Update = function () {
-        debugger;
         if ($.trim(self.Title()) == "") {
             toastr.warning("Tiêu đề bài viết không được để trống");
             self.fcTitle(true);
+            return;
+        }
+
+        if (self.CateId() == undefined) {
+            toastr.warning("Chuyên mục không được để trống");
             return;
         }
 

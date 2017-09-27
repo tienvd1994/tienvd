@@ -43,7 +43,7 @@
 </div>
 <div class="container content">
     <div class="sky-form margin-bottom-30" data-bind="visible:ShowDetail">
-        <header>Tin thức</header>
+        <header>Tin tức</header>
         <fieldset>
             <div class="row">
                 <section class="col col-lg-12">
@@ -69,17 +69,15 @@
                         <select data-bind="value: CateId, optionsValue:'ID', optionsText:'Name', options: categories, optionsCaption: 'Chọn chuyên mục'"></select>
                     </label>
                 </section>
-                <section class="col col-lg-6">
-                    <label class="label">Tin nổi bật?</label>
-                    <label class="select">
-                        <select data-bind="value: IsHot" class="form-control">
-                            <option value="1">Tin nổi bật</option>
-                            <option value="0">Tin thường</option>
-                        </select>
-                    </label>
-                </section>
-            </div>
-            <div class="row">
+                @*<section class="col col-lg-6">
+                        <label class="label">Tin nổi bật?</label>
+                        <label class="select">
+                            <select data-bind="value: IsHot" class="form-control">
+                                <option value="1">Tin nổi bật</option>
+                                <option value="0">Tin thường</option>
+                            </select>
+                        </label>
+                    </section>*@
                 <section class="col col-3">
                     <label class="label">Trạng thái</label>
                     <label class="select">

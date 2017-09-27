@@ -11,13 +11,13 @@
     ViewBag.Image = commonInfo.Logo;
 }
 
-<section class="page-title_professional" style="background-image:url(images/background/4.jpg);">
-    <div class="auto-container">
-        <h1>
-            @ATIResourceManger._managerResources.GetString("IntroductionCode", ATIResourceManger._culture)
-        </h1>
-    </div>
-</section>
+@*<section class="page-title_professional" style="background-image:url(images/background/4.jpg);">
+        <div class="auto-container">
+            <h1>
+                @ATIResourceManger._managerResources.GetString("IntroductionCode", ATIResourceManger._culture)
+            </h1>
+        </div>
+    </section>*@
 <div class="breadcrumb-outer_professional">
     <div class="auto-container">
         <ul class="bread-crumb text-center">
@@ -56,15 +56,6 @@
                                 <div>
                                     @Html.Raw(about.Content)
                                 </div>
-                                <!--post-share-options-->
-                                <div class="post-share-options clearfix">
-                                    <div class="pull-right social-icon-three clearfix">
-                                        <a href="#" class="facebook"><span class="fa fa-facebook-f"></span></a>
-                                        <a href="#" class="twitter"><span class="fa fa-twitter"></span></a>
-                                        <a href="#" class="linkedin"><span class="fa fa-google-plus"></span></a>
-                                    </div>
-                                </div>
-
                             </div>
                         </div>
                     </div>

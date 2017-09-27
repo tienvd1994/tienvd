@@ -226,19 +226,12 @@ function NewsView() {
             return;
         }
 
+        if (self.CateId() == undefined) {
+            toastr.warning("Chuyên mục không được để trống");
+            return;
+        }
+
         var postTime = moment(new Date()).format("DD-MM-YYYY");
-
-        //var postTime = $("#txtPostTime").val().replace(/-/g, '/');
-
-        //if (postTime == "") {
-        //    $("#txtPostTime").val(moment(item.PostTime).format("DD-MM-YYYY"));
-        //    return;
-        //}
-
-        //if (postTime != "" && !moment(postTime, "DD/MM/YYYY").isValid()) {
-        //    toastr.warning("Thời gian thực hiện bài viết không đúng định dạng ngày/tháng/năm");
-        //    return;
-        //}
 
         if ($.trim(self.Image()) == "") {
             toastr.warning("Hãy chọn ảnh đại diện cho bài viết");

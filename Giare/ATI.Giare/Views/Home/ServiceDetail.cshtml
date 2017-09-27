@@ -11,13 +11,13 @@
     ViewBag.Image = partner.Image;
 }
 
-<section class="page-title_professional" style="background-image:url(images/background/4.jpg);">
-    <div class="auto-container">
-        <h1>
-            @ATIResourceManger._managerResources.GetString("ServiceCode", ATIResourceManger._culture)
-        </h1>
-    </div>
-</section>
+@*<section class="page-title_professional" style="background-image:url(images/background/4.jpg);">
+        <div class="auto-container">
+            <h1>
+                @ATIResourceManger._managerResources.GetString("ServiceCode", ATIResourceManger._culture)
+            </h1>
+        </div>
+    </section>*@
 <div class="breadcrumb-outer_professional">
     <div class="auto-container">
         <ul class="bread-crumb text-center">
@@ -56,15 +56,6 @@
                                 <div>
                                     @Html.Raw(partner.Content)
                                 </div>
-                                <!--post-share-options-->
-                                <div class="post-share-options clearfix">
-                                    <div class="pull-right social-icon-three clearfix">
-                                        <a href="#" class="facebook"><span class="fa fa-facebook-f"></span></a>
-                                        <a href="#" class="twitter"><span class="fa fa-twitter"></span></a>
-                                        <a href="#" class="linkedin"><span class="fa fa-google-plus"></span></a>
-                                    </div>
-                                </div>
-
                             </div>
                         </div>
                     </div>
@@ -86,11 +77,11 @@
                                 {
                                     <article class="post">
                                         <figure class="post-thumb">
-                                            <a href="/dich-vu/@item.SeoLink">
+                                            <a href="/chi-tiet-dich-vu/@item.SeoLink">
                                                 <img src="@item.Image" alt="@item.Name">
                                             </a>
                                         </figure>
-                                        <h4><a href="/dich-vu/@item.SeoLink">@item.Name</a></h4>
+                                        <h4><a href="/chi-tiet-dich-vu/@item.SeoLink">@item.Name</a></h4>
                                         <div class="post-info"><span class="fa fa-calendar"></span>@Convert.ToDateTime(item.CreatedDate).ToString("dd/MM/yyyy")</div>
                                     </article>
                                 }

@@ -21,8 +21,8 @@ namespace ATI.Web
 
             routes.MapRoute(
               name: "Home-Product",
-              url: "san-pham/{seoLink}",
-              defaults: new { controller = "Home", action = "Product" }
+              url: "san-pham/{seoLink}/{page}",
+              defaults: new { controller = "Home", action = "Product", page = UrlParameter.Optional }
           );
 
             routes.MapRoute(
@@ -141,8 +141,8 @@ namespace ATI.Web
 
             routes.MapRoute(
                name: "Home-SearchProduct",
-               url: "tim-du-an",
-               defaults: new { controller = "Home", action = "SearchProduct" }
+               url: "tim-san-pham/{key}",
+               defaults: new { controller = "Home", action = "SearchProduct", key = UrlParameter.Optional }
            );
 
             routes.MapRoute(
@@ -177,14 +177,14 @@ namespace ATI.Web
 
             routes.MapRoute(
                name: "Home-Solutions",
-               url: "giai-phap/{seolink}",
-               defaults: new { controller = "Home", action = "Solutions" }
+               url: "giai-phap/{seolink}/{page}",
+               defaults: new { controller = "Home", action = "Solutions", page = UrlParameter.Optional }
            );
 
             routes.MapRoute(
                name: "Home-News",
-               url: "tin-tuc/{seolink}",
-               defaults: new { controller = "Home", action = "News" }
+               url: "tin-tuc/{seolink}/{page}",
+               defaults: new { controller = "Home", action = "News", page = UrlParameter.Optional }
            );
 
             routes.MapRoute(
@@ -201,13 +201,13 @@ namespace ATI.Web
 
             routes.MapRoute(
                name: "Home-Service",
-               url: "dich-vu",
-               defaults: new { controller = "Home", action = "Service" }
+               url: "dich-vu/{page}",
+               defaults: new { controller = "Home", action = "Service", page = UrlParameter.Optional }
            );
 
             routes.MapRoute(
                name: "Home-ServiceDetail",
-               url: "dich-vu/{seolink}",
+               url: "chi-tiet-dich-vu/{seolink}",
                defaults: new { controller = "Home", action = "ServiceDetail" }
            );
 

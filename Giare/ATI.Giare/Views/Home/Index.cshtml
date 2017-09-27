@@ -108,7 +108,7 @@
 </section>
 <!--default Section One-->
 <!--Services Section-->
-<section class="services-section_professional" style="background-image:url(../../Content/images/background/parallax4.jpg);">
+<section class="services-section_professional" @*style="background-image:url(../../Content/images/background/parallax4.jpg);"*@>
     <div class="auto-container">
         <!--Sec Title-->
         <div class="sec-title light centered">
@@ -171,20 +171,6 @@
                 </li>
                 @foreach (var category in list.Categories)
                 {
-                    @*if (first)
-                        {
-                            <li class="active" data-filter=".@category.CateId">
-                                <span>@category.CategoryName</span>
-                            </li>
-
-                            first = false;
-                        }
-                        else
-                        {
-                            <li data-filter=".@category.CateId">
-                                <span>@category.CategoryName</span>
-                            </li>
-                        }*@
                     <li data-filter=".@category.CateId">
                         <span>@category.CategoryName</span>
                     </li>

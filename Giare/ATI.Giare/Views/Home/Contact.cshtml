@@ -21,7 +21,7 @@
         function initMap() {
             var markerArray = [];
 
-            var myLatlng = new google.maps.LatLng(20.991409, 105.845025);
+            var myLatlng = new google.maps.LatLng(@(commonInfo.Lang == null ? 21.028511 :@commonInfo.Lang), @(commonInfo.Long == null ? 105.804817:@commonInfo.Long));
             var mapOptions = {
                 zoom: 15,
                 center: myLatlng,
@@ -32,17 +32,16 @@
             var marker = new google.maps.Marker({
                 position: myLatlng,
                 map: map,
-                title: 'Công Ty Cổ Phần Đầu Tư Xây Dựng Và Tư Vấn FCN Build - ĐT: 0904.296.926<br> Số 3Q36, ngõ 152, đường Nguyễn An Ninh, phường Tương Mai, quận Hoàng Mai, thành phố Hà Nội'
+                title: '@commonInfo.Name - ĐT: @commonInfo.Mobile<br> @commonInfo.Office'
             });
             var info = new google.maps.InfoWindow({
-                content: 'Công Ty Cổ Phần Đầu Tư Xây Dựng Và Tư Vấn FCN Build - ĐT: 0904.296.926<br> Số 3Q36, ngõ 152, đường Nguyễn An Ninh, phường Tương Mai, quận Hoàng Mai, thành phố Hà Nội'
+                content: '@commonInfo.Name - ĐT: @commonInfo.Mobile<br> @commonInfo.Office'
             });
 
             info.open(map, marker);
             stepDisplay = new google.maps.InfoWindow();
         }
 
-        //google.maps.event.addDomListener(window, 'load', initialize);
     </script>
 
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCggrXCEIxTgMCVAx6sYSZPdj3gCSx5Owg&callback=initMap" type="text/javascript"></script>
@@ -50,11 +49,11 @@
 
 <link href="~/Content/css/toastr.min.css" rel="stylesheet" />
 
-<section class="page-title_professional" style="background-image:url(images/background/4.jpg);">
+@*<section class="page-title_professional" style="background-image:url(images/background/4.jpg);">
     <div class="auto-container">
         <h1>Liên hệ với chúng tôi</h1>
     </div>
-</section>
+</section>*@
 
 <div class="breadcrumb-outer_professional">
     <div class="auto-container">

@@ -2,10 +2,8 @@
 @using ATI.Web.Controllers;
 @{
     Layout = null;
-    //var currentUSer = (BriefUser)ViewBag.CurrentUser;
-    //var commonInfo = (CommonInfo)ViewBag.CommonInfo;
-    var currentUser = new BriefUser();
-    var commonInfo = new CommonInfo();
+    var currentUser = (BriefUser)ViewBag.CurrentUser;
+    var commonInfo = (CommonInfo)ViewBag.CommonInfo;
 }
 
 <!DOCTYPE html>
@@ -94,6 +92,7 @@
                                 <ul class="dropdown-menu">
                                     <li><a href="/cms/gioi-thieu">Giới thiệu</a></li>
                                     <li><a href="/cms/thong-tin-chung">Thông tin chung</a></li>
+                                    <li><a href="/cms/configslide">Ảnh slide</a></li>
                                 </ul>
                             </li>
                             <li class="dropdown @(ViewBag.ModuleId == 3 ||ViewBag.ModuleId == 4 ||ViewBag.ModuleId == 5? "active" : "")">

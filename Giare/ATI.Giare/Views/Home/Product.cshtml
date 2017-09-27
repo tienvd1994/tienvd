@@ -1,5 +1,6 @@
 ﻿@using ATI.Web.Models;
 @using ATI.Web.Helper;
+@model PagerViewModel<Product>
 
 @{
     var cate = (CateProduct)ViewBag.Cate;
@@ -13,11 +14,11 @@
 @section KnockOut{
 }
 
-<section class="page-title_professional" style="background-image:url(images/background/4.jpg);">
+@*<section class="page-title_professional" style="background-image:url(images/background/4.jpg);">
     <div class="auto-container">
         <h1>@ATIResourceManger._managerResources.GetString("ProductCode", ATIResourceManger._culture)</h1>
     </div>
-</section>
+</section>*@
 
 <div class="breadcrumb-outer_professional">
     <div class="auto-container">
@@ -40,9 +41,7 @@
                 <section class="products-section">
                     <div class="row clearfix">
                         @{
-                            var products = (List<Product>)ViewBag.Products;
-
-                            foreach (var item in products)
+                            foreach (var item in Model.Items)
                             {
                                 <div class="default-shop-item col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     <!--inner-box-->
@@ -67,17 +66,43 @@
                         }
 
                     </div>
-
                     <!-- Styled Pagination -->
-                    <div class="styled-pagination text-center">
-                        <ul class="clearfix">
-                            <li><a class="prev" href="#"><span class="fa fa-angle-left"></span></a></li>
-                            <li><a href="#">1</a></li>
-                            <li><a href="#" class="active">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a class="next" href="#"><span class="fa fa-angle-right"></span></a></li>
-                        </ul>
-                    </div>
+                    @if (Model.Pager.EndPage > 1)
+                    {
+                        var url = HttpContext.Current.Request.Url.AbsolutePath;
+                        var countSlash = url.Count(m => m == '/');
+
+                        if (countSlash > 2)
+                        {
+                            var index = url.LastIndexOf('/');
+                            url = url.Substring(0, index);
+
+                        }
+
+                        <div class="styled-pagination text-center">
+                            <ul class="clearfix">
+                                @if (Model.Pager.CurrentPage > 1)
+                                {
+                                    <li>
+                                        <a class="prev" href="@url">
+                                            <span class="fa fa-angle-left"></span>
+                                        </a>
+                                    </li>
+                                }
+                                @for (var page = Model.Pager.StartPage; page <= Model.Pager.EndPage; page++)
+                                {
+                                    <li>
+                                        <a class="@(page == Model.Pager.CurrentPage ? "active" : "")" href="@url/@page">@page</a>
+                                    </li>
+                                }
+                                @if (Model.Pager.CurrentPage < Model.Pager.TotalPages)
+                                {
+                                    <li><a class="next" href="@url/@Model.Pager.TotalPages"><span class="fa fa-angle-right"></span></a></li>
+                                }
+                            </ul>
+                        </div>
+                    }
+
 
                 </section>
             </div>
