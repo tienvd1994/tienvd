@@ -2,10 +2,7 @@
 
 /*
 font-family: 'Playfair Display';
-font-family: 'Roboto', sans-serif;
-*/
-
-@import url('font-awesome.css');
+font-family: 'Roboto', sans-serif; */ @import url('font-awesome.css');
 @import url('flaticon.css');
 @import url('animate.css');
 @import url('hover.css');
@@ -13,10 +10,6 @@ font-family: 'Roboto', sans-serif;
 @import url('jquery-ui.css');
 @import url('jquery.fancybox.css');
 @import url('jquery.bootstrap-touchspin.css');
-
-
-
-
 /*** 
 
 
@@ -2754,7 +2747,7 @@ img {
 .news-section_professional {
     position: relative;
     padding: 50px 0px 40px;
-    background: #f3f3f3;
+    /*background: #f3f3f3;*/
 }
 
 .blog-classic .styled-pagination {
@@ -2782,6 +2775,7 @@ img {
                 position: relative;
                 width: 100%;
                 display: block;
+                max-height: 240px;
             }
 
             .news-style-one .inner .image .date-box {
@@ -2811,6 +2805,7 @@ img {
             padding-top: 20px;
             background: #fff;
             padding: 25px 30px;
+            box-shadow: 0 0 7px 1px rgba(0, 0, 0, 0.08);
         }
 
             .news-style-one .inner .lower-box .upper-content {
@@ -4930,6 +4925,7 @@ img {
     .default-shop-item .inner-box .image-box {
         position: relative;
         overflow: hidden;
+        max-height: 240px;
     }
 
         .default-shop-item .inner-box .image-box .new-item {
@@ -4947,7 +4943,7 @@ img {
             z-index: 11;
             background-color: #444444;
             text-transform: uppercase;
-            font-family: 'Playfair Display';
+            /*font-family: 'Playfair Display'; */
         }
 
         .default-shop-item .inner-box .image-box img {
@@ -5174,7 +5170,7 @@ img {
             font-weight: 700;
             margin-right: 5px;
             text-transform: uppercase;
-            font-family: 'Playfair Display';
+            /*font-family: 'Playfair Display'; */
         }
 
             .breadcrumb-outer_professional .bread-crumb li a {
@@ -5184,8 +5180,7 @@ img {
                 margin: 0px 7px;
                 font-weight: 700;
                 text-transform: uppercase;
-                font-family: 'Playfair Display';
-                transition: all 0.3s ease;
+                /*font-family: 'Playfair Display'; */ transition: all 0.3s ease;
                 -moz-transition: all 0.3s ease;
                 -webkit-transition: all 0.3s ease;
                 -ms-transition: all 0.3s ease;
@@ -5340,7 +5335,7 @@ img {
             -ms-transition: all 300ms ease-in;
             -o-transition: all 300ms ease-in;
             -moz-transition: all 300ms ease-in;
-            font-family: 'Playfair Display';
+            /*font-family: 'Playfair Display'; */
         }
 
             .brochures .files li a .fa {
@@ -5976,7 +5971,7 @@ img {
         z-index: 11;
         background-color: #444444;
         text-transform: uppercase;
-        font-family: 'Playfair Display';
+        /*font-family: 'Playfair Display'; */
     }
 
     .product-details .basic-details .details-header .item-category {
@@ -5995,7 +5990,7 @@ img {
         line-height: 1.6em;
         margin-bottom: 5px;
         text-transform: uppercase;
-        font-family: 'Playfair Display';
+        /*font-family: 'Playfair Display'; */
     }
 
         .product-details .basic-details .details-header h4 a {
@@ -6029,7 +6024,7 @@ img {
         color: #48c7ec;
         line-height: 30px;
         letter-spacing: 1px;
-        font-family: 'Playfair Display';
+        /*font-family: 'Playfair Display'; */
     }
 
 .product-details .basic-details .text {
@@ -6066,7 +6061,7 @@ img {
     font-size: 16px;
     font-weight: 600;
     padding-right: 10px;
-    font-family: 'Playfair Display';
+    /*font-family: 'Playfair Display'; */
 }
 
 .basic-details .quantity-spinner input {
@@ -6081,7 +6076,7 @@ img {
     color: #777777;
     text-align: center;
     font-weight: 700;
-    font-family: 'Playfair Display';
+    /*font-family: 'Playfair Display'; */
 }
 
 .basic-details .quantity-spinner .minus {
@@ -6136,8 +6131,7 @@ img {
         font-weight: 600;
         line-height: 30px;
         text-transform: uppercase;
-        font-family: 'Playfair Display';
-        margin-right: 10px;
+        /*font-family: 'Playfair Display'; */ margin-right: 10px;
     }
 
     .product-details .basic-details .sel-colors .color-box {

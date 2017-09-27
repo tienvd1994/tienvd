@@ -50,7 +50,9 @@
                                     <h3>@about.Title</h3>
                                     <ul class="meta-option">
                                         <li><a href="blog-single.html"><span class="icon fa fa-user"></span> @ATIResourceManger._managerResources.GetString("PostedBy_Label", ATIResourceManger._culture): @about.LastUpdateUser</a></li>
-                                        <li>@*<a href="blog-single.html"><span class="icon fa fa-calendar"></span>04 Comments</a>*@</li>
+                                        <li>
+                                            <a href="javascript:void(0)"><span class="icon fa fa-calendar"></span>@Convert.ToDateTime(about.LastUpdateTime).ToString("dd/MM/yyyy")</a>
+                                        </li>
                                     </ul>
                                 </div>
                                 <div>
