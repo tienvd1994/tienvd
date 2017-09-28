@@ -96,7 +96,7 @@
                                         {" placeholder", @ATIResourceManger._managerResources.GetString("ContactCompany", ATIResourceManger._culture) },
                                         {"data-bind", "value: Company" }
                                     })
-                                @Html.ValidationMessageFor(model => model.CompanyName, "", new { @class = "text-danger" })
+                                @*@Html.ValidationMessageFor(model => model.CompanyName, "", new { @class = "text-danger" })*@
                             </div>
                             <div class="col-md-6 col-sm-12 col-xs-12 form-group">
                                 @Html.TextBoxFor(m => m.Email, new Dictionary<string, object>

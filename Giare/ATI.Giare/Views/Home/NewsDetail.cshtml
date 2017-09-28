@@ -14,12 +14,12 @@
 <link href="~/Content/css/blog.css" rel="stylesheet" />
 
 @*<section class="page-title_professional" style="background-image:url(images/background/4.jpg);">
-    <div class="auto-container">
-        <h1>
-            @ATIResourceManger._managerResources.GetString("EventCategory", ATIResourceManger._culture)
-        </h1>
-    </div>
-</section>*@
+        <div class="auto-container">
+            <h1>
+                @ATIResourceManger._managerResources.GetString("EventCategory", ATIResourceManger._culture)
+            </h1>
+        </div>
+    </section>*@
 
 <div class="breadcrumb-outer_professional">
     <div class="auto-container">
@@ -30,9 +30,8 @@
                 </a> <span class="fa fa-angle-right"></span>
             </li>
             <li>
-                <a href="/dich-vu">
-                    @ATIResourceManger._managerResources.GetString("EventCategory", ATIResourceManger._culture)
-                </a> <span class="fa fa-angle-right"></span>
+                @ATIResourceManger._managerResources.GetString("EventCategory", ATIResourceManger._culture)
+                <span class="fa fa-angle-right"></span>
             </li>
             <li>@news.Title</li>
         </ul>

@@ -715,7 +715,7 @@ namespace ATI.Web.Controllers
             var viewModel = new PagerViewModel<News>();
             var items = db.News.Where(m => m.CateId == cate.ID && m.LangId == langId && m.Status == 1);
             var pager = new Pager(items.Count(), page);
-            viewModel.Items = items.OrderBy(m => m.ID).Skip((pager.CurrentPage - 1) * pager.PageSize).Take(pager.PageSize);
+            viewModel.Items = items.OrderByDescending(m => m.ID).Skip((pager.CurrentPage - 1) * pager.PageSize).Take(pager.PageSize);
             viewModel.Pager = new Pager(items.Count(), page);
             ViewBag.Cate = cate;
 

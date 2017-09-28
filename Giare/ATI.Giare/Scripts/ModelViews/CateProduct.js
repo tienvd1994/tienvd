@@ -32,6 +32,10 @@ function CateProductModelView() {
     self.isUploading = ko.observable(false);
     self.IsShowHomePage = ko.observable(false);
 
+    self.changeLangSearch = function () {
+        self.Search();
+    }
+
     self.changeLang = function () {
         self.Search();
     }
@@ -49,11 +53,11 @@ function CateProductModelView() {
         CKEDITOR.instances.Content.setData(item.Description);
     }
 
-    self.ShowAddForm = function (item) {
+    self.ShowAddForm = function () {
         self.ID(-1);
         self.ShowDetail(true);
         self.Name("");
-        self.ParrentCate(-1);
+        self.ParrentCate(null);
         self.OrderNo(1);
         CKEDITOR.instances.Content.setData("");
         self.LangId(0);
@@ -142,7 +146,7 @@ function CateProductModelView() {
 
                     toastr.success("Đã lưu thông tin thành công");
 
-                    self.Search(1);
+                    self.Search();
                     self.ShowDetail(false);
                 });
         }
@@ -158,13 +162,13 @@ function CateProductModelView() {
 
                 toastr.success("Đã lưu thông tin thành công");
 
-                self.Search(1);
+                self.Search();
                 self.ShowDetail(false);
             });
         }
     }
 
-    self.Search(1);
+    self.Search();
 }
 
 var modelView = new CateProductModelView();

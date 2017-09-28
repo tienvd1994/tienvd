@@ -19,10 +19,10 @@
 }
 
 @*<section class="page-title_professional" style="background-image:url(images/background/4.jpg);">
-    <div class="auto-container">
-        <h1>Chi tiết sản phẩm</h1>
-    </div>
-</section>*@
+        <div class="auto-container">
+            <h1>Chi tiết sản phẩm</h1>
+        </div>
+    </section>*@
 
 <div class="breadcrumb-outer_professional">
     <div class="auto-container">
@@ -53,12 +53,13 @@
                         <div class="row clearfix">
                             <div class="image-column col-md-6 col-sm-5 col-xs-12">
                                 <figure class="image">
-                                    <a href="@product.Image" class="lightbox-image" title="@product.Name">
-                                        <img src="@product.Image" alt="">
-                                    </a>
-                                    <a href="@product.Image" class="lightbox-image image-text">
-                                        @*click here to view larger*@
-                                    </a>
+                                    <img src="@product.Image" alt="@product.Name">
+                                    @*<a href="@product.Image" class="lightbox-image" title="@product.Name">
+                                            <img src="@product.Image" alt="@product.Name">
+                                        </a>*@
+                                    @*<a href="@product.Image" class="lightbox-image image-text">
+                                            click here to view larger
+                                        </a>*@
                                 </figure>
                             </div>
 

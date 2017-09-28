@@ -1387,7 +1387,7 @@ namespace ATI.Web.Controllers
                 Description = item.Description,
                 OrderNo = item.OrderNo,
                 ParrentCateName = item.ParrentCateName,
-                ParrentCateId = item.ParrentCateId,
+                ParrentCateId = item.ParrentCateId == 0 ? (short)-1 : item.ParrentCateId,
                 LangId = (Byte)Common.TransferLang(item.LangId),
                 SeoLink = Common.ConvertToUrlString(item.Name),
                 UnsignName = Common.UCS2Convert(item.Name).ToLower(),
@@ -1423,7 +1423,7 @@ namespace ATI.Web.Controllers
             cateCurrent.Description = item.Description;
             cateCurrent.ParrentCateName = item.ParrentCateName;
             cateCurrent.OrderNo = item.OrderNo;
-            cateCurrent.ParrentCateId = item.ParrentCateId;
+            cateCurrent.ParrentCateId = item.ParrentCateId == 0 ? (short)-1 : item.ParrentCateId;
             cateCurrent.LangId = (Byte)Common.TransferLang(item.LangId);
             cateCurrent.UnsignName = Common.UCS2Convert(item.Name).ToLower();
             cateCurrent.IsShowHomePage = item.IsShowHomePage;

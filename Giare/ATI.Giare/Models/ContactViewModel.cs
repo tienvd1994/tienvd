@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace ATI.Web.Models
 {
@@ -15,7 +11,7 @@ namespace ATI.Web.Models
         public string Name { get; set; }
 
         [Display(Name = "Tên công ty")]
-        [Required(ErrorMessage = "Tên công ty không được để trống")]
+        //[Required(ErrorMessage = "Tên công ty không được để trống")]
         public string CompanyName { get; set; }
 
         [Display(Name = "Số điện thoại")]

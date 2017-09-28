@@ -168,7 +168,7 @@ function ProductView() {
         self.ID(-1);
         self.ShowDetail(true);
         self.Name("");
-        self.CateAdd();
+        self.CateAdd(null);
         self.Customer("");
         self.Image("");
         self.Summary("");
@@ -271,7 +271,7 @@ function ProductView() {
         self.Sending(true);
 
         if (self.IsAdd()) {
-            Product.AddProduct(self.Name(), 1, self.Customer(), self.Summary(), CKEDITOR.instances.Content.getData(), self.Status(), self.Image(), self.CreateDate(),
+            Product.AddProduct(self.Name(), self.CateAdd(), self.Customer(), self.Summary(), CKEDITOR.instances.Content.getData(), self.Status(), self.Image(), self.CreateDate(),
                 self.Tags(), self.LangId(), self.IsShowHomePage(), function (data) {
 
                     self.Sending(false);
@@ -308,7 +308,7 @@ function ProductView() {
         }
     }
 
-    self.changeLang = function () {
+    self.changeLanguage = function () {
         CateProduct.Get(self.LangId(), "", -1, function (data) {
             self.CateProducts(data);
         });

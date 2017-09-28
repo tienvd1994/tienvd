@@ -281,7 +281,6 @@ function NewsView() {
                     }
 
                     toastr.success("Đã lưu thông tin thành công");
-
                     self.Search(1);
                     self.ShowDetail(false);
                 });
