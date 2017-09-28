@@ -101,7 +101,7 @@
                                             </a>
                                         </figure>
                                         <h4><a href="/bai-viet/@item.SeoLink">@item.Title</a></h4>
-                                        <div class="post-info"><span class="fa fa-calendar"></span>@item.PostTime</div>
+                                        <div class="post-info"><span class="fa fa-calendar"></span>@Convert.ToDateTime(item.PostTime).ToString("dd/MM/yyyy")</div>
                                     </article>
                                 }
                             }

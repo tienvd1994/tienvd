@@ -1736,6 +1736,8 @@ namespace ATI.Web.Controllers
                 CreatedFullname = CurrentUser.FullName,
                 UnsignName = string.Empty,
                 UnsignName_En = string.Empty,
+                Summary = item.Summary,
+                Title = item.Title
             };
 
             db.ConfigImages.Add(configImage);
@@ -1767,6 +1769,8 @@ namespace ATI.Web.Controllers
             cateNews.Status = item.Status;
             cateNews.UnsignName = string.Empty;
             cateNews.UnsignName_En = string.Empty;
+            cateNews.Summary = item.Summary;
+            cateNews.Title = item.Title;
             db.Entry(cateNews).State = EntityState.Modified;
 
             return Json(db.SaveChanges(), JsonRequestBehavior.AllowGet);

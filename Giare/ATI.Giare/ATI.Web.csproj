@@ -602,11 +602,11 @@
     <Content Include="Images\help\Khach hang noi ve SUNSOIL.png" />
     <Content Include="Images\help\korea.png" />
     <Content Include="Images\help\lien-he.jpg" />
+    <Content Include="Images\help\lien-he.PNG" />
     <Content Include="Images\help\nguoi-dung.jpg" />
     <Content Include="Images\help\nguoi-dung.png" />
     <Content Include="Images\help\noi-dung-them-sua-san-pham.png" />
     <Content Include="Images\help\nut-sua.png" />
-    <Content Include="Images\help\quan ly lien he.png" />
     <Content Include="Images\help\quan-ly-dich-vu.PNG" />
     <Content Include="Images\help\quan-ly-giai-phap.PNG" />
     <Content Include="Images\help\quan-ly-nhom-giai-phap.PNG" />
@@ -717,6 +717,7 @@
     <Content Include="Models\DBEntities.edmx.diagram">
       <DependentUpon>DBEntities.edmx</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\PublishProfiles\Haphacon.pubxml" />
     <None Include="Properties\PublishProfiles\HECD.pubxml" />
     <None Include="Properties\PublishProfiles\sunsoil.pubxml" />
@@ -1275,6 +1276,7 @@
     <Content Include="Scripts\jQuery.FileUpload\jquery.iframe-transport.js" />
     <Content Include="Scripts\jquery.pager.js" />
     <Content Include="Scripts\jquery.slimscroll.min.js" />
+    <Content Include="Scripts\jquery.ui.widget.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.uploadify.v2.1.4.min.js" />

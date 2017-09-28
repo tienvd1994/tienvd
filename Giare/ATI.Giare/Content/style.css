@@ -1113,7 +1113,7 @@ img {
     .main-menu .navigation > li > ul > li > a {
         position: relative;
         display: block;
-        padding: 12px 20px 12px 40px;
+        padding: 12px 20px 12px 20px;
         line-height: 24px;
         font-weight: 600;
         font-size: 13px;
@@ -1126,7 +1126,7 @@ img {
         -o-transition: all 300ms ease;
     }
 
-        .main-menu .navigation > li > ul > li > a:before {
+    /*.main-menu .navigation > li > ul > li > a:before {
             font-family: 'FontAwesome';
             content: "\f10c";
             position: absolute;
@@ -1154,7 +1154,7 @@ img {
             font-size: 3px;
             font-weight: normal;
             z-index: 5;
-        }
+        }*/
 
     .main-menu .navigation > li > ul > li:hover > a, .main-menu .navigation > li > ul > li > ul > li > ul > li:hover > a {
         color: #48c7ec;
@@ -1287,7 +1287,7 @@ img {
 .main-menu .navigation > li > ul > li > ul > li > a, .main-menu .navigation > li > ul > li > ul > li > ul > li > a {
     position: relative;
     display: block;
-    padding: 12px 20px 12px 40px;
+    padding: 12px 20px 12px 20px;
     line-height: 24px;
     font-weight: 600;
     font-size: 13px;
@@ -1300,7 +1300,7 @@ img {
     -o-transition: all 300ms ease;
 }
 
-    .main-menu .navigation > li > ul > li > ul > li > a:before {
+/*.main-menu .navigation > li > ul > li > ul > li > a:before {
         font-family: 'FontAwesome';
         content: "\f10c";
         position: absolute;
@@ -1313,9 +1313,9 @@ img {
         font-size: 10px;
         font-weight: normal;
         z-index: 5;
-    }
+    }*/
 
-    .main-menu .navigation > li > ul > li > ul > li > a:after {
+/*.main-menu .navigation > li > ul > li > ul > li > a:after {
         font-family: 'FontAwesome';
         content: "\f111";
         position: absolute;
@@ -1328,7 +1328,7 @@ img {
         font-size: 3px;
         font-weight: normal;
         z-index: 5;
-    }
+    }*/
 
 .main-menu .navigation > li > ul > li > ul > li:hover > a {
     color: #48c7ec;
@@ -1662,7 +1662,7 @@ img {
 
 .sec-title {
     position: relative;
-    margin-bottom: 50px;
+    margin-bottom: 0px;
 }
 
     .sec-title h2 {
@@ -1982,6 +1982,7 @@ img {
 
         .services-style-two .inner .image-box {
             position: relative;
+            height: 240px;
         }
 
             .services-style-two .inner .image-box a img {
@@ -2316,7 +2317,7 @@ img {
 
 .sponsors-style-two {
     position: relative;
-    padding: 0 0 90px 0;
+    padding: 0 0 50px 0;
 }
 
 .sponsors-style-one:before {
@@ -2746,7 +2747,7 @@ img {
 
 .news-section_professional {
     position: relative;
-    padding: 50px 0px 40px;
+    padding: 50px 0px 0px;
     /*background: #f3f3f3;*/
 }
 
@@ -2769,13 +2770,14 @@ img {
 
         .news-style-one .inner .image {
             position: relative;
+            height: 240px;
         }
 
             .news-style-one .inner .image img {
                 position: relative;
                 width: 100%;
                 display: block;
-                max-height: 240px;
+                height: 100%;
             }
 
             .news-style-one .inner .image .date-box {
@@ -3878,9 +3880,9 @@ img {
         background-color: rgba(0,39,57,0.95)
     }
 
-.services-section_professional .hover-style1 > .hover-style1-img::before {
+/*.services-section_professional .hover-style1 > .hover-style1-img::before {
     background: rgb(72, 199, 236) none repeat scroll 0 0;
-}
+}*/
 
 .services-style-three {
     position: relative;
@@ -4925,7 +4927,8 @@ img {
     .default-shop-item .inner-box .image-box {
         position: relative;
         overflow: hidden;
-        max-height: 240px;
+        /*max-height: 240px;*/
+        height: 240px;
     }
 
         .default-shop-item .inner-box .image-box .new-item {
@@ -4949,6 +4952,7 @@ img {
         .default-shop-item .inner-box .image-box img {
             width: 100%;
             display: block;
+            height: 100%;
         }
 
     .default-shop-item .inner-box .lower-content {
@@ -5214,7 +5218,7 @@ img {
 
     .sidebar-page-container_professional .sidebar-side,
     .sidebar-page-container_professional .content-side {
-        margin-bottom: 30px !important;
+        /*margin-bottom: 30px !important;*/
     }
 
 .sidebar {
@@ -6636,7 +6640,7 @@ img {
 
 .contact-form-section {
     position: relative;
-    padding: 120px 0px 0px;
+    padding: 50px 0px 0px;
 }
 
 .contact-section .contact-info {
@@ -7421,6 +7425,8 @@ img {
 
 .hover-style1-img img {
     width: 100%;
+    /*max-height: 330px;*/
+    height: 100%;
 }
 
 .hover-style1 > .hover-style1-img::before {
@@ -7441,6 +7447,7 @@ img {
 
 .hover-style1-img {
     position: relative;
+    height: 330px;
 }
 
 .hover-style1-view a {
@@ -7554,7 +7561,7 @@ img {
 
 .project_professional {
     position: relative;
-    padding: 90px 0 60px;
+    padding: 50px 0 0px;
     background: #fff;
 }
 

@@ -26,5 +26,7 @@ namespace ATI.Web.Models
         public Nullable<System.DateTime> CreatedTime { get; set; }
         public Nullable<int> CreatedUserId { get; set; }
         public string CreatedFullname { get; set; }
+        public string Title { get; set; }
+        public string Summary { get; set; }
     }
 }

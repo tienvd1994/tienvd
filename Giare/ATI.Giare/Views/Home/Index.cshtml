@@ -24,48 +24,48 @@
                             <img src="@item.Image" alt="" data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat">
                             <div class="blue-layer"></div>
 
-                            @*<div class="tp-caption sft sfb tp-resizeme"
-                                data-x="left" data-hoffset="0"
-                                data-y="center" data-voffset="-100"
-                                data-speed="1500"
-                                data-start="500"
-                                data-easing="easeOutExpo"
-                                data-splitin="none"
-                                data-splitout="none"
-                                data-elementdelay="0.01"
-                                data-endelementdelay="0.3"
-                                data-endspeed="1200"
-                                data-endeasing="Power4.easeIn"><h2>Planing For Business</h2></div>*@
-
-                            @*<div class="tp-caption sfb sfb tp-resizeme"
-                                data-x="left" data-hoffset="0"
-                                data-y="center" data-voffset="0"
-                                data-speed="1500"
-                                data-start="1000"
-                                data-easing="easeOutExpo"
-                                data-splitin="none"
-                                data-splitout="none"
-                                data-elementdelay="0.01"
-                                data-endelementdelay="0.3"
-                                data-endspeed="1200"
-                                data-endeasing="Power4.easeIn"><div class="text">The others comfortable in their tropic island nest the love Boat promises<br> to have something  for everyone michael Knight a young loner.</div></div>*@
-
-                            <div class="tp-caption sfb sfb tp-resizeme"
+                            <div class="tp-caption sft sfb tp-resizeme"
                                  data-x="left" data-hoffset="0"
-                                 data-y="center" data-voffset="100"
+                                 data-y="center" data-voffset="-100"
                                  data-speed="1500"
-                                 data-start="1500"
-                                 data-easing="easeOutExpo"
+                                 data-start="500"
+                                 data-easing="easeoutexpo"
                                  data-splitin="none"
                                  data-splitout="none"
                                  data-elementdelay="0.01"
                                  data-endelementdelay="0.3"
                                  data-endspeed="1200"
-                                 data-endeasing="Power4.easeIn">
-                                <a href="@item.Url" class="theme-btn btn-style-one">Xem thêm</a>&ensp;
-                                <a href="/lien-he" class="theme-btn btn-style-four">Liên hệ</a>
-                            </div>
-                        </li>
+                                 data-endeasing="power4.easein"><h2>@item.Title</h2></div>
+
+                                <div class="tp-caption sfb sfb tp-resizeme"
+                                     data-x="left" data-hoffset="0"
+                                     data-y="center" data-voffset="0"
+                                     data-speed="1500"
+                                     data-start="1000"
+                                     data-easing="easeOutExpo"
+                                     data-splitin="none"
+                                     data-splitout="none"
+                                     data-elementdelay="0.01"
+                                     data-endelementdelay="0.3"
+                                     data-endspeed="1200"
+                                     data-endeasing="Power4.easeIn"><div class="text">@item.Summary</div></div>
+
+                                    <div class="tp-caption sfb sfb tp-resizeme"
+                                         data-x="left" data-hoffset="0"
+                                         data-y="center" data-voffset="100"
+                                         data-speed="1500"
+                                         data-start="1500"
+                                         data-easing="easeOutExpo"
+                                         data-splitin="none"
+                                         data-splitout="none"
+                                         data-elementdelay="0.01"
+                                         data-endelementdelay="0.3"
+                                         data-endspeed="1200"
+                                         data-endeasing="Power4.easeIn">
+                                        <a href="@item.Url" class="theme-btn btn-style-one">Xem thêm</a>&ensp;
+                                        <a href="/lien-he" class="theme-btn btn-style-four">Liên hệ</a>
+                                    </div>
+                                </li>
                     }
                 }
             </ul>
@@ -126,15 +126,19 @@
                     <div class="services-style-two col-md-4 col-sm-6 col-xs-12">
                         <div class="inner hover-style1 hvr-float-shadow">
                             <figure class="image-box hover-style1-img">
-                                <img src="@item.Image" />
-                                <div class="hover-style1-view">
-                                    <a class="link-box" href="/dich-vu/@item.SeoLink"><span class="fa fa-link"></span></a>
-                                </div>
+                                <img src="@item.Image" alt="@item.Name" />
+                                @*<div class="hover-style1-view">
+                                        <a class="link-box" href="/dich-vu/@item.SeoLink"><span class="fa fa-link"></span></a>
+                                    </div>*@
                             </figure>
                             <div class="lower-box">
-                                <h3><a href="/dich-vu/@item.SeoLink">@item.Name</a></h3>
+                                <h3>
+                                    <a href="/dich-vu/@item.SeoLink">
+                                        @Common.SubString(item.Name, 30)
+                                    </a>
+                                </h3>
                                 <div class="text">
-                                    @item.Summary
+                                    @Common.SubString(item.Summary, 100)
                                 </div>
                             </div>
                         </div>
@@ -142,9 +146,6 @@
                 }
             }
         </div>
-        @*<div class="text-center">
-                <a href="http://html.tonatheme.com/2017/Professional/index.html#" class="theme-btn btn-style-one">View all</a>
-            </div>*@
 
     </div>
 </section>
@@ -186,10 +187,10 @@
                             <figure class="hover-style1-img">
                                 <img src="@product.Image" alt="image">
                                 @*<div class="hover-style1-view">
-                                    <a class="lightbox-image option-btn" title="@product.Name" data-fancybox-group="example-gallery" href="@product.Image">
-                                        <i class="fa fa-eye"></i>
-                                    </a>
-                                </div>*@
+                                        <a class="lightbox-image option-btn" title="@product.Name" data-fancybox-group="example-gallery" href="@product.Image">
+                                            <i class="fa fa-eye"></i>
+                                        </a>
+                                    </div>*@
                             </figure>
                             <div class="hover-style1-title title-style-1">
                                 <h3><a href="/chi-tiet/@product.SeoLink">@product.Name</a></h3>
@@ -226,11 +227,13 @@
                             <div class="lower-box">
                                 <div class="upper-content">
                                     <h3>
-                                        <a href="/bai-viet/@item.SeoLink">@item.Title</a>
+                                        <a href="/bai-viet/@item.SeoLink">
+                                            @Common.SubString(item.Title, 30)
+                                        </a>
                                     </h3>
                                 </div>
                                 <div class="text">
-                                    @item.Summary
+                                    @Common.SubString(item.Summary, 100)
                                 </div>
                                 <ul class="meta-option clearfix">
                                     <li class="pull-left">

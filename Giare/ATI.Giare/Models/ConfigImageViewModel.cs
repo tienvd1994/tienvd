@@ -9,5 +9,7 @@
         public string Url { get; set; }
         public int? Status { get; set; }
         public int? LangId { get; set; }
+        public string Title { get; set; }
+        public string Summary { get; set; }
     }
 }

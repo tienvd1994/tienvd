@@ -93,12 +93,12 @@
                                 {
                                     <article class="post">
                                         <figure class="post-thumb">
-                                            <a href="/bai-viet/@item.SeoLink">
+                                            <a href="/giai-phap-chi-tiet/@item.SeoLink">
                                                 <img src="@item.Image" alt="@item.Title">
                                             </a>
                                         </figure>
-                                        <h4><a href="/bai-viet/@item.SeoLink">@item.Title</a></h4>
-                                        <div class="post-info"><span class="fa fa-calendar"></span>@item.PostTime</div>
+                                        <h4><a href="/giai-phap-chi-tiet/@item.SeoLink">@item.Title</a></h4>
+                                        <div class="post-info"><span class="fa fa-calendar"></span>@Convert.ToDateTime(item.PostTime).ToString("dd/MM/yyyy")</div>
                                     </article>
                                 }
                             }

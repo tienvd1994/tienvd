@@ -4,9 +4,9 @@
 
 @{
     var commonInfo = (CommonInfo)ViewBag.CommonInfo;
-    ViewBag.Title = Html.Raw(string.Concat(@ATIResourceManger._managerResources.GetString("ContactCode", ATIResourceManger._culture), " | ", commonInfo.Name));
-    ViewBag.Description = Html.Raw(string.Concat(@ATIResourceManger._managerResources.GetString("ContactCode", ATIResourceManger._culture), " ", commonInfo.Name));
-    ViewBag.Keyword = Html.Raw(string.Concat(@ATIResourceManger._managerResources.GetString("ContactCode", ATIResourceManger._culture), " ", commonInfo.Name));
+    ViewBag.Title = Html.Raw(string.Concat(ATIResourceManger._managerResources.GetString("ContactCode", ATIResourceManger._culture), " | ", commonInfo.Name));
+    ViewBag.Description = Html.Raw(string.Concat(ATIResourceManger._managerResources.GetString("ContactCode", ATIResourceManger._culture), " ", commonInfo.Name));
+    ViewBag.Keyword = Html.Raw(string.Concat(ATIResourceManger._managerResources.GetString("ContactCode", ATIResourceManger._culture), " ", commonInfo.Name));
     ViewBag.Url = "/lien-he";
     ViewBag.Image = commonInfo.Logo;
 }
@@ -32,10 +32,10 @@
             var marker = new google.maps.Marker({
                 position: myLatlng,
                 map: map,
-                title: '@commonInfo.Name - ĐT: @commonInfo.Mobile<br> @commonInfo.Office'
+                title: '@commonInfo.Name - @ATIResourceManger._managerResources.GetString("Mobile", ATIResourceManger._culture), @ATIResourceManger._managerResources.GetString("Phone", ATIResourceManger._culture): @commonInfo.Phone: @commonInfo.Mobile<br> @commonInfo.Office'
             });
             var info = new google.maps.InfoWindow({
-                content: '@commonInfo.Name - ĐT: @commonInfo.Mobile<br> @commonInfo.Office'
+                content: '@commonInfo.Name - @ATIResourceManger._managerResources.GetString("Mobile", ATIResourceManger._culture): @commonInfo.Mobile, @ATIResourceManger._managerResources.GetString("Phone", ATIResourceManger._culture): @commonInfo.Phone<br> @commonInfo.Office'
             });
 
             info.open(map, marker);
@@ -50,10 +50,10 @@
 <link href="~/Content/css/toastr.min.css" rel="stylesheet" />
 
 @*<section class="page-title_professional" style="background-image:url(images/background/4.jpg);">
-    <div class="auto-container">
-        <h1>Liên hệ với chúng tôi</h1>
-    </div>
-</section>*@
+        <div class="auto-container">
+            <h1>Liên hệ với chúng tôi</h1>
+        </div>
+    </section>*@
 
 <div class="breadcrumb-outer_professional">
     <div class="auto-container">

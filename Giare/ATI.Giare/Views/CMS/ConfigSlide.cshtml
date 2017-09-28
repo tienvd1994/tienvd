@@ -28,9 +28,9 @@
     <div class="container">
         <h1 class="pull-left">Quản lý slide</h1>
         @*<ul class="pull-right breadcrumb">
-            <li><a href="/">Trang chủ</a></li>
-            <li><a class="active">Quản lý slide</a></li>
-        </ul>*@
+                <li><a href="/">Trang chủ</a></li>
+                <li><a class="active">Quản lý slide</a></li>
+            </ul>*@
     </div>
 </div>
 <div class="container content">
@@ -60,6 +60,22 @@
                             <option value="1">Hiển thị</option>
                             <option value="0">Ẩn</option>
                         </select>
+                    </label>
+                </section>
+            </div>
+            <div class="row">
+                <section class="col col-lg-6">
+                    <label class="label">Tiêu đề</label>
+                    <label class="input">
+                        <input type="text" data-bind="value: Title" maxlength="150" />
+                    </label>
+                </section>
+            </div>
+            <div class="row">
+                <section class="col col-lg-12">
+                    <label class="label">Tóm tắt</label>
+                    <label class="input">
+                        <textarea class="form-control" data-bind="value: Summary"></textarea>
                     </label>
                 </section>
             </div>

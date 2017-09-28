@@ -18,6 +18,8 @@ function NewsView() {
     self.ShowDetail = ko.observable(false);
     self.IsAdd = ko.observable(true);
     self.Sending = ko.observable(false);
+    self.Title = ko.observable("");
+    self.Summary = ko.observable("");
 
     var maxFileLength = 5120000;
 
@@ -72,6 +74,8 @@ function NewsView() {
         self.Url(item.Url);
         self.Status(item.Status);
         self.LangId(item.LangId);
+        self.Title(item.Title);
+        self.Summary(item.Summary);
     }
 
     self.ShowAddForm = function (item) {
@@ -84,6 +88,8 @@ function NewsView() {
         self.Url("");
         self.Status("");
         self.LangId("");
+        self.Title("");
+        self.Summary("");
     }
 
     self.Delete = function (item) {
@@ -99,7 +105,7 @@ function NewsView() {
             animation: false,
         }, function (isConfirm) {
             if (isConfirm) {
-                News.Delete(item.ID, function (data) {
+                $.post("/CMS/DeleteConfigSlide", { id: item.Id }, function (data) {
                     if (data == -2) {
                         toastr.warning("Bản ghi đã bị xóa hoặc không tồn tại");
                         return;
@@ -138,10 +144,20 @@ function NewsView() {
     };
 
     self.Update = function () {
+        if ($.trim(self.Url()) == "") {
+            toastr.warning("Url không được để trống");
+            return;
+        }
+
+        if ($.trim(self.Image()) == "") {
+            toastr.warning("Hãy chọn ảnh đại diện");
+            return;
+        }
+
         self.Sending(true);
 
         if (self.IsAdd()) {
-            $.post("/CMS/AddConfigSlide", { Name: self.Name(), Name_En: self.Name_En(), Image: self.Image(), Url: self.Url, Status: self.Status(), LangId: self.LangId() }, function (data) {
+            $.post("/CMS/AddConfigSlide", { Name: self.Name(), Name_En: self.Name_En(), Image: self.Image(), Url: self.Url, Status: self.Status(), LangId: self.LangId(), Title: self.Title(), Summary: self.Summary() }, function (data) {
 
                 self.Sending(false);
 
@@ -157,7 +173,7 @@ function NewsView() {
             });
         }
         else {
-            $.post("/CMS/UpdateConfigSlide", { Id: self.Id(), Name: self.Name(), Name_En: self.Name_En(), Image: self.Image(), Url: self.Url, Status: self.Status(), LangId: self.LangId() }, function (data) {
+            $.post("/CMS/UpdateConfigSlide", { Id: self.Id(), Name: self.Name(), Name_En: self.Name_En(), Image: self.Image(), Url: self.Url, Status: self.Status(), LangId: self.LangId(), Title: self.Title(), Summary: self.Summary() }, function (data) {
 
                 self.Sending(false);
 

@@ -580,7 +580,7 @@ namespace ATI.Web.Controllers
             ViewBag.ModuleId = 3;
             ViewBag.Tags = db.Tags.Take(20).ToList();
             var cate = db.CateNews.FirstOrDefault(item => item.ID == news.CateId && item.Type == 0);
-            ViewBag.TopNews = db.News.Where(m => m.Status == 1 && m.CateId == cate.ID && m.ID != news.ID).ToList();
+            ViewBag.TopNews = db.News.Where(m => m.Status == 1 && m.CateId == cate.ID && m.ID != news.ID && m.Type == 0).ToList();
             ViewBag.CateSolutionOther = db.CateNews.Where(m => m.ID != cate.ID && m.Type == 0).ToList();
 
             return View();
@@ -996,7 +996,7 @@ namespace ATI.Web.Controllers
 
         public ActionResult Sponsors()
         {
-            ViewBag.Sponsors = db.CustomerSays.ToList();
+            ViewBag.Sponsors = db.CustomerSays.Where(m => m.LangId == ATICurrentSession.GetLang).ToList();
 
             return PartialView();
         }
