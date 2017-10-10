@@ -73,20 +73,11 @@
             <div class="header-top-one">
                 <div class="auto-container">
                     <div class="clearfix">
-
-                        <!--Top Left-->
-                        @*<div class="top-left top-links">
-                                <ul class="clearfix">
-                                    <li> Welcome to Professional Creative Agency </li>
-                                </ul>
-                            </div>*@
-
                         <!--Top Right-->
                         <div class="top-right top-links">
                             <ul class="clearfix">
                                 <li> <i class="flaticon-telephone-1"></i>@commonInfo.Phone - @commonInfo.Mobile</li>
                                 <li> <i class="flaticon-email-filled-closed-envelope"></i>@commonInfo.Email</li>
-                                @*<li> <i class="flaticon-placeholder-2"> </i> @commonInfo.Office</li>*@
                                 <li>
                                     @{
                                         var lang = ATI.Web.Helper.ATIResourceManger.GetLanguageCurrent();
@@ -121,7 +112,7 @@
                         <div class="logo-box">
                             <div class="logo">
                                 <a href="/">
-                                    <img src="@commonInfo.Logo" />
+                                    <img src="@commonInfo.Logo" style="height: 100px;margin-top: 4px;" />
                                 </a>
                             </div>
                         </div>

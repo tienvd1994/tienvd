@@ -1709,7 +1709,7 @@ namespace ATI.Web.Controllers
         public ActionResult SearchConfigSlide(int langId, string keyword, int pageIndex, int pageSize)
         {
             keyword = Common.UCS2Convert(keyword).ToLower();
-            var items = db.ConfigImages.Where(m => m.Status == 1 && m.LangId == langId && (string.IsNullOrEmpty(keyword) || m.UnsignName.Contains(keyword)));
+            var items = db.ConfigImages.Where(m => m.LangId == langId && (string.IsNullOrEmpty(keyword) || m.UnsignName.Contains(keyword)));
             var result = items.OrderByDescending(m => m.Id).Skip((pageIndex - 1) * pageSize).Take(pageSize);
 
             return Json(new { items = result, totalRecord = items.Count() }, JsonRequestBehavior.AllowGet);

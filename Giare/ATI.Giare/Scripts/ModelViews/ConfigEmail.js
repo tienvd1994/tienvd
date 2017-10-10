@@ -10,7 +10,7 @@ function NewsView() {
     self.Name_En = ko.observable("");
     self.Image = ko.observable("");
     self.Url = ko.observable("");
-    self.Status = ko.observable("");
+    self.Status = ko.observable(1);
     self.LangId = ko.observable(0);
     self.Keyword = ko.observable("");
     self.isUploading = ko.observable(false);
@@ -86,7 +86,7 @@ function NewsView() {
         self.Name_En("");
         self.Image("");
         self.Url("");
-        self.Status("");
+        self.Status(1);
         self.LangId("");
         self.Title("");
         self.Summary("");

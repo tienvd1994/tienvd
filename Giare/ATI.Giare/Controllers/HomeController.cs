@@ -27,7 +27,7 @@ namespace ATI.Web.Controllers
             ViewBag.Context = HttpContext;
             ViewBag.CommonInfo = db.CommonInfoes.Where(x => x.LangId == lang).FirstOrDefault();
             ViewBag.TopNews = db.News.Where(item => item.Type == 0 && item.LangId == lang).OrderByDescending(item => item.ID).Take(3).ToList();
-            ViewBag.Services = db.Partners.Where(m => m.LangId == 0 && m.LangId == lang).OrderBy(m => m.OrderNo).Take(3).ToList();
+            ViewBag.Services = db.Partners.Where(m => m.LangId == 0 && m.LangId == lang).OrderBy(m => m.OrderNo).ToList();
             AddLog(HttpContext.Session.SessionID);
             var categories = db.CateProducts.Where(m => !m.IsDelete && m.LangId == lang && m.ParrentCateId == -1 && m.IsShowHomePage == true).Select(m => new CategoryItems
             {
@@ -215,7 +215,17 @@ namespace ATI.Web.Controllers
             AddLog(HttpContext.Session.SessionID);
 
             key = Common.UCS2Convert(key).ToLower();
-            var listProducts = db.Products.Where(m => (string.IsNullOrEmpty(key) || m.UnsignName.Contains(key)) && m.Status == 1 && m.LangId == langId && !m.IsDelete);
+            var listProducts = new List<Product>();
+
+            if (string.IsNullOrEmpty(key))
+            {
+                listProducts = new List<Product>();
+            }
+            else
+            {
+                listProducts = db.Products.Where(m => m.UnsignName.Contains(key) && m.Status == 1 && m.LangId == langId && !m.IsDelete).ToList();
+            }
+
             var pager = new Pager(listProducts.Count(), page);
 
             var viewModel = new PagerViewModel<Product>
