@@ -1240,7 +1240,8 @@ img {
             width: 240px;
             padding: 0px;
             z-index: 100;
-            display: block !important;
+            /*display: block !important;*/
+            display: none;
             background: #ffffff;
             border-top: 3px solid #48c7ec;
             -webkit-box-shadow: 2px 2px 5px 1px rgba(0,0,0,0.05),-2px 0px 5px 1px rgba(0,0,0,0.05);

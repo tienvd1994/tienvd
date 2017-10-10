@@ -99,7 +99,8 @@
 
 @media only screen and (min-width: 768px) {
     .main-menu .navigation > li > ul,
-    .main-menu .navigation > li > ul > li > ul {
+    .main-menu .navigation > li > ul > li > ul,
+    .main-menu .navigation > li > ul > li > ul > li > ul {
         display: block !important;
         visibility: hidden;
         opacity: 0;
@@ -446,7 +447,8 @@
     }
 
     .main-menu .navbar-collapse > .navigation > li > ul,
-    .main-menu .navbar-collapse > .navigation > li > ul > li > ul {
+    .main-menu .navbar-collapse > .navigation > li > ul > li > ul,
+    .main-menu .navbar-collapse > .navigation > li > ul > li > ul > li > ul {
         position: relative;
         border: none;
         float: none;
@@ -482,7 +484,8 @@
     }
 
         .main-menu .navbar-collapse > .navigation > li > ul,
-        .main-menu .navbar-collapse > .navigation > li > ul > li > ul {
+        .main-menu .navbar-collapse > .navigation > li > ul > li > ul,
+        .main-menu .navbar-collapse > .navigation > li > ul > li > ul > li > ul {
             border-top: 1px solid rgba(255,255,255,1) !important;
         }
 
@@ -502,7 +505,8 @@
 
                 .main-menu .navbar-collapse > .navigation > li > a,
                 .main-menu .navbar-collapse > .navigation > li > ul > li > a,
-                .main-menu .navbar-collapse > .navigation > li > ul > li > ul > li > a {
+                .main-menu .navbar-collapse > .navigation > li > ul > li > ul > li > a,
+                .main-menu .navbar-collapse > .navigation > li > ul > li > ul > li > ul > li > a {
                     padding: 10px 15px !important;
                     line-height: 22px;
                     color: #ffffff;
