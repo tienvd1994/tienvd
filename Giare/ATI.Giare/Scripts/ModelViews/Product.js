@@ -238,6 +238,11 @@ function ProductView() {
     };
 
     self.Update = function () {
+        if (self.CateAdd() === undefined) {
+            toastr.warning("Hãy chọn nhóm sản phẩm");
+            return;
+        }
+
         if ($.trim(self.Name()) == "") {
             toastr.warning("Tên sản phẩm không được để trống");
             self.fcName(true);

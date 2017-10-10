@@ -11,7 +11,7 @@
 }
 
 <!--Main Slider-->
-<section class="main-slider_professional" data-start-height="650" data-slide-overlay="yes">
+<section class="main-slider_professional" data-start-height="550" data-slide-overlay="yes">
     <div class="tp-banner-container">
         <div class="tp-banner">
             <ul>
@@ -20,7 +20,7 @@
 
                     foreach (var item in items)
                     {
-                        <li data-transition="fade" data-slotamount="1" data-masterspeed="1000" data-thumb="@item.Image" data-saveperformance="off" data-title="Awesome Title Here">
+                        <li data-transition="fade" data-slotamount="1" data-masterspeed="1000" data-thumb="@item.Image" data-saveperformance="off" data-title="@item.Name">
                             <img src="@item.Image" alt="" data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat">
                             <div class="blue-layer"></div>
 
@@ -77,35 +77,35 @@
 
 <!--End Main Slider-->
 <!--default Section One-->
-<section class="default-section">
-    <div class="auto-container">
-        <div class="row clearfix">
-            <div class="col-md-12 col-sm-12">
-                <div class="left-column">
-                    <div class="content">
-                        <!--Sec Title-->
-                        <div class="sec-title centered">
-                            <h2>
-                                @ATIResourceManger._managerResources.GetString("IntroductionCode", ATIResourceManger._culture)
-                            </h2>
-                            <div class="separator"></div>
-                        </div>
-                        <div class="text">
-                            @{
-                                var introduce = (Introduce)ViewBag.AboutHomePage;
+@*<section class="default-section">
+        <div class="auto-container">
+            <div class="row clearfix">
+                <div class="col-md-12 col-sm-12">
+                    <div class="left-column">
+                        <div class="content">
+                            <!--Sec Title-->
+                            <div class="sec-title centered">
+                                <h2>
+                                    @ATIResourceManger._managerResources.GetString("IntroductionCode", ATIResourceManger._culture)
+                                </h2>
+                                <div class="separator"></div>
+                            </div>
+                            <div class="text">
+                                @{
+                                    var introduce = (Introduce)ViewBag.AboutHomePage;
 
-                                if (introduce != null)
-                                {
-                                    @Html.Raw(introduce.Content)
+                                    if (introduce != null)
+                                    {
+                                        @Html.Raw(introduce.Content)
+                                    }
                                 }
-                            }
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>*@
 <!--default Section One-->
 <!--Services Section-->
 <section class="services-section_professional" @*style="background-image:url(../../Content/images/background/parallax4.jpg);"*@>
@@ -119,6 +119,25 @@
         </div>
         <div class="row clearfix">
             <!--Services Style Two-->
+            @*<div id="owl-example" class="owl-carousel">
+                    @foreach (var item in (List<Partner>)ViewBag.Services)
+                    {
+                        <div class="services-style-two col-xs-12">
+                            <div class="inner hover-style1 hvr-float-shadow">
+                                <figure class="image-box hover-style1-img">
+                                    <img src="@item.Image" alt="@item.Name" />
+                                </figure>
+                                <div class="lower-box">
+                                    <h3>
+                                        <a href="/dich-vu/@item.SeoLink">
+                                            @Common.SubString(item.Name, 25)
+                                        </a>
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>*@
 
             @{
                 foreach (var item in (List<Partner>)ViewBag.Services)
@@ -137,9 +156,9 @@
                                         @Common.SubString(item.Name, 30)
                                     </a>
                                 </h3>
-                                <div class="text">
-                                    @Common.SubString(item.Summary, 100)
-                                </div>
+                                @*<div class="text">
+                                        @Common.SubString(item.Summary, 100)
+                                    </div>*@
                             </div>
                         </div>
                     </div>
@@ -160,94 +179,202 @@
             </h2>
             <div class="separator"></div>
         </div>
-        @{
-            var list = (CategoryAndProductViewModel)ViewBag.ListCateAndProduct;
-            //var first = true;
+        @*@{
+                var list = (CategoryAndProductViewModel)ViewBag.ListCateAndProduct;
 
-            <ul class="post-filter text-center list-inline">
-                <li class="active" data-filter=".default-portfolio-item">
-                    <span>
-                        @ATIResourceManger._managerResources.GetString("ViewAll_Label", ATIResourceManger._culture)
-                    </span>
-                </li>
-                @foreach (var category in list.Categories)
-                {
+                <ul class="post-filter text-center list-inline">
+                    <li class="active" data-filter=".default-portfolio-item">
+                        <span>
+                            @ATIResourceManger._managerResources.GetString("ViewAll_Label", ATIResourceManger._culture)
+                        </span>
+                    </li>
+                    @foreach (var category in list.Categories)
+                    {
                     <li data-filter=".@category.CateId">
                         <span>@category.CategoryName</span>
                     </li>
-                }
-            </ul>
-            <div class="row clearfix masonary-layout filter-layout">
+                    }
+                </ul>
+                <div class="row clearfix masonary-layout filter-layout">
 
-                @foreach (var product in list.Products)
-                {
-                <!--Default Portfolio Item-->
+                    @foreach (var product in list.Products)
+                    {
                     <div class="default-portfolio-item @product.CateId col-md-4 col-sm-6 col-xs-12">
                         <div class="inner hover-style1">
                             <figure class="hover-style1-img">
-                                <img src="@product.Image" alt="image">
-                                @*<div class="hover-style1-view">
-                                        <a class="lightbox-image option-btn" title="@product.Name" data-fancybox-group="example-gallery" href="@product.Image">
-                                            <i class="fa fa-eye"></i>
-                                        </a>
-                                    </div>*@
+                                <img src="@product.Image" alt="@product.Name">
                             </figure>
                             <div class="hover-style1-title title-style-1">
                                 <h3><a href="/chi-tiet/@product.SeoLink">@product.Name</a></h3>
                             </div>
                         </div>
                     </div>
-                }
+                    }
+                </div>
+            }*@
+
+        @{
+            var list = (CategoryAndProductViewModel)ViewBag.ListCateAndProduct;
+            var first = true;
+            var first1 = true;
+
+            <div class="col-xs-12">
+                <ul class="nav nav-tabs post-filter" role="tablist">
+
+                    @foreach (var category in list.Categories)
+                    {
+                        if (first)
+                        {
+                            <li role="presentation" class="active">
+                                <a href="#@category.CateId" aria-controls="@category.CateId" role="tab" data-toggle="tab">@category.CategoryName</a>
+                            </li>
+
+                            first = false;
+                        }
+                        else
+                        {
+                            <li role="presentation">
+                                <a href="#@category.CateId" aria-controls="@category.CateId" role="tab" data-toggle="tab">@category.CategoryName</a>
+                            </li>
+                        }
+                    }
+                </ul>
+                <div class="tab-content">
+                    @foreach (var item in list.Categories)
+                    {
+                        if (first1)
+                        {
+                            <div role="tabpanel" class="tab-pane active" id="@item.CateId">
+                                <div id="owl-example" class="owl-carousel">
+                                    @foreach (var product in list.Products.Where(m => m.CateId == item.CateId))
+                                    {
+                                        <div class="col-xs-12">
+                                            <div class="inner hover-style1">
+                                                <figure class="hover-style1-img">
+                                                    <img src="@product.Image" alt="@product.Name">
+                                                </figure>
+                                                <div class="hover-style1-title title-style-1">
+                                                    <h3><a href="/chi-tiet/@product.SeoLink">@product.Name</a></h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+
+                            first1 = false;
+                        }
+                        else
+                        {
+                            <div role="tabpanel" class="tab-pane" id="@item.CateId">
+                                <div id="owl-example" class="owl-carousel">
+                                    @foreach (var product in list.Products.Where(m => m.CateId == item.CateId))
+                                    {
+                                        <div class="col-xs-12">
+                                            <div class="inner hover-style1">
+                                                <figure class="hover-style1-img">
+                                                    <img src="@product.Image" alt="@product.Name">
+                                                </figure>
+                                                <div class="hover-style1-title title-style-1">
+                                                    <h3><a href="/chi-tiet/@product.SeoLink">@product.Name</a></h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
             </div>
         }
     </div>
 </section>
 <!--End project_professional Section-->
 <!--News Section-->
-<section class="news-section_professional">
-    <div class="auto-container">
-        <!--Sec Title-->
-        <div class="sec-title centered">
-            <h2>
-                @ATIResourceManger._managerResources.GetString("NewsLastest_Label", ATIResourceManger._culture)
-            </h2>
-            <div class="separator"></div>
-        </div>
-        <div class="row clearfix">
-            @{
-                foreach (var item in (List<News>)ViewBag.TopNews)
-                {
-                    <div class="news-style-one col-md-4 col-sm-6 col-xs-12">
-                        <div class="inner">
-                            <div class="image">
-                                <a href="/bai-viet/@item.SeoLink">
-                                    <img src="@item.Image" />
-                                </a>
-                            </div>
-                            <div class="lower-box">
-                                <div class="upper-content">
-                                    <h3>
-                                        <a href="/bai-viet/@item.SeoLink">
-                                            @Common.SubString(item.Title, 30)
-                                        </a>
-                                    </h3>
+@*<section class="news-section_professional">
+        <div class="auto-container">
+            Sec Title
+            <div class="sec-title centered">
+                <h2>
+                    @ATIResourceManger._managerResources.GetString("NewsLastest_Label", ATIResourceManger._culture)
+                </h2>
+                <div class="separator"></div>
+            </div>
+            <div class="row clearfix">
+                @{
+                    foreach (var item in (List<News>)ViewBag.TopNews)
+                    {
+                        <div class="news-style-one col-md-4 col-sm-6 col-xs-12">
+                            <div class="inner">
+                                <div class="image">
+                                    <a href="/bai-viet/@item.SeoLink">
+                                        <img src="@item.Image" />
+                                    </a>
                                 </div>
-                                <div class="text">
-                                    @Common.SubString(item.Summary, 100)
+                                <div class="lower-box">
+                                    <div class="upper-content">
+                                        <h3>
+                                            <a href="/bai-viet/@item.SeoLink">
+                                                @Common.SubString(item.Title, 30)
+                                            </a>
+                                        </h3>
+                                    </div>
+                                    <div class="text">
+                                        @Common.SubString(item.Summary, 100)
+                                    </div>
+                                    <ul class="meta-option clearfix">
+                                        <li class="pull-left">
+                                            <a href="/bai-viet/@item.SeoLink">
+                                                <span class="icon fa fa-clock-o"></span> @Convert.ToDateTime(item.CreatedTime).ToString("dd/MM/yyyy")
+                                            </a>
+                                        </li>
+                                    </ul>
                                 </div>
-                                <ul class="meta-option clearfix">
-                                    <li class="pull-left">
-                                        <a href="/bai-viet/@item.SeoLink">
-                                            <span class="icon fa fa-clock-o"></span> @Convert.ToDateTime(item.CreatedTime).ToString("dd/MM/yyyy")
-                                        </a>
-                                    </li>
-                                </ul>
                             </div>
                         </div>
-                    </div>
+                    }
                 }
-            }
+            </div>
         </div>
-    </div>
-</section>
+    </section>*@
 <!--End News Section-->
+
+@section KnockOut{
+    <script>
+        $(document).ready(function () {
+
+            $(".owl-carousel").owlCarousel({
+                //loop: true,
+                margin: 30,
+                nav: false,
+                smartSpeed: 500,
+                autoplay: 3000,
+                navText: ['<span class="fa fa-angle-left"></span>', '<span class="fa fa-angle-right"></span>'],
+                responsive: {
+                    0: {
+                        items: 1
+                    },
+                    600: {
+                        items: 2
+                    },
+                    800: {
+                        items: 3
+                    },
+                    1024: {
+                        items: 3
+                    },
+                    1200: {
+                        items: 3
+                    }
+                }
+            });
+
+            $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+                //e.target // newly activated tab
+                //e.relatedTarget // previous active tab
+                //$(".owl-carousel").trigger('refresh.owl.carousel');
+            });
+        });
+    </script>
+}

@@ -338,11 +338,11 @@
 	//Sponsors Carousel Two
 	if ($('.sponsors-carousel-two').length) {
 		$('.sponsors-carousel-two').owlCarousel({
-			loop:true,
+			//loop:true,
 			margin:30,
 			nav:false,
 			smartSpeed: 500,
-			autoplay: 4000,
+			autoplay: 3000,
 			navText: [ '<span class="fa fa-angle-left"></span>', '<span class="fa fa-angle-right"></span>' ],
 			responsive:{
 				0:{
