@@ -16,10 +16,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/12/2016 12:32:32</publishTime>
     </File>
     <File Include="bin/ATI.Web.dll">
-      <publishTime>09/28/2017 10:31:53</publishTime>
+      <publishTime>10/11/2017 00:05:23</publishTime>
     </File>
     <File Include="bin/ATI.Web.pdb">
-      <publishTime>09/28/2017 10:31:53</publishTime>
+      <publishTime>10/11/2017 00:05:23</publishTime>
     </File>
     <File Include="bin/Elmah.dll">
       <publishTime>09/12/2016 12:32:56</publishTime>
@@ -28,7 +28,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/12/2016 12:32:33</publishTime>
     </File>
     <File Include="bin/en/ATI.Web.resources.dll">
-      <publishTime>09/28/2017 10:31:54</publishTime>
+      <publishTime>10/11/2017 00:05:23</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>09/12/2016 12:32:38</publishTime>
@@ -691,7 +691,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/12/2016 12:27:26</publishTime>
     </File>
     <File Include="Content/responsive.css">
-      <publishTime>09/18/2017 22:56:50</publishTime>
+      <publishTime>10/10/2017 23:15:37</publishTime>
     </File>
     <File Include="Content/revolution-slider/revolution-slider.css">
       <publishTime>09/25/2017 16:37:34</publishTime>
@@ -706,7 +706,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/18/2017 22:56:50</publishTime>
     </File>
     <File Include="Content/style.css">
-      <publishTime>09/28/2017 10:23:48</publishTime>
+      <publishTime>10/10/2017 23:28:19</publishTime>
     </File>
     <File Include="Content/themes/base/accordion.css">
       <publishTime>09/25/2017 08:01:14</publishTime>
@@ -2922,6 +2922,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Scripts/jquery.slimscroll.min.js">
       <publishTime>09/12/2016 12:28:12</publishTime>
     </File>
+    <File Include="Scripts/jquery.ui.widget.js">
+      <publishTime>09/25/2017 08:01:14</publishTime>
+    </File>
     <File Include="Scripts/jquery.unobtrusive-ajax.js">
       <publishTime>09/12/2016 12:28:12</publishTime>
     </File>
@@ -2995,7 +2998,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/12/2016 12:28:13</publishTime>
     </File>
     <File Include="Scripts/models/Service.js">
-      <publishTime>09/25/2017 08:01:14</publishTime>
+      <publishTime>10/10/2017 23:48:35</publishTime>
     </File>
     <File Include="Scripts/models/Tracker.js">
       <publishTime>09/12/2016 12:28:13</publishTime>
@@ -3022,7 +3025,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/26/2017 23:54:55</publishTime>
     </File>
     <File Include="Scripts/ModelViews/ConfigEmail.js">
-      <publishTime>09/28/2017 09:53:53</publishTime>
+      <publishTime>10/10/2017 20:15:42</publishTime>
     </File>
     <File Include="Scripts/ModelViews/Contact.js">
       <publishTime>09/25/2017 08:01:14</publishTime>
@@ -3043,7 +3046,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/27/2017 22:21:42</publishTime>
     </File>
     <File Include="Scripts/ModelViews/Product.js">
-      <publishTime>09/28/2017 07:18:01</publishTime>
+      <publishTime>10/10/2017 06:54:46</publishTime>
     </File>
     <File Include="Scripts/ModelViews/ProductDetail.js">
       <publishTime>09/12/2016 12:27:38</publishTime>
@@ -3052,7 +3055,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/23/2017 15:42:39</publishTime>
     </File>
     <File Include="Scripts/ModelViews/Service.js">
-      <publishTime>09/27/2017 12:52:43</publishTime>
+      <publishTime>10/11/2017 00:03:04</publishTime>
     </File>
     <File Include="Scripts/ModelViews/ShoppingCart.js">
       <publishTime>09/12/2016 12:27:39</publishTime>
@@ -3148,7 +3151,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/18/2017 22:57:17</publishTime>
     </File>
     <File Include="Scripts/script.js">
-      <publishTime>09/23/2017 13:19:59</publishTime>
+      <publishTime>10/10/2017 22:06:32</publishTime>
     </File>
     <File Include="Scripts/slick.js">
       <publishTime>09/18/2017 22:57:21</publishTime>
@@ -3337,7 +3340,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/17/2017 21:22:31</publishTime>
     </File>
     <File Include="Views/CMS/Service.cshtml">
-      <publishTime>09/25/2017 22:44:16</publishTime>
+      <publishTime>10/10/2017 23:53:57</publishTime>
     </File>
     <File Include="Views/CMS/Solutions.cshtml">
       <publishTime>09/27/2017 13:24:16</publishTime>
@@ -3379,19 +3382,19 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/28/2017 10:04:04</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>09/28/2017 10:20:11</publishTime>
+      <publishTime>10/10/2017 18:53:11</publishTime>
     </File>
     <File Include="Views/Home/Login.cshtml">
       <publishTime>09/28/2017 08:52:04</publishTime>
     </File>
     <File Include="Views/Home/MainMenu.cshtml">
-      <publishTime>09/26/2017 16:39:57</publishTime>
+      <publishTime>10/10/2017 23:36:09</publishTime>
     </File>
     <File Include="Views/Home/News.cshtml">
-      <publishTime>09/27/2017 22:56:40</publishTime>
+      <publishTime>09/28/2017 09:24:40</publishTime>
     </File>
     <File Include="Views/Home/NewsDetail.cshtml">
-      <publishTime>09/27/2017 22:55:50</publishTime>
+      <publishTime>09/28/2017 15:45:13</publishTime>
     </File>
     <File Include="Views/Home/Product.cshtml">
       <publishTime>09/27/2017 06:47:50</publishTime>
@@ -3424,13 +3427,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/17/2017 09:51:44</publishTime>
     </File>
     <File Include="Views/Home/SolutionDetail.cshtml">
-      <publishTime>09/27/2017 22:56:05</publishTime>
+      <publishTime>09/28/2017 11:44:49</publishTime>
     </File>
     <File Include="Views/Home/Solutions.cshtml">
       <publishTime>09/28/2017 09:23:33</publishTime>
     </File>
     <File Include="Views/Home/Sponsors.cshtml">
-      <publishTime>09/25/2017 21:30:13</publishTime>
+      <publishTime>10/10/2017 06:20:15</publishTime>
     </File>
     <File Include="Views/Home/Tags.cshtml">
       <publishTime>09/17/2017 09:53:37</publishTime>
@@ -3442,7 +3445,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/27/2017 22:58:15</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>09/28/2017 09:07:56</publishTime>
+      <publishTime>10/10/2017 20:46:02</publishTime>
     </File>
     <File Include="Views/Shared/_LoginPartial.cshtml">
       <publishTime>09/12/2016 12:27:32</publishTime>
@@ -3454,7 +3457,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/17/2017 16:56:20</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>09/28/2017 10:31:54</publishTime>
+      <publishTime>10/10/2017 23:16:43</publishTime>
     </File>
   </ItemGroup>
 </Project>

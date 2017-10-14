@@ -27,7 +27,7 @@ namespace ATI.Web.Controllers
             ViewBag.Context = HttpContext;
             ViewBag.CommonInfo = db.CommonInfoes.Where(x => x.LangId == lang).FirstOrDefault();
             ViewBag.TopNews = db.News.Where(item => item.Type == 0 && item.LangId == lang).OrderByDescending(item => item.ID).Take(3).ToList();
-            ViewBag.Services = db.Partners.Where(m => m.LangId == 0 && m.LangId == lang).OrderBy(m => m.OrderNo).ToList();
+            ViewBag.Services = db.Partners.Where(m => m.LangId == 0 && m.LangId == lang && m.IsShowHomePage == true).OrderBy(m => m.OrderNo).ToList();
             AddLog(HttpContext.Session.SessionID);
             var categories = db.CateProducts.Where(m => !m.IsDelete && m.LangId == lang && m.ParrentCateId == -1 && m.IsShowHomePage == true).Select(m => new CategoryItems
             {

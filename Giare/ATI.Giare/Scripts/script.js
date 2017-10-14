@@ -57,7 +57,7 @@
         $('.main-slider_professional .tp-banner').show().revolution({
             dottedOverlay: slideOverlay,
             delay: 10000,
-            startwidth: 1200,
+            startwidth: 900,
             startheight: strtHeight,
             hideThumbs: 600,
 

@@ -34,6 +34,7 @@ function ServiceView() {
     self.ID = ko.observable(-1);
     self.isUploading = ko.observable(false);
     self.isUploadingContent = ko.observable(false);
+    self.IsShowHomePage = ko.observable(false);
 
     self.changeLang = function () {
         self.Search(1);
@@ -129,6 +130,7 @@ function ServiceView() {
         self.Image(item.Image);
         self.Summary(item.Summary);
         CKEDITOR.instances.Content.setData(item.Content);
+        self.IsShowHomePage(item.IsShowHomePage);
         self.IsAdd(false);
         self.fcName(true);
     }
@@ -143,6 +145,7 @@ function ServiceView() {
         CKEDITOR.instances.Content.setData("");
         self.IsAdd(true);
         self.fcName(true);
+        self.IsShowHomePage(false);
     }
 
     self.Delete = function (item) {
@@ -179,11 +182,10 @@ function ServiceView() {
         CurrentPage = currentPage;
 
         Service.Get(self.LangId(), self.Keyword(), currentPage, RecordPerPage, function (data) {
-            console.log(data);
             if (data == -1) {
                 toastr.warning("Mời bạn đăng nhập trước khi thực hiện");
 
-                window.location.href = "/dang-nhap?u=/cms/thong-tin-chung";
+                window.location.href = "/dang-nhap?u=/cms/dich-vu";
                 return;
             }
 
@@ -228,7 +230,7 @@ function ServiceView() {
         self.Sending(true);
 
         if (self.IsAdd()) {
-            Service.AddService(self.Name(), self.Image(), self.Summary(), CKEDITOR.instances.Content.getData(), self.LangId(), function (data) {
+            Service.AddService(self.Name(), self.Image(), self.Summary(), CKEDITOR.instances.Content.getData(), self.LangId(), self.IsShowHomePage(), function (data) {
 
                 self.Sending(false);
 
@@ -244,7 +246,7 @@ function ServiceView() {
             });
         }
         else {
-            Service.Update(self.ID(), self.Name(), self.Image(), self.Summary(), CKEDITOR.instances.Content.getData(), self.LangId(), function (data) {
+            Service.Update(self.ID(), self.Name(), self.Image(), self.Summary(), CKEDITOR.instances.Content.getData(), self.LangId(), self.IsShowHomePage(), function (data) {
 
                 self.Sending(false);
 

@@ -314,8 +314,8 @@ namespace ATI.Web.Controllers
                     commonInfo.Office = item.Office;
                     commonInfo.Office_En = item.OfficeEn;
                     commonInfo.Yahoo = string.Empty;
-                    commonInfo.Facebook = item.Facebook;
-                    commonInfo.Skype = item.Skype;
+                    commonInfo.Facebook = string.IsNullOrEmpty(item.Facebook) ? "" : item.Facebook;
+                    commonInfo.Skype = string.IsNullOrEmpty(item.Skype) ? "" : item.Skype;
                     commonInfo.Summary = item.Summary;
                     commonInfo.LangId = (byte)item.LangId;
                     commonInfo.Summary = item.SummaryEn;
@@ -323,6 +323,8 @@ namespace ATI.Web.Controllers
                     commonInfo.Logo2 = item.Logo2;
                     commonInfo.Lang = item.Lang;
                     commonInfo.Long = item.Long;
+                    commonInfo.IsShowService = item.IsShowService;
+                    commonInfo.IsShowProduct = item.IsShowProduct;
                     db.CommonInfoes.Add(commonInfo);
                 }
                 else
@@ -339,14 +341,16 @@ namespace ATI.Web.Controllers
                     commonInfo.Office = item.Office;
                     commonInfo.Office_En = item.OfficeEn;
                     commonInfo.Facebook = item.Facebook;
-                    commonInfo.Skype = item.Skype;
-                    commonInfo.Summary = item.Summary;
+                    commonInfo.Facebook = string.IsNullOrEmpty(item.Facebook) ? "" : item.Facebook;
+                    commonInfo.Skype = string.IsNullOrEmpty(item.Skype) ? "" : item.Skype;
                     commonInfo.LangId = (byte)item.LangId;
                     commonInfo.Summary = item.SummaryEn;
                     commonInfo.Logo = item.Logo;
                     commonInfo.Logo2 = item.Logo2;
                     commonInfo.Lang = item.Lang;
                     commonInfo.Long = item.Long;
+                    commonInfo.IsShowService = item.IsShowService;
+                    commonInfo.IsShowProduct = item.IsShowProduct;
                     db.Entry(commonInfo).State = EntityState.Modified;
                 }
 
@@ -547,6 +551,7 @@ namespace ATI.Web.Controllers
             service.CreatedDate = DateTime.Now;
             service.UnsignName = Common.UCS2Convert(item.Name).ToLower();
             service.UnsignName_En = Common.UCS2Convert(item.Name).ToLower();
+            service.IsShowHomePage = item.IsShowHomePage;
             db.Partners.Add(service);
 
             return Json(db.SaveChanges(), JsonRequestBehavior.AllowGet);
@@ -582,6 +587,7 @@ namespace ATI.Web.Controllers
             service.LangId = (Byte)Common.TransferLang(item.LangId);
             service.UnsignName = Common.UCS2Convert(item.Name).ToLower();
             service.UnsignName_En = Common.UCS2Convert(item.Name).ToLower();
+            service.IsShowHomePage = item.IsShowHomePage;
             db.Entry(service).State = EntityState.Modified;
 
             return Json(db.SaveChanges(), JsonRequestBehavior.AllowGet);

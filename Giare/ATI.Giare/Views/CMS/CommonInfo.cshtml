@@ -20,157 +20,191 @@
     </div>
 </div>
 <div class="container content">
-    <div class="sky-form">
-        <header>Thông tin công ty</header>
-        <fieldset>
-            <div class="row">
-                <section class="col col-3">
-                    <label class="label">Chọn ngôn ngữ <span class="color-red">*</span></label>
-                    <select class="form-control" data-bind="value: LangId, event: {change: changeLang}">
-                        <option value="0">Tiếng Việt</option>
-                        <option value="1">Tiếng Anh</option>
-                    </select>
-                </section>
+    <div class="bs-example bs-example-tabs" data-example-id="togglable-tabs">
+        <ul class="nav nav-tabs" id="myTabs" role="tablist">
+            <li role="presentation" class="active"><a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">Thông tin công ty</a></li>
+            <li role="presentation" class=""><a href="#profile" role="tab" id="profile-tab" data-toggle="tab" aria-controls="profile" aria-expanded="false">Cấu hình trang chủ</a></li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade active in" role="tabpanel" id="home" aria-labelledby="home-tab">
+                <div class="sky-form">
+                    @*<header>Thông tin công ty</header>*@
+                    <fieldset>
+                        <div class="row">
+                            <section class="col col-3">
+                                <label class="label">Chọn ngôn ngữ <span class="color-red">*</span></label>
+                                <select class="form-control" data-bind="value: LangId, event: {change: changeLang}">
+                                    <option value="0">Tiếng Việt</option>
+                                    <option value="1">Tiếng Anh</option>
+                                </select>
+                            </section>
+                        </div>
+                        <div class="row">
+                            <section class="col col-6">
+                                <label class="label">Tên công ty <span class="color-red">*</span></label>
+                                <label class="input">
+                                    <input type="text" data-bind="value: Name,hasfocus: fcName" />
+                                </label>
+                            </section>
+                            <section class="col col-6">
+                                <label class="label">Tên tiếng nước ngoài</label>
+                                <label class="input">
+                                    <input type="text" data-bind="value: EnglishName" />
+                                </label>
+                            </section>
+                        </div>
+                        <div class="row">
+                            <section class="col col-6">
+                                <label class="label">Tên viết tắn</label>
+                                <label class="input">
+                                    <input type="text" data-bind="value: ShortName" />
+                                </label>
+                            </section>
+                            <section class="col col-6">
+                                <label class="label">E-mail</label>
+                                <label class="input">
+                                    <i class="icon-append fa fa-envelope-o"></i>
+                                    <input type="email" data-bind="value: Email" />
+                                </label>
+                            </section>
+                        </div>
+                        <div class="row">
+                            <section class="col col-6">
+                                <section class="col col-4">
+                                    <label class="label">Logo</label>
+                                    <label class="img-bordered">
+                                        <img data-bind="attr:{src:Logo()}" style="max-height: 100px;" />
+                                    </label>
+                                    <div class="input">
+                                        <i id="loadingUpload" class="fa fa-spinner fa-pulse" data-bind="visible: isUploading()" style="display: none;"></i>
+                                        <div class="fileuploadButton cursor-pointer">
+                                            <input id="FileUploadImage" type="file" name="FileData">
+                                            <a href="#">
+                                                <i class="fa fa-upload"></i> <span>Tải ảnh</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </section>
+                            </section>
+                            <section class="col col-6">
+                                <section class="col col-4">
+                                    <label class="label">Logo phía dưới</label>
+                                    <label class="img-bordered">
+                                        <img data-bind="attr:{src:LogoFooter()}" width="300" />
+                                    </label>
+                                    <div class="input">
+                                        <i id="loadingUpload" class="fa fa-spinner fa-pulse" data-bind="visible: isUploadingFooter()" style="display: none;"></i>
+                                        <div class="fileuploadButton cursor-pointer">
+                                            <input id="FileUploadImageFooter" type="file" name="FileData">
+                                            <a href="#">
+                                                <i class="fa fa-upload"></i> <span>Tải ảnh</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </section>
+                            </section>
+                        </div>
+                        <div class="row">
+                            <section class="col col-6">
+                                <label class="label">Số điện thoại cố định <span class="color-red">*</span></label>
+                                <label class="input">
+                                    <i class="icon-append fa fa-phone"></i>
+                                    <input type="tel" data-bind="value: Phone, hasfocus: fcPhone" />
+                                </label>
+                            </section>
+                            <section class="col col-6">
+                                <label class="label">Số di động</label>
+                                <label class="input">
+                                    <i class="icon-append fa fa-mobile"></i>
+                                    <input type="tel" data-bind="value: Mobile" />
+                                </label>
+                            </section>
+                        </div>
+                        <div class="row">
+                            <section class="col col-6">
+                                <label class="label">Số fax</label>
+                                <label class="input">
+                                    <i class="icon-append fa fa-print"></i>
+                                    <input type="tel" data-bind="value: Fax" />
+                                </label>
+                            </section>
+                            <section class="col col-6">
+                                <label class="label">Địa công ty <span class="color-red">*</span></label>
+                                <label class="input">
+                                    <i class="icon-append fa fa-home"></i>
+                                    <input type="tel" data-bind="value: Address, hasfocus: fcAddress" />
+                                </label>
+                            </section>
+                        </div>
+                        <div class="row">
+                            <section class="col col-6">
+                                <label class="label">Vĩ độ (Latitude)</label>
+                                <label class="input">
+                                    <input type="tel" data-bind="value: Lat" />
+                                </label>
+                            </section>
+                            <section class="col col-6">
+                                <label class="label">Kinh độ (Longitude)</label>
+                                <label class="input">
+                                    <input type="tel" data-bind="value: Long" />
+                                </label>
+                            </section>
+                        </div>
+                        <div class="row">
+                            <section class="col col-4">
+                                <label class="label">Facebook</label>
+                                <label class="input">
+                                    <input type="text" data-bind="value: Facebook" />
+                                </label>
+                            </section>
+                            <section class="col col-4">
+                                <label class="label">Nick Skype</label>
+                                <label class="input">
+                                    <input type="tel" data-bind="value: Skype" />
+                                </label>
+                            </section>
+                        </div>
+                        <section>
+                            <label class="label">Giới thiệu tổng quan về công ty<span class="color-red">*</span></label>
+                            <label class="textarea">
+                                <textarea data-bind="value: Summary, hasfocus: fcSummary" rows="10"></textarea>
+                            </label>
+                        </section>
+                    </fieldset>
+                </div>
             </div>
-            <div class="row">
-                <section class="col col-6">
-                    <label class="label">Tên công ty <span class="color-red">*</span></label>
-                    <label class="input">
-                        <input type="text" data-bind="value: Name,hasfocus: fcName" />
-                    </label>
-                </section>
-                <section class="col col-6">
-                    <label class="label">Tên tiếng nước ngoài</label>
-                    <label class="input">
-                        <input type="text" data-bind="value: EnglishName" />
-                    </label>
-                </section>
-            </div>
-            <div class="row">
-                <section class="col col-6">
-                    <label class="label">Tên viết tắn</label>
-                    <label class="input">
-                        <input type="text" data-bind="value: ShortName" />
-                    </label>
-                </section>
-                <section class="col col-6">
-                    <label class="label">E-mail</label>
-                    <label class="input">
-                        <i class="icon-append fa fa-envelope-o"></i>
-                        <input type="email" data-bind="value: Email" />
-                    </label>
-                </section>
-            </div>
-            <div class="row">
-                <section class="col col-6">
-                    <section class="col col-4">
-                        <label class="label">Logo</label>
-                        <label class="img-bordered">
-                            <img data-bind="attr:{src:Logo()}" width="300" />
-                        </label>
-                        <div class="input">
-                            <i id="loadingUpload" class="fa fa-spinner fa-pulse" data-bind="visible: isUploading()" style="display: none;"></i>
-                            <div class="fileuploadButton cursor-pointer">
-                                <input id="FileUploadImage" type="file" name="FileData">
-                                <a href="#">
-                                    <i class="fa fa-upload"></i> <span>Tải ảnh</span>
-                                </a>
+            <div class="tab-pane fade" role="tabpanel" id="profile" aria-labelledby="profile-tab">
+                <div class="sky-form">
+                    <fieldset>
+                        <div class="row">
+                            <section class="col col-3">
+                                <label class="label">Hiển thị danh sách dịch vụ</label>
+                            </section>
+                            <div class="col-sm-4">
+                                <label class="check-box">
+                                    <input type="checkbox" data-bind="checked: IsShowService" />
+                                </label>
                             </div>
                         </div>
-                    </section>
-                </section>
-                <section class="col col-6">
-                    <section class="col col-4">
-                        <label class="label">Logo phía dưới</label>
-                        <label class="img-bordered">
-                            <img data-bind="attr:{src:LogoFooter()}" width="300" />
-                        </label>
-                        <div class="input">
-                            <i id="loadingUpload" class="fa fa-spinner fa-pulse" data-bind="visible: isUploadingFooter()" style="display: none;"></i>
-                            <div class="fileuploadButton cursor-pointer">
-                                <input id="FileUploadImageFooter" type="file" name="FileData">
-                                <a href="#">
-                                    <i class="fa fa-upload"></i> <span>Tải ảnh</span>
-                                </a>
+                        <div class="row">
+                            <section class="col col-3">
+                                <label class="label">Hiển thị danh sách sản phảm</label>
+                            </section>
+                            <div class="col-sm-4">
+                                <label class="check-box">
+                                    <input type="checkbox" data-bind="checked: IsShowProduct" />
+                                </label>
                             </div>
                         </div>
-                    </section>
-                </section>
+                    </fieldset>
+                </div>
             </div>
-            <div class="row">
-                <section class="col col-6">
-                    <label class="label">Số điện thoại cố định <span class="color-red">*</span></label>
-                    <label class="input">
-                        <i class="icon-append fa fa-phone"></i>
-                        <input type="tel" data-bind="value: Phone, hasfocus: fcPhone" />
-                    </label>
-                </section>
-                <section class="col col-6">
-                    <label class="label">Số di động</label>
-                    <label class="input">
-                        <i class="icon-append fa fa-mobile"></i>
-                        <input type="tel" data-bind="value: Mobile" />
-                    </label>
-                </section>
-            </div>
-            <div class="row">
-                <section class="col col-6">
-                    <label class="label">Số fax</label>
-                    <label class="input">
-                        <i class="icon-append fa fa-print"></i>
-                        <input type="tel" data-bind="value: Fax" />
-                    </label>
-                </section>
-                <section class="col col-6">
-                    <label class="label">Địa công ty <span class="color-red">*</span></label>
-                    <label class="input">
-                        <i class="icon-append fa fa-home"></i>
-                        <input type="tel" data-bind="value: Address, hasfocus: fcAddress" />
-                    </label>
-                </section>
-            </div>
-            <div class="row">
-                <section class="col col-6">
-                    <label class="label">Vĩ độ (Latitude)</label>
-                    <label class="input">
-                        <input type="tel" data-bind="value: Lat" />
-                    </label>
-                </section>
-                <section class="col col-6">
-                    <label class="label">Kinh độ (Longitude)</label>
-                    <label class="input">
-                        <input type="tel" data-bind="value: Long" />
-                    </label>
-                </section>
-            </div>
-            <div class="row">
-                <section class="col col-4">
-                    <label class="label">Facebook</label>
-                    <label class="input">
-                        <input type="text" data-bind="value: Facebook" />
-                    </label>
-                </section>
-                <section class="col col-4">
-                    <label class="label">Nick Skype</label>
-                    <label class="input">
-                        <input type="tel" data-bind="value: Skype" />
-                    </label>
-                </section>
-            </div>
-            <section>
-                <label class="label">Giới thiệu tổng quan về công ty<span class="color-red">*</span></label>
-                <label class="textarea">
-                    <textarea data-bind="value: Summary, hasfocus: fcSummary" rows="10"></textarea>
-                </label>
-            </section>
-        </fieldset>
-        <footer>
-            <button class="button" type="submit" data-bind="click: Update, enable: !Sending()"><img src="/content/images/loading1.gif" data-bind="visible: Sending" /> Lưu lại</button>
-        </footer>
-
-        <div class="message">
-            <i class="rounded-x fa fa-check"></i>
-            <p>Your message was successfully sent!</p>
+        </div>
+        <div class="sky-form">
+            <footer>
+                <button class="button" type="submit" data-bind="click: Update, enable: !Sending()"><img src="/content/images/loading1.gif" data-bind="visible: Sending" /> Lưu lại</button>
+            </footer>
         </div>
     </div>
+
 </div>

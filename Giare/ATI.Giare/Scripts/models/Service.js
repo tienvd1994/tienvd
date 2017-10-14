@@ -26,19 +26,19 @@ amplify.request.define("GetServices", "ajax", {
     type: "GET"
 });
 
-Service.Update = function (id, name, image, summary, content, langid, callback) {
+Service.Update = function (id, name, image, summary, content, langid, isShowHomePage, callback) {
 
     amplify.request("UpdateService", {
-        id: id, name: name, image: image, summary: summary, content: content, langid: langid
+        id: id, name: name, image: image, summary: summary, content: content, langid: langid, IsShowHomePage: isShowHomePage
     }, function (data) {
         if (callback) callback(data);
     });
 }
 
-Service.AddService = function (name, image, summary, content, langid, callback) {
+Service.AddService = function (name, image, summary, content, langid, isShowHomePage, callback) {
 
     amplify.request("AddService", {
-        name: name, image: image, summary: summary, content: content, langid: langid
+        name: name, image: image, summary: summary, content: content, langid: langid, IsShowHomePage: isShowHomePage
     }, function (data) {
         if (callback) callback(data);
     });

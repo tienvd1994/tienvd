@@ -15,12 +15,12 @@ amplify.request.define("GetCommonInfo", "ajax", {
 });
 
 CommonInfo.Update = function (name, englishName, email, phone, mobile, fax, headOffice, headOfficeEn, office, officeEn, facebook, skype, summary, summaryEn, shortName,
-    langId, logo, logo2, long, lat, callback) {
+    langId, logo, logo2, long, lat, IsShowService, IsShowProduct, callback) {
 
     amplify.request("Update", {
         Name: name, EnglishName: englishName, Email: email, Phone: phone, Mobile: mobile, Fax: fax, HeadOffice: headOffice, HeadOfficeEn: headOfficeEn,
         Office: office, OfficeEn: officeEn, Facebook: facebook, Skype: skype, Summary: summary, SummaryEn: summaryEn, ShortName: shortName, LangId: langId, Logo: logo,
-        Logo2: logo2, Long: long, Lang: lat
+        Logo2: logo2, Long: long, Lang: lat, IsShowService: IsShowService, IsShowProduct: IsShowProduct
     }, function (data) {
         if (callback) callback(data);
     });

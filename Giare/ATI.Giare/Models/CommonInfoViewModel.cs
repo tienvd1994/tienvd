@@ -15,7 +15,6 @@
         public string HeadOfficeEn { get; set; }
         public string Office { get; set; }
         public string OfficeEn { get; set; }
-        //public string Yahoo { get; set; }
         public string Facebook { get; set; }
         public string Skype { get; set; }
         public string Summary { get; set; }
@@ -26,5 +25,7 @@
         public string Logo2 { get; set; }
         public double? Long { get; set; }
         public double? Lang { get; set; }
+        public bool? IsShowService { get; set; }
+        public bool? IsShowProduct { get; set; }
     }
 }

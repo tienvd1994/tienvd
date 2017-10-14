@@ -32,5 +32,6 @@ namespace ATI.Web.Models
         public Nullable<System.DateTime> CreatedDate { get; set; }
         public string UnsignName { get; set; }
         public string UnsignName_En { get; set; }
+        public Nullable<bool> IsShowHomePage { get; set; }
     }
 }

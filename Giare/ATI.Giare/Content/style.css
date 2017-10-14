@@ -315,7 +315,7 @@ ul, li {
     background-color: #ffffff;
     background-position: center center;
     background-repeat: no-repeat;
-    background-image: url(../Content/images/background/icons/preloader.GIF);
+    background-image: url(/Content/images/background/icons/preloader.GIF);
 }
 
 img {
@@ -1410,7 +1410,7 @@ img {
         width: 100%;
         height: 100%;
         display: block;
-        background-color: rgba(0,0,0,0.30);
+        /*background-color: rgba(0,0,0,0.30);*/
     }
 
     .main-slider_professional .tp-dottedoverlay {
@@ -1482,22 +1482,24 @@ img {
 
     .main-slider_professional .btn-style-one {
         color: #ffffff;
+        /*color: #999;*/
     }
 
         .main-slider_professional .btn-style-one:hover {
             color: #48c7ec;
             background-color: #fff;
-            border-color: #fff;
+            border-color: #48c7ec;
         }
 
     .main-slider_professional .btn-style-four {
-        color: #ffffff;
+        /*color: #ffffff;*/
+        color: #999;
     }
 
         .main-slider_professional .btn-style-four:hover {
             color: #48c7ec;
             background-color: #fff;
-            border-color: #fff;
+            border-color: #d0d0d0;
         }
 
     .main-slider_professional .btn-style-two {
@@ -1686,7 +1688,7 @@ img {
         width: 120px;
         height: 20px;
         margin-bottom: 15px !important;
-        background: url(../Content/images/background/icons/separator.png) no-repeat;
+        background: url(/Content/images/background/icons/separator.png) no-repeat;
     }
 
         .sec-title .separator.light {
@@ -2286,7 +2288,7 @@ img {
     top: 0px;
     width: 45px;
     height: 45px;
-    background: url(../Content/images/icon-cross.png) center center no-repeat;
+    background: url(/Content/images/icon-cross.png) center center no-repeat;
     background-color: rgba(17,17,17,0.50) !important;
 }
 

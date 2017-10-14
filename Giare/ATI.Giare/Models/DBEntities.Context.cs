@@ -32,6 +32,7 @@ namespace ATI.Web.Models
         public virtual DbSet<CateNew> CateNews { get; set; }
         public virtual DbSet<CateProduct> CateProducts { get; set; }
         public virtual DbSet<CommonInfo> CommonInfoes { get; set; }
+        public virtual DbSet<ConfigImage> ConfigImages { get; set; }
         public virtual DbSet<Contact> Contacts { get; set; }
         public virtual DbSet<ContentStatic> ContentStatics { get; set; }
         public virtual DbSet<Contractor> Contractors { get; set; }
@@ -50,7 +51,6 @@ namespace ATI.Web.Models
         public virtual DbSet<Tracker> Trackers { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Tag> Tags { get; set; }
-        public virtual DbSet<ConfigImage> ConfigImages { get; set; }
     
         public virtual ObjectResult<sp_Contact_GetLastest_Result> sp_Contact_GetLastest(string type, Nullable<int> pageIndex, Nullable<int> recordPerPage, ObjectParameter totalRecord)
         {

@@ -24,5 +24,6 @@ namespace ATI.Web.Models
         public string Content { get; set; }
         public System.DateTime SendTime { get; set; }
         public byte Status { get; set; }
+        public string UnsignName { get; set; }
     }
 }

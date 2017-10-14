@@ -24,5 +24,7 @@ namespace ATI.Web.Models
         public short OrderNo { get; set; }
         public string Image { get; set; }
         public Nullable<int> LangId { get; set; }
+        public string UnsignName { get; set; }
+        public string UnsignName_En { get; set; }
     }
 }

@@ -60,7 +60,7 @@
                         <img data-bind="attr:{src: Image()}" width="300" />
                     </label>
                 </section>
-                <section class="col col-6">
+                <section class="col col-4">
                     <div class="input">
                         <i id="loadingUpload" class="fa fa-spinner fa-pulse" data-bind="visible: isUploading()" style="display: none;"></i>
                         <div class="fileuploadButton cursor-pointer">
@@ -69,6 +69,14 @@
                                 <i class="fa fa-upload"></i> <span>Tải ảnh</span>
                             </a>
                         </div>
+                    </div>
+                </section>
+                <section class="col col-4">
+                    <div class="label">
+                        Hiển thị trang chủ
+                    </div>
+                    <div class="check-box">
+                        <input type="checkbox" data-bind="checked: IsShowHomePage" />
                     </div>
                 </section>
             </div>

@@ -10,6 +10,15 @@
     ViewBag.Image = commonInfo.Logo;
 }
 
+@*@section styles{
+        <style>
+            .tp-banner-container {
+                left: 0px !important;
+                width: 100% !important;
+            }
+        </style>
+    }*@
+
 <!--Main Slider-->
 <section class="main-slider_professional" data-start-height="550" data-slide-overlay="yes">
     <div class="tp-banner-container">
@@ -108,188 +117,157 @@
     </section>*@
 <!--default Section One-->
 <!--Services Section-->
-<section class="services-section_professional" @*style="background-image:url(../../Content/images/background/parallax4.jpg);"*@>
-    <div class="auto-container">
-        <!--Sec Title-->
-        <div class="sec-title light centered">
-            <h2>
-                @ATIResourceManger._managerResources.GetString("ServiceCode", ATIResourceManger._culture)
-            </h2>
-            <div class="separator"></div>
-        </div>
-        <div class="row clearfix">
-            <!--Services Style Two-->
-            <div id="owl-example" class="owl-carousel">
-                @foreach (var item in (List<Partner>)ViewBag.Services)
-                {
-                    <div class="services-style-two col-xs-12">
-                        <div class="inner hover-style1 hvr-float-shadow">
-                            <figure class="image-box hover-style1-img">
-                                <img src="@item.Image" alt="@item.Name" />
-                            </figure>
-                            <div class="lower-box">
-                                <h3>
-                                    <a href="/dich-vu/@item.SeoLink">
-                                        @Common.SubString(item.Name, 30)
-                                    </a>
-                                </h3>
-                            </div>
-                        </div>
-                    </div>
-                }
-            </div>
 
-            @*@{
-                    foreach (var item in (List<Partner>)ViewBag.Services)
-                    {
-                        <div class="services-style-two col-md-4 col-sm-6 col-xs-12">
-                            <div class="inner hover-style1 hvr-float-shadow">
-                                <figure class="image-box hover-style1-img">
-                                    <img src="@item.Image" alt="@item.Name" />
-                                    <div class="hover-style1-view">
-                                        <a class="link-box" href="/dich-vu/@item.SeoLink"><span class="fa fa-link"></span></a>
-                                    </div>
-                                </figure>
-                                <div class="lower-box">
-                                    <h3>
-                                        <a href="/dich-vu/@item.SeoLink">
-                                            @Common.SubString(item.Name, 30)
-                                        </a>
-                                    </h3>
-                                    <div class="text">
-                                        @Common.SubString(item.Summary, 100)
+@{
+    if (commonInfo.IsShowService == true)
+    {
+        var services = (List<Partner>)ViewBag.Services;
+
+        if (services != null && services.Count() > 0)
+        {
+            <section class="services-section_professional">
+                <div class="auto-container">
+                    <!--Sec Title-->
+                    <div class="sec-title light centered">
+                        <h2>
+                            @ATIResourceManger._managerResources.GetString("ServiceCode", ATIResourceManger._culture)
+                        </h2>
+                        <div class="separator"></div>
+                    </div>
+                    <div class="row clearfix">
+                        <!--Services Style Two-->
+                        <div id="owl-example" class="owl-carousel">
+                            @foreach (var item in (List<Partner>)ViewBag.Services)
+                            {
+                                <div class="services-style-two col-xs-12">
+                                    <div class="inner hover-style1 hvr-float-shadow">
+                                        <figure class="image-box hover-style1-img">
+                                            <img src="@item.Image" alt="@item.Name" />
+                                            <div class="hover-style1-view">
+                                                <a class="link-box" href="/dich-vu/@item.SeoLink">
+                                                    <span class="fa fa-link"></span>
+                                                </a>
+                                            </div>
+                                        </figure>
+                                        <div class="lower-box">
+                                            <h3>
+                                                <a href="/dich-vu/@item.SeoLink">
+                                                    @Common.SubString(item.Name, 30)
+                                                </a>
+                                            </h3>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            }
                         </div>
-                    }
-                }*@
-        </div>
+                    </div>
 
-    </div>
-</section>
+                </div>
+            </section>
+        }
+    }
+}
+
 <!--End Services Section-->
 <!-- project_professional Section-->
-<section class="project_professional">
-    <div class="auto-container">
-        <!--Sec Title-->
-        <div class="sec-title centered">
-            <h2>
-                @ATIResourceManger._managerResources.GetString("ProductCode", ATIResourceManger._culture)
-            </h2>
-            <div class="separator"></div>
-        </div>
-        @*@{
-                var list = (CategoryAndProductViewModel)ViewBag.ListCateAndProduct;
 
-                <ul class="post-filter text-center list-inline">
-                    <li class="active" data-filter=".default-portfolio-item">
-                        <span>
-                            @ATIResourceManger._managerResources.GetString("ViewAll_Label", ATIResourceManger._culture)
-                        </span>
-                    </li>
-                    @foreach (var category in list.Categories)
-                    {
-                    <li data-filter=".@category.CateId">
-                        <span>@category.CategoryName</span>
-                    </li>
-                    }
-                </ul>
-                <div class="row clearfix masonary-layout filter-layout">
+@{
+    if (commonInfo.IsShowProduct == true)
+    {
+        var list = (CategoryAndProductViewModel)ViewBag.ListCateAndProduct;
 
-                    @foreach (var product in list.Products)
-                    {
-                    <div class="default-portfolio-item @product.CateId col-md-4 col-sm-6 col-xs-12">
-                        <div class="inner hover-style1">
-                            <figure class="hover-style1-img">
-                                <img src="@product.Image" alt="@product.Name">
-                            </figure>
-                            <div class="hover-style1-title title-style-1">
-                                <h3><a href="/chi-tiet/@product.SeoLink">@product.Name</a></h3>
+        if (list != null && list.Categories.Count() > 0)
+        {
+            <section class="project_professional">
+                <div class="auto-container">
+                    <!--Sec Title-->
+                    <div class="sec-title centered">
+                        <h2>
+                            @ATIResourceManger._managerResources.GetString("ProductCode", ATIResourceManger._culture)
+                        </h2>
+                        <div class="separator"></div>
+                    </div>
+                    @{
+                        var first = true;
+                        var first1 = true;
+
+                        <div class="col-xs-12">
+                            <ul class="nav nav-tabs post-filter" role="tablist">
+
+                                @foreach (var category in list.Categories)
+                                {
+                                    if (first)
+                                    {
+                                        <li role="presentation" class="active">
+                                            <a href="#@category.CateId" aria-controls="@category.CateId" role="tab" data-toggle="tab">@category.CategoryName</a>
+                                        </li>
+
+                                        first = false;
+                                    }
+                                    else
+                                    {
+                                        <li role="presentation">
+                                            <a href="#@category.CateId" aria-controls="@category.CateId" role="tab" data-toggle="tab">@category.CategoryName</a>
+                                        </li>
+                                    }
+                                }
+                            </ul>
+                            <div class="tab-content">
+                                @foreach (var item in list.Categories)
+                                {
+                                    if (first1)
+                                    {
+                                        <div role="tabpanel" class="tab-pane active" id="@item.CateId">
+                                            <div id="owl-example" class="owl-carousel">
+                                                @foreach (var product in list.Products.Where(m => m.CateId == item.CateId))
+                                                {
+                                                    <div>
+                                                        <div class="inner hover-style1">
+                                                            <figure class="hover-style1-img">
+                                                                <img src="@product.Image" alt="@product.Name">
+                                                            </figure>
+                                                            <div class="hover-style1-title title-style-1">
+                                                                <h3><a href="/chi-tiet/@product.SeoLink">@product.Name</a></h3>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                }
+                                            </div>
+                                        </div>
+
+                                        first1 = false;
+                                    }
+                                    else
+                                    {
+                                        <div role="tabpanel" class="tab-pane" id="@item.CateId">
+                                            <div id="owl-example" class="owl-carousel">
+                                                @foreach (var product in list.Products.Where(m => m.CateId == item.CateId))
+                                                {
+                                                    <div>
+                                                        <div class="inner hover-style1">
+                                                            <figure class="hover-style1-img">
+                                                                <img src="@product.Image" alt="@product.Name">
+                                                            </figure>
+                                                            <div class="hover-style1-title title-style-1">
+                                                                <h3><a href="/chi-tiet/@product.SeoLink">@product.Name</a></h3>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                }
+                                            </div>
+                                        </div>
+                                    }
+                                }
                             </div>
                         </div>
-                    </div>
                     }
                 </div>
-            }*@
-
-        @{
-            var list = (CategoryAndProductViewModel)ViewBag.ListCateAndProduct;
-            var first = true;
-            var first1 = true;
-
-            <div class="col-xs-12">
-                <ul class="nav nav-tabs post-filter" role="tablist">
-
-                    @foreach (var category in list.Categories)
-                    {
-                        if (first)
-                        {
-                            <li role="presentation" class="active">
-                                <a href="#@category.CateId" aria-controls="@category.CateId" role="tab" data-toggle="tab">@category.CategoryName</a>
-                            </li>
-
-                            first = false;
+            </section>
+                            }
                         }
-                        else
-                        {
-                            <li role="presentation">
-                                <a href="#@category.CateId" aria-controls="@category.CateId" role="tab" data-toggle="tab">@category.CategoryName</a>
-                            </li>
-                        }
-                    }
-                </ul>
-                <div class="tab-content">
-                    @foreach (var item in list.Categories)
-                    {
-                        if (first1)
-                        {
-                            <div role="tabpanel" class="tab-pane active" id="@item.CateId">
-                                <div id="owl-example" class="owl-carousel">
-                                    @foreach (var product in list.Products.Where(m => m.CateId == item.CateId))
-                                    {
-                                        <div class="col-xs-12">
-                                            <div class="inner hover-style1">
-                                                <figure class="hover-style1-img">
-                                                    <img src="@product.Image" alt="@product.Name">
-                                                </figure>
-                                                <div class="hover-style1-title title-style-1">
-                                                    <h3><a href="/chi-tiet/@product.SeoLink">@product.Name</a></h3>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    }
-                                </div>
-                            </div>
+}
 
-                            first1 = false;
-                        }
-                        else
-                        {
-                            <div role="tabpanel" class="tab-pane" id="@item.CateId">
-                                <div id="owl-example" class="owl-carousel">
-                                    @foreach (var product in list.Products.Where(m => m.CateId == item.CateId))
-                                    {
-                                        <div class="col-xs-12">
-                                            <div class="inner hover-style1">
-                                                <figure class="hover-style1-img">
-                                                    <img src="@product.Image" alt="@product.Name">
-                                                </figure>
-                                                <div class="hover-style1-title title-style-1">
-                                                    <h3><a href="/chi-tiet/@product.SeoLink">@product.Name</a></h3>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    }
-                                </div>
-                            </div>
-                        }
-                    }
-                </div>
-            </div>
-        }
-    </div>
-</section>
+
 <!--End project_professional Section-->
 <!--News Section-->
 @*<section class="news-section_professional">
