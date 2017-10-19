@@ -80,9 +80,9 @@
                                 <li> <i class="flaticon-email-filled-closed-envelope"></i>@commonInfo.Email</li>
                                 <li>
                                     @{
-                                        var lang = ATI.Web.Helper.ATIResourceManger.GetLanguageCurrent();
+                                        var lang = ATIResourceManger.GetLanguageCurrent();
 
-                                        if (lang.Equals("en"))
+                                        if (Culture.Equals("en-US"))
                                         {
                                             <a href="/Home/ChangeLanguage/vi">
                                                 <img src="~/Content/images/vietnam32.png" />

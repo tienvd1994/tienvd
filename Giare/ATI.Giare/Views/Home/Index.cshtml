@@ -1,9 +1,10 @@
 ﻿@using ATI.Web.Models;
 @using ATI.Web.Helper;
+@using ATI.Web.Resource;
 
 @{
     var commonInfo = (CommonInfo)ViewBag.CommonInfo;
-    ViewBag.Title = Html.Raw(string.Concat(ATIResourceManger._managerResources.GetString("HomeCode", ATIResourceManger._culture), " | ", commonInfo.Name));
+    ViewBag.Title = Html.Raw(string.Concat(ATIResource.HomeCode, " | ", commonInfo.Name));
     ViewBag.Description = Html.Raw(commonInfo.Name);
     ViewBag.Keyword = Html.Raw(commonInfo.Name);
     ViewBag.Url = "";
@@ -71,8 +72,8 @@
                                          data-endelementdelay="0.3"
                                          data-endspeed="1200"
                                          data-endeasing="Power4.easeIn">
-                                        <a href="@item.Url" class="theme-btn btn-style-one">Xem thêm</a>&ensp;
-                                        <a href="/lien-he" class="theme-btn btn-style-four">Liên hệ</a>
+                                        <a href="@item.Url" class="theme-btn btn-style-one">@ATIResourceManger._managerResources.GetString("ReadMore", ATIResourceManger._culture)</a>&ensp;
+                                        <a href="/lien-he" class="theme-btn btn-style-four">@ATIResourceManger._managerResources.GetString("ContactCode", ATIResourceManger._culture)</a>
                                     </div>
                                 </li>
                     }
@@ -130,7 +131,8 @@
                     <!--Sec Title-->
                     <div class="sec-title light centered">
                         <h2>
-                            @ATIResourceManger._managerResources.GetString("ServiceCode", ATIResourceManger._culture)
+                            @*@ATIResourceManger._managerResources.GetString("ServiceCode", ATIResourceManger._culture)*@
+                            @ATIResource.ServiceCode
                         </h2>
                         <div class="separator"></div>
                     </div>

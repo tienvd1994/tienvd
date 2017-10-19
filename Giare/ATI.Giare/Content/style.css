@@ -1431,7 +1431,7 @@ img {
 
     .main-slider_professional .text {
         font-weight: 400;
-        color: #ffffff;
+        color: #999;
         font-size: 18px;
         line-height: 1.8em;
     }
@@ -1443,7 +1443,7 @@ img {
 
     .main-slider_professional h2 {
         font-size: 72px;
-        color: #ffffff;
+        color: #999;
         font-weight: 700;
         text-transform: capitalize;
         line-height: 1.2em;

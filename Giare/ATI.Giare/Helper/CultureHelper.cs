@@ -53,7 +53,7 @@ namespace ATI.Web.Helper
         /// <returns></returns>
         public static string GetDefaultCulture()
         {
-            return _cultures[0]; // return Default culture
+            return "vi-VN"; // return Default culture
         }
 
         public static string GetCurrentCulture()

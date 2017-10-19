@@ -251,7 +251,6 @@
   </data>
   <data name="Search_Label" xml:space="preserve">
     <value>Search products</value>
-    <comment> </comment>
   </data>
   <data name="Send" xml:space="preserve">
     <value>Send</value>
@@ -350,5 +349,11 @@
   </data>
   <data name="SearchResults_Label" xml:space="preserve">
     <value>Search result</value>
+  </data>
+  <data name="Error_404" xml:space="preserve">
+    <value>Sorry! Can't Find That Page!</value>
+  </data>
+  <data name="ReadMore" xml:space="preserve">
+    <value>Read more</value>
   </data>
 </root>

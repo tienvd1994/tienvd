@@ -9,7 +9,7 @@ namespace ATI.Web
     {
         public static void RegisterRoutes(RouteCollection routes)
         {
-            ATIResourceManger.SetLanguage("vi");
+            //ATIResourceManger.SetLanguage("vi");
 
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 

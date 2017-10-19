@@ -976,14 +976,28 @@ namespace ATI.Web.Controllers
         #region Changing language
         public ActionResult ChangeLanguage(string Id)
         {
-            var defaultLanguage = 0;
+            //var defaultLanguage = 0;
+            //if (Id == "en")
+            //    defaultLanguage = 1;
 
-            if (Id == "en")
-                defaultLanguage = 1;
+            //ATICurrentSession.SetLang(defaultLanguage);
 
-            ATICurrentSession.SetLang(defaultLanguage);
+            //ATIResourceManger.SetLanguage(Id == "en" ? "en-US" : "vi-VN");
 
-            ATIResourceManger.SetLanguage(Id == "en" ? "en-US" : "vi-VN");
+            var name = Id == "en" ? "en-US" : "vi-VN";
+
+            var cookie = Request.Cookies["_culture"];
+
+            if (cookie == null)
+            {
+                cookie = new HttpCookie("_culture", name) { Expires = DateTime.Now.AddYears(10) };
+            }
+            else
+            {
+                cookie.Value = name;
+            }
+
+            Response.Cookies.Add(cookie);
 
             return RedirectToAction("Index");
         }
@@ -991,10 +1005,11 @@ namespace ATI.Web.Controllers
 
         public ActionResult MainMenu()
         {
-            ViewBag.CategoryProducts = db.CateProducts.Where(m => !m.IsDelete && m.LangId == ATICurrentSession.GetLang && m.ParrentCateId == -1).ToList();
-            ViewBag.CateNews = db.CateNews.Where(m => m.Type == 0 && m.LangId == ATICurrentSession.GetLang).ToList();
-            ViewBag.CateSolutions = db.CateNews.Where(m => m.Type == 1 && m.LangId == ATICurrentSession.GetLang).ToList();
-            ViewBag.Introduces = db.Introduces.Where(m => m.IsShowHomePage == false && m.LangId == ATICurrentSession.GetLang).ToList().Select(m => new Introduce
+            var lang = ATICurrentSession.GetLang;
+            ViewBag.CategoryProducts = db.CateProducts.Where(m => !m.IsDelete && m.LangId == lang && m.ParrentCateId == -1).ToList();
+            ViewBag.CateNews = db.CateNews.Where(m => m.Type == 0 && m.LangId == lang).ToList();
+            ViewBag.CateSolutions = db.CateNews.Where(m => m.Type == 1 && m.LangId == lang).ToList();
+            ViewBag.Introduces = db.Introduces.Where(m => m.IsShowHomePage == false && m.LangId == lang).ToList().Select(m => new Introduce
             {
                 ID = m.ID,
                 Title = m.Title,

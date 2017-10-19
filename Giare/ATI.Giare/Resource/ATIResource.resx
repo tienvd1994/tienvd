@@ -352,4 +352,10 @@
   <data name="SearchResults_Label" xml:space="preserve">
     <value>Kết quả tìm kiếm</value>
   </data>
+  <data name="Error_404" xml:space="preserve">
+    <value>Xin lỗi! Không thể tìm thấy trang!</value>
+  </data>
+  <data name="ReadMore" xml:space="preserve">
+    <value>Xem thêm</value>
+  </data>
 </root>

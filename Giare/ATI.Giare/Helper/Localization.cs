@@ -18,27 +18,17 @@ namespace ATI.Web.Helper
             string cultureName;
             // Attempt to read the culture cookie from Request
             HttpCookie cultureCookie = filterContext.HttpContext.Request.Cookies["_culture"];
+
             if (cultureCookie != null)
+            {
                 cultureName = cultureCookie.Value;
+            }
             else
-                cultureName = CultureHelper.GetDefaultCulture(); // obtain it from config
-            //cultureName = Request.UserLanguages[0]; // obtain it from HTTP header AcceptLanguages
+            {
+                cultureName = "vi-VN";
+            }
 
-            // Validate culture name
-            //cultureName = CultureHelper.GetImplementedCulture(cultureName); // This is safe
-
-            // Modify current thread's cultures
-            //System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo(cultureName);
-            //System.Threading.Thread.CurrentThread.CurrentUICulture = System.Threading.Thread.CurrentThread.CurrentCulture;
             Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture(cultureName);
-
-            //Không check cookie lưu tài khoản
-            //if (!CheckCookie)
-            //{
-            //    base.OnActionExecuting(filterContext);
-            //    return;
-            //}
-
             //Check login
             var currentUser = filterContext.HttpContext.Session["User"] == null ? null : (BriefUser)filterContext.HttpContext.Session["User"];
 

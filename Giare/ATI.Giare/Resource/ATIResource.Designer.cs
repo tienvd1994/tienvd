@@ -22,7 +22,7 @@ namespace ATI.Web.Resource {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class ATIResource {
+    public class ATIResource {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace ATI.Web.Resource {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ATI.Web.Resource.ATIResource", typeof(ATIResource).Assembly);
@@ -51,7 +51,7 @@ namespace ATI.Web.Resource {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace ATI.Web.Resource {
         /// <summary>
         ///   Looks up a localized string similar to Đăng ký làm đại lý.
         /// </summary>
-        internal static string BranchRegister {
+        public static string BranchRegister {
             get {
                 return ResourceManager.GetString("BranchRegister", resourceCulture);
             }
@@ -72,7 +72,7 @@ namespace ATI.Web.Resource {
         /// <summary>
         ///   Looks up a localized string similar to Gửi!.
         /// </summary>
-        internal static string ButtonSend {
+        public static string ButtonSend {
             get {
                 return ResourceManager.GetString("ButtonSend", resourceCulture);
             }
@@ -81,7 +81,7 @@ namespace ATI.Web.Resource {
         /// <summary>
         ///   Looks up a localized string similar to Mua sản phẩm.
         /// </summary>
-        internal static string Buy {
+        public static string Buy {
             get {
                 return ResourceManager.GetString("Buy", resourceCulture);
             }
@@ -90,7 +90,7 @@ namespace ATI.Web.Resource {
         /// <summary>
         ///   Looks up a localized string similar to Nhóm tin tức khác.
         /// </summary>
-        internal static string CateNewsOther_Label {
+        public static string CateNewsOther_Label {
             get {
                 return ResourceManager.GetString("CateNewsOther_Label", resourceCulture);
             }
@@ -99,7 +99,7 @@ namespace ATI.Web.Resource {
         /// <summary>
         ///   Looks up a localized string similar to Nhóm sản phẩm.
         /// </summary>
-        internal static string CateProduct_Label {
+        public static string CateProduct_Label {
             get {
                 return ResourceManager.GetString("CateProduct_Label", resourceCulture);
             }
@@ -108,7 +108,7 @@ namespace ATI.Web.Resource {
         /// <summary>
         ///   Looks up a localized string similar to Nhóm giải pháp khác.
         /// </summary>
-        internal static string CateSolutionsOther_Label {
+        public static string CateSolutionsOther_Label {
             get {
                 return ResourceManager.GetString("CateSolutionsOther_Label", resourceCulture);
             }
@@ -117,7 +117,7 @@ namespace ATI.Web.Resource {
         /// <summary>
         ///   Looks up a localized string similar to Khiếu nại.
         /// </summary>
-        internal static string ClaimContact {
+        public static string ClaimContact {
             get {
                 return ResourceManager.GetString("ClaimContact", resourceCulture);
             }
@@ -126,7 +126,7 @@ namespace ATI.Web.Resource {
         /// <summary>
         ///   Looks up a localized string similar to Hợp tác.
         /// </summary>
-        internal static string CombineContact {
+        public static string CombineContact {
             get {
                 return ResourceManager.GetString("CombineContact", resourceCulture);
             }
@@ -135,7 +135,7 @@ namespace ATI.Web.Resource {
         /// <summary>
         ///   Looks up a localized string similar to Nếu bạn quan tâm đến các sản phẩm, dịch vụ của chúng tôi, hãy điền email liên hệ ngay với chúng tôi....
         /// </summary>
-        internal static string CommentContact {
+        public static string CommentContact {
             get {
                 return ResourceManager.GetString("CommentContact", resourceCulture);
             }
@@ -144,7 +144,7 @@ namespace ATI.Web.Resource {
         /// <summary>
         ///   Looks up a localized string similar to Giới thiệu.
         /// </summary>
-        internal static string CompanyCategory {
+        public static string CompanyCategory {
             get {
                 return ResourceManager.GetString("CompanyCategory", resourceCulture);
             }
@@ -153,7 +153,7 @@ namespace ATI.Web.Resource {
         /// <summary>
         ///   Looks up a localized string similar to Với chiến lược kinh doanh vì  lợi ích công cộng, chúng tôi hiểu việc không ngừng nghiên cứu và cải tiến công nghệ sẽ là chìa khóa quan trọng nhất trong tiến trình phát triển bền vững.
         /// </summary>
-        internal static string CompanyCode {
+        public static string CompanyCode {
             get {
                 return ResourceManager.GetString("CompanyCode", resourceCulture);
             }
@@ -162,7 +162,7 @@ namespace ATI.Web.Resource {
         /// <summary>
         ///   Looks up a localized string similar to Dự án tiêu biểu.
         /// </summary>
-        internal static string ConstructionCode {
+        public static string ConstructionCode {
             get {
                 return ResourceManager.GetString("ConstructionCode", resourceCulture);
             }
@@ -171,7 +171,7 @@ namespace ATI.Web.Resource {
         /// <summary>
         ///   Looks up a localized string similar to Địa chỉ.
         /// </summary>
-        internal static string ContactAdd {
+        public static string ContactAdd {
             get {
                 return ResourceManager.GetString("ContactAdd", resourceCulture);
             }
@@ -180,7 +180,7 @@ namespace ATI.Web.Resource {
         /// <summary>
         ///   Looks up a localized string similar to Liên hệ.
         /// </summary>
-        internal static string ContactCode {
+        public static string ContactCode {
             get {
                 return ResourceManager.GetString("ContactCode", resourceCulture);
             }
@@ -189,7 +189,7 @@ namespace ATI.Web.Resource {
         /// <summary>
         ///   Looks up a localized string similar to Công ty.
         /// </summary>
-        internal static string ContactCompany {
+        public static string ContactCompany {
             get {
                 return ResourceManager.GetString("ContactCompany", resourceCulture);
             }
@@ -198,7 +198,7 @@ namespace ATI.Web.Resource {
         /// <summary>
         ///   Looks up a localized string similar to Nội dung.
         /// </summary>
-        internal static string ContactContent {
+        public static string ContactContent {
             get {
                 return ResourceManager.GetString("ContactContent", resourceCulture);
             }
@@ -207,7 +207,7 @@ namespace ATI.Web.Resource {
         /// <summary>
         ///   Looks up a localized string similar to Thông tin liên hệ.
         /// </summary>
-        internal static string ContactInfo_Label {
+        public static string ContactInfo_Label {
             get {
                 return ResourceManager.GetString("ContactInfo_Label", resourceCulture);
             }
@@ -216,7 +216,7 @@ namespace ATI.Web.Resource {
         /// <summary>
         ///   Looks up a localized string similar to &lt;p&gt;Cảm ơn bạn đã quan tâm đến sản phẩm, dịch vụ của chúng tôi. Để liên hệ sử dụng dịch vụ, hợp tác bạn hãy điền thông tin vào mẫu biểu dưới đây. Chúng tôi sẽ liên hệ lại với bạn ngay sau khi nhận được thông tin liên hệ.&lt;/p&gt;&lt;br&gt;.
         /// </summary>
-        internal static string ContactThank {
+        public static string ContactThank {
             get {
                 return ResourceManager.GetString("ContactThank", resourceCulture);
             }
@@ -225,7 +225,7 @@ namespace ATI.Web.Resource {
         /// <summary>
         ///   Looks up a localized string similar to Liên hệ với chúng tôi.
         /// </summary>
-        internal static string ContactUs_Label {
+        public static string ContactUs_Label {
             get {
                 return ResourceManager.GetString("ContactUs_Label", resourceCulture);
             }
@@ -234,16 +234,25 @@ namespace ATI.Web.Resource {
         /// <summary>
         ///   Looks up a localized string similar to Mô tả sản phẩm.
         /// </summary>
-        internal static string Description_Product {
+        public static string Description_Product {
             get {
                 return ResourceManager.GetString("Description_Product", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Xin lỗi! Không thể tìm thấy trang!.
+        /// </summary>
+        public static string Error_404 {
+            get {
+                return ResourceManager.GetString("Error_404", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tin tức.
         /// </summary>
-        internal static string EventCategory {
+        public static string EventCategory {
             get {
                 return ResourceManager.GetString("EventCategory", resourceCulture);
             }
@@ -252,7 +261,7 @@ namespace ATI.Web.Resource {
         /// <summary>
         ///   Looks up a localized string similar to Form liên hệ.
         /// </summary>
-        internal static string FormContact {
+        public static string FormContact {
             get {
                 return ResourceManager.GetString("FormContact", resourceCulture);
             }
@@ -261,7 +270,7 @@ namespace ATI.Web.Resource {
         /// <summary>
         ///   Looks up a localized string similar to Họ và tên.
         /// </summary>
-        internal static string Fullname {
+        public static string Fullname {
             get {
                 return ResourceManager.GetString("Fullname", resourceCulture);
             }
@@ -270,7 +279,7 @@ namespace ATI.Web.Resource {
         /// <summary>
         ///   Looks up a localized string similar to Trang chủ.
         /// </summary>
-        internal static string HomeCode {
+        public static string HomeCode {
             get {
                 return ResourceManager.GetString("HomeCode", resourceCulture);
             }
@@ -279,7 +288,7 @@ namespace ATI.Web.Resource {
         /// <summary>
         ///   Looks up a localized string similar to Con người.
         /// </summary>
-        internal static string HumanCategory {
+        public static string HumanCategory {
             get {
                 return ResourceManager.GetString("HumanCategory", resourceCulture);
             }
@@ -288,7 +297,7 @@ namespace ATI.Web.Resource {
         /// <summary>
         ///   Looks up a localized string similar to /gioi-thieu/ve-cong-ty.
         /// </summary>
-        internal static string ICompanyCode {
+        public static string ICompanyCode {
             get {
                 return ResourceManager.GetString("ICompanyCode", resourceCulture);
             }
@@ -297,7 +306,7 @@ namespace ATI.Web.Resource {
         /// <summary>
         ///   Looks up a localized string similar to /gioi-thieu/con-nguoi.
         /// </summary>
-        internal static string IHumanCode {
+        public static string IHumanCode {
             get {
                 return ResourceManager.GetString("IHumanCode", resourceCulture);
             }
@@ -306,7 +315,7 @@ namespace ATI.Web.Resource {
         /// <summary>
         ///   Looks up a localized string similar to Hình ảnh.
         /// </summary>
-        internal static string ImageCode {
+        public static string ImageCode {
             get {
                 return ResourceManager.GetString("ImageCode", resourceCulture);
             }
@@ -315,7 +324,7 @@ namespace ATI.Web.Resource {
         /// <summary>
         ///   Looks up a localized string similar to Thông tin.
         /// </summary>
-        internal static string Information {
+        public static string Information {
             get {
                 return ResourceManager.GetString("Information", resourceCulture);
             }
@@ -324,7 +333,7 @@ namespace ATI.Web.Resource {
         /// <summary>
         ///   Looks up a localized string similar to Giới thiệu.
         /// </summary>
-        internal static string IntroductionCode {
+        public static string IntroductionCode {
             get {
                 return ResourceManager.GetString("IntroductionCode", resourceCulture);
             }
@@ -333,7 +342,7 @@ namespace ATI.Web.Resource {
         /// <summary>
         ///   Looks up a localized string similar to Chúng tôi nỗ lực làm thay đổi cuộc sống tốt đẹp hơn thông qua các sản phẩm và dịch vụ và&lt;br&gt; sự nỗ lực làm việc tận tâm vì khách hàng.
         /// </summary>
-        internal static string LineOneBanner {
+        public static string LineOneBanner {
             get {
                 return ResourceManager.GetString("LineOneBanner", resourceCulture);
             }
@@ -342,7 +351,7 @@ namespace ATI.Web.Resource {
         /// <summary>
         ///   Looks up a localized string similar to tin-su-kien.
         /// </summary>
-        internal static string LinkEvent {
+        public static string LinkEvent {
             get {
                 return ResourceManager.GetString("LinkEvent", resourceCulture);
             }
@@ -351,7 +360,7 @@ namespace ATI.Web.Resource {
         /// <summary>
         ///   Looks up a localized string similar to tin-moi.
         /// </summary>
-        internal static string LinkNew {
+        public static string LinkNew {
             get {
                 return ResourceManager.GetString("LinkNew", resourceCulture);
             }
@@ -360,7 +369,7 @@ namespace ATI.Web.Resource {
         /// <summary>
         ///   Looks up a localized string similar to Danh sách liên hệ.
         /// </summary>
-        internal static string ListContact {
+        public static string ListContact {
             get {
                 return ResourceManager.GetString("ListContact", resourceCulture);
             }
@@ -369,7 +378,7 @@ namespace ATI.Web.Resource {
         /// <summary>
         ///   Looks up a localized string similar to Email.
         /// </summary>
-        internal static string Mail {
+        public static string Mail {
             get {
                 return ResourceManager.GetString("Mail", resourceCulture);
             }
@@ -378,7 +387,7 @@ namespace ATI.Web.Resource {
         /// <summary>
         ///   Looks up a localized string similar to Di động.
         /// </summary>
-        internal static string Mobile {
+        public static string Mobile {
             get {
                 return ResourceManager.GetString("Mobile", resourceCulture);
             }
@@ -387,7 +396,7 @@ namespace ATI.Web.Resource {
         /// <summary>
         ///   Looks up a localized string similar to Bài viết khác.
         /// </summary>
-        internal static string MorePosts_Label {
+        public static string MorePosts_Label {
             get {
                 return ResourceManager.GetString("MorePosts_Label", resourceCulture);
             }
@@ -396,7 +405,7 @@ namespace ATI.Web.Resource {
         /// <summary>
         ///   Looks up a localized string similar to Công Ty Cổ Phần ĐầuTư Xây Dựng &amp; &lt;/br&gt;Tư Vấn FCN Build.
         /// </summary>
-        internal static string NameCompany {
+        public static string NameCompany {
             get {
                 return ResourceManager.GetString("NameCompany", resourceCulture);
             }
@@ -405,7 +414,7 @@ namespace ATI.Web.Resource {
         /// <summary>
         ///   Looks up a localized string similar to Tin mới.
         /// </summary>
-        internal static string NewCategory {
+        public static string NewCategory {
             get {
                 return ResourceManager.GetString("NewCategory", resourceCulture);
             }
@@ -414,7 +423,7 @@ namespace ATI.Web.Resource {
         /// <summary>
         ///   Looks up a localized string similar to Tin mới.
         /// </summary>
-        internal static string NewCode {
+        public static string NewCode {
             get {
                 return ResourceManager.GetString("NewCode", resourceCulture);
             }
@@ -423,7 +432,7 @@ namespace ATI.Web.Resource {
         /// <summary>
         ///   Looks up a localized string similar to Bài viết.
         /// </summary>
-        internal static string NewPaper {
+        public static string NewPaper {
             get {
                 return ResourceManager.GetString("NewPaper", resourceCulture);
             }
@@ -432,7 +441,7 @@ namespace ATI.Web.Resource {
         /// <summary>
         ///   Looks up a localized string similar to Nhận tin mới.
         /// </summary>
-        internal static string NewReceive {
+        public static string NewReceive {
             get {
                 return ResourceManager.GetString("NewReceive", resourceCulture);
             }
@@ -441,7 +450,7 @@ namespace ATI.Web.Resource {
         /// <summary>
         ///   Looks up a localized string similar to Tin tức mới nhất.
         /// </summary>
-        internal static string NewsLastest_Label {
+        public static string NewsLastest_Label {
             get {
                 return ResourceManager.GetString("NewsLastest_Label", resourceCulture);
             }
@@ -450,7 +459,7 @@ namespace ATI.Web.Resource {
         /// <summary>
         ///   Looks up a localized string similar to Đối tác.
         /// </summary>
-        internal static string PartnerCode {
+        public static string PartnerCode {
             get {
                 return ResourceManager.GetString("PartnerCode", resourceCulture);
             }
@@ -459,7 +468,7 @@ namespace ATI.Web.Resource {
         /// <summary>
         ///   Looks up a localized string similar to Điện thoại.
         /// </summary>
-        internal static string Phone {
+        public static string Phone {
             get {
                 return ResourceManager.GetString("Phone", resourceCulture);
             }
@@ -468,7 +477,7 @@ namespace ATI.Web.Resource {
         /// <summary>
         ///   Looks up a localized string similar to Chức vụ.
         /// </summary>
-        internal static string Position {
+        public static string Position {
             get {
                 return ResourceManager.GetString("Position", resourceCulture);
             }
@@ -477,7 +486,7 @@ namespace ATI.Web.Resource {
         /// <summary>
         ///   Looks up a localized string similar to Đăng bởi.
         /// </summary>
-        internal static string PostedBy_Label {
+        public static string PostedBy_Label {
             get {
                 return ResourceManager.GetString("PostedBy_Label", resourceCulture);
             }
@@ -486,7 +495,7 @@ namespace ATI.Web.Resource {
         /// <summary>
         ///   Looks up a localized string similar to Sản phẩm.
         /// </summary>
-        internal static string ProductCode {
+        public static string ProductCode {
             get {
                 return ResourceManager.GetString("ProductCode", resourceCulture);
             }
@@ -495,16 +504,25 @@ namespace ATI.Web.Resource {
         /// <summary>
         ///   Looks up a localized string similar to Hỏi, đáp.
         /// </summary>
-        internal static string Question {
+        public static string Question {
             get {
                 return ResourceManager.GetString("Question", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Xem thêm.
+        /// </summary>
+        public static string ReadMore {
+            get {
+                return ResourceManager.GetString("ReadMore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Nhận thư mới.
         /// </summary>
-        internal static string ReceiveInbox {
+        public static string ReceiveInbox {
             get {
                 return ResourceManager.GetString("ReceiveInbox", resourceCulture);
             }
@@ -513,7 +531,7 @@ namespace ATI.Web.Resource {
         /// <summary>
         ///   Looks up a localized string similar to Tuyển dụng.
         /// </summary>
-        internal static string RecruitmentCode {
+        public static string RecruitmentCode {
             get {
                 return ResourceManager.GetString("RecruitmentCode", resourceCulture);
             }
@@ -522,7 +540,7 @@ namespace ATI.Web.Resource {
         /// <summary>
         ///   Looks up a localized string similar to Sản phẩm liên quan.
         /// </summary>
-        internal static string RelatedProducts_Label {
+        public static string RelatedProducts_Label {
             get {
                 return ResourceManager.GetString("RelatedProducts_Label", resourceCulture);
             }
@@ -531,7 +549,7 @@ namespace ATI.Web.Resource {
         /// <summary>
         ///   Looks up a localized string similar to Nhu cầu.
         /// </summary>
-        internal static string Requirement {
+        public static string Requirement {
             get {
                 return ResourceManager.GetString("Requirement", resourceCulture);
             }
@@ -540,7 +558,7 @@ namespace ATI.Web.Resource {
         /// <summary>
         ///   Looks up a localized string similar to Tìm kiềm sản phẩm.
         /// </summary>
-        internal static string Search_Label {
+        public static string Search_Label {
             get {
                 return ResourceManager.GetString("Search_Label", resourceCulture);
             }
@@ -549,7 +567,7 @@ namespace ATI.Web.Resource {
         /// <summary>
         ///   Looks up a localized string similar to Kết quả tìm kiếm.
         /// </summary>
-        internal static string SearchResults_Label {
+        public static string SearchResults_Label {
             get {
                 return ResourceManager.GetString("SearchResults_Label", resourceCulture);
             }
@@ -558,7 +576,7 @@ namespace ATI.Web.Resource {
         /// <summary>
         ///   Looks up a localized string similar to Gửi đi.
         /// </summary>
-        internal static string Send {
+        public static string Send {
             get {
                 return ResourceManager.GetString("Send", resourceCulture);
             }
@@ -567,7 +585,7 @@ namespace ATI.Web.Resource {
         /// <summary>
         ///   Looks up a localized string similar to Gửi thành công!.
         /// </summary>
-        internal static string Sendmail {
+        public static string Sendmail {
             get {
                 return ResourceManager.GetString("Sendmail", resourceCulture);
             }
@@ -576,7 +594,7 @@ namespace ATI.Web.Resource {
         /// <summary>
         ///   Looks up a localized string similar to Gửi tin nhắn.
         /// </summary>
-        internal static string SendMessage_Label {
+        public static string SendMessage_Label {
             get {
                 return ResourceManager.GetString("SendMessage_Label", resourceCulture);
             }
@@ -585,7 +603,7 @@ namespace ATI.Web.Resource {
         /// <summary>
         ///   Looks up a localized string similar to Dịch vụ.
         /// </summary>
-        internal static string ServiceCode {
+        public static string ServiceCode {
             get {
                 return ResourceManager.GetString("ServiceCode", resourceCulture);
             }
@@ -594,7 +612,7 @@ namespace ATI.Web.Resource {
         /// <summary>
         ///   Looks up a localized string similar to Dịch vụ khác biệt.
         /// </summary>
-        internal static string ServiceSpecial {
+        public static string ServiceSpecial {
             get {
                 return ResourceManager.GetString("ServiceSpecial", resourceCulture);
             }
@@ -603,7 +621,7 @@ namespace ATI.Web.Resource {
         /// <summary>
         ///   Looks up a localized string similar to Hiển thị trang chủ.
         /// </summary>
-        internal static string ShowHomePage_Label {
+        public static string ShowHomePage_Label {
             get {
                 return ResourceManager.GetString("ShowHomePage_Label", resourceCulture);
             }
@@ -612,7 +630,7 @@ namespace ATI.Web.Resource {
         /// <summary>
         ///   Looks up a localized string similar to Mạng xã hội.
         /// </summary>
-        internal static string SocialNetwork_Label {
+        public static string SocialNetwork_Label {
             get {
                 return ResourceManager.GetString("SocialNetwork_Label", resourceCulture);
             }
@@ -625,7 +643,7 @@ namespace ATI.Web.Resource {
         ///                    &lt;div class=&quot;caption-text&quot; &gt;&lt;i class=&quot;icon icon-chevron-circle-right&quot;&gt;&lt;/i&gt; Luôn luôn đúng tiến độ với&lt;/div&gt;
         ///   [rest of string was truncated]&quot;;.
         /// </summary>
-        internal static string Sologan {
+        public static string Sologan {
             get {
                 return ResourceManager.GetString("Sologan", resourceCulture);
             }
@@ -634,7 +652,7 @@ namespace ATI.Web.Resource {
         /// <summary>
         ///   Looks up a localized string similar to &lt;div class=&quot;caption-text&quot;&gt;&quot;Sáng tạo, tối ưu từng chi tiết, từng nguồn lực,&lt;br /&gt;dịch vụ chuyên nghiệp giúp chúng tôi khác biệt&quot;&lt;/div&gt;.
         /// </summary>
-        internal static string Sologan1 {
+        public static string Sologan1 {
             get {
                 return ResourceManager.GetString("Sologan1", resourceCulture);
             }
@@ -643,7 +661,7 @@ namespace ATI.Web.Resource {
         /// <summary>
         ///   Looks up a localized string similar to Giải pháp.
         /// </summary>
-        internal static string Solutions_Label {
+        public static string Solutions_Label {
             get {
                 return ResourceManager.GetString("Solutions_Label", resourceCulture);
             }
@@ -652,7 +670,7 @@ namespace ATI.Web.Resource {
         /// <summary>
         ///   Looks up a localized string similar to Trạng thái.
         /// </summary>
-        internal static string Status {
+        public static string Status {
             get {
                 return ResourceManager.GetString("Status", resourceCulture);
             }
@@ -661,7 +679,7 @@ namespace ATI.Web.Resource {
         /// <summary>
         ///   Looks up a localized string similar to Tiêu đề.
         /// </summary>
-        internal static string Subject {
+        public static string Subject {
             get {
                 return ResourceManager.GetString("Subject", resourceCulture);
             }
@@ -670,7 +688,7 @@ namespace ATI.Web.Resource {
         /// <summary>
         ///   Looks up a localized string similar to Thời gian gửi.
         /// </summary>
-        internal static string Time {
+        public static string Time {
             get {
                 return ResourceManager.GetString("Time", resourceCulture);
             }
@@ -679,7 +697,7 @@ namespace ATI.Web.Resource {
         /// <summary>
         ///   Looks up a localized string similar to Phân loại.
         /// </summary>
-        internal static string Type {
+        public static string Type {
             get {
                 return ResourceManager.GetString("Type", resourceCulture);
             }
@@ -688,7 +706,7 @@ namespace ATI.Web.Resource {
         /// <summary>
         ///   Looks up a localized string similar to Loại liên hệ.
         /// </summary>
-        internal static string TypeContact {
+        public static string TypeContact {
             get {
                 return ResourceManager.GetString("TypeContact", resourceCulture);
             }
@@ -705,7 +723,7 @@ namespace ATI.Web.Resource {
         ///                            &lt;span&gt;Làm việc có Hệ thống&lt;/span&gt;
         ///                            &lt;span&gt;Làm vi [rest of string was truncated]&quot;;.
         /// </summary>
-        internal static string ValueCode {
+        public static string ValueCode {
             get {
                 return ResourceManager.GetString("ValueCode", resourceCulture);
             }
@@ -714,7 +732,7 @@ namespace ATI.Web.Resource {
         /// <summary>
         ///   Looks up a localized string similar to Xem tất cả.
         /// </summary>
-        internal static string ViewAll_Label {
+        public static string ViewAll_Label {
             get {
                 return ResourceManager.GetString("ViewAll_Label", resourceCulture);
             }

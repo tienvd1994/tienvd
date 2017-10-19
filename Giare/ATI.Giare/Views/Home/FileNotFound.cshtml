@@ -1,19 +1,20 @@
-﻿
+﻿@using ATI.Web.Helper;
+
 @{
-    ViewBag.Title = "Rất tiếc không tìm thấy nội dung";
+    ViewBag.Title = "404 Not Found";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<section class="page-title_professional" style="background-image:url(images/background/4.jpg);">
-    <div class="auto-container">
-        <h1>404 Page</h1>
-    </div>
-</section>
+@*<section class="page-title_professional" style="background-image:url(images/background/4.jpg);">
+        <div class="auto-container">
+            <h1>404 Page</h1>
+        </div>
+    </section>*@
 
 <div class="breadcrumb-outer_professional">
     <div class="auto-container">
         <ul class="bread-crumb text-center">
-            <li><a href="index.html">Home</a> <span class="fa fa-angle-right"></span></li>
+            <li><a href="/">@ATIResourceManger._managerResources.GetString("HomeCode", ATIResourceManger._culture)</a> <span class="fa fa-angle-right"></span></li>
             <li>404 Page</li>
         </ul>
     </div>
@@ -21,18 +22,18 @@
 
 <section class="error-section">
     <div class="auto-container">
-        <h3><span class="theme_color">404!</span><br> Sorry! Can't Find That Page! </h3>
-        <div class="text">Can't find what you need? Take a moment and do a search <br> below or start from our <a href="index.html">homepage.</a></div>
+        <h3><span class="theme_color">404!</span><br> @ATIResourceManger._managerResources.GetString("Error_404", ATIResourceManger._culture) </h3>
+        @*<div class="text">Can't find what you need? Take a moment and do a search <br> below or start from our <a href="index.html">homepage.</a></div>*@
 
         <!--Search The Website-->
-        <div class="search-website">
-            <form method="post" action="index.html">
-                <div class="form-group">
-                    <input type="search" name="search" value="" required="" placeholder="What you are searching for?">
-                    <button type="submit" class="theme-btn">SEARCH</button>
-                </div>
-            </form>
-        </div>
+        @*<div class="search-website">
+                <form method="post" action="index.html">
+                    <div class="form-group">
+                        <input type="search" name="search" value="" required="" placeholder="What you are searching for?">
+                        <button type="submit" class="theme-btn">SEARCH</button>
+                    </div>
+                </form>
+            </div>*@
 
 
     </div>
