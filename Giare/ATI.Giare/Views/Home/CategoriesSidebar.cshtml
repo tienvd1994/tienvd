@@ -1,5 +1,5 @@
 ﻿@using ATI.Web.Models;
-@using ATI.Web.Helper;
+@using ATI.Web.Resource;
 
 <div class="sidebar-side pull-left col-lg-4 col-md-4 col-sm-12 col-xs-12">
     <aside class="sidebar">
@@ -8,7 +8,7 @@
             <div class="sidebar-widget categories">
                 <div class="sidebar-title">
                     <h3>
-                        @ATIResourceManger._managerResources.GetString("CateProduct_Label", ATIResourceManger._culture)
+                        @ATIResource.CateProduct_Label
                     </h3>
                 </div>
                 <ul class="cat-list">

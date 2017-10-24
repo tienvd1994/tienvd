@@ -38,5 +38,6 @@ namespace ATI.Web.Models
         public string Logo2 { get; set; }
         public Nullable<bool> IsShowService { get; set; }
         public Nullable<bool> IsShowProduct { get; set; }
+        public Nullable<bool> IsShowSolution { get; set; }
     }
 }

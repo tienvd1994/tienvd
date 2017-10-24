@@ -1,10 +1,11 @@
 ﻿@using ATI.Web.Models;
 @using ATI.Web.Helper;
+@using ATI.Web.Resource;
 @model PagerViewModel<Product>
 
 @{
     var commonInfo = (CommonInfo)ViewBag.CommonInfo;
-    ViewBag.Title = Html.Raw(ATIResourceManger._managerResources.GetString("SearchResults_Label", ATIResourceManger._culture));
+    ViewBag.Title = Html.Raw(ATIResource.SearchResults_Label);
     ViewBag.Description = Html.Raw(commonInfo.Name);
     ViewBag.Keyword = Html.Raw(commonInfo.Summary);
     ViewBag.Url = "";
@@ -14,7 +15,7 @@
 <div class="breadcrumb-outer_professional">
     <div class="auto-container">
         <div class="bread-crumb text-center title-search">
-            @ATIResourceManger._managerResources.GetString("SearchResults_Label", ATIResourceManger._culture)
+            @ATIResource.SearchResults_Label
         </div>
     </div>
 </div>

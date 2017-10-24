@@ -26,7 +26,6 @@ function ServiceView() {
     self.Image = ko.observable("");
     self.Summary = ko.observable("");
     self.Keyword = ko.observable("");
-
     self.ShowDetail = ko.observable(false);
     self.fcName = ko.observable(false);
     self.Sending = ko.observable(false);

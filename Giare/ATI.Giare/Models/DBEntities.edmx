@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ATI.VinhHungModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ATI.VinhHungModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Agencies">
           <Key>
             <PropertyRef Name="ID" />
@@ -109,6 +109,7 @@
           <Property Name="Logo2" Type="varchar" MaxLength="500" />
           <Property Name="IsShowService" Type="bit" />
           <Property Name="IsShowProduct" Type="bit" />
+          <Property Name="IsShowSolution" Type="bit" />
         </EntityType>
         <EntityType Name="ConfigImage">
           <Key>
@@ -318,6 +319,7 @@
           <Property Name="CreatedTime" Type="datetime" />
           <Property Name="CreatedUserId" Type="int" />
           <Property Name="CreatedFullname" Type="nvarchar" MaxLength="150" />
+          <Property Name="IsShowHomePage" Type="bit" />
         </EntityType>
         <EntityType Name="Orders">
           <Key>
@@ -504,8 +506,7 @@ warning 6002: The table/view 'ATI.VinhHung.dbo.Tags' does not have a primary key
     FROM [dbo].[Tags] AS [Tags]</DefiningQuery>
           </EntitySet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ATI.VinhHungModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -613,6 +614,7 @@ warning 6002: The table/view 'ATI.VinhHung.dbo.Tags' does not have a primary key
           <Property Name="Logo2" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="IsShowService" Type="Boolean" />
           <Property Name="IsShowProduct" Type="Boolean" />
+          <Property Name="IsShowSolution" Type="Boolean" />
         </EntityType>
         <EntityType Name="ConfigImage">
           <Key>
@@ -822,6 +824,7 @@ warning 6002: The table/view 'ATI.VinhHung.dbo.Tags' does not have a primary key
           <Property Name="CreatedTime" Type="DateTime" Precision="3" />
           <Property Name="CreatedUserId" Type="Int32" />
           <Property Name="CreatedFullname" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="IsShowHomePage" Type="Boolean" />
         </EntityType>
         <EntityType Name="Order">
           <Key>
@@ -1169,6 +1172,7 @@ warning 6002: The table/view 'ATI.VinhHung.dbo.Tags' does not have a primary key
           <EntitySetMapping Name="CommonInfoes">
             <EntityTypeMapping TypeName="ATI.VinhHungModel.CommonInfo">
               <MappingFragment StoreEntitySet="CommonInfo">
+                <ScalarProperty Name="IsShowSolution" ColumnName="IsShowSolution" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="HeadOffice" ColumnName="HeadOffice" />
                 <ScalarProperty Name="HeadOffice_En" ColumnName="HeadOffice_En" />
@@ -1392,6 +1396,7 @@ warning 6002: The table/view 'ATI.VinhHung.dbo.Tags' does not have a primary key
           <EntitySetMapping Name="News">
             <EntityTypeMapping TypeName="ATI.VinhHungModel.News">
               <MappingFragment StoreEntitySet="News">
+                <ScalarProperty Name="IsShowHomePage" ColumnName="IsShowHomePage" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="CateId" ColumnName="CateId" />
                 <ScalarProperty Name="Title" ColumnName="Title" />

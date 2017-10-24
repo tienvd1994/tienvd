@@ -7,11 +7,6 @@ $(document).ready(function () {
     $(".tooltip1").tooltip();
     modelView.IsDesktop($(window).width() > 750);
     modelView.IsSmartPhone450($(window).width() > 450);
-
-    CKEDITOR.replace('Content', {
-        filebrowserBrowseUrl: '/browser/browse.php',
-        filebrowserUploadUrl: '/uploader/upload.php'
-    });
 });
 
 $(window).bind('resize', function () {

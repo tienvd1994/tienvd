@@ -325,6 +325,7 @@ namespace ATI.Web.Controllers
                     commonInfo.Long = item.Long;
                     commonInfo.IsShowService = item.IsShowService;
                     commonInfo.IsShowProduct = item.IsShowProduct;
+                    commonInfo.IsShowSolution = item.IsShowSolution;
                     db.CommonInfoes.Add(commonInfo);
                 }
                 else
@@ -351,6 +352,7 @@ namespace ATI.Web.Controllers
                     commonInfo.Long = item.Long;
                     commonInfo.IsShowService = item.IsShowService;
                     commonInfo.IsShowProduct = item.IsShowProduct;
+                    commonInfo.IsShowSolution = item.IsShowSolution;
                     db.Entry(commonInfo).State = EntityState.Modified;
                 }
 
@@ -741,10 +743,10 @@ namespace ATI.Web.Controllers
         {
             var keywordArray = Common.UCS2Convert(key).ToLower();
 
-            var items = db.News.Where(m => m.LangId == langId && m.Type == type && (string.IsNullOrEmpty(key) || m.UnsignTitle.Contains(keywordArray))).ToList(); ;
+            var items = db.News.Where(m => m.LangId == langId && m.Type == type && (string.IsNullOrEmpty(key) || m.UnsignTitle.Contains(keywordArray))).ToList();
             var reslt = items.OrderByDescending(m => m.ID).Skip((pageIndex - 1) * recordPerPage).Take(recordPerPage);
 
-            return Json(new { items, totalRecord = items.Count() }, JsonRequestBehavior.AllowGet);
+            return Json(new { items = reslt, totalRecord = items.Count() }, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
@@ -789,6 +791,7 @@ namespace ATI.Web.Controllers
             news.CreatedUserId = CurrentUser.Id;
             news.CreatedFullname = CurrentUser.FullName;
             news.CreatedTime = DateTime.Now;
+            news.IsShowHomePage = item.IsShowHomePage;
             db.News.Add(news);
 
             return Json(db.SaveChanges(), JsonRequestBehavior.AllowGet);
@@ -827,6 +830,7 @@ namespace ATI.Web.Controllers
             news.IsHot = item.IsHot;
             news.CateId = item.CateId;
             news.Type = cate.Type;
+            news.IsShowHomePage = item.IsShowHomePage;
             news.LangId = (Byte)Common.TransferLang(item.LangId);
 
             return Json(db.SaveChanges(), JsonRequestBehavior.AllowGet);

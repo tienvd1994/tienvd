@@ -1,34 +1,27 @@
 ﻿@using ATI.Web.Models;
 @using ATI.Web.Helper;
+@using ATI.Web.Resource;
 @model PagerViewModel<Partner>
 
 @{
     var commonInfo = (CommonInfo)ViewBag.CommonInfo;
-    ViewBag.Title = Html.Raw(string.Concat(@ATIResourceManger._managerResources.GetString("ServiceCode", ATIResourceManger._culture), " | ", commonInfo.Name));
-    ViewBag.Description = Html.Raw(string.Concat(@ATIResourceManger._managerResources.GetString("ServiceCode", ATIResourceManger._culture), " | ", commonInfo.Name));
-    ViewBag.Keyword = Html.Raw(string.Concat(@ATIResourceManger._managerResources.GetString("ServiceCode", ATIResourceManger._culture), " | ", commonInfo.Name));
+    ViewBag.Title = Html.Raw(string.Concat(ATIResource.ServiceCode, " | ", commonInfo.Name));
+    ViewBag.Description = Html.Raw(string.Concat(ATIResource.ServiceCode, " | ", commonInfo.Name));
+    ViewBag.Keyword = Html.Raw(string.Concat(ATIResource.ServiceCode, " | ", commonInfo.Name));
     ViewBag.Url = "";
     ViewBag.Image = commonInfo.Logo;
 }
-
-@*<section class="page-title_professional" style="background-image:url(images/background/4.jpg);">
-        <div class="auto-container">
-            <h1>
-                @ATIResourceManger._managerResources.GetString("ServiceCode", ATIResourceManger._culture)
-            </h1>
-        </div>
-    </section>*@
 
 <div class="breadcrumb-outer_professional">
     <div class="auto-container">
         <ul class="bread-crumb text-center">
             <li>
                 <a href="/">
-                    @ATIResourceManger._managerResources.GetString("HomeCode", ATIResourceManger._culture)
+                    @ATIResource.HomeCode
                 </a> <span class="fa fa-angle-right"></span>
             </li>
             <li>
-                @ATIResourceManger._managerResources.GetString("ServiceCode", ATIResourceManger._culture)
+                @ATIResource.ServiceCode
             </li>
         </ul>
     </div>

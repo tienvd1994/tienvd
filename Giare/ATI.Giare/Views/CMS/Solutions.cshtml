@@ -62,13 +62,13 @@
                 </section>
             </div>
             <div class="row">
-                <section class="col col-lg-6">
+                <section class="col col-lg-4">
                     <label class="label">Chuyên mục <span class="color-red">*</span></label>
                     <label class="select">
                         <select data-bind="value: CateId, optionsValue:'ID', optionsText:'Name', options: categories, optionsCaption: 'Chọn chuyên mục'"></select>
                     </label>
                 </section>
-                <section class="col col-3">
+                <section class="col col-4">
                     <label class="label">Trạng thái</label>
                     <label class="select">
                         <select data-bind="value:Status" class="form-control">
@@ -76,6 +76,14 @@
                             <option value="0">Ẩn</option>
                         </select>
                     </label>
+                </section>
+                <section class="col col-4">
+                    <label class="label">
+                        Hiển thị trang chủ
+                    </label>
+                    <div class="check-box">
+                        <input type="checkbox" data-bind="checked: IsShowHomePage" />
+                    </div>
                 </section>
             </div>
             <div class="row">

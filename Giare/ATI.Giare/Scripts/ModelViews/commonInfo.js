@@ -40,6 +40,7 @@ function CommonInfoView() {
     self.Lat = ko.observable(null);
     self.IsShowService = ko.observable(true);
     self.IsShowProduct = ko.observable(true);
+    self.IsShowSolution = ko.observable(true);
 
     self.changeLang = function () {
         self.GetInfo();
@@ -73,6 +74,7 @@ function CommonInfoView() {
             self.Lat(data.Lang);
             self.IsShowService((data.IsShowService === null || data.IsShowService === false) ? false : true);
             self.IsShowProduct((data.IsShowProduct === null || data.IsShowProduct === false) ? false : true);
+            self.IsShowSolution((data.IsShowSolution === null || data.IsShowSolution === false) ? false : true);
         });
     }
 
@@ -105,7 +107,8 @@ function CommonInfoView() {
 
         CommonInfo.Update($.trim(self.Name()), $.trim(self.EnglishName()), $.trim(self.Email()), $.trim(self.Phone()), $.trim(self.Mobile()), $.trim(self.Fax()),
             $.trim(self.Address()), $.trim(self.Address()), $.trim(self.Address()), $.trim(self.Address()), $.trim(self.Facebook()),
-            $.trim(self.Skype()), $.trim(self.Summary()), $.trim(self.Summary()), $.trim(self.ShortName()), self.LangId(), self.Logo(), self.LogoFooter(), self.Long(), self.Lat(), self.IsShowService(), self.IsShowProduct(), function (data) {
+            $.trim(self.Skype()), $.trim(self.Summary()), $.trim(self.Summary()), $.trim(self.ShortName()), self.LangId(), self.Logo(),
+            self.LogoFooter(), self.Long(), self.Lat(), self.IsShowService(), self.IsShowProduct(), self.IsShowSolution(), function (data) {
 
                 self.Sending(false);
 

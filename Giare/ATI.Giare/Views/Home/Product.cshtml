@@ -1,5 +1,6 @@
 ﻿@using ATI.Web.Models;
 @using ATI.Web.Helper;
+@using ATI.Web.Resource;
 @model PagerViewModel<Product>
 
 @{
@@ -14,18 +15,12 @@
 @section KnockOut{
 }
 
-@*<section class="page-title_professional" style="background-image:url(images/background/4.jpg);">
-    <div class="auto-container">
-        <h1>@ATIResourceManger._managerResources.GetString("ProductCode", ATIResourceManger._culture)</h1>
-    </div>
-</section>*@
-
 <div class="breadcrumb-outer_professional">
     <div class="auto-container">
         <ul class="bread-crumb text-center">
             <li>
                 <a href="/">
-                    @ATIResourceManger._managerResources.GetString("HomeCode", ATIResourceManger._culture)
+                    @ATIResource.HomeCode
                 </a> <span class="fa fa-angle-right"></span>
             </li>
             <li>@cate.Name</li>

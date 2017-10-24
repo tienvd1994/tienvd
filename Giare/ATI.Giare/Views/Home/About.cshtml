@@ -1,5 +1,5 @@
 ﻿@using ATI.Web.Models;
-@using ATI.Web.Helper;
+@using ATI.Web.Resource;
 
 @{
     var about = (Introduce)ViewBag.Content;
@@ -11,24 +11,17 @@
     ViewBag.Image = commonInfo.Logo;
 }
 
-@*<section class="page-title_professional" style="background-image:url(images/background/4.jpg);">
-        <div class="auto-container">
-            <h1>
-                @ATIResourceManger._managerResources.GetString("IntroductionCode", ATIResourceManger._culture)
-            </h1>
-        </div>
-    </section>*@
 <div class="breadcrumb-outer_professional">
     <div class="auto-container">
         <ul class="bread-crumb text-center">
             <li>
                 <a href="/">
-                    @ATIResourceManger._managerResources.GetString("HomeCode", ATIResourceManger._culture)
+                    @ATIResource.HomeCode
                 </a> <span class="fa fa-angle-right"></span>
             </li>
             <li>
                 <a href="/dich-vu">
-                    @ATIResourceManger._managerResources.GetString("IntroductionCode", ATIResourceManger._culture)
+                    @ATIResource.IntroductionCode
                 </a> <span class="fa fa-angle-right"></span>
             </li>
             <li>@about.Title</li>
@@ -49,7 +42,12 @@
                                 <div class="upper-content">
                                     <h3>@about.Title</h3>
                                     <ul class="meta-option">
-                                        <li><a href="blog-single.html"><span class="icon fa fa-user"></span> @ATIResourceManger._managerResources.GetString("PostedBy_Label", ATIResourceManger._culture): @about.LastUpdateUser</a></li>
+                                        <li>
+                                            <a href="blog-single.html">
+                                                <span class="icon fa fa-user"></span>
+                                                @ATIResource.PostedBy_Label: @about.LastUpdateUser
+                                            </a>
+                                        </li>
                                         <li>
                                             <a href="javascript:void(0)"><span class="icon fa fa-calendar"></span>@Convert.ToDateTime(about.LastUpdateTime).ToString("dd/MM/yyyy")</a>
                                         </li>
@@ -71,7 +69,7 @@
                         <div class="sidebar-widget popular-posts">
                             <div class="sidebar-title">
                                 <h3>
-                                    @ATIResourceManger._managerResources.GetString("MorePosts_Label", ATIResourceManger._culture)
+                                    @ATIResource.MorePosts_Label
                                 </h3>
                             </div>
                             @{

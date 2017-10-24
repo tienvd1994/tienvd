@@ -30,52 +30,52 @@
 
                     foreach (var item in items)
                     {
-                        <li data-transition="fade" data-slotamount="1" data-masterspeed="1000" data-thumb="@item.Image" data-saveperformance="off" data-title="@item.Name">
-                            <img src="@item.Image" alt="" data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat">
-                            <div class="blue-layer"></div>
+                <li data-transition="fade" data-slotamount="1" data-masterspeed="1000" data-thumb="@item.Image" data-saveperformance="off" data-title="@item.Name">
+                    <img src="@item.Image" alt="" data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat">
+                    <div class="blue-layer"></div>
 
-                            <div class="tp-caption sft sfb tp-resizeme"
+                    <div class="tp-caption sft sfb tp-resizeme"
+                         data-x="left" data-hoffset="0"
+                         data-y="center" data-voffset="-100"
+                         data-speed="1500"
+                         data-start="500"
+                         data-easing="easeoutexpo"
+                         data-splitin="none"
+                         data-splitout="none"
+                         data-elementdelay="0.01"
+                         data-endelementdelay="0.3"
+                         data-endspeed="1200"
+                         data-endeasing="power4.easein"><h2>@item.Title</h2></div>
+
+                        <div class="tp-caption sfb sfb tp-resizeme"
+                             data-x="left" data-hoffset="0"
+                             data-y="center" data-voffset="0"
+                             data-speed="1500"
+                             data-start="1000"
+                             data-easing="easeOutExpo"
+                             data-splitin="none"
+                             data-splitout="none"
+                             data-elementdelay="0.01"
+                             data-endelementdelay="0.3"
+                             data-endspeed="1200"
+                             data-endeasing="Power4.easeIn"><div class="text">@item.Summary</div></div>
+
+                            <div class="tp-caption sfb sfb tp-resizeme"
                                  data-x="left" data-hoffset="0"
-                                 data-y="center" data-voffset="-100"
+                                 data-y="center" data-voffset="100"
                                  data-speed="1500"
-                                 data-start="500"
-                                 data-easing="easeoutexpo"
+                                 data-start="1500"
+                                 data-easing="easeOutExpo"
                                  data-splitin="none"
                                  data-splitout="none"
                                  data-elementdelay="0.01"
                                  data-endelementdelay="0.3"
                                  data-endspeed="1200"
-                                 data-endeasing="power4.easein"><h2>@item.Title</h2></div>
-
-                                <div class="tp-caption sfb sfb tp-resizeme"
-                                     data-x="left" data-hoffset="0"
-                                     data-y="center" data-voffset="0"
-                                     data-speed="1500"
-                                     data-start="1000"
-                                     data-easing="easeOutExpo"
-                                     data-splitin="none"
-                                     data-splitout="none"
-                                     data-elementdelay="0.01"
-                                     data-endelementdelay="0.3"
-                                     data-endspeed="1200"
-                                     data-endeasing="Power4.easeIn"><div class="text">@item.Summary</div></div>
-
-                                    <div class="tp-caption sfb sfb tp-resizeme"
-                                         data-x="left" data-hoffset="0"
-                                         data-y="center" data-voffset="100"
-                                         data-speed="1500"
-                                         data-start="1500"
-                                         data-easing="easeOutExpo"
-                                         data-splitin="none"
-                                         data-splitout="none"
-                                         data-elementdelay="0.01"
-                                         data-endelementdelay="0.3"
-                                         data-endspeed="1200"
-                                         data-endeasing="Power4.easeIn">
-                                        <a href="@item.Url" class="theme-btn btn-style-one">@ATIResourceManger._managerResources.GetString("ReadMore", ATIResourceManger._culture)</a>&ensp;
-                                        <a href="/lien-he" class="theme-btn btn-style-four">@ATIResourceManger._managerResources.GetString("ContactCode", ATIResourceManger._culture)</a>
-                                    </div>
-                                </li>
+                                 data-endeasing="Power4.easeIn">
+                                <a href="@item.Url" class="theme-btn btn-style-one">@ATIResource.ReadMore</a>&ensp;
+                                <a href="/lien-he" class="theme-btn btn-style-four">@ATIResource.ContactCode</a>
+                            </div>
+                        </li>
                     }
                 }
             </ul>
@@ -84,40 +84,6 @@
         </div>
     </div>
 </section>
-
-<!--End Main Slider-->
-<!--default Section One-->
-@*<section class="default-section">
-        <div class="auto-container">
-            <div class="row clearfix">
-                <div class="col-md-12 col-sm-12">
-                    <div class="left-column">
-                        <div class="content">
-                            <!--Sec Title-->
-                            <div class="sec-title centered">
-                                <h2>
-                                    @ATIResourceManger._managerResources.GetString("IntroductionCode", ATIResourceManger._culture)
-                                </h2>
-                                <div class="separator"></div>
-                            </div>
-                            <div class="text">
-                                @{
-                                    var introduce = (Introduce)ViewBag.AboutHomePage;
-
-                                    if (introduce != null)
-                                    {
-                                        @Html.Raw(introduce.Content)
-                                    }
-                                }
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>*@
-<!--default Section One-->
-<!--Services Section-->
 
 @{
     if (commonInfo.IsShowService == true)
@@ -131,7 +97,6 @@
                     <!--Sec Title-->
                     <div class="sec-title light centered">
                         <h2>
-                            @*@ATIResourceManger._managerResources.GetString("ServiceCode", ATIResourceManger._culture)*@
                             @ATIResource.ServiceCode
                         </h2>
                         <div class="separator"></div>
@@ -139,7 +104,7 @@
                     <div class="row clearfix">
                         <!--Services Style Two-->
                         <div id="owl-example" class="owl-carousel">
-                            @foreach (var item in (List<Partner>)ViewBag.Services)
+                            @foreach (var item in services)
                             {
                                 <div class="services-style-two col-xs-12">
                                     <div class="inner hover-style1 hvr-float-shadow">
@@ -185,7 +150,7 @@
                     <!--Sec Title-->
                     <div class="sec-title centered">
                         <h2>
-                            @ATIResourceManger._managerResources.GetString("ProductCode", ATIResourceManger._culture)
+                            @ATIResource.ProductCode
                         </h2>
                         <div class="separator"></div>
                     </div>
@@ -193,75 +158,75 @@
                         var first = true;
                         var first1 = true;
 
-                        <div class="col-xs-12">
-                            <ul class="nav nav-tabs post-filter" role="tablist">
+                    <div class="col-xs-12">
+                        <ul class="nav nav-tabs post-filter" role="tablist">
 
-                                @foreach (var category in list.Categories)
+                            @foreach (var category in list.Categories)
                                 {
                                     if (first)
                                     {
-                                        <li role="presentation" class="active">
-                                            <a href="#@category.CateId" aria-controls="@category.CateId" role="tab" data-toggle="tab">@category.CategoryName</a>
-                                        </li>
+                            <li role="presentation" class="active">
+                                <a href="#@category.CateId" aria-controls="@category.CateId" role="tab" data-toggle="tab">@category.CategoryName</a>
+                            </li>
 
                                         first = false;
                                     }
                                     else
                                     {
-                                        <li role="presentation">
-                                            <a href="#@category.CateId" aria-controls="@category.CateId" role="tab" data-toggle="tab">@category.CategoryName</a>
-                                        </li>
+                            <li role="presentation">
+                                <a href="#@category.CateId" aria-controls="@category.CateId" role="tab" data-toggle="tab">@category.CategoryName</a>
+                            </li>
                                     }
                                 }
-                            </ul>
-                            <div class="tab-content">
-                                @foreach (var item in list.Categories)
+                        </ul>
+                        <div class="tab-content">
+                            @foreach (var item in list.Categories)
                                 {
                                     if (first1)
                                     {
-                                        <div role="tabpanel" class="tab-pane active" id="@item.CateId">
-                                            <div id="owl-example" class="owl-carousel">
-                                                @foreach (var product in list.Products.Where(m => m.CateId == item.CateId))
+                            <div role="tabpanel" class="tab-pane active" id="@item.CateId">
+                                <div id="owl-example" class="owl-carousel">
+                                    @foreach (var product in list.Products.Where(m => m.CateId == item.CateId))
                                                 {
-                                                    <div>
-                                                        <div class="inner hover-style1">
-                                                            <figure class="hover-style1-img">
-                                                                <img src="@product.Image" alt="@product.Name">
-                                                            </figure>
-                                                            <div class="hover-style1-title title-style-1">
-                                                                <h3><a href="/chi-tiet/@product.SeoLink">@product.Name</a></h3>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                }
+                                        <div>
+                                            <div class="inner hover-style1">
+                                                <figure class="hover-style1-img">
+                                                    <img src="@product.Image" alt="@product.Name">
+                                                </figure>
+                                                <div class="hover-style1-title title-style-1">
+                                                    <h3><a href="/chi-tiet/@product.SeoLink">@product.Name</a></h3>
+                                                </div>
                                             </div>
                                         </div>
+                                                }
+                                </div>
+                            </div>
 
                                         first1 = false;
                                     }
                                     else
                                     {
-                                        <div role="tabpanel" class="tab-pane" id="@item.CateId">
-                                            <div id="owl-example" class="owl-carousel">
-                                                @foreach (var product in list.Products.Where(m => m.CateId == item.CateId))
+                            <div role="tabpanel" class="tab-pane" id="@item.CateId">
+                                <div id="owl-example" class="owl-carousel">
+                                    @foreach (var product in list.Products.Where(m => m.CateId == item.CateId))
                                                 {
-                                                    <div>
-                                                        <div class="inner hover-style1">
-                                                            <figure class="hover-style1-img">
-                                                                <img src="@product.Image" alt="@product.Name">
-                                                            </figure>
-                                                            <div class="hover-style1-title title-style-1">
-                                                                <h3><a href="/chi-tiet/@product.SeoLink">@product.Name</a></h3>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                }
+                                        <div>
+                                            <div class="inner hover-style1">
+                                                <figure class="hover-style1-img">
+                                                    <img src="@product.Image" alt="@product.Name">
+                                                </figure>
+                                                <div class="hover-style1-title title-style-1">
+                                                    <h3><a href="/chi-tiet/@product.SeoLink">@product.Name</a></h3>
+                                                </div>
                                             </div>
                                         </div>
+                                                }
+                                </div>
+                            </div>
                                     }
                                 }
-                            </div>
                         </div>
+                    </div>
                     }
                 </div>
             </section>
@@ -269,56 +234,55 @@
                         }
 }
 
+@{
+    if (commonInfo.IsShowSolution == true)
+    {
+        var solutions = (List<News>)ViewBag.Solutions;
 
-<!--End project_professional Section-->
-<!--News Section-->
-@*<section class="news-section_professional">
-        <div class="auto-container">
-            Sec Title
-            <div class="sec-title centered">
-                <h2>
-                    @ATIResourceManger._managerResources.GetString("NewsLastest_Label", ATIResourceManger._culture)
-                </h2>
-                <div class="separator"></div>
-            </div>
-            <div class="row clearfix">
-                @{
-                    foreach (var item in (List<News>)ViewBag.TopNews)
-                    {
-                        <div class="news-style-one col-md-4 col-sm-6 col-xs-12">
-                            <div class="inner">
-                                <div class="image">
-                                    <a href="/bai-viet/@item.SeoLink">
-                                        <img src="@item.Image" />
-                                    </a>
-                                </div>
-                                <div class="lower-box">
-                                    <div class="upper-content">
-                                        <h3>
-                                            <a href="/bai-viet/@item.SeoLink">
-                                                @Common.SubString(item.Title, 30)
-                                            </a>
-                                        </h3>
+        if (solutions != null && solutions.Count() > 0)
+        {
+            <section class="services-section_professional">
+                <div class="auto-container">
+                    <!--Sec Title-->
+                    <div class="sec-title light centered">
+                        <h2>
+                            @ATIResource.Solutions_Label
+                        </h2>
+                        <div class="separator"></div>
+                    </div>
+                    <div class="row clearfix">
+                        <!--Services Style Two-->
+                        <div id="owl-example" class="owl-carousel">
+                            @foreach (var item in solutions)
+                            {
+                                <div class="services-style-two col-xs-12">
+                                    <div class="inner hover-style1 hvr-float-shadow">
+                                        <figure class="image-box hover-style1-img">
+                                            <img src="@item.Image" alt="@item.Title" />
+                                            <div class="hover-style1-view">
+                                                <a class="link-box" href="/dich-vu/@item.SeoLink">
+                                                    <span class="fa fa-link"></span>
+                                                </a>
+                                            </div>
+                                        </figure>
+                                        <div class="lower-box">
+                                            <h3>
+                                                <a href="/dich-vu/@item.SeoLink">
+                                                    @Common.SubString(item.Title, 30)
+                                                </a>
+                                            </h3>
+                                        </div>
                                     </div>
-                                    <div class="text">
-                                        @Common.SubString(item.Summary, 100)
-                                    </div>
-                                    <ul class="meta-option clearfix">
-                                        <li class="pull-left">
-                                            <a href="/bai-viet/@item.SeoLink">
-                                                <span class="icon fa fa-clock-o"></span> @Convert.ToDateTime(item.CreatedTime).ToString("dd/MM/yyyy")
-                                            </a>
-                                        </li>
-                                    </ul>
                                 </div>
-                            </div>
+                            }
                         </div>
-                    }
-                }
-            </div>
-        </div>
-    </section>*@
-<!--End News Section-->
+                    </div>
+
+                </div>
+            </section>
+        }
+    }
+}
 
 @section KnockOut{
     <script>
@@ -351,9 +315,6 @@
             });
 
             $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-                //e.target // newly activated tab
-                //e.relatedTarget // previous active tab
-                //$(".owl-carousel").trigger('refresh.owl.carousel');
             });
         });
     </script>

@@ -1,4 +1,6 @@
-﻿namespace ATI.Web.Models
+﻿using System;
+
+namespace ATI.Web.Models
 {
     public class CommonInfoViewModel
     {
@@ -27,5 +29,6 @@
         public double? Lang { get; set; }
         public bool? IsShowService { get; set; }
         public bool? IsShowProduct { get; set; }
+        public bool? IsShowSolution { get; set; }
     }
 }

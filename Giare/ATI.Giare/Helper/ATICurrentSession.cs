@@ -35,8 +35,11 @@ namespace ATI.Web.Helper
         {
             get
             {
-                if (!string.IsNullOrEmpty(ATICurrentCookie.GetCookie(LANG_SESSION)))
-                    return Convert.ToInt32(ATICurrentCookie.GetCookie(LANG_SESSION));
+                var lang = ATICurrentCookie.GetCookie("_culture");
+
+                if (!string.IsNullOrEmpty(lang))
+                    return Convert.ToInt32(lang);
+
                 return 0;
             }
 
@@ -59,8 +62,10 @@ namespace ATI.Web.Helper
 
         public static string GetCookie(string pKey)
         {
-            if (HttpContext.Current.Request.Cookies[pKey] != null)
-                return HttpContext.Current.Request.Cookies[pKey].Value;
+            var culture = HttpContext.Current.Request.Cookies[pKey];
+
+            if (culture != null)
+                return culture.Value.Equals("vi-VN") ? "0" : "1";
             return "0";
         }
 

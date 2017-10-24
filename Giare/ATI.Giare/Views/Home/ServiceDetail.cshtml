@@ -1,5 +1,6 @@
 ﻿@using ATI.Web.Models;
 @using ATI.Web.Helper;
+@using ATI.Web.Resource;
 
 @{
     var partner = (Partner)ViewBag.Partner;
@@ -11,24 +12,17 @@
     ViewBag.Image = partner.Image;
 }
 
-@*<section class="page-title_professional" style="background-image:url(images/background/4.jpg);">
-        <div class="auto-container">
-            <h1>
-                @ATIResourceManger._managerResources.GetString("ServiceCode", ATIResourceManger._culture)
-            </h1>
-        </div>
-    </section>*@
 <div class="breadcrumb-outer_professional">
     <div class="auto-container">
         <ul class="bread-crumb text-center">
             <li>
                 <a href="/">
-                    @ATIResourceManger._managerResources.GetString("HomeCode", ATIResourceManger._culture)
+                    @ATIResource.HomeCode
                 </a> <span class="fa fa-angle-right"></span>
             </li>
             <li>
                 <a href="/dich-vu">
-                    @ATIResourceManger._managerResources.GetString("ServiceCode", ATIResourceManger._culture)
+                    @ATIResource.ServiceCode
                 </a> <span class="fa fa-angle-right"></span>
             </li>
             <li>@partner.Name</li>

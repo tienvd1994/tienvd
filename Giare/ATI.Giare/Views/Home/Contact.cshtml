@@ -1,12 +1,12 @@
 ﻿@using ATI.Web.Models;
-@using ATI.Web.Helper;
 @model ATI.Web.Models.ContactViewModel
+@using ATI.Web.Resource;
 
 @{
     var commonInfo = (CommonInfo)ViewBag.CommonInfo;
-    ViewBag.Title = Html.Raw(string.Concat(ATIResourceManger._managerResources.GetString("ContactCode", ATIResourceManger._culture), " | ", commonInfo.Name));
-    ViewBag.Description = Html.Raw(string.Concat(ATIResourceManger._managerResources.GetString("ContactCode", ATIResourceManger._culture), " ", commonInfo.Name));
-    ViewBag.Keyword = Html.Raw(string.Concat(ATIResourceManger._managerResources.GetString("ContactCode", ATIResourceManger._culture), " ", commonInfo.Name));
+    ViewBag.Title = Html.Raw(string.Concat(ATIResource.ContactCode, " | ", commonInfo.Name));
+    ViewBag.Description = Html.Raw(string.Concat(ATIResource.ContactCode, " ", commonInfo.Name));
+    ViewBag.Keyword = Html.Raw(string.Concat(ATIResource.ContactCode, " ", commonInfo.Name));
     ViewBag.Url = "/lien-he";
     ViewBag.Image = commonInfo.Logo;
 }
@@ -32,10 +32,10 @@
             var marker = new google.maps.Marker({
                 position: myLatlng,
                 map: map,
-                title: '@commonInfo.Name - @ATIResourceManger._managerResources.GetString("Mobile", ATIResourceManger._culture), @ATIResourceManger._managerResources.GetString("Phone", ATIResourceManger._culture): @commonInfo.Phone: @commonInfo.Mobile<br> @commonInfo.Office'
+                title: '@commonInfo.Name - @ATIResource.Mobile, @ATIResource.Phone: @commonInfo.Phone : @commonInfo.Mobile<br> @commonInfo.Office'
             });
             var info = new google.maps.InfoWindow({
-                content: '@commonInfo.Name - @ATIResourceManger._managerResources.GetString("Mobile", ATIResourceManger._culture): @commonInfo.Mobile, @ATIResourceManger._managerResources.GetString("Phone", ATIResourceManger._culture): @commonInfo.Phone<br> @commonInfo.Office'
+                content: '@commonInfo.Name - @ATIResource.Mobile: @commonInfo.Mobile, @ATIResource.Phone : @commonInfo.Phone<br> @commonInfo.Office'
             });
 
             info.open(map, marker);
@@ -58,8 +58,12 @@
 <div class="breadcrumb-outer_professional">
     <div class="auto-container">
         <ul class="bread-crumb text-center">
-            <li><a href="index.html">@ATIResourceManger._managerResources.GetString("HomeCode", ATIResourceManger._culture)</a> <span class="fa fa-angle-right"></span></li>
-            <li>@ATIResourceManger._managerResources.GetString("ContactCode", ATIResourceManger._culture)</li>
+            <li>
+                <a href="index.html">
+                    @ATIResource.HomeCode
+                </a> <span class="fa fa-angle-right"></span>
+            </li>
+            <li>@ATIResource.ContactCode</li>
         </ul>
     </div>
 </div>
@@ -68,7 +72,7 @@
     <div class="auto-container">
         <div class="sec-title centered">
             <h2>
-                @ATIResourceManger._managerResources.GetString("ContactUs_Label", ATIResourceManger._culture)
+                @ATIResource.ContactUs_Label
             </h2>
             <div class="separator"></div>
         </div>
@@ -84,7 +88,7 @@
                                 @Html.TextBoxFor(m => m.Name, new Dictionary<string, object>
                                     {
                                         { "class", "form-control" },
-                                        {" placeholder", @ATIResourceManger._managerResources.GetString("Fullname", ATIResourceManger._culture) },
+                                        {" placeholder", ATIResource.Fullname },
                                         {"data-bind", "value: FullName" }
                                     })
                                 @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
@@ -93,7 +97,7 @@
                                 @Html.TextBoxFor(m => m.CompanyName, new Dictionary<string, object>
                                     {
                                         { "class", "form-control" },
-                                        {" placeholder", @ATIResourceManger._managerResources.GetString("ContactCompany", ATIResourceManger._culture) },
+                                        {" placeholder",  ATIResource.ContactCompany },
                                         {"data-bind", "value: Company" }
                                     })
                                 @*@Html.ValidationMessageFor(model => model.CompanyName, "", new { @class = "text-danger" })*@
@@ -112,7 +116,7 @@
                                 @Html.TextBoxFor(m => m.Phone, new Dictionary<string, object>
                                     {
                                         { "class", "form-control" },
-                                        {" placeholder", @ATIResourceManger._managerResources.GetString("Phone", ATIResourceManger._culture) },
+                                        {" placeholder", ATIResource.Phone },
                                         {"data-bind", "value: Mobile" }
                                     })
                                 @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
@@ -121,7 +125,7 @@
                                 @Html.TextAreaFor(m => m.Message, new Dictionary<string, object>
                                     {
                                         { "class", "form-control" },
-                                        {" placeholder", @ATIResourceManger._managerResources.GetString("ContactContent", ATIResourceManger._culture) },
+                                        {" placeholder", ATIResource.ContactContent },
                                         {"data-bind", "value: Message" }
                                     })
                                 @Html.ValidationMessageFor(model => model.Message, "", new { @class = "text-danger" })
@@ -130,7 +134,7 @@
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group">
                                 <button class="theme-btn btn-style-one" type="button" name="submit-form" data-bind="click: SendMessage, enable:!Sending() ">
                                     <img src="/content/images/loading.gif" data-bind="visible: Sending" />
-                                    @ATIResourceManger._managerResources.GetString("Send", ATIResourceManger._culture)
+                                    @ATIResource.Send
                                 </button>
                             </div>
 
@@ -144,7 +148,7 @@
             <!--image column-->
             <div class="contact-section col-md-4 col-sm-4 col-xs-12 pull-left">
                 <h4>
-                    @ATIResourceManger._managerResources.GetString("ContactInfo_Label", ATIResourceManger._culture)
+                    @ATIResource.ContactInfo_Label
                 </h4>
                 <ul class="contact-info">
                     <li><div class="icon-box"><span class="fa fa-phone"></span></div>@Html.Raw(commonInfo.Phone), @commonInfo.Mobile</li>

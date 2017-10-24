@@ -1,5 +1,5 @@
 ﻿@using ATI.Web.Models;
-@using ATI.Web.Helper;
+@using ATI.Web.Resource;
 
 @{
     var news = (News)ViewBag.News;
@@ -13,24 +13,16 @@
 }
 <link href="~/Content/css/blog.css" rel="stylesheet" />
 
-@*<section class="page-title_professional" style="background-image:url(images/background/4.jpg);">
-        <div class="auto-container">
-            <h1>
-                @ATIResourceManger._managerResources.GetString("EventCategory", ATIResourceManger._culture)
-            </h1>
-        </div>
-    </section>*@
-
 <div class="breadcrumb-outer_professional">
     <div class="auto-container">
         <ul class="bread-crumb text-center">
             <li>
                 <a href="/">
-                    @ATIResourceManger._managerResources.GetString("HomeCode", ATIResourceManger._culture)
+                    @ATIResource.HomeCode
                 </a> <span class="fa fa-angle-right"></span>
             </li>
             <li>
-                @ATIResourceManger._managerResources.GetString("EventCategory", ATIResourceManger._culture)
+                @ATIResource.EventCategory
                 <span class="fa fa-angle-right"></span>
             </li>
             <li>@news.Title</li>
@@ -51,7 +43,7 @@
                                 <div class="upper-content">
                                     <h3>@news.Title</h3>
                                     <ul class="meta-option">
-                                        <li><a href="blog-single.html"><span class="icon fa fa-user"></span> @ATIResourceManger._managerResources.GetString("PostedBy_Label", ATIResourceManger._culture): @news.CreatedFullname</a></li>
+                                        <li><a href="blog-single.html"><span class="icon fa fa-user"></span> @ATIResource.PostedBy_Label: @news.CreatedFullname</a></li>
                                         <li><a href="blog-single.html"><span class="icon fa fa-calendar"></span>@Convert.ToDateTime(news.CreatedTime).ToString("dd/MM/yyyy")</a></li>
                                     </ul>
                                 </div>
@@ -70,7 +62,7 @@
                         <div class="sidebar-widget categories">
                             <div class="sidebar-title">
                                 <h3>
-                                    @ATIResourceManger._managerResources.GetString("CateNewsOther_Label", ATIResourceManger._culture)
+                                    @ATIResource.CateNewsOther_Label
                                 </h3>
                             </div>
                             <ul class="cat-list">
@@ -86,7 +78,7 @@
                         <div class="sidebar-widget popular-posts">
                             <div class="sidebar-title">
                                 <h3>
-                                    @ATIResourceManger._managerResources.GetString("MorePosts_Label", ATIResourceManger._culture)
+                                    @ATIResource.MorePosts_Label
                                 </h3>
                             </div>
                             @{

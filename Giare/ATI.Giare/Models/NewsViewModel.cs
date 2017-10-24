@@ -16,5 +16,6 @@ namespace ATI.Web.Models
         public short IsHot { get; set; }
         public int CateId { get; set; }
         public string LangId { get; set; }
+        public bool? IsShowHomePage { get; set; }
     }
 }

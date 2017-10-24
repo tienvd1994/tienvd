@@ -26,17 +26,19 @@ amplify.request.define("SearchNews", "ajax", {
     type: "GET"
 });
 
-News.Update = function (id, title, titleEn, image, summary, content, postTime, status, cateId, author, isHot, langid, callback) {
+News.Update = function (id, title, titleEn, image, summary, content, postTime, status, cateId, author, isHot, langid, IsShowHomePage, callback) {
     amplify.request("UpdateNews", {
         ID: id, Title: title, Title_En: titleEn, Image: image, Summary: summary, Content: content, PostTime: postTime, Status: status, CateId: cateId, Author: author, IsHot: isHot, LangId: langid,
+        IsShowHomePage: IsShowHomePage
     }, function (data) {
         if (callback) callback(data);
     });
 }
 
-News.AddNews = function (title, titleEn, image, summary, content, postTime, status, cateId, author, isHot, langid, callback) {
+News.AddNews = function (title, titleEn, image, summary, content, postTime, status, cateId, author, isHot, langid, IsShowHomePage, callback) {
     amplify.request("AddNews", {
         Title: title, Title_En: titleEn, Image: image, Summary: summary, Content: content, PostTime: postTime, Status: status, CateId: cateId, Author: author, IsHot: isHot, LangId: langid,
+        IsShowHomePage: IsShowHomePage
     }, function (data) {
         if (callback) callback(data);
     });

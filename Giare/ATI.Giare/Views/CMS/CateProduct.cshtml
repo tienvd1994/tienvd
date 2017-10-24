@@ -1,5 +1,6 @@
 ﻿@using ATI.Web.Models;
 @using ATI.Web.Helper;
+@using ATI.Web.Resource;
 @{
     ViewBag.Title = "Quản lý phân loại sản phẩm";
     Layout = "~/Views/Shared/_CMSLayout.cshtml";
@@ -30,7 +31,7 @@
     <div class="container">
         <h1 class="pull-left">Phân loại sản phẩm</h1>
         <ul class="pull-right breadcrumb">
-            <li><a href="/" class="menuATI">@ATIResourceManger._managerResources.GetString("HomeCode", ATIResourceManger._culture)</a></li>
+            <li><a href="/" class="menuATI">@ATIResource.HomeCode</a></li>
             <li><a class="active">Quản lý phân loại sản phẩm</a></li>
         </ul>
     </div>
@@ -60,15 +61,15 @@
                     <label class="select">
                         <select data-bind="value: ParrentCate, optionsValue:'ID', optionsText:'Name', options: ListCateProduct, optionsCaption: '-- Nhóm cha --'"></select>
                         @*<select data-bind="value: ParrentCate" id="drParrentCate">
-                            <option value="-1">-- Nhóm cha --</option>
-                            @{
-                                var cateProducts = (List<CateProduct>)ViewBag.CateProducts;
-                                foreach (var item in cateProducts)
-                                {
-                                    <option value="@item.ID">@Html.Raw(item.Name)</option>
+                                <option value="-1">-- Nhóm cha --</option>
+                                @{
+                                    var cateProducts = (List<CateProduct>)ViewBag.CateProducts;
+                                    foreach (var item in cateProducts)
+                                    {
+                                        <option value="@item.ID">@Html.Raw(item.Name)</option>
+                                    }
                                 }
-                            }
-                        </select>*@
+                            </select>*@
                     </label>
                 </section>
                 <section class="col col-lg-2">

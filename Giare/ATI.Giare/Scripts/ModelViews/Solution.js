@@ -38,6 +38,7 @@ function NewsView() {
     self.OrderNo = ko.observable(1);
     self.CateId = ko.observable(1);
     self.IsHot = ko.observable(0);
+    self.IsShowHomePage = ko.observable(false);
 
     self.ShowDetail = ko.observable(false);
     self.fcTitle = ko.observable(false);
@@ -148,6 +149,7 @@ function NewsView() {
         self.CateId(item.CateId);
         self.IsHot(item.IsHot);
         self.LangId(item.LangId);
+        self.IsShowHomePage(item.IsShowHomePage);
     }
 
     self.ShowAddForm = function (item) {
@@ -165,6 +167,7 @@ function NewsView() {
         self.CateId(1);
         self.IsHot(0);
         self.LangId(0);
+        self.IsShowHomePage(false);
     }
 
     self.Delete = function (item) {
@@ -254,7 +257,7 @@ function NewsView() {
 
         if (self.IsAdd()) {
             News.AddNews(self.Title(), self.Title(), self.Image(), self.Summary(), CKEDITOR.instances.Content.getData(), moment(postTime, "DD/MM/YYYY").format("YYYY-MM-DD"),
-                self.Status(), self.CateId(), self.Author(), self.IsHot(), self.LangId(), function (data) {
+                self.Status(), self.CateId(), self.Author(), self.IsHot(), self.LangId(), self.IsShowHomePage(), function (data) {
 
                     self.Sending(false);
 
@@ -272,7 +275,7 @@ function NewsView() {
         }
         else {
             News.Update(self.ID(), self.Title(), self.Title(), self.Image(), self.Summary(), CKEDITOR.instances.Content.getData(), moment(postTime, "DD/MM/YYYY").format("YYYY-MM-DD"),
-                self.Status(), self.CateId(), self.Author(), self.IsHot(), self.LangId(), function (data) {
+                self.Status(), self.CateId(), self.Author(), self.IsHot(), self.LangId(), self.IsShowHomePage(), function (data) {
 
                     self.Sending(false);
 

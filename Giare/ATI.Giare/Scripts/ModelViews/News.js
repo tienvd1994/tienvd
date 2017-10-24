@@ -1,7 +1,6 @@
 ﻿$(document).ready(function () {
     modelView.IsDesktop($(window).width() > 750);
     modelView.IsSmartPhone450($(window).width() > 450);
-
     CKEDITOR.replace('Content');
 
     $("#txtPostTime").datepicker({
@@ -252,7 +251,7 @@ function NewsView() {
 
         if (self.IsAdd()) {
             News.AddNews(self.Title(), self.Title(), self.Image(), self.Summary(), CKEDITOR.instances.Content.getData(), moment(postTime, "DD/MM/YYYY").format("YYYY-MM-DD"),
-                self.Status(), self.CateId(), self.Author(), self.IsHot(), self.LangId(), function (data) {
+                self.Status(), self.CateId(), self.Author(), self.IsHot(), self.LangId(), false, function (data) {
 
                     self.Sending(false);
 
@@ -270,7 +269,7 @@ function NewsView() {
         }
         else {
             News.Update(self.ID(), self.Title(), self.Title(), self.Image(), self.Summary(), CKEDITOR.instances.Content.getData(), moment(postTime, "DD/MM/YYYY").format("YYYY-MM-DD"),
-                self.Status(), self.CateId(), self.Author(), self.IsHot(), self.LangId(), function (data) {
+                self.Status(), self.CateId(), self.Author(), self.IsHot(), self.LangId(), false, function (data) {
 
                     self.Sending(false);
 

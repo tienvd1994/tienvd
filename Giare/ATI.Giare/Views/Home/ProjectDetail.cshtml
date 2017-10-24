@@ -35,14 +35,14 @@
             <div class="blog margin-bottom-40">
                 <h2><a href="#">@Html.Raw(contractor.Name)</a></h2>
                 @*<div class="blog-post-tags">
-                    <ul class="list-unstyled list-inline blog-info">
-                        @if (contractor.FromDate != null)
-                        {
-                        <li><i class="icon icon-calendar"></i> Thời gian thực hiện: @(((DateTime)contractor.FromDate).ToString("MM/yyyy"))</li>
-                        }
-                        <li><i class="icon icon-comments"></i> <a href="#">@Html.Raw(string.Format("{0:0,0}", contractor.ViewNo)) lượt xem</a></li>
-                    </ul>
-                </div>*@
+                        <ul class="list-unstyled list-inline blog-info">
+                            @if (contractor.FromDate != null)
+                            {
+                            <li><i class="icon icon-calendar"></i> Thời gian thực hiện: @(((DateTime)contractor.FromDate).ToString("MM/yyyy"))</li>
+                            }
+                            <li><i class="icon icon-comments"></i> <a href="#">@Html.Raw(string.Format("{0:0,0}", contractor.ViewNo)) lượt xem</a></li>
+                        </ul>
+                    </div>*@
                 <div class="blog-img">
                     <img alt="@Html.Raw(contractor.Name)" src="@contractor.Image" class="img-responsive">
                 </div>
@@ -70,22 +70,22 @@
                                 var newss = (List<News>)ViewBag.TopNews;
                                 foreach (var item in newss)
                                 {
-                            <li>
-                                <div class="post-image">
-                                    <div class="img-thumbnail">
-                                        <a href="/bai-viet/@item.SeoLink">
-                                            <img alt="@item.Title" src="http://cdn.quancafe.vn/z_50x50@(item.Image)" />
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="post-info">
-                                    <a href="/bai-viet/@item.SeoLink">@Html.Raw(item.Title)</a>
-                                    <div class="post-meta">
-                                        <span><i class="icon icon-calendar"></i> @item.PostTime.ToString("dd/MM/yyyy")</span>
-                                        <span><i class="icon icon-comments"></i> @item.ViewNo lượt xem</span>
-                                    </div>
-                                </div>
-                            </li>
+                                    <li>
+                                        <div class="post-image">
+                                            <div class="img-thumbnail">
+                                                <a href="/bai-viet/@item.SeoLink">
+                                                    <img alt="@item.Title" src="http://cdn.quancafe.vn/z_50x50@(item.Image)" />
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="post-info">
+                                            <a href="/bai-viet/@item.SeoLink">@Html.Raw(item.Title)</a>
+                                            <div class="post-meta">
+                                                <span><i class="icon icon-calendar"></i> @item.PostTime.ToString("dd/MM/yyyy")</span>
+                                                <span><i class="icon icon-comments"></i> @item.ViewNo lượt xem</span>
+                                            </div>
+                                        </div>
+                                    </li>
                                 }
 
                             }

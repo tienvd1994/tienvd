@@ -76,6 +76,7 @@ namespace ATI.Web.Controllers
                 Products = listProduct
             };
 
+            ViewBag.Solutions = db.News.Where(item => item.Status == 1 && item.IsShowHomePage == true && item.LangId == lang).OrderByDescending(m => m.ID).ToList();
             ViewBag.AboutHomePage = db.Introduces.Where(m => m.IsShowHomePage == true && m.LangId == lang).OrderByDescending(m => m.LastUpdateTime).FirstOrDefault();
             ViewBag.ListCateAndProduct = categoryAndProductViewModel;
             ViewBag.ListSlide = db.ConfigImages.Where(m => m.Status == 1 && m.LangId == lang).ToList();
@@ -955,7 +956,7 @@ namespace ATI.Web.Controllers
             //    total = (item.Price - item.SaleOff) * item.Quantity;
             //}
 
-            db.Orders.Add(new Models.Order
+            db.Orders.Add(new Order
             {
                 FullName = fullName,
                 Address = address,
@@ -985,7 +986,6 @@ namespace ATI.Web.Controllers
             //ATIResourceManger.SetLanguage(Id == "en" ? "en-US" : "vi-VN");
 
             var name = Id == "en" ? "en-US" : "vi-VN";
-
             var cookie = Request.Cookies["_culture"];
 
             if (cookie == null)

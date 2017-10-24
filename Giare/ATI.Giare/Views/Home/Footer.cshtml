@@ -1,9 +1,10 @@
 ﻿@using ATI.Web.Models;
-@using ATI.Web.Helper;
+@using ATI.Web.Resource;
 
 @{
     var commonInfo = (CommonInfo)ViewBag.CommonInfo;
 }
+
 <footer class="main-footer_professional">
     <!--Footer Upper-->
     <div class="footer-upper">
@@ -15,7 +16,7 @@
                         <div class="col-lg-6 col-sm-6 col-xs-12 column">
                             <div class="footer-widget about-widget">
                                 <div class="footer-logo">
-                                    <img src="@commonInfo.Logo2"  />
+                                    <img src="@commonInfo.Logo2" />
                                 </div>
                                 <div class="text margin-bott-30">
                                     @Html.Raw(commonInfo.Summary)
@@ -28,7 +29,7 @@
                         <div class="col-lg-6 col-sm-6 col-xs-12 column">
                             <div class="footer-widget links-widget">
                                 <h3>
-                                    @ATIResourceManger._managerResources.GetString("IntroductionCode", ATIResourceManger._culture)
+                                    @ATIResource.IntroductionCode
                                 </h3>
                                 <ul>
                                     @{
@@ -53,7 +54,7 @@
                         <div class="col-lg-6 col-sm-6 col-xs-12 column">
                             <div class="footer-widget links-widget">
                                 <h3>
-                                    @ATIResourceManger._managerResources.GetString("EventCategory", ATIResourceManger._culture)
+                                    @ATIResource.EventCategory
                                 </h3>
                                 <ul>
                                     @{
@@ -73,7 +74,7 @@
                         <div class="col-lg-6 col-sm-6 col-xs-12 column">
                             <div class="footer-widget newsletter-widget">
                                 <h3>
-                                    @ATIResourceManger._managerResources.GetString("SocialNetwork_Label", ATIResourceManger._culture)
+                                    @ATIResource.SocialNetwork_Label
                                 </h3>
                                 <div class="newsletter-form">
                                     <div class="social-links">
@@ -98,19 +99,6 @@
         <div class="auto-container">
             <div class="row clearfix">
                 <div class="col-md-6 col-sm-6 col-xs-12"><div class="copyright-text">© 2017 Vinh Hung Group</div></div>
-                @*<div class="col-md-6 col-sm-6 col-xs-12">
-                        Bottom Nav
-                        <nav class="footer-nav clearfix">
-                            <ul class="pull-right clearfix">
-                                <li><a href="/">Home</a></li>
-                                <li><a href="/#">About</a></li>
-                                <li><a href="/#">Services</a></li>
-                                <li><a href="/#">Privacy policy</a></li>
-                                <li><a href="/#">Terms &amp; condition</a></li>
-
-                            </ul>
-                        </nav>
-                    </div>*@
             </div>
         </div>
     </div>

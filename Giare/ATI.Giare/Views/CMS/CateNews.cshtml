@@ -1,5 +1,7 @@
 ﻿@using ATI.Web.Models;
 @using ATI.Web.Helper;
+@using ATI.Web.Resource;
+
 @{
     ViewBag.Title = "Quản lý nhóm tin tức";
     Layout = "~/Views/Shared/_CMSLayout.cshtml";
@@ -26,7 +28,7 @@
     <div class="container">
         <h1 class="pull-left">Phân loại nhóm tin tức</h1>
         <ul class="pull-right breadcrumb">
-            <li><a href="/" class="menuATI">@ATIResourceManger._managerResources.GetString("HomeCode", ATIResourceManger._culture)</a></li>
+            <li><a href="/" class="menuATI">@ATIResource.HomeCode</a></li>
             <li><a class="active">Quản lý nhóm tin tức</a></li>
         </ul>
     </div>

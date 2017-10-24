@@ -1,6 +1,7 @@
 ﻿@using ATI.Web.Models;
 @using ATI.Web.Controllers;
 @using ATI.Web.Helper;
+@using ATI.Web.Resource;
 @{
     Layout = null;
     var currentUSer = (BriefUser)ViewBag.CurrentUser;
@@ -135,7 +136,7 @@
                                             @using (Html.BeginForm("SearchProduct", "Home", FormMethod.Get, new { role = "search", id = "searchform" }))
                                             {
                                                 <div class="form-group">
-                                                    <input type="search" name="key" id="key" value="" placeholder="@ATIResourceManger._managerResources.GetString("Search_Label", ATIResourceManger._culture)">
+                                                    <input type="search" name="key" id="key" value="" placeholder="@ATIResource.Search_Label">
                                                     <button type="submit" class="search-btn"><span class="fa fa-search"></span></button>
                                                 </div>
                                             }
@@ -166,7 +167,7 @@
                             </div>
                             <div class="text-holder">
                                 <h3>
-                                    @ATIResourceManger._managerResources.GetString("ContactAdd", ATIResourceManger._culture)
+                                    @ATIResource.ContactAdd
                                 </h3>
                                 <p>@commonInfo.Office</p>
                             </div>
@@ -181,9 +182,9 @@
                             </div>
                             <div class="text-holder">
                                 <h3>
-                                    @ATIResourceManger._managerResources.GetString("ContactCode", ATIResourceManger._culture)
+                                    @ATIResource.ContactCode
                                 </h3>
-                                <p>@ATIResourceManger._managerResources.GetString("Phone", ATIResourceManger._culture): @commonInfo.Phone<br>@ATIResourceManger._managerResources.GetString("Mobile", ATIResourceManger._culture): @commonInfo.Mobile</p>
+                                <p>@ATIResource.Phone: @commonInfo.Phone<br>@ATIResource.Mobile: @commonInfo.Mobile</p>
                             </div>
                         </div>
                     </div>
@@ -196,7 +197,7 @@
                             </div>
                             <div class="text-holder">
                                 <h3>
-                                    @ATIResourceManger._managerResources.GetString("SendMessage_Label", ATIResourceManger._culture)
+                                    @ATIResource.SendMessage_Label
                                 </h3>
                                 <p>
                                     Email: @commonInfo.Email

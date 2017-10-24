@@ -7,7 +7,7 @@
 @section KnockOut{
     <script type="text/html" id="NewsTemplate">
         <tr>
-            <td data-bind="text: (CurrentPage - 1) * totalPageCate+$index()+1"></td>
+            <td data-bind="text: (CurrentPage - 1) * RecordPerPage+$index()+1"></td>
             <td><img data-bind="attr:{src: Image}, visible: $root.IsDesktop" height="50" /></td>
             <td data-bind="text: Title"></td>
             <td data-bind="text: moment(PostTime).format('DD/MM/YYYY'), visible: $root.IsDesktop"></td>
@@ -23,6 +23,7 @@
     <script src="/Scripts/swfobject.js" type="text/javascript"></script>
     <script src="/Scripts/jquery.uploadify.v2.1.4.min.js" type="text/javascript"></script>
     <script src="~/Scripts/editor/full/ckeditor.js"></script>
+    <script src="~/Scripts/editor/full/plugins/pastefromword/filter/default.js"></script>
     <script src="~/Scripts/plugins/jquery_ui_datepicker.js"></script>
     <script src="~/Scripts/plugins/jquery-ui-timepicker-vi.js"></script>
     <script src="~/Scripts/jquery.ui.widget.js"></script>
