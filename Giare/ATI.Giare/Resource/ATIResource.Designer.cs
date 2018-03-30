@@ -88,7 +88,7 @@ namespace ATI.Web.Resource {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Nhóm tin tức khác.
+        ///   Looks up a localized string similar to Nhóm tin tức.
         /// </summary>
         public static string CateNewsOther_Label {
             get {
@@ -106,7 +106,7 @@ namespace ATI.Web.Resource {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Nhóm giải pháp khác.
+        ///   Looks up a localized string similar to Nhóm giải pháp.
         /// </summary>
         public static string CateSolutionsOther_Label {
             get {

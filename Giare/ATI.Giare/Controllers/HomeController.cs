@@ -776,37 +776,17 @@ namespace ATI.Web.Controllers
 
             db.Contacts.Add(contact);
 
-            //try
-            //{
             int rs = db.SaveChanges();
 
             if (rs > 0)
             {
                 string customerMessage = "<h3>Chào " + (string.IsNullOrEmpty(name) ? email : name) + ",</h3><p>Cảm ơn bạn đã liên hệ quan tâm đến các dịch vụ của VietHanEttsc. Chúng tôi sẽ xem thông tin liên hệ của bạn và sẽ có phản hồi sớm nhất tới bạn</p>";
                 Common.SendMail(email, string.Empty, "Cảm ơn bạn đã liên hệ quan tâm đến các dịch vụ của VietHanEttsc", customerMessage);
-
                 string message1 = @"Khách hàng " + (string.IsNullOrEmpty(name) ? email : name) + ", đơn vị " + company + ", số điện thoại " + mobile + ", email " + email + ("liên hệ quan tâm sản phẩm của VietHanEttsc") + "<br><strong>Với nội dung liên hệ: </strong> " + message;
                 Common.SendMail(ConfigurationManager.AppSettings["SendNotityEmailto"], string.Empty, name + " " + company + " liên hệ ", message1);
             }
 
             return Json(rs, JsonRequestBehavior.AllowGet);
-            //}
-            //catch (DbEntityValidationException e)
-            //{
-            //    StringBuilder sb = new StringBuilder();
-            //    foreach (var eve in e.EntityValidationErrors)
-            //    {
-            //        sb.AppendLine(string.Format("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
-            //            eve.Entry.Entity.GetType().Name, eve.Entry.State));
-
-            //        foreach (var ve in eve.ValidationErrors)
-            //        {
-            //            sb.AppendLine(string.Format("- Property: \"{0}\", Error: \"{1}\"", ve.PropertyName, ve.ErrorMessage));
-            //        }
-            //    }
-
-            //    return Json(-3, JsonRequestBehavior.AllowGet);
-            //}
         }
 
         public JsonResult DoLogin(string userName, string password)

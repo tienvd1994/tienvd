@@ -16,10 +16,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/12/2016 12:32:32</publishTime>
     </File>
     <File Include="bin/ATI.Web.dll">
-      <publishTime>10/24/2017 10:03:10</publishTime>
+      <publishTime>10/28/2017 10:14:23</publishTime>
     </File>
     <File Include="bin/ATI.Web.pdb">
-      <publishTime>10/24/2017 10:03:10</publishTime>
+      <publishTime>10/28/2017 10:14:23</publishTime>
     </File>
     <File Include="bin/Elmah.dll">
       <publishTime>09/12/2016 12:32:56</publishTime>
@@ -28,7 +28,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/12/2016 12:32:33</publishTime>
     </File>
     <File Include="bin/en-US/ATI.Web.resources.dll">
-      <publishTime>10/24/2017 10:03:10</publishTime>
+      <publishTime>10/28/2017 10:14:23</publishTime>
     </File>
     <File Include="bin/en/ATI.Web.resources.dll">
       <publishTime>10/18/2017 21:36:05</publishTime>
@@ -3154,7 +3154,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/18/2017 22:57:17</publishTime>
     </File>
     <File Include="Scripts/script.js">
-      <publishTime>10/13/2017 11:38:35</publishTime>
+      <publishTime>10/28/2017 10:06:32</publishTime>
     </File>
     <File Include="Scripts/slick.js">
       <publishTime>09/18/2017 22:57:21</publishTime>
@@ -3355,7 +3355,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/25/2017 08:01:14</publishTime>
     </File>
     <File Include="Views/Home/About.cshtml">
-      <publishTime>10/19/2017 13:05:36</publishTime>
+      <publishTime>10/28/2017 10:07:49</publishTime>
     </File>
     <File Include="Views/Home/Agency.cshtml">
       <publishTime>09/17/2017 09:51:44</publishTime>
@@ -3373,7 +3373,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/19/2017 13:05:55</publishTime>
     </File>
     <File Include="Views/Home/Contact.cshtml">
-      <publishTime>10/19/2017 13:10:20</publishTime>
+      <publishTime>10/25/2017 09:22:03</publishTime>
     </File>
     <File Include="Views/Home/FAQ.cshtml">
       <publishTime>09/17/2017 09:51:44</publishTime>
@@ -3385,7 +3385,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/19/2017 13:11:59</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>10/24/2017 10:01:42</publishTime>
+      <publishTime>10/28/2017 10:04:00</publishTime>
     </File>
     <File Include="Views/Home/Login.cshtml">
       <publishTime>09/28/2017 08:52:04</publishTime>
@@ -3397,7 +3397,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/24/2017 08:14:55</publishTime>
     </File>
     <File Include="Views/Home/NewsDetail.cshtml">
-      <publishTime>10/19/2017 13:16:25</publishTime>
+      <publishTime>10/28/2017 10:10:55</publishTime>
     </File>
     <File Include="Views/Home/Product.cshtml">
       <publishTime>10/19/2017 13:17:03</publishTime>
@@ -3424,13 +3424,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/19/2017 13:20:53</publishTime>
     </File>
     <File Include="Views/Home/ServiceDetail.cshtml">
-      <publishTime>10/19/2017 13:23:00</publishTime>
+      <publishTime>10/28/2017 10:09:31</publishTime>
     </File>
     <File Include="Views/Home/ShoppingCart.cshtml">
       <publishTime>09/17/2017 09:51:44</publishTime>
     </File>
     <File Include="Views/Home/SolutionDetail.cshtml">
-      <publishTime>10/19/2017 13:24:52</publishTime>
+      <publishTime>10/28/2017 10:13:43</publishTime>
     </File>
     <File Include="Views/Home/Solutions.cshtml">
       <publishTime>10/19/2017 13:24:45</publishTime>

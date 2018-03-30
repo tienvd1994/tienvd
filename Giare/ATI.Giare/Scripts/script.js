@@ -340,7 +340,7 @@
     //Sponsors Carousel Two
     if ($('.sponsors-carousel-two').length) {
         $('.sponsors-carousel-two').owlCarousel({
-            //loop:true,
+            loop: true,
             margin: 30,
             nav: false,
             smartSpeed: 500,

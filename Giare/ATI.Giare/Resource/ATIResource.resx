@@ -320,10 +320,10 @@
     <value>Mạng xã hội</value>
   </data>
   <data name="CateNewsOther_Label" xml:space="preserve">
-    <value>Nhóm tin tức khác</value>
+    <value>Nhóm tin tức</value>
   </data>
   <data name="CateSolutionsOther_Label" xml:space="preserve">
-    <value>Nhóm giải pháp khác</value>
+    <value>Nhóm giải pháp</value>
   </data>
   <data name="ContactInfo_Label" xml:space="preserve">
     <value>Thông tin liên hệ</value>
